@@ -23,7 +23,9 @@ const NAV_LINKS: NavLinkDef[] = [
   { to: '/statements', en: 'Statements', zh: '陈述类型' },
   { to: '/perspectives', en: 'Perspectives', zh: '观点', activeHashPrefix: 'not-weigh' },
   { to: '/perspectives#weigh', en: 'Significance', zh: '重要性', activeHashPrefix: 'weigh' },
+  { to: '/research', en: 'Research', zh: '研究' },
   { to: '/revision', en: 'Revision Sheets', zh: '复习页' },
+  { to: '/my-learning', en: 'My learning', zh: '我的学习' },
   { to: '/teachers', en: 'Teachers', zh: '教师面板' },
 ];
 
@@ -69,7 +71,7 @@ function SiteHeader({
 }) {
   const { pathname, hash } = useLocation();
   return (
-    <header className="sticky top-0 z-40 bg-[color:var(--color-paper)]/90 backdrop-blur-md border-b border-[color:var(--color-line)]">
+    <header className="sticky top-0 z-40 pt-[calc(env(safe-area-inset-top)+18px)] lg:pt-0 bg-[color:var(--color-paper)]/90 backdrop-blur-md border-b border-[color:var(--color-line)]">
       <Container size="wide">
         <div className="flex items-center justify-between gap-6 py-3">
           <Link to="/" className="flex items-center gap-3 group">

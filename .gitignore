@@ -21,3 +21,4 @@ dist-ssr/
 
 # Local copies of Cambridge papers (copyright; never commit)
 .cache/
+.impeccable/review/

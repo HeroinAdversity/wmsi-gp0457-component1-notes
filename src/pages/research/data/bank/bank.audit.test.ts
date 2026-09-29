@@ -13,6 +13,13 @@ describe('practice bank audit', () => {
     expect(parents).toEqual(Object.keys(SESSIONS).sort());
   });
 
+  it('has 11 reworded + 22 mirrors, two mirrors per session', () => {
+    expect(BANK.filter((b) => b.kind === 'reworded')).toHaveLength(11);
+    const mirrors = BANK.filter((b) => b.kind === 'mirror');
+    expect(mirrors).toHaveLength(22);
+    for (const s of Object.keys(SESSIONS)) expect(mirrors.filter((m) => m.parent === s)).toHaveLength(2);
+  });
+
   for (const item of BANK) {
     describe(item.id, () => {
       const text = sourceText(item);

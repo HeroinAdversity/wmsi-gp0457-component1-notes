@@ -22,14 +22,20 @@ import { N25_12_MIRROR_A } from './mirrors/n25-12-a';
 import { N25_12_MIRROR_B } from './mirrors/n25-12-b';
 import { N25_13_MIRROR_A } from './mirrors/n25-13-a';
 import { N25_13_MIRROR_B } from './mirrors/n25-13-b';
+import { M26_12_MIRROR_A } from './mirrors/m26-12-a';
+import { M26_12_MIRROR_B } from './mirrors/m26-12-b';
+import { J26_11_MIRROR_A } from './mirrors/j26-11-a';
+import { J26_11_MIRROR_B } from './mirrors/j26-11-b';
 import { J26_12_MIRROR_A } from './mirrors/j26-12-a';
+import { J26_12_MIRROR_B } from './mirrors/j26-12-b';
 
 export const BANK: BankItem[] = [
   J25_11_REWORDED, J25_12_REWORDED, J25_13_REWORDED, N25_11_REWORDED, N25_12_REWORDED, N25_13_REWORDED,
   M26_12_REWORDED, J26_11_REWORDED, J26_12_REWORDED, J26_13_REWORDED, SP_25_REWORDED,
   J25_11_MIRROR_A, J25_11_MIRROR_B, J25_12_MIRROR_A, J25_12_MIRROR_B, J25_13_MIRROR_A, J25_13_MIRROR_B,
   N25_11_MIRROR_A, N25_11_MIRROR_B, N25_12_MIRROR_A, N25_12_MIRROR_B, N25_13_MIRROR_A, N25_13_MIRROR_B,
-  J26_12_MIRROR_A,
+  M26_12_MIRROR_A, M26_12_MIRROR_B, J26_11_MIRROR_A, J26_11_MIRROR_B,
+  J26_12_MIRROR_A, J26_12_MIRROR_B,
 ];
 
 export function getItem(id: string): BankItem | undefined {

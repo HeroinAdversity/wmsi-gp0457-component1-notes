@@ -19,6 +19,7 @@ import { TeachersHubPage } from './pages/dashboards/TeachersHubPage';
 import { PerspectivesDashboardPage } from './pages/dashboards/PerspectivesDashboardPage';
 import { WeighingRoomDashboardPage } from './pages/dashboards/WeighingRoomDashboardPage';
 import { NotFoundPage } from './pages/NotFoundPage';
+import { ToolkitPage } from './pages/research/ToolkitPage';
 
 export function App() {
   return (
@@ -55,6 +56,9 @@ export function App() {
         <Route path="revision/statements" element={<RevisionSheetPage />} />
         <Route path="revision/perspectives" element={<PerspectivesRevisionSheetPage />} />
         <Route path="revision/significance" element={<SignificanceRevisionSheetPage />} />
+
+        {/* Q2 — Research */}
+        <Route path="research/toolkit" element={<ToolkitPage />} />
 
         {/* Teacher dashboards */}
         <Route path="teachers" element={<TeachersHubPage />} />

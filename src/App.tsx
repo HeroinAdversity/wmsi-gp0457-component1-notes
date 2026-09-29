@@ -20,6 +20,7 @@ import { PerspectivesDashboardPage } from './pages/dashboards/PerspectivesDashbo
 import { WeighingRoomDashboardPage } from './pages/dashboards/WeighingRoomDashboardPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 import { ToolkitPage } from './pages/research/ToolkitPage';
+import { ResearchHubPage } from './pages/research/ResearchHubPage';
 
 export function App() {
   return (
@@ -58,6 +59,7 @@ export function App() {
         <Route path="revision/significance" element={<SignificanceRevisionSheetPage />} />
 
         {/* Q2 — Research */}
+        <Route path="research" element={<ResearchHubPage />} />
         <Route path="research/toolkit" element={<ToolkitPage />} />
 
         {/* Teacher dashboards */}

@@ -81,14 +81,14 @@ function SiteHeader({
             </p>
           </Link>
 
-          <nav className="hidden lg:flex items-center gap-6">
+          <nav className="hidden xl:flex items-center gap-5">
             {NAV_LINKS.map((l) => {
               const active = isNavActive(l, pathname, hash);
               return (
                 <Link
                   key={`${l.to}#${l.activeHashPrefix ?? ''}`}
                   to={l.to}
-                  className={`text-[13.5px] font-semibold transition-colors relative py-1 ${
+                  className={`whitespace-nowrap text-[13.5px] font-semibold transition-colors relative py-1 ${
                     active
                       ? 'text-[color:var(--color-ink)] after:absolute after:left-0 after:right-0 after:-bottom-0.5 after:h-[2px] after:bg-[color:var(--color-ink)]'
                       : 'text-[color:var(--color-ink-3)] hover:text-[color:var(--color-ink)]'
@@ -139,7 +139,7 @@ function MobileMenu({ lang }: { lang: 'en' | 'zh' }) {
         type="button"
         onClick={() => setOpen(true)}
         aria-label="Open menu"
-        className="lg:hidden inline-flex items-center justify-center w-10 h-10 rounded-full border border-[color:var(--color-line)] text-[color:var(--color-ink)]"
+        className="xl:hidden inline-flex items-center justify-center w-10 h-10 rounded-full border border-[color:var(--color-line)] text-[color:var(--color-ink)]"
       >
         <svg width="18" height="14" viewBox="0 0 18 14" fill="none" aria-hidden>
           <rect y="0" width="18" height="2" fill="currentColor" />
@@ -149,7 +149,7 @@ function MobileMenu({ lang }: { lang: 'en' | 'zh' }) {
       </button>
 
       {open && (
-        <div className="fixed inset-0 z-50 lg:hidden">
+        <div className="fixed inset-0 z-50 xl:hidden">
           <div className="absolute inset-0 bg-[color:var(--color-ink)]/40" onClick={() => setOpen(false)} />
           <div className="absolute right-0 top-0 h-full w-[300px] max-w-[85vw] bg-[color:var(--color-paper)] border-l border-[color:var(--color-line)] shadow-2xl flex flex-col">
             <div className="flex items-center justify-between px-5 py-4 border-b border-[color:var(--color-line)]">

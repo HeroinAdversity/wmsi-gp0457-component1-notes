@@ -31,6 +31,14 @@ describe('practice bank audit', () => {
         for (const f of item.features) expect(text).toContain(f.quote);
       });
 
+      it('has feature quotes that do not overlap (each can be highlighted)', () => {
+        const spans = item.features.map((f) => ({ id: f.id, start: text.indexOf(f.quote), end: text.indexOf(f.quote) + f.quote.length }))
+          .sort((a, b) => a.start - b.start);
+        for (let i = 1; i < spans.length; i++) {
+          expect(spans[i].start, `${spans[i - 1].id} overlaps ${spans[i].id}`).toBeGreaterThanOrEqual(spans[i - 1].end);
+        }
+      });
+
       it('has at least 3 strength and 4 weakness features', () => {
         expect(item.features.filter((f) => f.kind === 'S').length).toBeGreaterThanOrEqual(3);
         expect(item.features.filter((f) => f.kind === 'W').length).toBeGreaterThanOrEqual(4);

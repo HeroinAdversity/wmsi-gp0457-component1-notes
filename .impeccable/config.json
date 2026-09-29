@@ -1,3 +1,18 @@
 {
-  "buildPath": "code"
+  "buildPath": "code",
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "dark-glow",
+        "value": "*",
+        "files": [
+          "docs/superpowers/mockups/q2-research-mockups-v2.html"
+        ],
+        "createdAt": "2026-09-29T23:20:25.472Z",
+        "reason": "Claude: approved static mockup (not shipped); the examiner-note shadow is a downward-offset neutral elevation on a light background, not a glow"
+      }
+    ]
+  }
 }

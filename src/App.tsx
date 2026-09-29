@@ -24,6 +24,7 @@ import { ResearchHubPage } from './pages/research/ResearchHubPage';
 import { EvaluatePage } from './pages/research/EvaluatePage';
 import { DesignPage } from './pages/research/DesignPage';
 import { PracticePage } from './pages/research/PracticePage';
+import { MyLearningPage } from './pages/my-learning/MyLearningPage';
 
 export function App() {
   return (
@@ -68,6 +69,9 @@ export function App() {
         <Route path="research/design" element={<DesignPage />} />
         <Route path="research/practice" element={<PracticePage />} />
         <Route path="research/practice/:id" element={<PracticePage />} />
+
+        {/* Site-wide student export */}
+        <Route path="my-learning" element={<MyLearningPage />} />
 
         {/* Teacher dashboards */}
         <Route path="teachers" element={<TeachersHubPage />} />

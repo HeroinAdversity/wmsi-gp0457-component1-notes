@@ -25,6 +25,7 @@ import { EvaluatePage } from './pages/research/EvaluatePage';
 import { DesignPage } from './pages/research/DesignPage';
 import { PracticePage } from './pages/research/PracticePage';
 import { MyLearningPage } from './pages/my-learning/MyLearningPage';
+import { TrackerPage } from './pages/dashboards/tracker/TrackerPage';
 
 export function App() {
   return (
@@ -75,6 +76,7 @@ export function App() {
 
         {/* Teacher dashboards */}
         <Route path="teachers" element={<TeachersHubPage />} />
+        <Route path="teachers/tracker" element={<TrackerPage />} />
         <Route path="teachers/statements" element={<TeacherDashboardPage />} />
         <Route path="teachers/statements-intensive" element={<IntensiveDashboardPage />} />
         <Route path="teachers/perspectives" element={<PerspectivesDashboardPage />} />

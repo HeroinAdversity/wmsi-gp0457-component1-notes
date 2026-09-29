@@ -15,6 +15,16 @@ interface Entry {
 
 const ENTRIES: Entry[] = [
   {
+    to: '/teachers/tracker',
+    eyebrowEn: 'Q2 · Research',
+    eyebrowZh: '第 2 题 · 研究',
+    titleEn: 'Class tracker — Question 2',
+    titleZh: '班级追踪 —— 第 2 题',
+    bodyEn: "Drop students' My learning PDFs to see quiz scores and answers, add marks and next steps, export CSV.",
+    bodyZh: '拖入学生的「我的学习」PDF，查看测验成绩与答案，填写分数与改进建议，导出 CSV。',
+    markable: true,
+  },
+  {
     to: '/teachers/statements',
     eyebrowEn: 'Q1(b) · Statement Types',
     eyebrowZh: '第 1(b) 题 · 陈述类型',

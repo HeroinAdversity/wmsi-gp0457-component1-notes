@@ -10,7 +10,7 @@ export const N25_12_MIRROR_A: BankItem = {
     heading: 'Source 3: Why do people choose shopping malls?',
     paragraphs: [
       'For my geography project on how our town is changing, I designed a questionnaire of eight short questions about where people prefer to shop.',
-      'My uncle manages a large shopping mall that employs about 80 staff. He allowed me to give the questionnaire to 30 of them, and I chose the staff who were free when I arrived. I also posted the same questionnaire in two community groups on social media. The online survey stayed open for three days, and nobody was paid for taking part.',
+      'My uncle manages a large shopping mall that employs about 80 staff. He agreed that 30 of them could fill it in, and I chose the staff who were free when I arrived. I also posted the same questionnaire in two community groups on social media. The online survey stayed open for three days, and nobody was paid for taking part.',
       'The mall’s food court is very busy and loud at lunchtime, so I handed out the questionnaires during the staff’s afternoon tea break instead. One older cleaner had trouble reading the small print, so I read each question aloud and ticked the boxes for her.',
       'My results showed that people like shopping malls because they are air-conditioned, safe and have everything in one place. The staff and the online sample gave very similar answers. However, malls are not for everyone. Some people still enjoy shopping at traditional night markets, especially for food and a lively atmosphere.',
       'From a student’s geography project, Malaysia, 2025',

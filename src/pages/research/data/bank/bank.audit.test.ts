@@ -8,6 +8,11 @@ describe('practice bank audit', () => {
     expect(new Set(ids).size).toBe(ids.length);
   });
 
+  it('has one reworded item per session', () => {
+    const parents = BANK.filter((b) => b.kind === 'reworded').map((b) => b.parent).sort();
+    expect(parents).toEqual(Object.keys(SESSIONS).sort());
+  });
+
   for (const item of BANK) {
     describe(item.id, () => {
       const text = sourceText(item);

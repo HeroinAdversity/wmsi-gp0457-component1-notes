@@ -57,7 +57,7 @@ export function SignificanceRevisionSheetPage() {
     <RevisionSheetShell accent="forest">
       <Container size="wide" className="pt-8 md:pt-12 pb-16">
         <SheetMasthead
-          index="3 of 3"
+          index="3 of 4"
           paper="Paper 1"
           question="Q1(d)"
           marks="8 marks"

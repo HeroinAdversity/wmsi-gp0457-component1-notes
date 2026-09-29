@@ -13,7 +13,7 @@
  */
 import type { CSSProperties, ReactNode } from 'react';
 
-export type SheetAccent = 'cobalt' | 'amber' | 'forest';
+export type SheetAccent = 'cobalt' | 'amber' | 'forest' | 'q2';
 
 const ACCENT_STYLES: Record<SheetAccent, CSSProperties> = {
   cobalt: {
@@ -33,6 +33,12 @@ const ACCENT_STYLES: Record<SheetAccent, CSSProperties> = {
     ['--sheet-accent-tint' as string]: 'var(--color-forest-tint)',
     ['--sheet-accent-soft' as string]: 'var(--color-forest-soft)',
     ['--sheet-accent-deep' as string]: 'var(--color-forest-deep)',
+  },
+  q2: {
+    ['--sheet-accent' as string]: 'var(--color-q2-storm)',
+    ['--sheet-accent-tint' as string]: 'var(--color-q2-coastal-tint)',
+    ['--sheet-accent-soft' as string]: 'var(--color-q2-ivory)',
+    ['--sheet-accent-deep' as string]: 'var(--color-q2-sea)',
   },
 };
 

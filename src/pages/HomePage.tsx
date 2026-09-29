@@ -5,7 +5,7 @@ import { Bi } from '../lib/LanguageContext';
 
 type Strand = {
   part: string;
-  hue: 'violet' | 'cobalt' | 'amber' | 'forest';
+  hue: 'violet' | 'cobalt' | 'amber' | 'forest' | 'q2';
   to: string;
   eyebrowEn: string;
   eyebrowZh: string;
@@ -135,6 +135,7 @@ export function HomePage() {
     <>
       <Hero />
       <Q1Map />
+      <Q2Map />
       <WhereToStart />
       <TeachersStrip />
     </>
@@ -176,6 +177,39 @@ function Hero() {
           </div>
         </div>
       </Container>
+    </section>
+  );
+}
+
+/* ─────────── Q2 — its own strand, after the Question 1 map ─────────── */
+
+const Q2_STRAND: Strand = {
+  part: '2',
+  hue: 'q2',
+  to: '/research',
+  eyebrowEn: 'How would we know?',
+  eyebrowZh: '我们如何得知？',
+  titleEn: 'Research — Strong or Shaky? + The Test Bench',
+  titleZh: '研究 ——「可靠吗？」+「测试台」',
+  bodyEn: 'Paper 1 Question 2: judge the strengths and weaknesses of research (8 marks), then design research to test a claim (8 marks). The same skills earn marks again in your Individual Report and Team Project.',
+  bodyZh: '卷一第 2 题：评估研究的优缺点（8 分），再设计研究来检验一个说法（8 分）。同样的技能在个人报告与团队项目中再次得分。',
+  itemsEn: ['Skills map linking Q2 to Components 2 and 3', 'Three-step chain for 2(a)', 'Who · How · What · Why matrix for 2(b)', 'Practice papers with answer schemes'],
+  itemsZh: ['连接第 2 题与组件 2、3 的技能图', '2(a) 三步解释链', '2(b)「谁·如何·什么·为何」矩阵', '附评分方案的练习卷'],
+  ctaEn: 'Open Research',
+  ctaZh: '进入「研究」',
+};
+
+function Q2Map() {
+  return (
+    <section className="pt-12 md:pt-16 pb-8 md:pb-10">
+      <Container size="wide">
+        <div className="mb-10 max-w-[760px]">
+          <DisplayH2>
+            <Bi en="Then, Question 2." zh="接着，第 2 题。" />
+          </DisplayH2>
+        </div>
+      </Container>
+      <StrandStrip strand={Q2_STRAND} />
     </section>
   );
 }
@@ -253,6 +287,16 @@ const HUE_STYLES = {
     ctaBg: 'bg-[color:var(--color-forest)] hover:bg-[color:var(--color-forest-deep)]',
     bulletDot: 'bg-[color:var(--color-forest)]',
     divider: 'divide-[color:var(--color-forest-soft)]',
+  },
+  q2: {
+    stripBg: 'bg-[color:var(--color-q2-coastal-tint)]',
+    numberInk: 'text-[color:var(--color-q2-sea)]',
+    numberEdge: 'border-[color:var(--color-q2-storm)]',
+    numberDot: 'bg-[color:var(--color-q2-storm)]',
+    eyebrow: 'text-[color:var(--color-q2-sea)]',
+    ctaBg: 'bg-[color:var(--color-q2-storm)] hover:bg-[color:var(--color-q2-sea)]',
+    bulletDot: 'bg-[color:var(--color-q2-storm)]',
+    divider: 'divide-[color:var(--color-q2-ivory)]',
   },
 } as const;
 

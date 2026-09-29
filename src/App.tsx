@@ -26,6 +26,7 @@ import { DesignPage } from './pages/research/DesignPage';
 import { PracticePage } from './pages/research/PracticePage';
 import { MyLearningPage } from './pages/my-learning/MyLearningPage';
 import { TrackerPage } from './pages/dashboards/tracker/TrackerPage';
+import { ResearchRevisionSheetPage } from './pages/research/ResearchRevisionSheetPage';
 
 export function App() {
   return (
@@ -62,6 +63,7 @@ export function App() {
         <Route path="revision/statements" element={<RevisionSheetPage />} />
         <Route path="revision/perspectives" element={<PerspectivesRevisionSheetPage />} />
         <Route path="revision/significance" element={<SignificanceRevisionSheetPage />} />
+        <Route path="revision/research" element={<ResearchRevisionSheetPage />} />
 
         {/* Q2 — Research */}
         <Route path="research" element={<ResearchHubPage />} />

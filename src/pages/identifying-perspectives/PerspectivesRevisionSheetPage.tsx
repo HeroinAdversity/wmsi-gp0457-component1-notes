@@ -83,7 +83,7 @@ export function PerspectivesRevisionSheetPage() {
     <RevisionSheetShell accent="amber">
       <Container size="wide" className="pt-8 md:pt-12 pb-16">
         <SheetMasthead
-          index="2 of 3"
+          index="2 of 4"
           paper="Paper 1"
           question="Q1(c)"
           marks="6 marks"

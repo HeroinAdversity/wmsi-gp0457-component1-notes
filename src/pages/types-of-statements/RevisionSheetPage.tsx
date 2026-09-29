@@ -60,7 +60,7 @@ export function RevisionSheetPage() {
     <RevisionSheetShell accent="cobalt">
       <Container size="wide" className="pt-8 md:pt-12 pb-16">
         <SheetMasthead
-          index="1 of 3"
+          index="1 of 4"
           paper="Paper 1"
           question="Q1(b)"
           marks="3 marks"

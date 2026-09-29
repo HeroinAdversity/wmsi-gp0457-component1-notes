@@ -21,6 +21,7 @@ import { WeighingRoomDashboardPage } from './pages/dashboards/WeighingRoomDashbo
 import { NotFoundPage } from './pages/NotFoundPage';
 import { ToolkitPage } from './pages/research/ToolkitPage';
 import { ResearchHubPage } from './pages/research/ResearchHubPage';
+import { EvaluatePage } from './pages/research/EvaluatePage';
 
 export function App() {
   return (
@@ -61,6 +62,7 @@ export function App() {
         {/* Q2 — Research */}
         <Route path="research" element={<ResearchHubPage />} />
         <Route path="research/toolkit" element={<ToolkitPage />} />
+        <Route path="research/evaluate" element={<EvaluatePage />} />
 
         {/* Teacher dashboards */}
         <Route path="teachers" element={<TeachersHubPage />} />

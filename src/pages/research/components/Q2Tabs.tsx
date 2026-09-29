@@ -1,8 +1,16 @@
+import { useEffect, useRef } from 'react';
+
 export function Q2Tabs<T extends string>({ tabs, active, onChange }: {
   tabs: readonly { id: T; label: string }[]; active: T; onChange: (t: T) => void;
 }) {
+  const navRef = useRef<HTMLElement>(null);
+  // Keep the active tab visible when the bar scrolls sideways on phones.
+  useEffect(() => {
+    const el = navRef.current?.querySelector<HTMLElement>('[aria-selected="true"]');
+    el?.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+  }, [active]);
   return (
-    <nav role="tablist" className="mt-7 flex gap-6 overflow-x-auto border-b border-[color:var(--color-line)] text-[13px] font-semibold [scrollbar-width:none]">
+    <nav ref={navRef} role="tablist" className="mt-7 flex gap-6 overflow-x-auto border-b border-[color:var(--color-line)] text-[13px] font-semibold [scrollbar-width:none]">
       {tabs.map((t) => (
         <button
           key={t.id} role="tab" aria-selected={active === t.id} onClick={() => onChange(t.id)}

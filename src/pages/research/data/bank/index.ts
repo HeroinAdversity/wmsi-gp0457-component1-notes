@@ -1,0 +1,17 @@
+import type { BankItem } from '../types';
+import { J26_12_REWORDED } from './reworded/j26-12';
+import { J26_12_MIRROR_A } from './mirrors/j26-12-a';
+
+export const BANK: BankItem[] = [J26_12_REWORDED, J26_12_MIRROR_A];
+
+export function getItem(id: string): BankItem | undefined {
+  return BANK.find((b) => b.id === id);
+}
+
+export function wordCount(s: string): number {
+  return s.trim().split(/\s+/).filter(Boolean).length;
+}
+
+export function sourceText(item: BankItem): string {
+  return item.source.paragraphs.join('\n\n');
+}

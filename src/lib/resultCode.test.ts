@@ -13,6 +13,12 @@ function sample(answerText = 'The only data comes from one firm, so the sample i
 }
 
 describe('result code', () => {
+  it('trims student name and class in the payload (C1)', () => {
+    const s = { ...emptyProgress(), student: { name: '  Tan Wei Ling ', className: ' 10 Amethyst ' } };
+    const p = toPayload(s, 'q2', new Date('2026-09-30T10:00:00Z'));
+    expect([p.n, p.c]).toEqual(['Tan Wei Ling', '10 Amethyst']);
+  });
+
   it('fnv1a is stable 8-hex', () => {
     expect(fnv1a('abc')).toMatch(/^[0-9a-f]{8}$/);
     expect(fnv1a('abc')).toBe(fnv1a('abc'));
@@ -56,7 +62,7 @@ describe('result code', () => {
     }
   });
 
-  it('drops answer text (not word counts) when many answers would exceed CODE_MAX', async () => {
+  it('shortens answer text (never word counts) when many answers would exceed CODE_MAX', async () => {
     // Incompressible pseudo-random answers across 40 activities.
     let seed = 7;
     const rnd = () => { seed = (seed * 1103515245 + 12345) % 2 ** 31; return seed.toString(36); };
@@ -66,7 +72,7 @@ describe('result code', () => {
     expect(code.length).toBeLessThanOrEqual(CODE_MAX);
     const r = await decodeResultCode(code);
     expect(r.ok).toBe(true);
-    if (r.ok) { expect(r.payload.acts[0].a).toBeUndefined(); expect(r.payload.acts[0].w).toBe(200); }
+    if (r.ok) { expect((r.payload.acts[0].a ?? '').length).toBeLessThan(1200); expect(r.payload.acts[0].w).toBe(200); }
   });
 
   it('wraps for PDF and extracts back from noisy text', async () => {
@@ -79,5 +85,31 @@ describe('result code', () => {
     expect(extractCode(pdfText)).toBe(code);
     expect(extractCode(`paste: ${code} thanks`)).toBe(code);
     expect(extractCode('no code here')).toBeNull();
+  });
+
+  it('extracts a marker-less code whose lines were joined by spaces or newlines (C2)', async () => {
+    const code = await encodeResultCode(sample('Some answer text that is long enough to make the code span several lines of the PDF output.'));
+    const chunks = code.match(/.{1,56}/g)!;
+    expect(chunks.length).toBeGreaterThan(1);
+    for (const joined of [chunks.join(' '), chunks.join('\n'), `paste: ${chunks.join(' \r\n ')} thanks`]) {
+      const got = extractCode(joined);
+      expect(got).toBe(code);
+      expect((await decodeResultCode(got!)).ok).toBe(true);
+    }
+  });
+
+  it('keeps some answer text for many realistic answers and stays under CODE_MAX (I1)', async () => {
+    let seed = 11;
+    const word = () => { seed = (seed * 1103515245 + 12345) % 2 ** 31; return seed.toString(36).slice(0, 3 + (seed % 6)); };
+    const p = sample();
+    p.acts = Array.from({ length: 66 }, (_, i) => ({ i: `answer-2a:x${i}`, t: `Item ${i}`, k: 'answer-2a' as const, st: 'done' as const, a: Array.from({ length: 250 }, word).join(' ').slice(0, 1200), w: 250 }));
+    const code = await encodeResultCode(p);
+    expect(code.length).toBeLessThanOrEqual(CODE_MAX);
+    const r = await decodeResultCode(code);
+    expect(r.ok).toBe(true);
+    if (r.ok) {
+      expect(r.payload.acts.some((a) => (a.a ?? '').length > 0)).toBe(true);
+      expect(r.payload.acts.every((a) => a.w === 250)).toBe(true);
+    }
   });
 });

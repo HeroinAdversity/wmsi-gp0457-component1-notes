@@ -8,6 +8,7 @@ import { CoachPanel } from './CoachPanel';
 
 export interface MatrixState { rows: MatrixDraft[]; compare: string }
 const EVIDENCE: EvidenceTag[] = ['quantitative', 'qualitative', 'primary', 'secondary'];
+const EVIDENCE_LABEL: Record<EvidenceTag, string> = { quantitative: 'Quant', qualitative: 'Qual', primary: 'Primary', secondary: 'Secondary' };
 const blank = (): MatrixDraft => ({ who: '', how: '', what: '', evidence: [], why: '', tests: [] });
 const fresh = (): MatrixState => ({ rows: [blank(), blank(), blank()], compare: '' });
 
@@ -86,9 +87,9 @@ export function WhoHowWhatWhy({ parts, storageId, activityId, activityTitle, rea
         const on = rows[i].evidence.includes(e);
         if (ro && !on) return null;
         return (
-          <button key={e} type="button" disabled={ro} aria-pressed={on} onClick={() => setRow(i, { evidence: toggle(rows[i].evidence, e) })}
+          <button key={e} type="button" disabled={ro} aria-pressed={on} aria-label={e} onClick={() => setRow(i, { evidence: toggle(rows[i].evidence, e) })}
             className={`rounded-[3px] px-1.5 py-0.5 font-mono text-[10px] font-semibold uppercase ${on ? 'bg-[color:var(--color-q2-sage-ink)] text-white' : 'border border-dashed border-[color:var(--color-ink-3)] text-[color:var(--color-ink-3)]'}`}>
-            {e.slice(0, 5)}
+            {EVIDENCE_LABEL[e]}
           </button>
         );
       })}

@@ -27,7 +27,7 @@ export function toPayload(state: ProgressState, scope = 'q2', now: Date = new Da
     if (r.answerText) { c.a = r.answerText.slice(0, ANSWER_TRIM); c.w = words(r.answerText); }
     return c;
   });
-  return { v: 1, scope, n: state.student.name, c: state.student.className, at: now.toISOString(), acts };
+  return { v: 1, scope, n: state.student.name.trim(), c: state.student.className.trim(), at: now.toISOString(), acts };
 }
 
 export function fnv1a(s: string): string {
@@ -56,11 +56,27 @@ async function encodeRaw(p: ResultPayload): Promise<string> {
   return `${CODE_PREFIX}.${p.scope}.${fnv1a(packed)}.${packed}`;
 }
 
-/** Answers are already trimmed to ANSWER_TRIM by toPayload; if the code is still too long, drop answer text (word counts stay). */
+/**
+ * Answers are trimmed to ANSWER_TRIM by toPayload. If the code is still too long,
+ * shorten every answer step by step, then drop answer text from the oldest
+ * activities first — word counts always stay, and as much text as fits is kept.
+ */
 export async function encodeResultCode(p: ResultPayload): Promise<string> {
-  const code = await encodeRaw(p);
+  let code = await encodeRaw(p);
   if (code.length <= CODE_MAX) return code;
-  return encodeRaw({ ...p, acts: p.acts.map(({ a: _drop, ...rest }) => rest) });
+  for (const limit of [600, 300, 150, 60]) {
+    code = await encodeRaw({ ...p, acts: p.acts.map((a) => (a.a ? { ...a, a: a.a.slice(0, limit) } : a)) });
+    if (code.length <= CODE_MAX) return code;
+  }
+  const acts = p.acts.map((a) => (a.a ? { ...a, a: a.a.slice(0, 60) } : a));
+  for (let i = 0; i < acts.length; i++) {
+    if (!acts[i].a) continue;
+    const { a: _drop, ...rest } = acts[i];
+    acts[i] = rest;
+    code = await encodeRaw({ ...p, acts });
+    if (code.length <= CODE_MAX) return code;
+  }
+  return code;
 }
 
 export async function decodeResultCode(raw: string): Promise<DecodeResult> {
@@ -79,7 +95,10 @@ export async function decodeResultCode(raw: string): Promise<DecodeResult> {
   }
 }
 
-export function wrapCodeForPdf(code: string, width = 56): string[] {
+/** Line width used when a code is printed; a copied line of exactly this width continues on the next. */
+export const CODE_LINE = 56;
+
+export function wrapCodeForPdf(code: string, width = CODE_LINE): string[] {
   const chunks = code.match(new RegExp(`.{1,${width}}`, 'g')) ?? [];
   return [CODE_BEGIN, ...chunks, CODE_END];
 }
@@ -88,6 +107,19 @@ export function extractCode(text: string): string | null {
   const b = text.indexOf(CODE_BEGIN);
   const e = text.indexOf(CODE_END);
   if (b !== -1 && e > b) return text.slice(b + CODE_BEGIN.length, e).replace(/\s+/g, '');
-  const m = text.match(/WMSI2\.[A-Za-z0-9]+\.[0-9a-f]{8}\.[A-Za-z0-9_-]+/);
-  return m ? m[0] : null;
+  // No markers: the code may still be split over lines (a PDF or Word copy, or a
+  // browser that turns line breaks into spaces). Printed lines are exactly
+  // CODE_LINE long, so keep joining the next token while the last piece is full.
+  const tokens = text.split(/\s+/);
+  const start = tokens.findIndex((t) => /WMSI2\.[A-Za-z0-9]+\.[0-9a-f]{8}\./.test(t));
+  if (start === -1) return null;
+  const first = tokens[start].slice(tokens[start].indexOf('WMSI2')).match(/^WMSI2\.[A-Za-z0-9]+\.[0-9a-f]{8}\.[A-Za-z0-9_-]*/);
+  if (!first) return null;
+  let code = first[0];
+  let last = tokens[start].length - tokens[start].indexOf('WMSI2') === code.length ? code : '';
+  for (let i = start + 1; last.length === CODE_LINE && i < tokens.length && /^[A-Za-z0-9_-]+$/.test(tokens[i]); i++) {
+    code += tokens[i];
+    last = tokens[i];
+  }
+  return code;
 }

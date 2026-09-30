@@ -58,9 +58,21 @@ export function parseBackup(json: string): { ok: true; db: TrackerDb } | { ok: f
     const d = JSON.parse(json);
     if (d?.version !== 1 || typeof d.students !== 'object' || d.students === null || Array.isArray(d.students))
       return { ok: false, error: 'This file is not a tracker backup.' };
-    for (const r of Object.values(d.students) as StudentRow[])
-      if (typeof r?.name !== 'string' || !Array.isArray(r.submissions)) return { ok: false, error: 'This backup is damaged.' };
-    return { ok: true, db: d as TrackerDb };
+    const students: Record<string, StudentRow> = {};
+    for (const [key, raw] of Object.entries(d.students) as [string, Partial<StudentRow>][]) {
+      if (typeof raw?.name !== 'string' || !Array.isArray(raw.submissions)) return { ok: false, error: 'This backup is damaged.' };
+      // Fill any missing fields so an older or hand-edited backup can never crash the page.
+      students[key] = {
+        key,
+        name: raw.name,
+        className: typeof raw.className === 'string' ? raw.className : '',
+        submissions: raw.submissions.filter((sub): sub is Submission => typeof sub?.at === 'string' && Array.isArray(sub.acts)),
+        marks: raw.marks && typeof raw.marks === 'object' ? raw.marks : {},
+        nextSteps: Array.isArray(raw.nextSteps) ? raw.nextSteps.filter((x): x is string => typeof x === 'string') : [],
+        comment: typeof raw.comment === 'string' ? raw.comment : '',
+      };
+    }
+    return { ok: true, db: { version: 1, students } };
   } catch {
     return { ok: false, error: 'This file is not a tracker backup.' };
   }

@@ -59,11 +59,16 @@ export function upsertActivity(
   rec: Omit<ActivityRecord, 'updatedAt'>,
   now: Date = new Date(),
 ): ProgressState {
-  return { ...state, activities: { ...state.activities, [rec.id]: { ...rec, updatedAt: now.toISOString() } } };
+  // A record that omits selfLevel keeps the one already saved (e.g. set on the practice page).
+  const prev = state.activities[rec.id];
+  const selfLevel = rec.selfLevel ?? prev?.selfLevel;
+  const next: ActivityRecord = { ...rec, updatedAt: now.toISOString(), ...(selfLevel !== undefined ? { selfLevel } : {}) };
+  return { ...state, activities: { ...state.activities, [rec.id]: next } };
 }
 
 export function setStudent(state: ProgressState, student: { name: string; className: string }): ProgressState {
-  return { ...state, student: { name: student.name.trim(), className: student.className.trim() } };
+  // Stored exactly as typed so a trailing space survives while typing; toPayload trims.
+  return { ...state, student: { name: student.name, className: student.className } };
 }
 
 /* ---- React binding: one in-memory copy shared by every component ---- */

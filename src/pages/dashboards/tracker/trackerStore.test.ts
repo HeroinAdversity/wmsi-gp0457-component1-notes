@@ -53,4 +53,16 @@ describe('tracker store', () => {
     const { db } = addSubmission(emptyDb(), p());
     expect(parseBackup(JSON.stringify(db))).toEqual({ ok: true, db });
   });
+
+  it('normalises a structurally incomplete backup instead of crashing later (I3)', () => {
+    const partial = { version: 1, students: { k: { name: 'Ana', submissions: [{ at: '2026-01-01T00:00:00Z', acts: [] }, { acts: [] }] } } };
+    const r = parseBackup(JSON.stringify(partial));
+    expect(r.ok).toBe(true);
+    if (r.ok) {
+      const row = r.db.students.k;
+      expect(row).toMatchObject({ key: 'k', name: 'Ana', className: '', nextSteps: [], marks: {}, comment: '' });
+      expect(row.submissions).toHaveLength(1);
+      expect(() => trackerCsv(r.db)).not.toThrow();
+    }
+  });
 });

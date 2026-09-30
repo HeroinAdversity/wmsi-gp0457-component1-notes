@@ -20,9 +20,16 @@ describe('progress store', () => {
     expect(Object.keys(s2.activities)).toHaveLength(1);
   });
 
-  it('trims student fields', () => {
-    expect(setStudent(emptyProgress(), { name: '  Tan Wei Ling ', className: ' 10 Amethyst' }).student)
-      .toEqual({ name: 'Tan Wei Ling', className: '10 Amethyst' });
+  it('keeps student fields exactly as typed, so a trailing space survives while typing (C1)', () => {
+    expect(setStudent(emptyProgress(), { name: 'Tan ', className: '10 ' }).student)
+      .toEqual({ name: 'Tan ', className: '10 ' });
+  });
+
+  it('keeps an existing selfLevel when a later record omits it (I2)', () => {
+    const s1 = upsertActivity(emptyProgress(), { id: 'answer-2a:x', title: 'x', kind: 'answer-2a', status: 'done', selfLevel: 3, answerText: 'a' });
+    const s2 = upsertActivity(s1, { id: 'answer-2a:x', title: 'x', kind: 'answer-2a', status: 'done', answerText: 'b' });
+    expect(s2.activities['answer-2a:x'].selfLevel).toBe(3);
+    expect(s2.activities['answer-2a:x'].answerText).toBe('b');
   });
 
   it('round-trips through storage and survives a throwing storage', () => {

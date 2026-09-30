@@ -151,7 +151,7 @@ function MobileMenu({ lang }: { lang: 'en' | 'zh' }) {
       {open && (
         <div className="fixed inset-0 z-50 xl:hidden">
           <div className="absolute inset-0 bg-[color:var(--color-ink)]/40" onClick={() => setOpen(false)} />
-          <div className="absolute right-0 top-0 h-full w-[300px] max-w-[85vw] bg-[color:var(--color-paper)] border-l border-[color:var(--color-line)] shadow-2xl flex flex-col">
+          <div className="absolute right-0 top-0 h-full w-[300px] max-w-[85vw] pt-[calc(env(safe-area-inset-top)+18px)] pb-[env(safe-area-inset-bottom)] bg-[color:var(--color-paper)] border-l border-[color:var(--color-line)] shadow-2xl flex flex-col">
             <div className="flex items-center justify-between px-5 py-4 border-b border-[color:var(--color-line)]">
               <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.16em] text-[color:var(--color-ink-3)]">
                 Menu

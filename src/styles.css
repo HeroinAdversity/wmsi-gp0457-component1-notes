@@ -243,3 +243,21 @@ h3 { line-height: 1.25; }
 .ws-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 5mm; }
 .ws-table { width: 100%; border-collapse: collapse; margin-top: 1.5mm; font-size: 8.5pt; }
 .ws-table th, .ws-table td { border: 0.5pt solid #888; padding: 1mm 1.5mm; text-align: left; vertical-align: top; }
+
+/* Teacher's watermark: a small faint mark in the bottom-right corner that
+   never takes clicks. Screen only. */
+.site-watermark {
+  position: fixed;
+  right: 16px;
+  bottom: calc(env(safe-area-inset-bottom) + 16px);
+  z-index: 30;
+  width: 64px;
+  height: auto;
+  opacity: 0.15;
+  pointer-events: none;
+  user-select: none;
+}
+html.dark .site-watermark { filter: invert(1); }
+@media print {
+  .site-watermark { display: none; }
+}

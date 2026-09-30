@@ -1,0 +1,101 @@
+import type { Q1BankItem } from '../../types';
+
+export const J25_13_Q1_MIRROR_B: Q1BankItem = {
+  id: 'q1m-j25-13-b',
+  kind: 'mirror',
+  parent: 'J25-13',
+  title: 'Air pollution',
+  topic: 'Health and well-being',
+  source1: {
+    paragraphs: [
+      'Campaigners use creative ideas to make invisible air pollution visible. In some cities, statues have been fitted with face masks overnight. Others hang white ribbons on railings: after a week, the ribbons turn grey with soot.',
+      'Apps that show air quality in real time, coloured from green to purple, help parents decide when it is safe for children to play outside.',
+    ],
+  },
+  source2: {
+    paragraphs: [
+      'Clear Air Now!',
+      'Smog over Delhi. Haze across Jakarta. Traffic fumes in London. Dust storms in Lagos.',
+      'Everyone in a city breathes dirty air every single day. It is shameful that governments still put cars before children’s lungs. We cannot wait any longer! Yet it is not too late. Together, we can clean our air!',
+      'Join Clear Air Now! and walk with us on car-free Sundays. Cities must stop giving space to cars and start giving it to people. Add your name to our petition for clean air zones near every school.',
+    ],
+    attribution: 'Adapted from a campaign flyer by the group Clear Air Now!',
+  },
+  q1a: {
+    stem: 'According to Source 1, what colour do the white ribbons turn after a week?',
+    answer: 'Grey',
+    accept: ['They turn grey'],
+    distractors: [
+      { text: 'Purple', why: 'Purple is the worst reading on the air-quality apps, not the ribbon colour.' },
+      { text: 'Green', why: 'Green is the best reading on the apps.' },
+      { text: 'Black with soot', why: 'Source 1 says they turn grey. Use the source’s word.' },
+      { text: 'White', why: 'That is the colour they start as.' },
+    ],
+  },
+  statements: [
+    { source: 2, quote: 'It is shameful that governments still put cars before children’s lungs', type: 'Opinion', signal: 'shameful',
+      why: '"Shameful" is a personal judgement.' },
+    { source: 2, quote: 'We cannot wait any longer', type: 'Opinion', signal: 'cannot wait any longer',
+      why: 'A view about urgency, not a fact.' },
+    { source: 2, quote: 'Yet it is not too late', type: 'Opinion', signal: 'not too late',
+      why: 'A hopeful view that cannot be checked.' },
+    { source: 2, quote: 'Everyone in a city breathes dirty air every single day', type: 'Generalisation', signal: 'Everyone',
+      why: '"Everyone" and "every single day" make it true of all city people, all the time.' },
+    { source: 2, quote: 'Cities must stop giving space to cars and start giving it to people', type: 'Value', signal: 'must',
+      why: 'A belief about what cities ought to do.' },
+    { source: 2, quote: 'Together, we can clean our air', type: 'Claim', signal: 'can clean',
+      why: 'Stated as true with no evidence.' },
+    { source: 1, quote: 'Apps that show air quality in real time', type: 'Fact', signal: 'in real time',
+      why: 'These apps exist, so this can be checked.' },
+  ],
+  q1b: {
+    type: 'Opinion',
+    explain: '“It is shameful that governments still put cars before children’s lungs” is an opinion because “shameful” is the group’s own judgement. It cannot be proved, and a government would probably disagree.',
+    oneMark: 'It is an opinion because not everyone would agree.',
+  },
+  q1c: {
+    holder: 'Clear Air Now!',
+    on: '',
+    level: 'GLOBAL',
+    points: [
+      { element: 'issues', quote: 'Smog over Delhi. Haze across Jakarta.', point: 'The issue is air pollution in cities around the world.' },
+      { element: 'causes', quote: 'governments still put cars before children’s lungs', point: 'They blame traffic, and governments that favour cars.' },
+      { element: 'consequences', quote: 'Everyone in a city breathes dirty air every single day', point: 'City people breathe dirty air daily, harming their lungs.' },
+      { element: 'values', quote: 'Cities must stop giving space to cars and start giving it to people', point: 'They believe cities should put people before cars.' },
+      { element: 'values', quote: 'Together, we can clean our air', point: 'They believe in collective action and are hopeful.' },
+      { element: 'actions', quote: 'walk with us on car-free Sundays', point: 'They organise car-free Sundays.' },
+      { element: 'actions', quote: 'petition for clean air zones near every school', point: 'They petition for clean air zones near schools.' },
+    ],
+    model: 'Clear Air Now! sees air pollution as a problem in cities around the world: “smog over Delhi”, “haze across Jakarta” and “traffic fumes in London”. They blame governments that “put cars before children’s lungs”, and the consequence is that city people breathe “dirty air every single day”. They value people over cars, saying cities “must stop giving space to cars”, and they are hopeful: “together, we can clean our air”. Their actions are “car-free Sundays” and a petition for “clean air zones near every school”.',
+  },
+  voices: [
+    { who: 'A parent of a child with asthma', quote: 'On bad air days my son cannot go outside at all.', level: 'PERSONAL', why: 'Her own family.' },
+    { who: 'A city councillor', quote: 'Our city centre will be closed to diesel lorries from next month.', level: 'LOCAL', why: 'One city.' },
+    { who: 'A national transport minister', quote: 'All new cars sold in the country must be electric by 2035.', level: 'NATIONAL', why: 'A national rule.' },
+    { who: 'A World Health Organization expert', quote: 'Nine out of ten people on Earth breathe air that fails our safety guidelines.', level: 'GLOBAL', why: 'Everyone on Earth.' },
+  ],
+  q1d: {
+    focus: 'consequence of air pollution',
+    lead: 'Sources 1 and 2 describe some consequences of air pollution.',
+    options: [
+      { label: 'Damage to children’s lungs', source: 2, quote: 'children’s lungs', test: 'stuck',
+        why: 'Lungs damaged in childhood may never fully recover.' },
+      { label: 'Children kept indoors', source: 1, quote: 'when it is safe for children to play outside', test: 'domino',
+        why: 'Less outdoor play means less exercise, worse health and less time with friends.' },
+      { label: 'Everyone breathing dirty air', source: 2, quote: 'Everyone in a city breathes dirty air every single day', test: 'crowd',
+        why: 'Billions of city-dwellers are affected every day.' },
+      { label: 'Governments putting cars first', source: 2, quote: 'governments still put cars before children’s lungs', test: 'fair',
+        why: 'Children who have no say pay the price for adults’ choices.' },
+    ],
+    model: 'I think damage to children’s lungs is the most significant consequence, because it can last a lifetime. Source 2 accuses governments of putting “cars before children’s lungs”, and lungs damaged while a child is growing may never fully recover. Everyone breathing dirty air also matters, because it affects huge numbers of people. But adults’ lungs are already grown, and cleaner air can help them recover. Children can be harmed for life. Because the damage is so hard to undo, harm to children’s lungs is the most significant consequence.',
+    levelUp: {
+      base: 'Damage to lungs is the worst because it is unhealthy.',
+      right: 'Use Source 2 (“children’s lungs”), explain why childhood damage lasts for life, and compare with the general dirty air adults breathe, which they can recover from more easily.',
+      wrong: [
+        { text: 'Describe the statues with face masks.', why: 'That is a campaign method, not a consequence.' },
+        { text: 'List the four cities in Source 2.', why: 'Place names without a reason do not justify anything.' },
+        { text: 'Add “Pollution is the biggest problem in the world.”', why: 'An assertion with no evidence or comparison.' },
+      ],
+    },
+  },
+};

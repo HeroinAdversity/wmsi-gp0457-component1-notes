@@ -1,0 +1,106 @@
+import type { Q1BankItem } from '../../types';
+
+export const J25_12_Q1_MIRROR_B: Q1BankItem = {
+  id: 'q1m-j25-12-b',
+  kind: 'mirror',
+  parent: 'J25-12',
+  title: 'Internet in rural schools',
+  topic: 'Education for all',
+  source1: {
+    paragraphs: [
+      'The internet has opened up learning for millions of students. Online lessons, libraries and videos are available at any time, often for free.',
+      'But the gap between connected and unconnected schools is wide. UNICEF estimates that two-thirds of the world’s school-age children have no internet connection at home.',
+    ],
+    list: {
+      title: 'Benefits of connecting rural schools',
+      items: ['access to up-to-date learning materials', 'online training for teachers', 'digital skills for future jobs', 'contact with students in other countries', 'lessons can continue during floods or closures'],
+    },
+  },
+  source2: {
+    paragraphs: [
+      'LinkUp Schools',
+      'In some rural areas, one school computer is shared by more than 100 students. Most city schools have one for every five.',
+      'A connection turns a village classroom into a window on the world. Every child who learns digital skills today will find a better job tomorrow. Connecting rural schools closes the gap between the city and the countryside.',
+      'We install solar-powered internet hubs, donate refurbished laptops and train teachers to use them. We believe where a child lives should never decide what a child can learn.',
+    ],
+    attribution: 'Adapted from a newsletter by LinkUp Schools, a not-for-profit organisation, 2024',
+  },
+  q1a: {
+    stem: 'According to Source 1, what fraction of the world’s school-age children have no internet connection at home?',
+    answer: 'Two-thirds',
+    accept: ['2/3'],
+    distractors: [
+      { text: 'One for every five', why: 'That is the ratio of computers to students in city schools, from Source 2.' },
+      { text: 'More than 100', why: 'That is how many students share one computer in some rural schools.' },
+      { text: 'Millions', why: 'Too vague. The question asks for the fraction Source 1 gives.' },
+      { text: 'Most rural children', why: 'Not what Source 1 says. Use the figure it gives.' },
+    ],
+  },
+  statements: [
+    { source: 2, quote: 'A connection turns a village classroom into a window on the world', type: 'Claim', signal: 'turns',
+      why: 'Stated as fact, but no evidence shows what changes in the classroom.' },
+    { source: 2, quote: 'Connecting rural schools closes the gap between the city and the countryside', type: 'Claim', signal: 'closes the gap',
+      why: 'A cause and effect presented as true without evidence.' },
+    { source: 2, quote: 'Every child who learns digital skills today will find a better job tomorrow', type: 'Prediction', signal: 'will find',
+      why: 'It predicts a future outcome for every child.' },
+    { source: 2, quote: 'We believe where a child lives should never decide what a child can learn', type: 'Value', signal: 'should never',
+      why: 'A belief about fairness.' },
+    { source: 2, quote: 'Most city schools have one for every five', type: 'Generalisation', signal: 'Most city schools',
+      why: 'One ratio is applied to most city schools, without evidence.' },
+    { source: 1, quote: 'UNICEF estimates that two-thirds of the world’s school-age children have no internet connection at home', type: 'Fact', signal: 'two-thirds',
+      why: 'A figure from a named organisation that can be checked.' },
+    { source: 1, quote: 'The internet has opened up learning for millions of students', type: 'Claim', signal: 'opened up',
+      why: 'Stated as true without a source or figures.' },
+  ],
+  q1b: {
+    type: 'Claim',
+    explain: '“A connection turns a village classroom into a window on the world” is a claim because LinkUp Schools states it as true, but gives no evidence of how classrooms actually change.',
+    oneMark: 'It is a claim because there is no proof.',
+  },
+  q1c: {
+    holder: 'LinkUp Schools',
+    on: '',
+    level: 'GLOBAL',
+    points: [
+      { element: 'issues', quote: 'one school computer is shared by more than 100 students', point: 'The issue is the digital gap between rural and city schools.' },
+      { element: 'values', quote: 'where a child lives should never decide what a child can learn', point: 'They value equal chances for every child.' },
+      { element: 'consequences', quote: 'Every child who learns digital skills today will find a better job tomorrow', point: 'Digital skills lead to better jobs.' },
+      { element: 'consequences', quote: 'closes the gap between the city and the countryside', point: 'Connecting schools closes the city–country gap.' },
+      { element: 'actions', quote: 'We install solar-powered internet hubs', point: 'They install solar-powered internet hubs.' },
+      { element: 'actions', quote: 'donate refurbished laptops and train teachers', point: 'They donate laptops and train teachers.' },
+    ],
+    model: 'LinkUp Schools believes rural children are being left behind. The issue is that “one school computer is shared by more than 100 students” in some rural areas, compared with one for every five in cities. They value fairness: “where a child lives should never decide what a child can learn”. They see big consequences of connecting schools: digital skills lead to “a better job tomorrow”, and it “closes the gap between the city and the countryside”. Their actions are to “install solar-powered internet hubs”, donate laptops and “train teachers”.',
+  },
+  voices: [
+    { who: 'A 16-year-old in a hill village', quote: 'I walk to the town library to use the internet for my homework.', level: 'PERSONAL', why: 'His own situation.' },
+    { who: 'A rural district education officer', quote: 'Only three of the twenty schools in our district have a working connection.', level: 'LOCAL', why: 'One district.' },
+    { who: 'A national education minister', quote: 'Every state school will be connected to high-speed internet within five years.', level: 'NATIONAL', why: 'A national plan.' },
+    { who: 'A UNICEF spokesperson', quote: 'The digital divide is now one of the biggest gaps in education worldwide.', level: 'GLOBAL', why: 'The whole world.' },
+  ],
+  q1d: {
+    focus: 'benefit of connecting rural schools',
+    lead: 'Sources 1 and 2 describe some benefits of connecting rural schools.',
+    options: [
+      { label: 'Digital skills for future jobs', source: 1, quote: 'digital skills for future jobs', test: 'domino',
+        why: 'Better jobs raise family incomes, which helps whole communities.' },
+      { label: 'Up-to-date learning materials', source: 1, quote: 'access to up-to-date learning materials', test: 'crowd',
+        why: 'Every student in the school benefits at once.' },
+      { label: 'Lessons continue during floods or closures', source: 1, quote: 'lessons can continue during floods or closures', test: 'stuck',
+        why: 'Lost months of school are very hard to make up later.' },
+      { label: 'Online training for teachers', source: 1, quote: 'online training for teachers', test: 'domino',
+        why: 'One better-trained teacher improves learning for hundreds of students over the years.' },
+      { label: 'Closing the city–countryside gap', source: 2, quote: 'closes the gap between the city and the countryside', test: 'fair',
+        why: 'Rural children get the same chances as city children.' },
+    ],
+    model: 'I think online training for teachers is the most significant benefit, because its effects spread the furthest. One better-trained teacher improves lessons for every student they teach, year after year. Up-to-date learning materials are also important and help every student straight away. But materials are only useful if the teacher knows how to use them well. This is why LinkUp Schools does not just “donate refurbished laptops”, but also trains teachers. Because a trained teacher makes every other benefit work, teacher training is the most significant.',
+    levelUp: {
+      base: 'Teacher training is the most significant because teachers are important.',
+      right: 'Explain the knock-on effect (one teacher helps hundreds of students for years), use Source 2 (they “train teachers” as well as giving laptops), and compare with learning materials, which need a skilled teacher.',
+      wrong: [
+        { text: 'Add that two-thirds of children have no internet at home.', why: 'The figure is about homes, not about why teacher training matters most.' },
+        { text: 'Explain what a solar-powered hub is.', why: 'A description of technology is not a justification.' },
+        { text: 'Add “The internet is the future.”', why: 'Too general. It gives no support or comparison.' },
+      ],
+    },
+  },
+};

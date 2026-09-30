@@ -1,0 +1,101 @@
+import type { Q1BankItem } from '../../types';
+
+export const J25_13_Q1_MIRROR_A: Q1BankItem = {
+  id: 'q1m-j25-13-a',
+  kind: 'mirror',
+  parent: 'J25-13',
+  title: 'Ocean plastic',
+  topic: 'Biodiversity and ecosystem loss',
+  source1: {
+    paragraphs: [
+      'Music, film and street art are powerful ways to change how people think about the oceans. At beach festivals, artists build giant sculptures from plastic collected on the shore. The sea turtle has become the symbol of the campaign against ocean plastic, and blue wristbands are sold to raise money.',
+      'Documentaries showing wildlife tangled in fishing nets have persuaded many viewers to use less plastic.',
+    ],
+  },
+  source2: {
+    paragraphs: [
+      'Blue Tide',
+      'Plastic bags in the Pacific. Fishing nets in the Atlantic. Microplastics in Arctic ice. Bottles on every beach.',
+      'Everybody knows that plastic is choking our oceans. It is a disgrace that companies still wrap everything in plastic. We are running out of chances! But it is not hopeless. If we act together, we can win this fight.',
+      'Join Blue Tide and take part in our monthly beach clean-ups. Companies should pay for the waste they create. Sign our open letter to supermarket bosses and show the ocean you care!',
+    ],
+    attribution: 'Adapted from a poster by the ocean action group Blue Tide',
+  },
+  q1a: {
+    stem: 'According to Source 1, which animal has become the symbol of the campaign against ocean plastic?',
+    answer: 'The sea turtle',
+    accept: ['Sea turtle', 'Turtle'],
+    distractors: [
+      { text: 'Blue wristbands', why: 'Wristbands are sold to raise money. They are not an animal.' },
+      { text: 'Fish caught in nets', why: 'Documentaries show wildlife in nets, but the symbol is a specific animal.' },
+      { text: 'Giant plastic sculptures', why: 'Sculptures are a method artists use, not the symbol.' },
+      { text: 'A whale', why: 'Not in the source. Answer only from Source 1.' },
+    ],
+  },
+  statements: [
+    { source: 2, quote: 'It is a disgrace that companies still wrap everything in plastic', type: 'Opinion', signal: 'disgrace',
+      why: '"Disgrace" is a strong personal judgement that others might not share.' },
+    { source: 2, quote: 'We are running out of chances', type: 'Opinion', signal: 'running out of chances',
+      why: 'A view about urgency that cannot be proved.' },
+    { source: 2, quote: 'But it is not hopeless', type: 'Opinion', signal: 'not hopeless',
+      why: 'A hopeful judgement, not a checkable fact.' },
+    { source: 2, quote: 'Everybody knows that plastic is choking our oceans', type: 'Generalisation', signal: 'Everybody knows',
+      why: '"Everybody" applies one belief to all people.' },
+    { source: 2, quote: 'Companies should pay for the waste they create', type: 'Value', signal: 'should pay',
+      why: 'A belief about what is fair and right.' },
+    { source: 2, quote: 'If we act together, we can win this fight', type: 'Claim', signal: 'can win',
+      why: 'Stated as true without evidence.' },
+    { source: 1, quote: 'Documentaries showing wildlife tangled in fishing nets have persuaded many viewers to use less plastic', type: 'Claim', signal: 'have persuaded many',
+      why: '"Many" is not measured, so this is stated without evidence.' },
+  ],
+  q1b: {
+    type: 'Opinion',
+    explain: '“It is a disgrace that companies still wrap everything in plastic” is an opinion because “disgrace” is Blue Tide’s personal judgement. It cannot be proved true or false, and a company might disagree.',
+    oneMark: 'It is an opinion because it is what they feel.',
+  },
+  q1c: {
+    holder: 'Blue Tide',
+    on: '',
+    level: 'GLOBAL',
+    points: [
+      { element: 'issues', quote: 'Plastic bags in the Pacific. Fishing nets in the Atlantic.', point: 'The issue is plastic pollution in every ocean.' },
+      { element: 'causes', quote: 'companies still wrap everything in plastic', point: 'They blame companies for using so much plastic.' },
+      { element: 'consequences', quote: 'plastic is choking our oceans', point: 'The oceans are being choked by plastic.' },
+      { element: 'values', quote: 'Companies should pay for the waste they create', point: 'They believe polluters should pay.' },
+      { element: 'values', quote: 'If we act together, we can win this fight', point: 'They believe in acting together and are hopeful.' },
+      { element: 'actions', quote: 'take part in our monthly beach clean-ups', point: 'They run monthly beach clean-ups.' },
+      { element: 'actions', quote: 'Sign our open letter to supermarket bosses', point: 'They ask people to sign an open letter to supermarkets.' },
+    ],
+    model: 'Blue Tide is an action group with a global perspective. The issue is plastic in every ocean: “plastic bags in the Pacific” and “microplastics in Arctic ice”. They blame companies that “still wrap everything in plastic”, and the consequence is that plastic “is choking our oceans”. They value fairness, believing “companies should pay for the waste they create”, and they are hopeful that “if we act together, we can win”. Their actions are “monthly beach clean-ups” and an “open letter to supermarket bosses”.',
+  },
+  voices: [
+    { who: 'A fisherman', quote: 'Half of what I pull up in my net now is plastic, not fish.', level: 'PERSONAL', why: 'His own work.' },
+    { who: 'A seaside town mayor', quote: 'Our beaches have banned single-use plastic cups this summer.', level: 'LOCAL', why: 'One town.' },
+    { who: 'An environment minister', quote: 'Plastic bags will be banned in every shop in the country from January.', level: 'NATIONAL', why: 'A national ban.' },
+    { who: 'A UN ocean scientist', quote: 'By weight, there could soon be more plastic than fish in the world’s seas.', level: 'GLOBAL', why: 'All the world’s seas.' },
+  ],
+  q1d: {
+    focus: 'consequence of ocean plastic',
+    lead: 'Sources 1 and 2 describe some consequences of ocean plastic.',
+    options: [
+      { label: 'Wildlife tangled in fishing nets', source: 1, quote: 'wildlife tangled in fishing nets', test: 'hurt',
+        why: 'Animals are injured, drowned or starved.' },
+      { label: 'Microplastics in Arctic ice', source: 2, quote: 'Microplastics in Arctic ice', test: 'stuck',
+        why: 'Microplastics are almost impossible to remove once they spread.' },
+      { label: 'Plastic choking the oceans', source: 2, quote: 'plastic is choking our oceans', test: 'domino',
+        why: 'Damage to sea life harms fishing, food supplies and tourism.' },
+      { label: 'Bottles on every beach', source: 2, quote: 'Bottles on every beach', test: 'crowd',
+        why: 'Coastal communities everywhere live with the mess.' },
+    ],
+    model: 'I think microplastics in Arctic ice is the most significant consequence, because it cannot be reversed. Source 2 shows that plastic has reached even “Arctic ice”, far from any city. Microplastics are too small to collect, so once they spread they stay in the water, the ice and the animals that eat them. Bottles on beaches are ugly, and they affect many people. But beach clean-ups like Blue Tide’s can remove them, while microplastics cannot be cleaned up. Because the damage is permanent, microplastics are the most significant consequence.',
+    levelUp: {
+      base: 'Microplastics are the worst because they are everywhere.',
+      right: 'Quote Source 2 (“Microplastics in Arctic ice”), explain why they cannot be removed, and compare with bottles on beaches, which clean-ups can remove.',
+      wrong: [
+        { text: 'Describe the sea turtle symbol from Source 1.', why: 'A campaign symbol is not a consequence, so it is off the question.' },
+        { text: 'Say that companies should pay.', why: 'That is Blue Tide’s value, not a justification of the consequence.' },
+        { text: 'List all four places plastic is found.', why: 'Listing is not judging.' },
+      ],
+    },
+  },
+};

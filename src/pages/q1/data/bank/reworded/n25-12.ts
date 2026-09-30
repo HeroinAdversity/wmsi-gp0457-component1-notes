@@ -1,0 +1,107 @@
+import type { Q1BankItem } from '../../types';
+
+export const N25_12_Q1_REWORDED: Q1BankItem = {
+  id: 'q1r-n25-12',
+  kind: 'reworded',
+  parent: 'N25-12',
+  title: 'Online shopping',
+  topic: 'Digital world',
+  source1: {
+    paragraphs: [
+      'The digital world touches our lives in many ways, and the internet now plays a big part in how we shop. Online sales were worth $5211 billion in 2021. They are expected to rise by 56 per cent, to $8148 billion, by 2026, which shows how much online shopping matters.',
+    ],
+    list: {
+      title: 'Online shopping: the upside',
+      items: ['for customers: open 24 hours a day, many brands, sometimes lower prices, shopping from home', 'for businesses: customers around the world, no shop rent to pay, more products on offer, customers may spend more'],
+    },
+  },
+  source2: {
+    paragraphs: [
+      'My job is advising customers about their rights. Online shopping has benefits, but it also has plenty of risks. I get many complaints about bad service, parcels that go missing and security problems.',
+      'Some people order the wrong item because they cannot see it first. Returning goods is hard, and there is nobody to talk to when something goes wrong. Then there are the security risks: identity theft, fraud and hacking. In my view, customers deserve to be treated better. Online shops ought to take care of customers and keep them safe.',
+      'We tell people to use antivirus software and strong passwords, and to shop only on well-known, trusted sites.',
+    ],
+    attribution: 'Adapted from an article on online shopping by a customer adviser',
+  },
+  q1a: {
+    stem: 'According to Source 1, by what percentage are online sales expected to rise between 2021 and 2026?',
+    answer: '56 per cent',
+    accept: ['56%'],
+    distractors: [
+      { text: '$8148 billion', why: 'That is the expected value of sales in 2026, not the percentage rise.' },
+      { text: '$5211 billion', why: 'That is the 2021 value of sales.' },
+      { text: '56', why: 'The unit matters: it is 56 per cent.' },
+      { text: '$2937 billion', why: 'That is the rise in dollars (8148 − 5211), not the percentage the question asks for.' },
+    ],
+  },
+  statements: [
+    { source: 2, quote: 'In my view, customers deserve to be treated better', type: 'Opinion', signal: 'In my view',
+      why: '"In my view" shows it is a personal judgement.' },
+    { source: 2, quote: 'Online shops ought to take care of customers and keep them safe', type: 'Value', signal: 'ought to',
+      why: 'It states what the writer believes is right.' },
+    { source: 2, quote: 'it also has plenty of risks', type: 'Opinion', signal: 'plenty',
+      why: '"Plenty" is a judgement of how risky it is. Others might disagree.' },
+    { source: 2, quote: 'Returning goods is hard', type: 'Generalisation', signal: 'Returning goods',
+      why: 'It is said about all online returns, but many are easy.' },
+    { source: 2, quote: 'there is nobody to talk to when something goes wrong', type: 'Generalisation', signal: 'nobody',
+      why: '"Nobody" makes it sound true of every shop.' },
+    { source: 1, quote: 'Online sales were worth $5211 billion in 2021', type: 'Fact', signal: '$5211 billion',
+      why: 'A dated figure that can be checked.' },
+    { source: 1, quote: 'They are expected to rise by 56 per cent', type: 'Prediction', signal: 'expected to rise',
+      why: 'A forecast about 2026.' },
+    { source: 2, quote: 'My job is advising customers about their rights', type: 'Vested interest', signal: 'My job',
+      why: 'The writer earns a living from customer problems, which may shape how they describe online shopping.' },
+  ],
+  q1b: {
+    type: 'Opinion',
+    explain: '“In my view, customers deserve to be treated better” is an opinion because it is the writer’s personal judgement, shown by “in my view”. It cannot be proved true or false.',
+    oneMark: 'It is an opinion because it is a view.',
+  },
+  q1c: {
+    holder: 'the author',
+    on: 'on online shopping',
+    level: 'PERSONAL',
+    points: [
+      { element: 'issues', quote: 'it also has plenty of risks', point: 'The issue is the risks of online shopping for customers.' },
+      { element: 'consequences', quote: 'Some people order the wrong item because they cannot see it first', point: 'Customers buy the wrong thing.' },
+      { element: 'consequences', quote: 'identity theft, fraud and hacking', point: 'Customers face identity theft and fraud.' },
+      { element: 'causes', quote: 'because they cannot see it first', point: 'Problems happen because goods cannot be seen before buying.' },
+      { element: 'values', quote: 'customers deserve to be treated better', point: 'They believe customers deserve better treatment.' },
+      { element: 'values', quote: 'Online shops ought to take care of customers', point: 'They believe shops have a duty to protect customers.' },
+      { element: 'actions', quote: 'We tell people to use antivirus software and strong passwords', point: 'They advise antivirus software, strong passwords and trusted sites.' },
+    ],
+    model: 'The author is a customer adviser. They accept that online shopping has benefits, but they focus on its “plenty of risks”. The issue is poor treatment of customers. They list the consequences: people “order the wrong item because they cannot see it first”, returns are hard, and there is “identity theft, fraud and hacking”. They value fairness to customers, saying customers “deserve to be treated better” and shops “ought to take care of customers”. Their action is advice: “use antivirus software and strong passwords” and shop only on “trusted sites”.',
+  },
+  voices: [
+    { who: 'A grandmother who shops online', quote: 'I paid for a coat that never came, and I still can’t get anyone on the phone.', level: 'PERSONAL', why: 'Her own purchase.' },
+    { who: 'The owner of a small-town bookshop', quote: 'Half the shops on our high street have closed since people started buying online.', level: 'LOCAL', why: 'One town’s high street.' },
+    { who: 'A national consumer minister', quote: 'New laws will give every online buyer in this country thirty days to return goods for free.', level: 'NATIONAL', why: 'A law for the whole country.' },
+    { who: 'An international trade expert', quote: 'Cross-border online sales now make up a fifth of all trade worldwide.', level: 'GLOBAL', why: 'Trade across the world.' },
+  ],
+  q1d: {
+    focus: 'advantage of online shopping',
+    lead: 'Source 1 suggests advantages of online shopping.',
+    options: [
+      { label: 'Shopping from home', source: 1, quote: 'shopping from home', test: 'crowd',
+        why: 'Elderly, disabled and rural people who cannot easily reach shops can still buy what they need.' },
+      { label: 'Sometimes lower prices', source: 1, quote: 'sometimes lower prices', test: 'hurt',
+        why: 'For families on low incomes, lower prices can decide whether they can afford essentials.' },
+      { label: 'Customers around the world', source: 1, quote: 'customers around the world', test: 'domino',
+        why: 'Small businesses can grow, which creates jobs and supports the economy.' },
+      { label: 'No shop rent to pay', source: 1, quote: 'no shop rent to pay', test: 'stuck',
+        why: 'Lower costs let a business survive hard times for longer.' },
+      { label: 'Open 24 hours a day', source: 1, quote: 'open 24 hours a day', test: 'fair',
+        why: 'Shift workers get the same chance to shop as everyone else.' },
+    ],
+    model: 'I think the most significant advantage is being able to shop from home. It helps the people who find shopping hardest. Elderly and disabled people, and families living far from any town, can still buy what they need. For them this is not only convenient, it can be essential. Lower prices are also important, especially for poorer families. But the customer adviser in Source 2 warns about fraud and hard returns, so online prices are not always a real saving. Shopping from home gives access to people who might otherwise go without, so it is the most significant advantage.',
+    levelUp: {
+      base: 'Shopping from home is the best advantage because it is easy.',
+      right: 'Say who benefits most (elderly, disabled and rural people), why it matters to them, and compare it with lower prices, which the risks in Source 2 can cancel out.',
+      wrong: [
+        { text: 'Add the figure of $8148 billion in 2026.', why: 'A figure about total sales does not explain why this advantage matters most.' },
+        { text: 'Add the dangers of fraud and hacking.', why: 'Disadvantages alone do not justify the chosen advantage unless you use them to compare.' },
+        { text: 'Say that online shopping is better than going to shops.', why: 'Too general. It does not justify one advantage over the others.' },
+      ],
+    },
+  },
+};

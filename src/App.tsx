@@ -29,6 +29,7 @@ import { TrackerPage } from './pages/dashboards/tracker/TrackerPage';
 import { ResearchRevisionSheetPage } from './pages/research/ResearchRevisionSheetPage';
 import { Q1Frame, Q2Frame } from './components/SectionFrame';
 import { GamesPage } from './pages/research/games/GamesPage';
+import { Q1GamesPage } from './pages/q1/games/Q1GamesPage';
 
 export function App() {
   return (
@@ -61,6 +62,9 @@ export function App() {
           <Route path="statements/claim-vs-evidence" element={<ClaimVsEvidencePage />} />
           <Route path="statements/mindmap" element={<MindMapPage />} />
           <Route path="statements/revision" element={<Navigate to="/revision/statements" replace />} />
+
+          <Route path="perspectives/games" element={<Q1GamesPage />} />
+          <Route path="perspectives/games/:gameId" element={<Q1GamesPage />} />
 
           {/* Question 1 revision sheets, one canonical URL each */}
           <Route path="revision/statements" element={<RevisionSheetPage />} />

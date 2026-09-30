@@ -1,12 +1,14 @@
 import { useMemo, useState } from 'react';
-import { IDEAS, type IdeaId } from '../../research/games/ideas';
-import { gameInfo, type GameId } from '../../research/games/generate';
+import { IDEAS } from '../../research/games/ideas';
+import { GAMES } from '../../research/games/generate';
+import { Q1_GAMES, Q1_IDEAS } from '../../q1/games/generate';
 import { classHeat, initials, leaderboard, weakestIdeas, type Period } from './leaderboard';
 import type { StudentRow } from './trackerStore';
 
 const MEDAL = ['#B8962E', '#8E9AA6', '#A0673A'];
-const ideaName = (id: string) => IDEAS[id as IdeaId] ?? id;
-const gameName = (id: string) => { try { return gameInfo(id as GameId).title; } catch { return id; } };
+const IDEA_NAMES: Record<string, string> = { ...IDEAS, ...Q1_IDEAS };
+const ideaName = (id: string) => IDEA_NAMES[id] ?? id;
+const gameName = (id: string) => [...GAMES, ...Q1_GAMES].find((g) => g.id === id)?.title ?? id;
 
 function shade(acc: number | null): string {
   if (acc === null) return 'var(--color-paper-2)';

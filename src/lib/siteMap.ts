@@ -37,7 +37,7 @@ const inWeigh = (hash: string) => hash === '#weigh' || hash.startsWith('#weigh-'
 export const Q1_GROUP: SiteGroup = {
   id: 'q1',
   label: 'Perspectives · Q1',
-  match: (p) => ['/source-recall', '/statements', '/perspectives'].some((x) => p.startsWith(x)),
+  match: (p) => ['/source-recall', '/statements', '/perspectives', '/revision/statements', '/revision/perspectives', '/revision/significance'].some((x) => p.startsWith(x)),
   foot: { label: 'Question 1 revision sheets →', to: '/revision' },
   pages: [
     {
@@ -95,6 +95,22 @@ export const Q1_GROUP: SiteGroup = {
         { label: 'Level up', to: '/perspectives#weigh-levelup' },
         { label: 'Practice', to: '/perspectives#weigh-practice' },
         { label: 'Journal', to: '/perspectives#weigh-journal' },
+      ],
+    },
+    {
+      badge: 'Play', color: 'var(--color-cobalt)', title: 'Practice games', to: '/perspectives/games',
+      blurb: 'Quick drills, fresh questions each round', meta: '6–10 questions a round · scores go to My learning',
+      tests: ['1(a): Pinpoint', '1(b): Name it, Signal word', '1(c): Which level?, Element sort', '1(d): Which test?, Level up'],
+      branches: [
+        { label: 'Game hub', to: '/perspectives/games' },
+        { label: 'Pinpoint', to: '/perspectives/games/q1-pinpoint' },
+        { label: 'Name it', to: '/perspectives/games/q1-name-it' },
+        { label: 'Signal word', to: '/perspectives/games/q1-signal' },
+        { label: 'Which level?', to: '/perspectives/games/q1-level' },
+        { label: 'Element sort', to: '/perspectives/games/q1-element' },
+        { label: 'Which test?', to: '/perspectives/games/q1-which-test' },
+        { label: 'Level up', to: '/perspectives/games/q1-level-up' },
+        { label: 'Daily mixed round', to: '/perspectives/games/q1-mixed' },
       ],
     },
   ],
@@ -205,6 +221,7 @@ export const FOOTER_MAP: { heading: string; links: (Branch & { sub?: boolean })[
       { label: 'Find your gap', to: '/statements/diagnostic', sub: true },
       { label: '1(c) Perspectives', to: '/perspectives' },
       { label: '1(d) Significance', to: '/perspectives#weigh' },
+      { label: 'Practice games', to: '/perspectives/games' },
     ],
   },
   { heading: 'Question 2 · Research', links: Q2_GROUP.pages.filter((p) => p.to !== '/revision/research').map((p) => ({ label: p.title, to: p.to })) },
@@ -270,6 +287,7 @@ export const Q1_SEQUENCE: { to: string; label: string; short: string }[] = [
   { to: '/statements', label: 'Statements · 1(b)', short: '1(b) Statements' },
   { to: '/perspectives', label: 'Perspectives · 1(c)', short: '1(c) Perspectives' },
   { to: '/perspectives#weigh', label: 'Significance · 1(d)', short: '1(d) Significance' },
+  { to: '/perspectives/games', label: 'Practice games', short: 'Games' },
   { to: '/revision/statements', label: 'Revision sheets', short: 'Revise' },
 ];
 
@@ -280,6 +298,7 @@ export function q1Index(pathname: string, hash: string): number {
   if (pathname === '/source-recall') return 0;
   if (pathname === '/statements' || pathname.startsWith('/statements/')) return 1;
   if (pathname === '/perspectives') return inWeigh(hash) ? 3 : 2;
-  if (Q1_REVISION.includes(pathname)) return 4;
+  if (pathname.startsWith('/perspectives/games')) return 4;
+  if (Q1_REVISION.includes(pathname)) return 5;
   return -1;
 }

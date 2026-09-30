@@ -1,0 +1,107 @@
+import type { Q1BankItem } from '../../types';
+
+export const J25_12_Q1_REWORDED: Q1BankItem = {
+  id: 'q1r-j25-12',
+  kind: 'reworded',
+  parent: 'J25-12',
+  title: 'Educating girls',
+  topic: 'Education for all',
+  source1: {
+    paragraphs: [
+      'In every part of the world, education changes the lives of people and their communities. School helps families climb out of extreme poverty, and this is especially true for girls in developing countries.',
+      'Poverty, conflict and traditional ideas about gender keep many girls out of education. The United Nations says that 129 million girls worldwide are not in school.',
+    ],
+    list: {
+      title: 'Why educating girls matters',
+      items: ['fewer child marriages and early pregnancies', 'healthier, smaller families', 'better jobs and pay for women', 'more women becoming leaders', 'stronger economic development'],
+    },
+  },
+  source2: {
+    paragraphs: [
+      'Education Unlimited',
+      'Nine million girls of primary age will never go to school or sit in a classroom. The figure for boys is around three million.',
+      'Every girl and every boy has a basic human right to education. Education makes girls into leaders who can change the world. Educating girls leads to sustainable development, fairer societies and stronger economies.',
+      'We provide mentoring, tutoring and after-school clubs so that girls can reach their potential and gain qualifications. We stand with girls in their fight to be equal and to build a better future.',
+    ],
+    attribution: 'Adapted from Education Unlimited magazine, published in Africa, 2023',
+  },
+  q1a: {
+    stem: 'According to Source 1, how many girls around the world are not in school?',
+    answer: '129 million',
+    accept: ['129 million girls'],
+    distractors: [
+      { text: 'Nine million', why: 'That figure is from Source 2, and it is girls of primary age who will never start school.' },
+      { text: 'Three million', why: 'That is the figure for boys, and it is in Source 2.' },
+      { text: '129', why: 'Leaving out “million” changes the number completely.' },
+      { text: 'Many girls, because of poverty and conflict', why: 'That gives reasons, not the number the question asks for.' },
+    ],
+  },
+  statements: [
+    { source: 2, quote: 'Education makes girls into leaders who can change the world', type: 'Claim', signal: 'makes',
+      why: 'Stated as true for girls in general, with no evidence given.' },
+    { source: 2, quote: 'Educating girls leads to sustainable development, fairer societies and stronger economies', type: 'Claim', signal: 'leads to',
+      why: 'It claims a cause and effect without any evidence in the source.' },
+    { source: 2, quote: 'Every girl and every boy has a basic human right to education', type: 'Value', signal: 'right',
+      why: 'It shows what the writer believes matters: education as a human right.' },
+    { source: 2, quote: 'Nine million girls of primary age will never go to school', type: 'Prediction', signal: 'will never',
+      why: 'It says what will happen to these girls in the future.' },
+    { source: 2, quote: 'The figure for boys is around three million', type: 'Fact', signal: 'three million',
+      why: 'A figure that can be checked.' },
+    { source: 1, quote: 'The United Nations says that 129 million girls worldwide are not in school', type: 'Fact', signal: '129 million',
+      why: 'A specific figure from a named organisation, so it can be checked.' },
+    { source: 1, quote: 'In every part of the world, education changes the lives of people', type: 'Generalisation', signal: 'every part of the world',
+      why: 'It says education always changes lives everywhere: a sweeping statement.' },
+  ],
+  q1b: {
+    type: 'Claim',
+    explain: '“Education makes girls into leaders who can change the world” is a claim because it is stated as if it were true, but the source gives no evidence to support it. It could be checked, but it has not been.',
+    oneMark: 'A claim is something that someone says is true.',
+  },
+  q1c: {
+    holder: 'Education Unlimited',
+    on: '',
+    level: 'GLOBAL',
+    points: [
+      { element: 'issues', quote: 'Nine million girls of primary age will never go to school', point: 'The issue is girls being left out of education, far more than boys.' },
+      { element: 'values', quote: 'basic human right to education', point: 'They see education as a basic human right.' },
+      { element: 'values', quote: 'We stand with girls in their fight to be equal', point: 'They value equality between girls and boys.' },
+      { element: 'consequences', quote: 'Education makes girls into leaders who can change the world', point: 'Educated girls become leaders.' },
+      { element: 'consequences', quote: 'Educating girls leads to sustainable development, fairer societies and stronger economies', point: 'Whole societies and economies benefit.' },
+      { element: 'actions', quote: 'We provide mentoring, tutoring and after-school clubs', point: 'They run mentoring, tutoring and clubs.' },
+      { element: 'actions', quote: 'so that girls can reach their potential and gain qualifications', point: 'Their aim is to help girls gain qualifications.' },
+    ],
+    model: 'Education Unlimited believes girls are unfairly shut out of school. The issue is that “nine million girls of primary age will never go to school”, compared with about three million boys. They value education as a “basic human right” and they value equality, standing “with girls in their fight to be equal”. They see big consequences of educating girls: it “makes girls into leaders” and leads to “fairer societies and stronger economies”. Their actions follow from this. They “provide mentoring, tutoring and after-school clubs” so girls can “gain qualifications”.',
+  },
+  voices: [
+    { who: 'A 14-year-old girl in a rural village', quote: 'I had to leave school to look after my brothers. I still want to be a nurse.', level: 'PERSONAL', why: 'Her own life and hopes.' },
+    { who: 'A village headteacher', quote: 'Since we opened a girls’ toilet block, attendance at our school has risen.', level: 'LOCAL', why: 'One school in one village.' },
+    { who: 'A minister of education', quote: 'From next year, secondary school will be free for every girl in our country.', level: 'NATIONAL', why: 'A policy for the whole country.' },
+    { who: 'A United Nations education official', quote: 'Closing the gender gap in schooling worldwide would add billions to the global economy.', level: 'GLOBAL', why: 'About the whole world.' },
+  ],
+  q1d: {
+    focus: 'benefit of educating girls',
+    lead: 'Sources 1 and 2 describe some benefits of educating girls.',
+    options: [
+      { label: 'Fewer child marriages and early pregnancies', source: 1, quote: 'fewer child marriages and early pregnancies', test: 'hurt',
+        why: 'Child marriage and early pregnancy can end a girl’s education and damage her health for life.' },
+      { label: 'Better jobs and pay for women', source: 1, quote: 'better jobs and pay for women', test: 'domino',
+        why: 'Higher pay lifts whole families out of poverty, so children eat better and stay in school.' },
+      { label: 'More women becoming leaders', source: 1, quote: 'more women becoming leaders', test: 'fair',
+        why: 'It gives women a fair share of power over decisions that affect them.' },
+      { label: 'Stronger economic development', source: 1, quote: 'stronger economic development', test: 'crowd',
+        why: 'A stronger economy benefits everyone in the country, not only girls.' },
+      { label: 'Healthier, smaller families', source: 1, quote: 'healthier, smaller families', test: 'stuck',
+        why: 'Health habits pass down the generations, so the benefit lasts a long time.' },
+    ],
+    model: 'I think the most significant benefit is fewer child marriages and early pregnancies. These cause the most harm to a girl’s life. A girl who marries young often has to leave school, and an early pregnancy can seriously damage her health. So this benefit protects girls from lifelong harm. Better jobs and pay for women is also important, because it helps families escape poverty. However, a girl can only get a better job if she stays in school and is not married as a child. So preventing child marriage comes first, and the other benefits depend on it.',
+    levelUp: {
+      base: 'Fewer child marriages is the most significant benefit because child marriage is wrong.',
+      right: 'Explain the harm (girls leave school, and early pregnancy damages health), quote Source 1, and compare with “better jobs and pay”, which depends on girls staying in school first.',
+      wrong: [
+        { text: 'Add the figure of 129 million girls not in school.', why: 'A true figure, but it is not linked to why this benefit matters most.' },
+        { text: 'Say that all five benefits are equally important.', why: 'The question asks which is most significant. Refusing to choose caps the mark.' },
+        { text: 'Add what Education Unlimited does to help girls.', why: 'That belongs in 1(c). It does not justify the choice.' },
+      ],
+    },
+  },
+};

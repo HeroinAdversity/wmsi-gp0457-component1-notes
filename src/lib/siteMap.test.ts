@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { FOOTER_MAP, GROUPS, Q1_GROUP, Q2_GROUP, Q2_SEQUENCE, currentPage, q1Index, q2Index } from './siteMap';
+import { FOOTER_MAP, GROUPS, Q1_GROUP, Q2_GROUP, Q2_SEQUENCE, REVISION_GROUP, currentPage, q1Index, q2Index, sheetNeighbours } from './siteMap';
 import { buildIndex, search } from './searchIndex';
 
 describe('siteMap', () => {
@@ -38,14 +38,24 @@ describe('siteMap', () => {
 
   it('marks the right group active', () => {
     expect(Q1_GROUP.match('/statements/mindmap', '')).toBe(true);
-    expect(Q2_GROUP.match('/revision/research', '')).toBe(true);
-    expect(Q2_GROUP.match('/revision/research/2b', '')).toBe(true);
-    expect(Q2_GROUP.match('/revision/statements', '')).toBe(false);
+    expect(Q2_GROUP.match('/research/design', '')).toBe(true);
+    expect(Q2_GROUP.match('/revision/research/2b', '')).toBe(false);
+    expect(REVISION_GROUP.match('/revision/research/2b', '')).toBe(true);
+    expect(REVISION_GROUP.match('/revision/statements', '')).toBe(true);
+    expect(Q1_GROUP.match('/revision/statements', '')).toBe(false);
+  });
+
+  it('links each revision sheet to the next', () => {
+    expect(sheetNeighbours('/revision/research/2a').next?.to).toBe('/revision/research/2b');
+    expect(sheetNeighbours('/revision/significance').next?.to).toBe('/revision/research/2a');
+    expect(sheetNeighbours('/revision/statements').prev).toBeUndefined();
+    expect(sheetNeighbours('/revision/research/2b').next).toBeUndefined();
   });
 
   it('keeps the section bar in step with the Q2 menu', () => {
     expect(Q2_SEQUENCE.map((s) => s.to)).toEqual(Q2_GROUP.pages.map((p) => p.to));
-    expect(GROUPS).toHaveLength(2);
+    expect(GROUPS).toHaveLength(3);
+    expect(REVISION_GROUP.pages.map((p) => p.badge)).toEqual(['1(b)', '1(c)', '1(d)', '2(a)', '2(b)']);
     expect(FOOTER_MAP.flatMap((c) => c.links).every((l) => l.to.startsWith('/'))).toBe(true);
   });
 });

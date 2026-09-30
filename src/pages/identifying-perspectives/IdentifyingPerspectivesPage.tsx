@@ -665,7 +665,7 @@ function FrameworkTab() {
           </p>
         </div>
 
-        <div className="border border-[color:var(--color-line)] border-l-[3px] border-l-[color:var(--color-amber)] rounded-[6px] p-5 md:p-6 grid gap-3 bg-[color:var(--color-paper)]">
+        <div className="border border-[color:var(--color-line)] border-t-[4px] border-t-[color:var(--color-amber)] rounded-[6px] p-5 md:p-6 grid gap-3 bg-[color:var(--color-paper)]">
           {WORKED_EXAMPLE.map((row, i) => (
             <div key={i} className="grid gap-1 md:grid-cols-[100px_1fr]">
               <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-[color:var(--color-amber)]">
@@ -762,7 +762,7 @@ function VoiceCardComponent({ card }: { card: (typeof VOICE_CARDS)[number] }) {
         </span>
       </div>
 
-      <blockquote className="font-display italic text-[19px] md:text-[20px] leading-[1.4] text-[color:var(--color-ink)] border-l-[3px] border-[color:var(--color-cobalt)] pl-5 pretty balance">
+      <blockquote className="font-display italic text-[19px] md:text-[20px] leading-[1.4] text-[color:var(--color-ink)] bg-[color:var(--color-paper-2)] rounded-[6px] px-5 py-2.5 border border-[color:var(--color-cobalt)]/30 pretty balance">
         <Bi en={card.quoteEn} zh={card.quoteZh} />
       </blockquote>
 
@@ -787,7 +787,7 @@ function VoiceCardComponent({ card }: { card: (typeof VOICE_CARDS)[number] }) {
             </div>
           ))}
           {card.cultural && (
-            <div className="mt-3 bg-[color:var(--color-paper-2)] border-l-[3px] border-[color:var(--color-violet)] rounded-r-md px-4 py-3">
+            <div className="mt-3 bg-[color:var(--color-paper-2)] border border-[color:var(--color-violet)]/40 rounded-[6px] px-4 py-3">
               <p className="font-mono text-[10.5px] font-semibold uppercase tracking-[0.16em] text-[color:var(--color-violet)] mb-1">
                 <Bi en="Cultural lens" zh="文化透镜" />
               </p>
@@ -971,7 +971,7 @@ function ExamQuestion({ q }: { q: (typeof DESCRIBE_QUESTIONS)[number] }) {
           </p>
           <span className="font-mono text-[12px] font-semibold text-[color:var(--color-ink-3)] whitespace-nowrap">[6]</span>
         </div>
-        <div className="bg-[color:var(--color-paper-2)] border-l-[3px] border-[color:var(--color-amber)] rounded-r-md px-4 py-3 mb-3 text-[13px] text-[color:var(--color-ink-2)]">
+        <div className="bg-[color:var(--color-paper-2)] border border-[color:var(--color-amber)]/40 rounded-[6px] px-4 py-3 mb-3 text-[13px] text-[color:var(--color-ink-2)]">
           <Bi
             en={
               <>
@@ -1082,7 +1082,7 @@ function ExamQuestion({ q }: { q: (typeof DESCRIBE_QUESTIONS)[number] }) {
         </div>
 
         {showResult && result && (
-          <div className="mt-5 bg-[color:var(--color-paper-2)] border-l-[4px] border-[color:var(--color-cobalt)] rounded-r-md p-4">
+          <div className="mt-5 bg-[color:var(--color-paper-2)] border border-[color:var(--color-cobalt)]/40 rounded-[6px] p-4">
             <p className="font-semibold text-[15px] text-[color:var(--color-ink)]">
               <Bi en={result.label.en} zh={result.label.zh} /> ({result.range} / 6)
             </p>
@@ -1096,7 +1096,7 @@ function ExamQuestion({ q }: { q: (typeof DESCRIBE_QUESTIONS)[number] }) {
         )}
 
         {showMarkScheme && (
-          <div className="mt-5 bg-[color:var(--color-paper-2)] border-l-[3px] border-[color:var(--color-amber)] rounded-r-md p-4">
+          <div className="mt-5 bg-[color:var(--color-paper-2)] border border-[color:var(--color-amber)]/40 rounded-[6px] p-4">
             <p className="font-semibold text-[13.5px] mb-2 text-[color:var(--color-ink)]">
               <Bi
                 en="Table A: Analysis of issues and perspectives (AO1), 6 marks"
@@ -1171,7 +1171,7 @@ function YourTurnTab() {
         />
       </p>
 
-      <div className="bg-[color:var(--color-paper-2)] border border-[color:var(--color-line)] border-l-[3px] border-l-[color:var(--color-amber)] rounded-[6px] p-5 grid gap-1.5">
+      <div className="bg-[color:var(--color-paper-2)] border border-[color:var(--color-line)] border-t-[4px] border-t-[color:var(--color-amber)] rounded-[6px] p-5 grid gap-1.5">
         {(lang === 'zh' ? YOUR_TURN.frameLinesZh : YOUR_TURN.frameLinesEn).map((line, i) => (
           <p key={i} className="font-mono text-[13px] text-[color:var(--color-amber)]">
             {line}
@@ -1198,7 +1198,7 @@ function YourTurnTab() {
         </Button>
 
         {showModel && (
-          <div className="mt-5 bg-[color:var(--color-paper)] border border-[color:var(--color-line)] border-l-[4px] border-l-[color:var(--color-amber)] rounded-r-md p-5">
+          <div className="mt-5 bg-[color:var(--color-paper)] border border-[color:var(--color-line)] border-t-[4px] border-t-[color:var(--color-amber)] rounded-[6px] p-5">
             <p
               className="text-[15px] leading-[1.7] text-[color:var(--color-ink)] pretty [&_strong]:font-semibold"
               dangerouslySetInnerHTML={{ __html: lang === 'zh' ? YOUR_TURN.modelZh : YOUR_TURN.modelEn }}

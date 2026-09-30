@@ -28,13 +28,13 @@ const TABLE_D = [
 ];
 
 // Claim words → the method that tests them (from the Toolkit's "use in 2(b)" notes).
-const METHOD_FOR: [string, string][] = [
-  ['“increasing” · “nationally” · “global”', 'Official statistics (secondary data)'],
-  ['“many” · “most” · two groups', 'Survey or questionnaire'],
-  ['“why” · expert knowledge', 'Interview'],
-  ['what people actually do', 'Observation'],
-  ['“causes” · “improves”', 'Experiment or comparison of groups'],
-  ['a real example', 'Case study (pair it with a bigger method)'],
+const METHOD_FOR: { cues: string[]; method: string; why: string; tone: Tone }[] = [
+  { cues: ['increasing', 'nationally', 'global'], method: 'Official statistics', why: 'Secondary data covering the whole country over many years, so it shows a trend.', tone: 'strength' },
+  { cues: ['many', 'most', 'two groups'], method: 'Survey or questionnaire', why: 'Reaches a large sample whose answers you can count and compare.', tone: 'strength' },
+  { cues: ['why', 'expert knowledge'], method: 'Interview', why: 'Experts and people with experience explain the reasons behind the numbers.', tone: 'strength' },
+  { cues: ['what people do'], method: 'Observation', why: 'Shows real behaviour, not what people say they do.', tone: 'strength' },
+  { cues: ['causes', 'improves'], method: 'Experiment or comparison of groups', why: 'Change one thing, keep the rest the same, and measure the difference.', tone: 'strength' },
+  { cues: ['a real example'], method: 'Case study', why: 'Rich detail on one case. Pair it with a bigger method to cover the scope.', tone: 'strength' },
 ];
 
 const WHWW: { key: 'who' | 'how' | 'what' | 'why'; title: string; ask: string }[] = [
@@ -74,6 +74,7 @@ export function DesignRevisionSheetPage() {
           <Sidebar />
           <div className="space-y-8">
             <SplitAnchor />
+            <MethodTiles />
             <Matrix />
             <EvidenceWords />
             <ModelStrip />
@@ -122,17 +123,6 @@ function Sidebar() {
         <MarkBands rows={TABLE_D} />
       </SidebarPanel>
 
-      <SidebarPanel eyebrow="Claim word → method" variant="ink">
-        <p className="px-4 pt-3 text-[11.5px] italic leading-[1.5] text-[color:var(--color-ink-2)]">The claim tells you which method to reach for.</p>
-        <ul className="p-4 pt-2 space-y-2">
-          {METHOD_FOR.map(([cue, method]) => (
-            <li key={cue} className="text-[12.5px] leading-[1.45]">
-              <span className="font-mono text-[10.5px] font-semibold uppercase tracking-[0.1em] text-[color:var(--sheet-accent-deep)]">{cue}</span>
-              <span className="block text-[color:var(--color-ink)]">→ {method}</span>
-            </li>
-          ))}
-        </ul>
-      </SidebarPanel>
     </aside>
   );
 }
@@ -187,6 +177,30 @@ function SplitAnchor() {
           The examiner praised answers that tested “both aspects of the claim — vehicle crime and increasing nationally.”
         </p>
       </article>
+    </div>
+  );
+}
+
+function MethodTiles() {
+  return (
+    <div>
+      <SectionLabel label="claim word → method" arrow="the claim tells you which method to reach for" />
+      <div className="mt-4 grid gap-3 sm:grid-cols-2 xl:grid-cols-3 print:grid-cols-3 print:gap-2">
+        {METHOD_FOR.map((m) => {
+          const t = TONE[m.tone];
+          return (
+            <article key={m.method} className="rs-card q2rs-step p-4" style={{ borderTopColor: t.solid }}>
+              <p className="flex flex-wrap gap-1">
+                {m.cues.map((c) => (
+                  <span key={c} className="rounded-[2px] px-1.5 py-0.5 font-mono text-[10.5px] font-semibold uppercase tracking-[0.08em]" style={{ background: t.fill, color: t.ink }}>“{c}”</span>
+                ))}
+              </p>
+              <h3 className="mt-2 font-display text-[20px] leading-tight text-[color:var(--color-ink)]">{m.method}</h3>
+              <p className="mt-1 text-[14px] leading-[1.5] text-[color:var(--color-ink-2)]">{m.why}</p>
+            </article>
+          );
+        })}
+      </div>
     </div>
   );
 }

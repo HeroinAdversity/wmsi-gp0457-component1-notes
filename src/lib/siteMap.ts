@@ -26,7 +26,7 @@ export interface SitePage {
 }
 
 export interface SiteGroup {
-  id: 'q1' | 'q2';
+  id: 'q1' | 'q2' | 'revision';
   label: string;
   /** Path prefixes that count as "inside" this group, for the active state. */
   match: (pathname: string, hash: string) => boolean;
@@ -39,7 +39,7 @@ const inWeigh = (hash: string) => hash === '#weigh' || hash.startsWith('#weigh-'
 export const Q1_GROUP: SiteGroup = {
   id: 'q1',
   label: 'Perspectives · Q1',
-  match: (p) => ['/source-recall', '/statements', '/perspectives', '/revision/statements', '/revision/perspectives', '/revision/significance'].some((x) => p.startsWith(x)),
+  match: (p) => ['/source-recall', '/statements', '/perspectives'].some((x) => p.startsWith(x)),
   foot: { label: 'Question 1 revision sheets →', to: '/revision' },
   pages: [
     {
@@ -127,7 +127,7 @@ export const Q1_GROUP: SiteGroup = {
 export const Q2_GROUP: SiteGroup = {
   id: 'q2',
   label: 'Research · Q2',
-  match: (p) => p.startsWith('/research') || p.startsWith('/revision/research'),
+  match: (p) => p.startsWith('/research'),
   foot: { label: 'Research hub →', to: '/research' },
   pages: [
     {
@@ -211,11 +211,66 @@ export const Q2_GROUP: SiteGroup = {
   ],
 };
 
-export const GROUPS = [Q1_GROUP, Q2_GROUP];
+/** The five revision sheets, in order. The dropdown, the sheets index, the footer and each sheet's previous/next links read from here. */
+export interface RevisionSheet {
+  to: string;
+  badge: string;
+  color: string;
+  title: string;
+  question: string;
+  marks: string;
+  accent: 'cobalt' | 'amber' | 'forest' | 'q2';
+  tagline: string;
+  onSheet: string[];
+  lesson: Branch;
+}
 
-/** Plain top-level links that sit either side of the two dropdowns. */
+export const REVISION_SHEETS: RevisionSheet[] = [
+  { to: '/revision/statements', badge: '1(b)', color: 'var(--color-cobalt)', title: 'Statement Types', question: 'Q1(b)', marks: '3 marks', accent: 'cobalt',
+    tagline: 'Eight terms · one anchor (fact) · five confusion pairs.',
+    onSheet: ['The eight statement types', 'Fact as the anchor', 'Five confusion pairs', 'Signal words'],
+    lesson: { label: 'Full lesson: Statements', to: '/statements' } },
+  { to: '/revision/perspectives', badge: '1(c)', color: 'var(--color-amber)', title: 'Perspectives', question: 'Q1(c)', marks: '6 marks', accent: 'amber',
+    tagline: 'Global · national · local · personal — and the five elements that turn a lens into a mark-scheme answer.',
+    onSheet: ['Which level? decision steps', 'The five elements', 'How to earn all 6 marks', 'Common confusions'],
+    lesson: { label: 'Full lesson: Perspectives', to: '/perspectives' } },
+  { to: '/revision/significance', badge: '1(d)', color: 'var(--color-forest)', title: 'Significance', question: 'Q1(d)', marks: '8 marks', accent: 'forest',
+    tagline: 'The Weighing Room — five tests for judging what matters most, plus how examiners award Level 4.',
+    onSheet: ['Five tests and sentence stems', 'Back It Up', 'Mark bands', 'A Level 4 answer, unpacked'],
+    lesson: { label: 'Full lesson: Significance', to: '/perspectives#weigh' } },
+  { to: '/revision/research/2a', badge: '2(a)', color: 'var(--color-q2-night)', title: 'Evaluating Research', question: 'Q2(a)', marks: '8 marks', accent: 'q2',
+    tagline: 'Strong or Shaky? The three-step chain, both sides, and the words the examiner rewards.',
+    onSheet: ['The three-step chain', 'Table C mark bands', 'Where to look in Source 3', 'What the June 2026 examiner saw'],
+    lesson: { label: 'Full lesson: Strong or Shaky?', to: '/research/evaluate' } },
+  { to: '/revision/research/2b', badge: '2(b)', color: 'var(--color-q2-sage)', title: 'Testing a Claim', question: 'Q2(b)', marks: '8 marks', accent: 'q2',
+    tagline: 'The Test Bench. Split the claim, Who · How · What · Why, then compare the results.',
+    onSheet: ['Split the claim', 'Claim word → method', 'Table D mark bands', 'What the June 2026 examiner saw'],
+    lesson: { label: 'Full lesson: The Test Bench', to: '/research/design' } },
+];
+
+export const REVISION_GROUP: SiteGroup = {
+  id: 'revision',
+  label: 'Revision sheets',
+  match: (p) => p.startsWith('/revision'),
+  foot: { label: 'All revision sheets →', to: '/revision' },
+  pages: REVISION_SHEETS.map((s) => ({
+    badge: s.badge, color: s.color, title: s.title, to: s.to,
+    blurb: `${s.question} · ${s.marks} · one printable page`, meta: `Paper 1 · ${s.question} · ${s.marks}`,
+    tests: s.onSheet,
+    branches: [{ label: 'Open sheet', to: s.to }, s.lesson],
+  })),
+};
+
+/** The sheet before and after this one, for the links at the foot of each sheet. */
+export function sheetNeighbours(pathname: string): { at: number; prev?: RevisionSheet; next?: RevisionSheet } {
+  const at = REVISION_SHEETS.findIndex((s) => s.to === pathname);
+  return { at, prev: at > 0 ? REVISION_SHEETS[at - 1] : undefined, next: at >= 0 ? REVISION_SHEETS[at + 1] : undefined };
+}
+
+export const GROUPS = [Q1_GROUP, Q2_GROUP, REVISION_GROUP];
+
+/** Plain top-level links that sit after the dropdowns. */
 export const PLAIN_LINKS: { to: string; label: string; end?: boolean }[] = [
-  { to: '/revision', label: 'Revision sheets', end: true },
   { to: '/my-learning', label: 'My learning' },
   { to: '/teachers', label: 'Teachers' },
 ];
@@ -239,13 +294,7 @@ export const FOOTER_MAP: { heading: string; links: (Branch & { sub?: boolean })[
   { heading: 'Question 2 · Research', links: Q2_GROUP.pages.filter((p) => p.to !== '/revision/research').map((p) => ({ label: p.title, to: p.to })) },
   {
     heading: 'Revision sheets',
-    links: [
-      { label: 'Statement Types', to: '/revision/statements' },
-      { label: 'Perspectives', to: '/revision/perspectives' },
-      { label: 'Significance', to: '/revision/significance' },
-      { label: 'Research 2(a)', to: '/revision/research/2a' },
-      { label: 'Research 2(b)', to: '/revision/research/2b' },
-    ],
+    links: REVISION_SHEETS.map((s) => ({ label: `${s.badge} ${s.title}`, to: s.to })),
   },
   { heading: 'Your work', links: [{ label: 'My learning', to: '/my-learning' }] },
   {

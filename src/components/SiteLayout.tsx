@@ -404,7 +404,7 @@ function SiteFooter() {
 function WMSIMark() {
   return (
     <div className="w-10 h-10 rounded-full border-2 border-[color:var(--color-ink)] flex items-center justify-center bg-[color:var(--color-paper)] shrink-0">
-      <span className="font-display text-[16px] leading-none text-[color:var(--color-ink)]">W</span>
+      <span className="font-display text-[15px] leading-none tracking-[-0.02em] text-[color:var(--color-ink)]">GP</span>
     </div>
   );
 }

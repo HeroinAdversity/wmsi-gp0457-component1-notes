@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Container, DisplayH1, Eyebrow, Lede } from '../components/primitives';
+import { REVISION_SHEETS } from '../lib/siteMap';
 
 type Accent = 'cobalt' | 'amber' | 'forest' | 'q2';
 
@@ -14,58 +15,10 @@ interface Sheet {
   status: 'live' | 'next';
 }
 
-const SHEETS: Sheet[] = [
-  {
-    to: '/revision/statements',
-    paper: 'Paper 1',
-    question: 'Q1(b)',
-    marks: '3 marks',
-    title: 'Statement Types',
-    tagline: 'Eight terms · one anchor (fact) · five confusion pairs.',
-    accent: 'cobalt',
-    status: 'live',
-  },
-  {
-    to: '/revision/perspectives',
-    paper: 'Paper 1',
-    question: 'Q1(c)',
-    marks: '6 marks',
-    title: 'Perspectives',
-    tagline: 'Global · national · local · personal — and the five elements that turn a lens into a mark-scheme answer.',
-    accent: 'amber',
-    status: 'live',
-  },
-  {
-    to: '/revision/significance',
-    paper: 'Paper 1',
-    question: 'Q1(d)',
-    marks: '9 marks',
-    title: 'Significance',
-    tagline: 'The Weighing Room — five tests for judging what matters most, plus how examiners award Level 4.',
-    accent: 'forest',
-    status: 'live',
-  },
-  {
-    to: '/revision/research/2a',
-    paper: 'Paper 1',
-    question: 'Q2(a)',
-    marks: '8 marks',
-    title: 'Evaluating Research',
-    tagline: 'Strong or Shaky? The three-step chain, both sides, and the words the examiner rewards.',
-    accent: 'q2',
-    status: 'live',
-  },
-  {
-    to: '/revision/research/2b',
-    paper: 'Paper 1',
-    question: 'Q2(b)',
-    marks: '8 marks',
-    title: 'Testing a Claim',
-    tagline: 'The Test Bench. Split the claim, Who · How · What · Why, then compare the results.',
-    accent: 'q2',
-    status: 'live',
-  },
-];
+const SHEETS: Sheet[] = REVISION_SHEETS.map((s) => ({
+  to: s.to, paper: 'Paper 1', question: s.question, marks: s.marks,
+  title: s.title, tagline: s.tagline, accent: s.accent, status: 'live',
+}));
 
 const ACCENT: Record<Accent, { text: string; border: string; tint: string; deep: string }> = {
   cobalt: {

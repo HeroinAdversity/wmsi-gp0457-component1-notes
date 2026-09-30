@@ -55,8 +55,11 @@ function SectionFrame({ name, steps, at, theme }: { name: string; steps: Step[];
     return () => { ro.disconnect(); root.removeProperty('--section-bar-h'); };
   }, []);
 
-  const prev = at > 0 ? steps[at - 1] : null;
-  const next = at >= 0 && at < steps.length - 1 ? steps[at + 1] : null;
+  const { pathname } = useLocation();
+  // Revision sheets carry their own previous/next sheet links.
+  const onSheet = pathname.startsWith('/revision/');
+  const prev = !onSheet && at > 0 ? steps[at - 1] : null;
+  const next = !onSheet && at >= 0 && at < steps.length - 1 ? steps[at + 1] : null;
   // 1(c) → 1(d) only changes the hash, so the layout won't scroll up on its own.
   const toTop = () => window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
 

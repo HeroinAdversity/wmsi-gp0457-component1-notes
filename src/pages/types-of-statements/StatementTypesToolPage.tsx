@@ -287,7 +287,7 @@ function OverviewTab({ onGoto }: { onGoto: (t: TabId) => void }) {
               key={t.name}
               className={`bg-[color:var(--color-paper)] border rounded-md p-5 ${
                 t.priority
-                  ? 'border-[color:var(--color-amber)] border-l-[4px]'
+                  ? 'border-[color:var(--color-amber)] border-t-[4px]'
                   : 'border-[color:var(--color-line)]'
               }`}
             >
@@ -396,7 +396,7 @@ function TermsTab() {
 
       <div
         className={`bg-[color:var(--color-paper)] border rounded-md p-6 md:p-7 ${
-          active.priority ? 'border-[color:var(--color-amber)] border-l-[4px]' : 'border-[color:var(--color-line)]'
+          active.priority ? 'border-[color:var(--color-amber)] border-t-[4px]' : 'border-[color:var(--color-line)]'
         }`}
       >
         <div className="flex items-baseline justify-between gap-4 mb-3">
@@ -414,7 +414,7 @@ function TermsTab() {
         <p
           className={`text-[15px] leading-[1.6] mb-5 ${
             active.priority
-              ? 'text-[color:var(--color-ink)] bg-[color:var(--color-amber-soft)] border-l-[3px] border-[color:var(--color-amber)] p-4 rounded-r-md'
+              ? 'text-[color:var(--color-ink)] bg-[color:var(--color-amber-soft)] border border-[color:var(--color-amber)]/40 p-4 rounded-[6px]'
               : 'text-[color:var(--color-ink-2)]'
           }`}
         >
@@ -807,7 +807,7 @@ function DrillTab() {
                 <p className="mt-3 font-semibold text-[14.5px] text-[color:var(--color-ink)]">
                   Correct statement: <em>"{round!.statements[round!.correctIndex]}"</em>
                 </p>
-                <div className="mt-4 bg-[color:var(--color-forest-soft)] border-l-[3px] border-[color:var(--color-forest)] p-4 rounded-r-md">
+                <div className="mt-4 bg-[color:var(--color-forest-soft)] border border-[color:var(--color-forest)]/40 p-4 rounded-[6px]">
                   <p className="text-[14px] leading-[1.6] text-[color:var(--color-ink)]">
                     <strong>Model explanation:</strong> {round!.modelExplain}
                   </p>

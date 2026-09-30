@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { NoteBox, NoteTile, TileGrid } from '../../components/NoteTiles';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { Container } from '../../components/primitives';
 import { useProgress } from '../../lib/progress';
@@ -167,18 +168,24 @@ function PracticeItem({ item }: { item: BankItem }) {
             <span className="font-mono text-[11px] font-medium">{unlocked ? 'open' : 'Save an attempt first'}</span>
           </summary>
           {unlocked && (
-            <div className="space-y-5 px-4 py-4 text-[13.5px]">
-              <div className="grid gap-4 md:grid-cols-2">
-                <div><b className="text-[color:var(--color-q2-storm)]">Strengths</b><ul className="mt-1 list-disc space-y-1 pl-5">{s.strengths.map((x) => <li key={x}>{x}</li>)}</ul></div>
-                <div><b className="text-[color:var(--color-ember)]">Weaknesses</b><ul className="mt-1 list-disc space-y-1 pl-5">{s.weaknesses.map((x) => <li key={x}>{x}</li>)}</ul></div>
+            <div className="space-y-5 px-4 py-4 text-[15px] leading-[1.55]">
+              <div className="grid gap-3 md:grid-cols-2">
+                <NoteBox tone="good" label="Strengths">{s.strengths.map((x) => <p key={x} className="mt-1">{x}</p>)}</NoteBox>
+                <NoteBox tone="bad" label="Weaknesses">{s.weaknesses.map((x) => <p key={x} className="mt-1">{x}</p>)}</NoteBox>
               </div>
-              <div><b>Two chains written out</b>{s.chainsWritten.map((c) => <p key={c.text} className="mt-1"><span className="font-mono text-[11px]">{c.kind === 'S' ? 'STRENGTH' : 'WEAKNESS'}</span> {c.text}</p>)}</div>
+              <div><b>Two chains written out</b>
+                <TileGrid cols={2} className="mt-2">
+                  {s.chainsWritten.map((c) => (
+                    <NoteTile key={c.text} accent={c.kind === 'S' ? 'var(--color-q2-storm)' : 'var(--color-ember)'} eyebrow={c.kind === 'S' ? 'Strength' : 'Weakness'}>{c.text}</NoteTile>
+                  ))}
+                </TileGrid>
+              </div>
               <p><b>Applying Table C:</b> {s.levelNote2a}</p>
               <p className="text-[color:var(--color-ink-2)]"><b>Level 2 looks like:</b> {s.level2Example2a}</p>
               <hr className="border-[color:var(--color-line)]" />
-              <div className="grid gap-4 md:grid-cols-2">
-                <div><b>Methods</b><ul className="mt-1 list-disc space-y-1 pl-5">{s.methods.map((x) => <li key={x}>{x}</li>)}</ul></div>
-                <div><b>Evidence</b><ul className="mt-1 list-disc space-y-1 pl-5">{s.evidence.map((x) => <li key={x}>{x}</li>)}</ul></div>
+              <div className="grid gap-3 md:grid-cols-2">
+                <NoteBox tone="info" label="Methods">{s.methods.map((x) => <p key={x} className="mt-1">{x}</p>)}</NoteBox>
+                <NoteBox tone="tip" label="Evidence">{s.evidence.map((x) => <p key={x} className="mt-1">{x}</p>)}</NoteBox>
               </div>
               <div><b>Model matrix</b>
                 <WhoHowWhatWhy parts={item.claim.parts} storageId={`research_model_${item.id}`} readOnlyRows={s.modelMatrix} compareLine={s.compareLine} />

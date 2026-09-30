@@ -143,13 +143,13 @@ function Sidebar() {
       </SidebarPanel>
 
       <SidebarPanel eyebrow="Common confusions" variant="ink">
-        <ul className="p-4 space-y-3">
+        <ul className="rs-minitiles">
           {COMMON_CONFUSIONS.map((c) => (
-            <li key={c.pair}>
+            <li key={c.pair} className="rs-minitile rs-minitile-alert">
               <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-[color:var(--color-ember)]">
                 {c.pair}
               </p>
-              <p className="mt-1 text-[12.5px] leading-[1.5] text-[color:var(--color-ink)]">{c.disc}</p>
+              <p className="mt-1 text-[14px] leading-[1.5] text-[color:var(--color-ink)]">{c.disc}</p>
             </li>
           ))}
         </ul>

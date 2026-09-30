@@ -258,7 +258,7 @@ function ResultsStage({ state, onStart }: { state: AppState; onStart: () => void
         {TRACKS.map((t) => {
           const s = state.categoryScores[t.key];
           const weakest = t.key === state.assignedTrack;
-          const border = weakest ? 'border-[color:var(--color-amber)] border-l-[4px]' : 'border-[color:var(--color-line)]';
+          const border = weakest ? 'border-[color:var(--color-amber)] border-t-[4px]' : 'border-[color:var(--color-line)]';
           return (
             <div key={t.key} className={`bg-[color:var(--color-paper)] border rounded-md p-5 ${border}`}>
               <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-[color:var(--color-ink-3)]">
@@ -325,7 +325,7 @@ function TrackStage({
   const trackMeta = TRACKS.find((t) => t.key === track)!;
   return (
     <div className="grid gap-6 max-w-[860px] mx-auto">
-      <div className="bg-[color:var(--color-paper)] border border-[color:var(--color-amber)] border-l-[4px] rounded-md p-5">
+      <div className="bg-[color:var(--color-paper)] border border-[color:var(--color-amber)] border-t-[4px] rounded-md p-5">
         <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-[color:var(--color-amber-deep)]">
           {state.studentName}’s track
         </p>

@@ -86,11 +86,11 @@ export function DesignPage() {
                   {WHWW.map(([t, q, d]) => (
                     <div key={t} className="rounded-[6px] border border-[color:var(--color-line)] bg-white px-4 py-3">
                       <p className="font-display text-[22px] text-[color:var(--color-q2-sea)]">{t} <span className="font-body text-[13px] text-[color:var(--color-ink-3)]">{q}</span></p>
-                      <p className="mt-1 text-[13.5px] text-[color:var(--color-ink-2)]">{d}</p>
+                      <p className="mt-1 text-[15px] text-[color:var(--color-ink-2)]">{d}</p>
                     </div>
                   ))}
                 </div>
-                <p className="mt-5 rounded-[5px] bg-[color:var(--color-q2-arctic)] px-4 py-3 text-[13.5px] text-[color:var(--color-q2-sea)]">
+                <p className="mt-5 rounded-[5px] bg-[color:var(--color-q2-arctic)] px-4 py-3 text-[15px] text-[color:var(--color-q2-sea)]">
                   <b>Where it pays again:</b> your Team Project plan (Table A) must say how the action will be evidenced and how its success will be measured. That is this matrix, pointed at your own project.
                 </p>
                 <ExaminerNote source="Principal Examiner Report · June 2026"
@@ -114,7 +114,7 @@ export function DesignPage() {
                 <h2 className={h2}>Three rows. Every part of the claim.</h2>
                 <ClaimSplitter claim={model.claim} source="Reworded from June 2026 · 0457/12" />
                 <h3 className="mt-7 font-display text-[21px] text-[color:var(--color-q2-sea)]">Worked row — how one method is written</h3>
-                <p className="mt-1 text-[13.5px] text-[color:var(--color-ink-2)]">Every box filled, the evidence type named, and the parts of the claim it tests.</p>
+                <p className="mt-1 text-[15px] text-[color:var(--color-ink-2)]">Every box filled, the evidence type named, and the parts of the claim it tests.</p>
                 <WhoHowWhatWhy parts={model.claim.parts} storageId="research_design_worked" readOnlyRows={[model.scheme.modelMatrix[0]]} />
                 <h3 className="mt-8 font-display text-[21px] text-[color:var(--color-q2-sea)]">Your turn — write the next rows</h3>
                 <WhoHowWhatWhy parts={model.claim.parts} storageId={MATRIX_STORE}
@@ -130,7 +130,7 @@ export function DesignPage() {
                     <article key={t.id}>
                       <h3 className="font-display text-[21px] text-[color:var(--color-q2-sea)]">{t.title}</h3>
                       <ExaminerNote compact source={t.source} quote={t.quote} action="rewrite it like the “Better” version." />
-                      <div className="mt-3 grid gap-3 md:grid-cols-2 text-[13.5px]">
+                      <div className="mt-3 grid gap-3 md:grid-cols-2 text-[15px]">
                         <p className="rounded-[6px] bg-[color:var(--color-paper-2)] px-4 py-3"><b className="mb-1 block font-mono text-[10.5px] uppercase tracking-[0.12em] text-[color:var(--color-ember)]">Weak</b>{t.before}</p>
                         <p className="rounded-[6px] border border-[color:var(--color-line)] bg-white px-4 py-3"><b className="mb-1 block font-mono text-[10.5px] uppercase tracking-[0.12em] text-[color:var(--color-q2-storm)]">Better</b>{t.after}</p>
                       </div>

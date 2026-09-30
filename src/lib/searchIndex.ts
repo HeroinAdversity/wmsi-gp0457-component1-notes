@@ -36,8 +36,8 @@ export function buildIndex(): SearchEntry[] {
 
   // Every page and tab from the site map.
   for (const g of GROUPS) {
-    const filter: SearchFilter = g.id === 'q1' ? 'Q1' : 'Q2';
     for (const p of g.pages) {
+      const filter: SearchFilter = g.id === 'q1' ? 'Q1' : g.id === 'q2' ? 'Q2' : p.badge.startsWith('2') ? 'Q2' : 'Q1';
       out.push(entry({ group: 'Pages & sections', filter, badge: p.badge, color: p.color, title: p.title, detail: p.blurb, to: p.to }, p.tests.join(' ')));
       for (const b of p.branches) {
         if (b.to === p.to) continue;

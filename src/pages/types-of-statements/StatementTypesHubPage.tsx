@@ -164,7 +164,7 @@ function HeroToolCard({
   return (
     <Link
       to={to}
-      className="group grid gap-6 md:grid-cols-[1fr_auto] md:items-end bg-[color:var(--color-paper)] border border-[color:var(--color-line)] border-l-[3px] border-l-[color:var(--color-cobalt)] rounded-[8px] p-8 md:p-10 transition-all hover:border-[color:var(--color-ink)] hover:border-l-[color:var(--color-cobalt)]"
+      className="group grid gap-6 md:grid-cols-[1fr_auto] md:items-end bg-[color:var(--color-paper)] border border-[color:var(--color-line)] border-t-[4px] border-t-[color:var(--color-cobalt)] rounded-[8px] p-8 md:p-10 transition-all hover:border-[color:var(--color-ink)] hover:border-l-[color:var(--color-cobalt)]"
     >
       <div>
         <p className="font-mono text-[10.5px] font-semibold uppercase tracking-[0.18em] text-[color:var(--color-cobalt)] mb-3">

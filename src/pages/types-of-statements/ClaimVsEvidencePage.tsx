@@ -570,7 +570,7 @@ function DevelopedTab() {
               {revealed[i] ? 'Hide model' : 'Reveal a model answer'}
             </button>
             {revealed[i] && (
-              <div className="mt-3 bg-[color:var(--color-forest-soft)] border-l-[3px] border-[color:var(--color-forest)] p-4 rounded-r-md text-[14px] leading-[1.6] text-[color:var(--color-ink)]">
+              <div className="mt-3 bg-[color:var(--color-forest-soft)] border border-[color:var(--color-forest)]/40 p-4 rounded-[6px] text-[14px] leading-[1.6] text-[color:var(--color-ink)]">
                 <strong>Model developed comment:</strong> {u.model}
               </div>
             )}

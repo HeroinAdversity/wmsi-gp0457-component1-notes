@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Container } from '../../components/primitives';
+import { NoteTile, TileGrid } from '../../components/NoteTiles';
 import { ExportFooter } from '../../components/ExportFooter';
 import { useNotesExport } from '../../lib/useNotesExport';
 import { ChainBuilder, chainsToBlocks, readChains } from './components/ChainBuilder';
@@ -84,14 +85,18 @@ export function EvaluatePage() {
                       <span className="flex items-center gap-2 text-[12px] font-bold text-[color:var(--color-q2-storm)]">
                         <i className="grid h-[18px] w-[18px] place-items-center rounded-full bg-[color:var(--color-q2-storm)] text-[10px] not-italic text-white">{i + 1}</i>{t}
                       </span>
-                      <p className="mt-1 text-[13.5px]">{d}</p>
+                      <p className="mt-1 text-[15px]">{d}</p>
                     </li>
                   ))}
                 </ol>
                 <h3 className="mt-8 font-display text-[22px] text-[color:var(--color-q2-sea)]">Where to look in Source 3</h3>
-                <ul className="mt-3 divide-y divide-[color:var(--color-line)] border-y border-[color:var(--color-line)] text-[14px]">
-                  {RESEARCH_DESIGN_CHECK.map((c) => <li key={c.id} className="py-2">{c.question}</li>)}
-                </ul>
+                <TileGrid cols={4} className="mt-3">
+                  {RESEARCH_DESIGN_CHECK.map((c, i) => (
+                    <NoteTile key={c.id} accent="var(--color-q2-storm)" eyebrow={`Check ${i + 1}`}>
+                      <span className="font-display text-[18px] leading-snug text-[color:var(--color-ink)]">{c.question}</span>
+                    </NoteTile>
+                  ))}
+                </TileGrid>
                 <p className="mt-2 text-[13px] text-[color:var(--color-ink-3)]">Strength and weakness wording for each is in the <Link to="/research/toolkit#design-check" className="underline">Toolkit</Link>.</p>
                 <ExaminerNote source="Principal Examiner Report · June 2026"
                   quote="Some candidates focused only on strengths or weaknesses of the research and therefore omitted part of the question."
@@ -115,7 +120,7 @@ export function EvaluatePage() {
                     {([['1 · What they did', feature.chain.what, 'The researcher only…'], ['2 · Effect on the evidence', feature.chain.effect, 'This means the evidence may be…'], ['3 · Link to the aim', feature.chain.aim, '…so it is less useful for finding out…']] as const).map(([l, t, st], i) => (
                       <div key={l} className={`px-3.5 py-3 ${i ? 'border-t md:border-t-0 md:border-l border-[color:var(--color-line-soft)]' : ''}`}>
                         <span className="text-[11px] font-bold text-[color:var(--color-q2-storm)]">{l}</span>
-                        <p className="mt-1 text-[13.5px] leading-[1.5]">{t}</p>
+                        <p className="mt-1 text-[15px] leading-[1.5]">{t}</p>
                         <p className="mt-1 text-[11.5px] text-[color:var(--color-ink-3)]">“{st}”</p>
                       </div>
                     ))}
@@ -136,7 +141,7 @@ export function EvaluatePage() {
                     <article key={t.id}>
                       <h3 className="font-display text-[21px] text-[color:var(--color-q2-sea)]">{t.title}</h3>
                       <ExaminerNote compact source={t.source} quote={t.quote} action="rewrite it like the “Better” version." />
-                      <div className="mt-3 grid gap-3 md:grid-cols-2 text-[13.5px]">
+                      <div className="mt-3 grid gap-3 md:grid-cols-2 text-[15px]">
                         <p className="rounded-[6px] bg-[color:var(--color-paper-2)] px-4 py-3"><b className="mb-1 block font-mono text-[10.5px] uppercase tracking-[0.12em] text-[color:var(--color-ember)]">Weak</b>{t.before}</p>
                         <p className="rounded-[6px] border border-[color:var(--color-line)] bg-white px-4 py-3"><b className="mb-1 block font-mono text-[10.5px] uppercase tracking-[0.12em] text-[color:var(--color-q2-storm)]">Better</b>{t.after}</p>
                       </div>

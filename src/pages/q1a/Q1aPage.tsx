@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { NoteTile, TileGrid } from '../../components/NoteTiles';
 import { useLocation, useNavigate } from 'react-router-dom';
 import {
   Container,
@@ -235,24 +236,19 @@ function OverviewTab() {
           <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-[color:var(--color-violet-deep)]">
             <Bi en="The mark" zh="这一分的构成" />
           </p>
-          <dl className="mt-4 grid gap-3 text-[14px]">
-            <div className="flex justify-between gap-4 border-b border-[color:var(--color-violet-soft)] pb-2">
-              <dt className="text-[color:var(--color-ink-2)]"><Bi en="Marks available" zh="满分" /></dt>
-              <dd className="font-mono font-semibold text-[color:var(--color-ink)]">1</dd>
-            </div>
-            <div className="flex justify-between gap-4 border-b border-[color:var(--color-violet-soft)] pb-2">
-              <dt className="text-[color:var(--color-ink-2)]"><Bi en="Lines on the paper" zh="答题行数" /></dt>
-              <dd className="font-mono font-semibold text-[color:var(--color-ink)]">2</dd>
-            </div>
-            <div className="flex justify-between gap-4 border-b border-[color:var(--color-violet-soft)] pb-2">
-              <dt className="text-[color:var(--color-ink-2)]"><Bi en="Suggested time" zh="建议时间" /></dt>
-              <dd className="font-mono font-semibold text-[color:var(--color-ink)]">&lt; 60 s</dd>
-            </div>
-            <div className="flex justify-between gap-4">
-              <dt className="text-[color:var(--color-ink-2)]"><Bi en="Command word" zh="指令词" /></dt>
-              <dd className="font-mono font-semibold text-[color:var(--color-ink)]">identify / state</dd>
-            </div>
-          </dl>
+          <div className="mt-4 grid grid-cols-2 gap-2">
+            {([
+              [<Bi key="m" en="Marks available" zh="满分" />, '1'],
+              [<Bi key="l" en="Lines on the paper" zh="答题行数" />, '2'],
+              [<Bi key="t" en="Suggested time" zh="建议时间" />, '< 60 s'],
+              [<Bi key="c" en="Command word" zh="指令词" />, 'identify / state'],
+            ] as const).map(([label, value], i) => (
+              <div key={i} className="rounded-[6px] border border-[color:var(--color-violet-soft)] bg-white px-3 py-2.5">
+                <p className="text-[12.5px] text-[color:var(--color-ink-2)]">{label}</p>
+                <p className="mt-0.5 font-display text-[20px] leading-tight text-[color:var(--color-ink)]">{value}</p>
+              </div>
+            ))}
+          </div>
         </aside>
       </div>
 
@@ -497,13 +493,13 @@ function TrapsTab() {
                 <Bi en={t.explainEn} zh={t.explainZh} />
               </p>
               <div className="mt-4 grid gap-2 md:grid-cols-2">
-                <div className="bg-[color:var(--color-ember-soft)] border-l-[3px] border-[color:var(--color-ember)] rounded-r-md px-4 py-3">
+                <div className="bg-[color:var(--color-ember-soft)] border border-[color:var(--color-ember)]/40 rounded-[6px] px-4 py-3">
                   <p className="font-mono text-[10.5px] font-semibold uppercase tracking-[0.16em] text-[color:var(--color-ember)]">
                     <Bi en="No mark" zh="不得分" />
                   </p>
                   <p className="mt-1 text-[13.5px] text-[color:var(--color-ink)]">{t.wrongEn}</p>
                 </div>
-                <div className="bg-[color:var(--color-forest-soft)] border-l-[3px] border-[color:var(--color-forest)] rounded-r-md px-4 py-3">
+                <div className="bg-[color:var(--color-forest-soft)] border border-[color:var(--color-forest)]/40 rounded-[6px] px-4 py-3">
                   <p className="font-mono text-[10.5px] font-semibold uppercase tracking-[0.16em] text-[color:var(--color-forest)]">
                     <Bi en="Full mark" zh="得分" />
                   </p>
@@ -574,7 +570,7 @@ function WorkedTab() {
                     <p className="font-mono text-[10.5px] font-semibold uppercase tracking-[0.16em] text-[color:var(--color-ink-3)]">
                       <Bi en="The source" zh="资料" />
                     </p>
-                    <blockquote className="mt-3 text-[14.5px] leading-[1.65] text-[color:var(--color-ink)] bg-[color:var(--color-paper-2)] border-l-[3px] border-[color:var(--color-ink-3)] pl-4 pr-4 py-3 rounded-r-md">
+                    <blockquote className="mt-3 text-[14.5px] leading-[1.65] text-[color:var(--color-ink)] bg-[color:var(--color-paper-2)] border border-[color:var(--color-ink-3)]/40 pl-4 pr-4 py-3 rounded-[6px]">
                       <Bi en={item.sourceEn} zh={item.sourceZh} />
                     </blockquote>
                   </div>
@@ -600,21 +596,17 @@ function WorkedTab() {
                       <p className="font-mono text-[10.5px] font-semibold uppercase tracking-[0.16em] text-[color:var(--color-ember)]">
                         <Bi en="Common wrong answers" zh="常见错误答案" />
                       </p>
-                      <ul className="mt-3 divide-y divide-[color:var(--color-line-soft)]">
+                      <TileGrid cols={2} className="mt-3">
                         {item.rejectEn.map((r, k) => (
-                          <li
+                          <NoteTile
                             key={k}
-                            className="grid gap-1 py-3 first:pt-0 last:pb-0 text-[13.5px] leading-[1.55]"
+                            accent="var(--color-ember)"
+                            title={<span className="font-mono text-[14px] text-[color:var(--color-ember)] line-through decoration-1 decoration-[color:var(--color-ember)]/60">"{r.answer}"</span>}
                           >
-                            <span className="font-mono text-[13px] text-[color:var(--color-ember)] line-through decoration-1 decoration-[color:var(--color-ember)]/60">
-                              "{r.answer}"
-                            </span>
-                            <span className="text-[color:var(--color-ink-2)]">
-                              <Bi en={r.whyEn} zh={r.whyZh} />
-                            </span>
-                          </li>
+                            <Bi en={r.whyEn} zh={r.whyZh} />
+                          </NoteTile>
                         ))}
-                      </ul>
+                      </TileGrid>
                     </div>
 
                     <div className="border-t border-[color:var(--color-line)] pt-4">
@@ -704,7 +696,7 @@ function PracticeTab() {
               <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-[color:var(--color-ink-3)]">
                 <Bi en={item.sourceLabelEn} zh={item.sourceLabelZh} />
               </p>
-              <blockquote className="mt-2 text-[14px] leading-[1.65] text-[color:var(--color-ink)] bg-[color:var(--color-paper-2)] border-l-[3px] border-[color:var(--color-ink-3)] pl-4 pr-4 py-3 rounded-r-md">
+              <blockquote className="mt-2 text-[14px] leading-[1.65] text-[color:var(--color-ink)] bg-[color:var(--color-paper-2)] border border-[color:var(--color-ink-3)]/40 pl-4 pr-4 py-3 rounded-[6px]">
                 <Bi en={item.sourceEn} zh={item.sourceZh} />
               </blockquote>
 

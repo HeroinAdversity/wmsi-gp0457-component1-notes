@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
+import { NoteTile, TileGrid } from '../../components/NoteTiles';
 import {
   Container,
   DisplayH2,
@@ -312,7 +313,7 @@ function OverviewTab() {
           ))}
         </div>
 
-        <div className="mt-6 bg-[color:var(--color-paper-2)] border-l-[3px] border-[color:var(--color-cobalt)] rounded-r-md px-5 py-4">
+        <div className="mt-6 bg-[color:var(--color-paper-2)] border border-[color:var(--color-cobalt)]/40 rounded-[6px] px-5 py-4">
           <p className="text-[14px] text-[color:var(--color-ink)] leading-[1.6]">
             <strong>
               <Bi en="Notice:" zh="留意：" />
@@ -454,7 +455,7 @@ function ToolkitTab({
           ))}
         </div>
 
-        <div className="mt-6 bg-[color:var(--color-paper-2)] border-l-[3px] border-[color:var(--color-amber)] rounded-r-md px-5 py-4">
+        <div className="mt-6 bg-[color:var(--color-paper-2)] border border-[color:var(--color-amber)]/40 rounded-[6px] px-5 py-4">
           <p className="font-mono text-[10.5px] font-semibold uppercase tracking-[0.14em] text-[color:var(--color-amber)] mb-2">
             <Bi en="Bonus move" zh="加分技巧" /> · Back It Up
           </p>
@@ -635,7 +636,7 @@ function WorkedModelTab({
         </div>
 
         {annoOpen !== null && (
-          <div className="mt-3 bg-[color:var(--color-paper-2)] border-l-[3px] border-[color:var(--color-amber)] rounded-r-md px-5 py-3">
+          <div className="mt-3 bg-[color:var(--color-paper-2)] border border-[color:var(--color-amber)]/40 rounded-[6px] px-5 py-3">
             <p className="text-[13.5px] text-[color:var(--color-ink)] leading-[1.55]">{MODEL_ANSWER[annoOpen].note}</p>
           </div>
         )}
@@ -676,7 +677,7 @@ function WorkedModelTab({
           ))}
         </div>
 
-        <div className="mt-6 bg-[color:var(--color-paper-2)] border-l-[3px] border-[color:var(--color-cobalt)] rounded-r-md px-5 py-4">
+        <div className="mt-6 bg-[color:var(--color-paper-2)] border border-[color:var(--color-cobalt)]/40 rounded-[6px] px-5 py-4">
           <p className="text-[14px] text-[color:var(--color-ink)] leading-[1.6]">
             <strong>
               <Bi en="Spot the pattern:" zh="看出规律：" />
@@ -843,7 +844,7 @@ function LevelUpTab({
       </div>
 
       {step >= 4 && (
-        <div className="bg-[color:var(--color-paper-2)] border-l-[3px] border-[color:var(--color-forest)] rounded-r-md px-5 py-4">
+        <div className="bg-[color:var(--color-paper-2)] border border-[color:var(--color-forest)]/40 rounded-[6px] px-5 py-4">
           <p className="text-[14px] text-[color:var(--color-ink)] leading-[1.6]">
             <strong>
               <Bi en="That's a Level 4 answer." zh="这就是一份 4 级答案。" />
@@ -1037,26 +1038,26 @@ function PracticeTab({
             )}
           </button>
           {s.revealOpen && (
-            <div className="mt-4 bg-[color:var(--color-paper-2)] border-l-[3px] border-[color:var(--color-amber)] rounded-r-md px-5 py-4 grid gap-5">
+            <div className="mt-4 bg-[color:var(--color-paper-2)] border border-[color:var(--color-amber)]/40 rounded-[6px] px-5 py-4 grid gap-5">
               <div>
                 <p className="font-mono text-[10.5px] font-semibold uppercase tracking-[0.14em] text-[color:var(--color-amber)] mb-2">
                   <Bi en="Possible points candidates might identify" zh="考生可能提出的要点" />
                 </p>
-                <ul className="grid gap-2 text-[13.5px] text-[color:var(--color-ink)] leading-[1.55] list-disc pl-5">
+                <TileGrid cols={2}>
                   {p.revealPoints.map((pt, i) => (
-                    <li key={i}>{pt}</li>
+                    <NoteTile key={i} accent="var(--color-amber)">{pt}</NoteTile>
                   ))}
-                </ul>
+                </TileGrid>
               </div>
               <div>
                 <p className="font-mono text-[10.5px] font-semibold uppercase tracking-[0.14em] text-[color:var(--color-amber)] mb-2">
                   <Bi en="What would push this toward Level 4" zh="如何进一步冲上 4 级" />
                 </p>
-                <ul className="grid gap-2 text-[13.5px] text-[color:var(--color-ink)] leading-[1.55] list-disc pl-5">
+                <TileGrid cols={2}>
                   {p.revealTips.map((pt, i) => (
-                    <li key={i}>{pt}</li>
+                    <NoteTile key={i} accent="var(--color-forest)">{pt}</NoteTile>
                   ))}
-                </ul>
+                </TileGrid>
               </div>
             </div>
           )}
@@ -1203,11 +1204,11 @@ function JournalTab({
             zh="现在打开你的 GP 日志本，按以下句式写 3–4 句："
           />
         </Body>
-        <ul className="mt-3 grid gap-2 text-[14px] text-[color:var(--color-ink)] leading-[1.55] max-w-[68ch] list-disc pl-5">
+        <TileGrid cols={3} className="mt-3">
           {JOURNAL_STEMS.map((j, i) => (
-            <li key={i}>{j}</li>
+            <NoteTile key={i} accent="var(--color-forest)" eyebrow={`Stem ${i + 1}`}><span className="italic text-[color:var(--color-ink)]">{j}</span></NoteTile>
           ))}
-        </ul>
+        </TileGrid>
         <p className="mt-3 text-[12.5px] text-[color:var(--color-ink-3)] max-w-[68ch]">
           <Bi
             en="This is a normal WMSI GP journal entry, not something typed into this tool — keep it in the same journal you use for every lesson."

@@ -181,7 +181,7 @@ function ReferenceTab() {
             <p className="mt-3 text-[13.5px] leading-[1.55] text-[color:var(--color-ink-2)]">
               <strong>Signal words:</strong> {c.signals}
             </p>
-            <p className="mt-3 text-[13.5px] italic leading-[1.55] text-[color:var(--color-ink)] bg-[color:var(--color-paper-2)] border-l-[3px] border-[color:var(--color-line)] pl-3 py-2">
+            <p className="mt-3 text-[13.5px] italic leading-[1.55] text-[color:var(--color-ink)] bg-[color:var(--color-paper-2)] rounded-[6px] px-3 py-2.5 border border-[color:var(--color-line)]/30 py-2">
               {c.example}
             </p>
             <p className="mt-3 text-[12.5px] leading-[1.55] text-[color:var(--color-ember)]">
@@ -527,7 +527,7 @@ function PairCard({ set }: { set: (typeof PAIR_SETS)[number] }) {
     <div className="bg-[color:var(--color-paper)] border border-[color:var(--color-line)] rounded-md p-5 md:p-6">
       <DisplayH3>{set.title}</DisplayH3>
       <div className="mt-4 grid gap-3 md:grid-cols-2">
-        <div className="bg-[color:var(--color-paper-2)] border-l-[3px] border-[color:var(--color-cobalt)] p-4 rounded-r-md">
+        <div className="bg-[color:var(--color-paper-2)] border border-[color:var(--color-cobalt)]/40 p-4 rounded-[6px]">
           <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-[color:var(--color-cobalt)]">
             {set.labelA}
           </p>
@@ -536,7 +536,7 @@ function PairCard({ set }: { set: (typeof PAIR_SETS)[number] }) {
             dangerouslySetInnerHTML={{ __html: set.descriptionA.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>') }}
           />
         </div>
-        <div className="bg-[color:var(--color-paper-2)] border-l-[3px] border-[color:var(--color-ember)] p-4 rounded-r-md">
+        <div className="bg-[color:var(--color-paper-2)] border border-[color:var(--color-ember)]/40 p-4 rounded-[6px]">
           <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-[color:var(--color-ember)]">
             {set.labelB}
           </p>
@@ -785,12 +785,12 @@ function ExamTab() {
             </button>
           </div>
           {openScaf[q.id] && (
-            <div className="mt-3 bg-[color:var(--color-paper-2)] border-l-[3px] border-[color:var(--color-cobalt)] p-4 rounded-r-md whitespace-pre-line text-[13.5px] leading-[1.55] text-[color:var(--color-ink-2)]">
+            <div className="mt-3 bg-[color:var(--color-paper-2)] border border-[color:var(--color-cobalt)]/40 p-4 rounded-[6px] whitespace-pre-line text-[13.5px] leading-[1.55] text-[color:var(--color-ink-2)]">
               {q.scaffolding}
             </div>
           )}
           {openModel[q.id] && (
-            <div className="mt-3 bg-[color:var(--color-forest-soft)] border-l-[3px] border-[color:var(--color-forest)] p-4 rounded-r-md">
+            <div className="mt-3 bg-[color:var(--color-forest-soft)] border border-[color:var(--color-forest)]/40 p-4 rounded-[6px]">
               <p className="font-mono text-[10.5px] font-semibold uppercase tracking-[0.14em] text-[color:var(--color-forest-deep)]">
                 MODEL ANSWER
               </p>

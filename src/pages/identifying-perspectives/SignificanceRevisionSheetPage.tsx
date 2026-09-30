@@ -118,13 +118,11 @@ function Sidebar() {
         <p className="px-4 pt-3 text-[11.5px] italic leading-[1.5] text-[color:var(--color-ink-2)]">
           Cambridge dresses Q1(d) four ways. The method doesn't change.
         </p>
-        <ul className="p-4 pt-2 space-y-2">
+        <ul className="rs-minitiles pt-2">
           {DISGUISES.map((d) => (
-            <li key={d.form} className="text-[12.5px] leading-[1.5]">
-              <span className="font-mono text-[10.5px] font-semibold uppercase tracking-[0.14em] text-[color:var(--sheet-accent-deep)]">
-                {d.form}
-              </span>{' '}
-              <span className="text-[color:var(--color-ink-2)] italic">— "{d.example}"</span>
+            <li key={d.form} className="rs-minitile">
+              <p className="font-mono text-[10.5px] font-semibold uppercase tracking-[0.14em] text-[color:var(--sheet-accent-deep)]">{d.form}</p>
+              <p className="mt-0.5 text-[14px] italic leading-[1.45] text-[color:var(--color-ink)]">“{d.example}”</p>
             </li>
           ))}
         </ul>

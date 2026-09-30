@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react';
+import { NoteTile, TileGrid } from '../../components/NoteTiles';
 import { Container, DisplayH1, DisplayH2, DisplayH3, Body, Eyebrow, Lede } from '../../components/primitives';
 import { Bi } from '../../lib/LanguageContext';
 import { ExportFooter } from '../../components/ExportFooter';
@@ -151,7 +152,7 @@ function BranchCard({ branch, open, onToggle }: { branch: Branch; open: boolean;
       ? 'text-[color:var(--color-cobalt)]'
       : 'text-[color:var(--color-violet)]';
   return (
-    <div className={`bg-[color:var(--color-paper)] border ${borderCls} border-l-[4px] rounded-md`}>
+    <div className={`bg-[color:var(--color-paper)] border ${borderCls} border-t-[4px] rounded-md`}>
       <button
         type="button"
         onClick={onToggle}
@@ -201,7 +202,7 @@ function BranchCard({ branch, open, onToggle }: { branch: Branch; open: boolean;
 
           {branch.note && (
             <p
-              className="text-[13.5px] leading-[1.6] text-[color:var(--color-ink-2)] bg-[color:var(--color-paper-2)] border-l-[3px] border-[color:var(--color-line)] p-3 pl-4 rounded-r-md"
+              className="text-[13.5px] leading-[1.6] text-[color:var(--color-ink-2)] bg-[color:var(--color-paper-2)] border border-[color:var(--color-line)]/40 p-3 pl-4 rounded-[6px]"
               dangerouslySetInnerHTML={{ __html: branch.note }}
             />
           )}
@@ -224,13 +225,11 @@ function BranchCard({ branch, open, onToggle }: { branch: Branch; open: boolean;
               <p className="font-mono text-[10.5px] font-semibold uppercase tracking-[0.14em] text-[color:var(--color-ink-3)]">
                 More examples
               </p>
-              <ul className="mt-2 grid gap-2 list-disc pl-5">
+              <TileGrid cols={2} className="mt-2">
                 {branch.more.map((m, i) => (
-                  <li key={i} className="text-[13.5px] leading-[1.55] text-[color:var(--color-ink)]">
-                    {m}
-                  </li>
+                  <NoteTile key={i} accent="var(--color-cobalt)">{m}</NoteTile>
                 ))}
-              </ul>
+              </TileGrid>
             </div>
           )}
 

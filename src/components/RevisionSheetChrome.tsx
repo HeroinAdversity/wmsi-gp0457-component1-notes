@@ -12,6 +12,8 @@
  * needs. Nothing forces every sheet into the same grid.
  */
 import type { CSSProperties, ReactNode } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { REVISION_SHEETS, sheetNeighbours } from '../lib/siteMap';
 
 export type SheetAccent = 'cobalt' | 'amber' | 'forest' | 'q2';
 
@@ -55,6 +57,56 @@ export function RevisionSheetShell({
       <RevisionSheetStyles />
       <PrintBar />
       {children}
+      <SheetSeriesNav />
+    </div>
+  );
+}
+
+/* ══════════════════ Sheet series (strip + previous/next) ══════════════════ */
+function SheetSeriesNav() {
+  const { pathname } = useLocation();
+  const { prev, next } = sheetNeighbours(pathname);
+  const card = 'rs-series-card block border border-[color:var(--color-ink)] bg-[color:var(--color-paper)] px-4 py-3';
+  return (
+    <nav aria-label="Revision sheets" className="no-print mx-auto max-w-[1180px] px-5 pb-12 md:px-8">
+      <div className="grid gap-3 sm:grid-cols-2">
+        {prev ? (
+          <Link to={prev.to} className={card}>
+            <small className="block font-mono text-[10.5px] uppercase tracking-[0.14em] text-[color:var(--color-ink-3)]">← Previous sheet · {prev.badge}</small>
+            <b className="font-display text-[20px] font-normal text-[color:var(--color-ink)]">{prev.title}</b>
+          </Link>
+        ) : <span className="hidden sm:block" />}
+        {next ? (
+          <Link to={next.to} className={`${card} text-right`}>
+            <small className="block font-mono text-[10.5px] uppercase tracking-[0.14em] text-[color:var(--color-ink-3)]">Next sheet · {next.badge} →</small>
+            <b className="font-display text-[20px] font-normal text-[color:var(--color-ink)]">{next.title}</b>
+          </Link>
+        ) : (
+          <Link to="/revision" className={`${card} text-right`}>
+            <small className="block font-mono text-[10.5px] uppercase tracking-[0.14em] text-[color:var(--color-ink-3)]">That’s all five →</small>
+            <b className="font-display text-[20px] font-normal text-[color:var(--color-ink)]">All revision sheets</b>
+          </Link>
+        )}
+      </div>
+    </nav>
+  );
+}
+
+/** A strip naming all five sheets, shown above each sheet's masthead. */
+function SheetStrip() {
+  const { pathname } = useLocation();
+  return (
+    <div className="flex min-w-0 flex-1 items-center gap-1 overflow-x-auto whitespace-nowrap [scrollbar-width:none]">
+      <span className="mr-1 font-mono text-[10.5px] uppercase tracking-[0.14em] text-[color:var(--color-ink-3)]">Sheets</span>
+      {REVISION_SHEETS.map((s) => {
+        const on = s.to === pathname;
+        return (
+          <Link key={s.to} to={s.to} aria-current={on ? 'page' : undefined}
+            className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[12.5px] font-semibold ${on ? 'border-[color:var(--color-ink)] bg-[color:var(--color-ink)] text-[color:var(--color-paper)]' : 'border-[color:var(--color-line)] text-[color:var(--color-ink-2)] hover:border-[color:var(--color-ink)]'}`}>
+            <span className="font-mono text-[10.5px]" style={on ? undefined : { color: s.color }}>{s.badge}</span>{s.title}
+          </Link>
+        );
+      })}
     </div>
   );
 }
@@ -62,11 +114,12 @@ export function RevisionSheetShell({
 /* ══════════════════ Print bar ══════════════════ */
 function PrintBar() {
   return (
-    <div className="no-print mx-auto flex max-w-[1180px] justify-end px-5 pt-5 md:px-8">
+    <div className="no-print mx-auto flex max-w-[1180px] items-center gap-3 px-5 pt-5 md:px-8">
+      <SheetStrip />
       <button
         type="button"
         onClick={() => window.print()}
-        className="inline-flex items-center gap-2 rounded-full border border-[color:var(--color-ink)] bg-[color:var(--color-paper)] px-4 py-2 text-[13px] font-semibold text-[color:var(--color-ink)] hover:bg-[color:var(--color-paper-2)]"
+        className="inline-flex shrink-0 items-center gap-2 rounded-full border border-[color:var(--color-ink)] bg-[color:var(--color-paper)] px-4 py-2 text-[13px] font-semibold text-[color:var(--color-ink)] hover:bg-[color:var(--color-paper-2)]"
       >
         <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden>
           <path d="M4 6V1.5h8V6M4 12H2.5A1 1 0 0 1 1.5 11V7a1 1 0 0 1 1-1h11a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H12M4 9.5h8v5H4z" stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round" />
@@ -208,6 +261,9 @@ function RevisionSheetStyles() {
           radial-gradient(circle at 50% 100%, rgba(39,106,80,0.04) 0%, transparent 45%);
       }
 
+      .rs-series-card { box-shadow: 3px 3px 0 var(--color-ink); transition: transform .12s; }
+      .rs-series-card:hover { transform: translate(-1px, -1px); box-shadow: 4px 4px 0 var(--sheet-accent); }
+
       .rs-title {
         text-shadow:
           3px 3px 0 color-mix(in srgb, var(--sheet-accent) 35%, transparent),
@@ -267,6 +323,18 @@ function RevisionSheetStyles() {
         border-top: 1px dashed var(--color-line);
         padding: 8px 14px 10px;
       }
+
+      /* ── Mini tiles (label + explanation lists inside panels) ── */
+      .rs-minitiles { display: grid; gap: 8px; padding: 12px; }
+      @media (min-width: 640px) and (max-width: 1023px) { .rs-minitiles { grid-template-columns: 1fr 1fr; } }
+      .rs-minitile {
+        border: 1px solid var(--color-line);
+        border-top: 3px solid var(--sheet-accent);
+        background: var(--color-paper);
+        border-radius: 4px;
+        padding: 8px 11px 9px;
+      }
+      .rs-minitile-alert { border-top-color: var(--color-ember); }
 
       /* ── Numbered marker ── */
       .rs-marknum {

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { NoteTile, TileGrid } from '../../components/NoteTiles';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { Container } from '../../components/primitives';
 import { useProgress } from '../../lib/progress';
@@ -161,7 +162,7 @@ function PaperView({ item }: { item: Q1BankItem }) {
           <span className="font-mono text-[11px] font-medium">{saved ? (open ? 'close' : 'open') : 'Save an attempt first'}</span>
         </button>
         {saved && open && (
-          <div className="space-y-4 px-4 py-4 text-[13.5px] leading-[1.55]">
+          <div className="space-y-4 px-4 py-4 text-[15px] leading-[1.55]">
             <p><b>(a)</b> {item.q1a.answer}{item.q1a.accept.length > 0 && <> · also accept: {item.q1a.accept.join('; ')}</>}{item.q1a.note && <> · <i>{item.q1a.note}</i></>}</p>
             <div>
               <b>(b)(i)</b> Accept any of: {examples.map((s) => `“${s.quote}”`).join(' · ')}
@@ -170,12 +171,18 @@ function PaperView({ item }: { item: Q1BankItem }) {
             </div>
             <div>
               <b>(c) Elements to describe</b>
-              <ul className="mt-1 list-disc space-y-1 pl-5">{item.q1c.points.map((p) => <li key={p.quote}><b>{ELEMENT_LABEL[p.element]}:</b> {p.point} <span className="text-[color:var(--color-ink-3)]">(“{p.quote}”)</span></li>)}</ul>
+              <TileGrid cols={3} className="mt-2">{item.q1c.points.map((p) => (
+                <NoteTile key={p.quote} accent="var(--color-amber)" eyebrow={ELEMENT_LABEL[p.element]}>
+                  {p.point} <span className="text-[color:var(--color-ink-3)]">(“{p.quote}”)</span>
+                </NoteTile>
+              ))}</TileGrid>
               <p className="mt-2"><b>Level 3 model:</b> {item.q1c.model}</p>
             </div>
             <div>
               <b>(d) Choices you could make</b>
-              <ul className="mt-1 list-disc space-y-1 pl-5">{item.q1d.options.map((o) => <li key={o.label}><b>{o.label}</b> · {TEST_LABEL[o.test]} test: {o.why}</li>)}</ul>
+              <TileGrid cols={3} className="mt-2">{item.q1d.options.map((o) => (
+                <NoteTile key={o.label} accent="var(--color-forest)" eyebrow={`${TEST_LABEL[o.test]} test`} title={o.label}>{o.why}</NoteTile>
+              ))}</TileGrid>
               <p className="mt-2"><b>Level 4 model:</b> {item.q1d.model}</p>
               <p className="mt-1 text-[color:var(--color-ink-2)]"><b>Level 2 looks like:</b> {item.q1d.levelUp.base}</p>
             </div>

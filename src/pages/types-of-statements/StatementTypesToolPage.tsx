@@ -18,6 +18,7 @@ import {
 } from './statementTypesData';
 import { TabNoteBadge } from '../../components/NotesLayer';
 import { usePublishTab } from '../../lib/activeTab';
+import { Q1WorksheetPrinter } from '../q1/components/Q1WorksheetPrinter';
 
 const TABS = [
   { id: 'overview', en: 'Overview', zh: '概览' },
@@ -91,6 +92,7 @@ export function StatementTypesToolPage() {
               }
             />
           </Lede>
+          <Q1WorksheetPrinter part={'b'} />
         </Container>
       </section>
 

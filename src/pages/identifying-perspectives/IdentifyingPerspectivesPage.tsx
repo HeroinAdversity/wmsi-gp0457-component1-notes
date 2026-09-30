@@ -18,6 +18,7 @@ import { WeighingRoomSection } from './WeighingRoomPage';
 import { CRITERIA, BANDS, SELF_CHECK_ITEMS, TOOL_ID as WEIGH_TOOL_ID } from './weighingRoomData';
 import { TabNoteBadge } from '../../components/NotesLayer';
 import { usePublishTab } from '../../lib/activeTab';
+import { Q1WorksheetPrinter } from '../q1/components/Q1WorksheetPrinter';
 
 const IP_TOOL_ID = 'identifying-perspectives';
 
@@ -148,6 +149,7 @@ export function IdentifyingPerspectivesPage() {
               }
             />
           </Lede>
+          <Q1WorksheetPrinter key={section} part={section === 'weigh' ? 'd' : 'c'} />
         </Container>
       </section>
 

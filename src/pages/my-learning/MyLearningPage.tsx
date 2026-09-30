@@ -6,8 +6,8 @@ import { encodeResultCode, toPayload, wrapCodeForPdf } from '../../lib/resultCod
 import { nx, useNotesExport, type Block } from '../../lib/useNotesExport';
 import { MyNotes } from './MyNotes';
 
-const KIND_ORDER: Record<ActivityRecord['kind'], number> = { quiz: 0, game: 1, 'answer-2a': 2, 'answer-2b': 3, checklist: 4 };
-const KIND_LABEL: Record<ActivityRecord['kind'], string> = { quiz: 'Quiz', game: 'Practice game', 'answer-2a': '2(a) answer', 'answer-2b': '2(b) answer', checklist: 'Checklist' };
+const KIND_ORDER: Record<ActivityRecord['kind'], number> = { quiz: 0, game: 1, 'answer-q1': 2, 'answer-2a': 3, 'answer-2b': 4, checklist: 5 };
+const KIND_LABEL: Record<ActivityRecord['kind'], string> = { quiz: 'Quiz', game: 'Practice game', 'answer-q1': 'Q1 answer', 'answer-2a': '2(a) answer', 'answer-2b': '2(b) answer', checklist: 'Checklist' };
 const STATUS_LABEL: Record<ActivityRecord['status'], string> = { done: 'Done', 'in-progress': 'In progress', 'not-started': 'Not started' };
 
 function rowsOf(state: ProgressState): ActivityRecord[] {
@@ -23,7 +23,7 @@ function ratio(r: ActivityRecord): number {
   return r.status === 'done' ? 1 : r.status === 'in-progress' ? 0.5 : 0;
 }
 function answerBlocks(state: ProgressState): Block[] {
-  const answers = rowsOf(state).filter((r) => r.kind === 'answer-2a' || r.kind === 'answer-2b');
+  const answers = rowsOf(state).filter((r) => r.kind === 'answer-q1' || r.kind === 'answer-2a' || r.kind === 'answer-2b');
   if (!answers.length) return [nx.p('No written answers yet.')];
   return answers.flatMap((r) => [
     nx.h(3, `${r.title}${r.selfLevel ? ` — self-assessed Level ${r.selfLevel}` : ''}`),

@@ -16,8 +16,9 @@ describe('siteMap', () => {
     expect(q1Index('/statements/mindmap', '')).toBe(1);
     expect(q1Index('/perspectives', '#framework')).toBe(2);
     expect(q1Index('/perspectives', '#weigh-toolkit')).toBe(3);
-    expect(q1Index('/perspectives/games/q1-level', '')).toBe(4);
-    expect(q1Index('/revision/significance', '')).toBe(5);
+    expect(q1Index('/perspectives/practice/q1r-j25-11', '')).toBe(4);
+    expect(q1Index('/perspectives/games/q1-level', '')).toBe(5);
+    expect(q1Index('/revision/significance', '')).toBe(6);
     expect(q1Index('/revision/research', '')).toBe(-1);
     expect(Q1_GROUP.label).toBe('Perspectives · Q1');
   });

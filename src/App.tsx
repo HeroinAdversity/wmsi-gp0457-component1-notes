@@ -30,6 +30,7 @@ import { ResearchRevisionSheetPage } from './pages/research/ResearchRevisionShee
 import { Q1Frame, Q2Frame } from './components/SectionFrame';
 import { GamesPage } from './pages/research/games/GamesPage';
 import { Q1GamesPage } from './pages/q1/games/Q1GamesPage';
+import { Q1PracticePage } from './pages/q1/Q1PracticePage';
 
 export function App() {
   return (
@@ -63,6 +64,8 @@ export function App() {
           <Route path="statements/mindmap" element={<MindMapPage />} />
           <Route path="statements/revision" element={<Navigate to="/revision/statements" replace />} />
 
+          <Route path="perspectives/practice" element={<Q1PracticePage />} />
+          <Route path="perspectives/practice/:id" element={<Q1PracticePage />} />
           <Route path="perspectives/games" element={<Q1GamesPage />} />
           <Route path="perspectives/games/:gameId" element={<Q1GamesPage />} />
 

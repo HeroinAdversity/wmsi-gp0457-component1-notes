@@ -24,6 +24,7 @@ import {
 } from './data';
 import { TabNoteBadge } from '../../components/NotesLayer';
 import { usePublishTab } from '../../lib/activeTab';
+import { Q1WorksheetPrinter } from '../q1/components/Q1WorksheetPrinter';
 
 const TOOL_ID = 'q1a-source-recall';
 
@@ -96,6 +97,7 @@ export function Q1aPage() {
               }
             />
           </Lede>
+          <Q1WorksheetPrinter part={'a'} />
         </Container>
       </section>
 

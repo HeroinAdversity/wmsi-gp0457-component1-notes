@@ -1,6 +1,6 @@
 import { useCallback, useSyncExternalStore } from 'react';
 
-export type ActivityKind = 'quiz' | 'answer-2a' | 'answer-2b' | 'checklist' | 'game';
+export type ActivityKind = 'quiz' | 'answer-q1' | 'answer-2a' | 'answer-2b' | 'checklist' | 'game';
 export type ActivityStatus = 'not-started' | 'in-progress' | 'done';
 
 export interface ActivityRecord {

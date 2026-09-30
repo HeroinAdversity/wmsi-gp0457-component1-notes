@@ -4,6 +4,8 @@
  * so a new page or tab only needs adding once.
  */
 
+import { Q1_BANK } from '../pages/q1/data/bank';
+
 export interface Branch { label: string; to: string }
 
 export interface SitePage {
@@ -96,6 +98,12 @@ export const Q1_GROUP: SiteGroup = {
         { label: 'Practice', to: '/perspectives#weigh-practice' },
         { label: 'Journal', to: '/perspectives#weigh-journal' },
       ],
+    },
+    {
+      badge: `${Q1_BANK.length}`, color: 'var(--color-ink-2)', title: 'Practice bank', to: '/perspectives/practice',
+      blurb: `${Q1_BANK.length} Question 1 papers with answer schemes`, meta: 'Reworded past papers · print any paper as a worksheet',
+      tests: ['Full 1(a)–(d) on fresh Sources 1 and 2', 'Answer scheme after you write', 'Print the whole Q1 or one part', 'Teacher copy with the scheme'],
+      branches: [{ label: 'All papers', to: '/perspectives/practice' }],
     },
     {
       badge: 'Play', color: 'var(--color-cobalt)', title: 'Practice games', to: '/perspectives/games',
@@ -221,6 +229,7 @@ export const FOOTER_MAP: { heading: string; links: (Branch & { sub?: boolean })[
       { label: 'Find your gap', to: '/statements/diagnostic', sub: true },
       { label: '1(c) Perspectives', to: '/perspectives' },
       { label: '1(d) Significance', to: '/perspectives#weigh' },
+      { label: 'Practice bank', to: '/perspectives/practice' },
       { label: 'Practice games', to: '/perspectives/games' },
     ],
   },
@@ -287,6 +296,7 @@ export const Q1_SEQUENCE: { to: string; label: string; short: string }[] = [
   { to: '/statements', label: 'Statements · 1(b)', short: '1(b) Statements' },
   { to: '/perspectives', label: 'Perspectives · 1(c)', short: '1(c) Perspectives' },
   { to: '/perspectives#weigh', label: 'Significance · 1(d)', short: '1(d) Significance' },
+  { to: '/perspectives/practice', label: 'Practice bank', short: 'Practice bank' },
   { to: '/perspectives/games', label: 'Practice games', short: 'Games' },
   { to: '/revision/statements', label: 'Revision sheets', short: 'Revise' },
 ];
@@ -298,7 +308,8 @@ export function q1Index(pathname: string, hash: string): number {
   if (pathname === '/source-recall') return 0;
   if (pathname === '/statements' || pathname.startsWith('/statements/')) return 1;
   if (pathname === '/perspectives') return inWeigh(hash) ? 3 : 2;
-  if (pathname.startsWith('/perspectives/games')) return 4;
-  if (Q1_REVISION.includes(pathname)) return 5;
+  if (pathname.startsWith('/perspectives/practice')) return 4;
+  if (pathname.startsWith('/perspectives/games')) return 5;
+  if (Q1_REVISION.includes(pathname)) return 6;
   return -1;
 }

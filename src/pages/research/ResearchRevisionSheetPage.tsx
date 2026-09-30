@@ -30,7 +30,7 @@ export function ResearchRevisionSheetPage() {
         <SheetMasthead index="4 of 4" paper="Paper 1" question="Q2(a)+(b)" marks="16 marks"
           title="Research" tagline="Strong or Shaky? judges research. The Test Bench designs it. Neither argues the issue." />
 
-        <div className="mt-8 grid gap-6 lg:grid-cols-2">
+        <div className="mt-8 grid gap-6 lg:grid-cols-2 print:grid-cols-2 print:gap-3">
           <SidebarPanel eyebrow="2(a) · Strong or Shaky? · Table C · 8 marks" foot="Aim: 5 explained points · minimum 2 strengths + 2 weaknesses">
             <ol className="space-y-2 p-4 text-[13.5px]">
               {CHAIN.map(([t, d], i) => (
@@ -57,7 +57,7 @@ export function ResearchRevisionSheetPage() {
           </SidebarPanel>
         </div>
 
-        <div className="mt-6 grid gap-6 lg:grid-cols-3">
+        <div className="mt-6 grid gap-6 lg:grid-cols-3 print:grid-cols-3 print:gap-3">
           <SidebarPanel eyebrow="Eight methods → the data they give">
             <ul className="space-y-1 p-4 text-[12.5px]">{METHODS.map((m) => <li key={m.id}><b>{m.name}</b> — {m.data}</li>)}</ul>
           </SidebarPanel>
@@ -69,7 +69,7 @@ export function ResearchRevisionSheetPage() {
           </SidebarPanel>
         </div>
 
-        <div className="mt-6 grid gap-6 md:grid-cols-2">
+        <div className="mt-6 grid gap-6 md:grid-cols-2 print:grid-cols-2 print:gap-3">
           <SidebarPanel eyebrow="2(a) traps" variant="ink">
             <ul className="space-y-1 p-4 text-[13px]">{EVALUATE_TRAPS.map((t) => <li key={t.id} className="flex items-center gap-2"><Icon name="cross" size={12} className="text-[color:var(--color-ember)]" />{t.title}</li>)}</ul>
           </SidebarPanel>

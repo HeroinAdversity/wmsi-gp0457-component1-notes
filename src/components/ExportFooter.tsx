@@ -6,7 +6,7 @@ import { Bi } from '../lib/LanguageContext';
  * A page-level footer that gives students:
  *  - a name field (used for the export filename & the docx/pdf header)
  *  - two export buttons (Word, PDF)
- *  - a fallback "open my notes" button that mirrors the floating FAB
+ *  - a fallback "open page notes" button that mirrors the floating FAB
  *
  * The name field autosaves to localStorage under wne_<toolId>_studentName so
  * students only enter it once per lesson.
@@ -23,7 +23,7 @@ export function ExportFooter({ toolId }: { toolId: string }) {
   }, [storageKey]);
 
   return (
-    <section className="border-t border-[color:var(--color-line)] mt-16 md:mt-24 pt-12 pb-16">
+    <section className="no-print border-t border-[color:var(--color-line)] mt-16 md:mt-24 pt-12 pb-16">
       <Container size="wide">
         <div className="max-w-[720px]">
           <p className="font-mono text-[10.5px] font-semibold uppercase tracking-[0.16em] text-[color:var(--color-ink-3)]">
@@ -80,7 +80,7 @@ export function ExportFooter({ toolId }: { toolId: string }) {
               type="button"
               className="inline-flex items-center gap-2 text-[13.5px] font-semibold px-5 py-3 rounded-full border border-[color:var(--color-ink)] text-[color:var(--color-ink)] hover:bg-[color:var(--color-ink)] hover:text-[color:var(--color-paper)] transition-colors"
             >
-              <Bi en="Open my notes" zh="打开我的笔记" />
+              <Bi en="Open page notes" zh="打开页面笔记" />
             </button>
           </div>
         </div>

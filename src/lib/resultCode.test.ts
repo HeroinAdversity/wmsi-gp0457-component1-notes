@@ -33,6 +33,21 @@ describe('result code', () => {
     expect(r).toEqual({ ok: true, payload: p });
   });
 
+  it('carries practice-game totals for all eight games and stays under CODE_MAX', async () => {
+    let s = emptyProgress();
+    s = { ...s, student: { name: 'Tan Wei Ling', className: '10 Amethyst' } };
+    const ideas = Object.fromEntries(['aim', 'sample', 'expertise', 'setting', 'bias', 'ethics', 'records', 'methods', 'conclusion', 'part-what', 'part-scope', 'part-group'].map((k) => [k, [12, 20] as [number, number]]));
+    for (const g of ['chain-order', 'missing-link', 'fix-it', 'spot-it', 'claim-splitter', 'method-match', 'untested', 'mixed']) {
+      s = upsertActivity(s, { id: `game-${g}`, title: `Game · ${g}`, kind: 'game', status: 'done', score: 7, max: 10,
+        game: { r: 40, c: 300, n: 400, b: 10, p: 250, d: '2026-09-30', dp: 30, a0: 0.4, ar: 0.82, i: ideas } });
+    }
+    const p = toPayload(s, 'q2', new Date('2026-09-30T10:00:00Z'));
+    const code = await encodeResultCode(p);
+    expect(code.length).toBeLessThan(CODE_MAX);
+    const r = await decodeResultCode(code);
+    expect(r.ok && r.payload.acts.find((a) => a.i === 'game-fix-it')?.g?.p).toBe(250);
+  });
+
   it('ignores whitespace and line breaks inside the code', async () => {
     const code = await encodeResultCode(sample());
     const mangled = code.match(/.{1,17}/g)!.join('\n  ');

@@ -146,8 +146,43 @@ h3 { line-height: 1.25; }
 
 /* ─────────── Print ─────────── */
 @media print {
+  @page { size: A4; margin: 10mm; }
+  html, body { background: #fff !important; }
   body::before { display: none; }
   .no-print { display: none !important; }
+  main { padding: 0 !important; }
+  /* Keep coloured panel headers and highlights on paper. */
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  article, fieldset, .rs-panel, blockquote, li { break-inside: avoid; }
+  h1, h2, h3 { break-after: avoid; }
+}
+
+/* "Print my notes" on My learning: only the notes list prints. */
+.mn-print { display: none; }
+@media print {
+  html[data-print="mynotes"] #root { display: none !important; }
+  html[data-print="mynotes"] .mn-print { display: block; font-family: var(--font-body); color: #111; }
+}
+
+/* ─────────── Student highlights (CSS Custom Highlight API) ─────────── */
+::highlight(wm-y) { background-color: #F3E7A6; color: inherit; }
+::highlight(wm-b) { background-color: #CFE3F5; color: inherit; }
+::highlight(wm-p) { background-color: #F6D5CB; color: inherit; }
+::highlight(wm-note) { text-decoration: underline 2px var(--color-q2-storm); text-underline-offset: 3px; }
+::highlight(wm-flash) { background-color: var(--color-q2-coastal); }
+
+/* ─────────── Phone type scale ───────────
+   Dense components use fixed px sizes tuned for laptops (≈13.5px body).
+   On phones those read too small, so step each small size up once.
+   Unlayered, so it beats Tailwind's utility layer; md:/lg: variants never
+   match below 640px, so larger screens are untouched. */
+@media (max-width: 639px) {
+  .text-\[10px\], .text-\[10\.5px\] { font-size: 11.5px; }
+  .text-\[11px\], .text-\[11\.5px\] { font-size: 12.5px; }
+  .text-\[12px\], .text-\[12\.5px\] { font-size: 14px; }
+  .text-\[13px\], .text-\[13\.5px\] { font-size: 15px; }
+  .text-\[14px\], .text-\[14\.5px\] { font-size: 15.5px; }
+  .text-\[15px\], .text-\[15\.5px\] { font-size: 16px; }
 }
 
 /* ─────────── Q2 helpers ─────────── */
@@ -157,3 +192,54 @@ h3 { line-height: 1.25; }
   .q2-no-print { display: none !important; }
   .q2-print-break { break-before: page; }
 }
+
+/* ─────────── Printable Q2 worksheets ───────────
+   Portalled to <body>; hidden on screen. When the Print worksheet button
+   sets html[data-print="worksheet"], only the worksheet prints. */
+.ws-print { display: none; }
+@media print {
+  html[data-print="worksheet"] #root { display: none !important; }
+  html[data-print="worksheet"] .ws-print { display: block; }
+}
+.ws-print { font-family: var(--font-body); color: #111; font-size: 9.5pt; line-height: 1.4; }
+.ws-page { break-after: page; }
+.ws-page:last-child { break-after: auto; }
+.ws-head { display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 1.5pt solid #111; padding-bottom: 2mm; }
+.ws-head h1 { font-family: var(--font-display); font-size: 20pt; line-height: 1; margin: 1mm 0 0; }
+.ws-mono { font-family: var(--font-mono); font-size: 7pt; letter-spacing: 0.12em; text-transform: uppercase; }
+.ws-fields { display: flex; gap: 6mm; margin-top: 3mm; font-size: 9pt; }
+.ws-fields span { flex: 1; border-bottom: 0.6pt solid #777; padding-bottom: 0.5mm; }
+.ws-src-note { margin-top: 1.5mm; font-size: 7.5pt; color: #555; }
+.ws-source { margin-top: 3mm; border: 0.8pt solid #111; padding: 2.5mm 3mm; font-size: 9pt; }
+.ws-source p + p { margin-top: 1.5mm; }
+.ws-source-h { font-weight: 700; }
+.ws-q { margin-top: 3mm; font-weight: 700; font-size: 10.5pt; }
+.ws-q-small { font-size: 9.5pt; margin-bottom: 1mm; }
+.ws-find { margin-top: 2.5mm; display: grid; grid-template-columns: 1fr 1fr; gap: 3mm; }
+.ws-find > div { border: 0.6pt dashed #777; padding: 1.5mm 2mm 0; }
+.ws-find b, .ws-box-h, .ws-chain i, .ws-matrix i, .ws-split i { font-family: var(--font-mono); font-size: 6.8pt; letter-spacing: 0.08em; text-transform: uppercase; }
+.ws-box { margin-top: 3mm; border: 0.8pt solid #111; break-inside: avoid; }
+.ws-box-h { display: flex; justify-content: space-between; gap: 4mm; background: #111; color: #fff; padding: 0.8mm 2.5mm; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+.ws-chain { display: grid; grid-template-columns: repeat(3, 1fr); }
+.ws-chain > div { padding: 1.2mm 2mm 0; border-right: 0.5pt solid #bbb; }
+.ws-chain > div:last-child { border-right: 0; }
+.ws-chain i, .ws-matrix i, .ws-split i { font-style: normal; color: #444; display: block; }
+.ws-matrix { display: grid; grid-template-columns: 1fr 1fr; }
+.ws-matrix > div { padding: 1.2mm 2mm 0; border-right: 0.5pt solid #bbb; border-bottom: 0.5pt solid #bbb; }
+.ws-matrix > div:nth-child(2n) { border-right: 0; }
+.ws-matrix > div:nth-child(n + 3) { border-bottom: 0; }
+.ws-matrix b { font-weight: 700; color: #111; }
+.ws-split { display: grid; grid-template-columns: repeat(3, 1fr); }
+.ws-split > div { padding: 1.2mm 2mm 0; border-right: 0.5pt solid #bbb; }
+.ws-split > div:last-child { border-right: 0; }
+.ws-lines span { display: block; height: 7mm; border-bottom: 0.5pt solid #999; }
+.ws-ticks { margin-top: 4mm; border-top: 0.8pt solid #111; padding-top: 2mm; display: grid; grid-template-columns: 1fr 1fr; gap: 1mm 5mm; font-size: 8.5pt; }
+.ws-ticks span::before { content: "☐ "; }
+.ws-foot { margin-top: 3mm; display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 7pt; color: #555; }
+.ws-sub { margin-top: 3.5mm; font-family: var(--font-mono); font-size: 7.5pt; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; }
+.ws-print ul, .ws-print ol { margin: 1mm 0 0 5mm; padding: 0; }
+.ws-print li { margin-top: 0.8mm; }
+.ws-print .ws-page > p { margin-top: 1.5mm; }
+.ws-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 5mm; }
+.ws-table { width: 100%; border-collapse: collapse; margin-top: 1.5mm; font-size: 8.5pt; }
+.ws-table th, .ws-table td { border: 0.5pt solid #888; padding: 1mm 1.5mm; text-align: left; vertical-align: top; }

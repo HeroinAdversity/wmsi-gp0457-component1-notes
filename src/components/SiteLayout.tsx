@@ -1,51 +1,20 @@
-import { useEffect, useState } from 'react';
+import { Suspense, lazy, useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { Outlet, Link, useLocation } from 'react-router-dom';
 import { useLanguage } from '../lib/LanguageContext';
+import { FOOTER_MAP, GROUPS, PLAIN_LINKS, currentPage, type SiteGroup, type SitePage } from '../lib/siteMap';
 import { Container } from './primitives';
+import { useSearchShortcut } from '../lib/useSearchShortcut';
 
-type NavLinkDef = {
-  to: string;
-  en: string;
-  zh: string;
-  end?: boolean;
-  /**
-   * If set, this link only counts as active when the current URL hash
-   * starts with `activeHashPrefix`. Used to split /perspectives into
-   * two nav entries — Perspectives (Q1c) and Significance (Q1d) — that
-   * share a pathname but live under different hash namespaces.
-   */
-  activeHashPrefix?: 'weigh' | 'not-weigh';
-};
-
-const NAV_LINKS: NavLinkDef[] = [
-  { to: '/', en: 'Home', zh: '首页', end: true },
-  { to: '/source-recall', en: 'First Read', zh: '初读' },
-  { to: '/statements', en: 'Statements', zh: '陈述类型' },
-  { to: '/perspectives', en: 'Perspectives', zh: '观点', activeHashPrefix: 'not-weigh' },
-  { to: '/perspectives#weigh', en: 'Significance', zh: '重要性', activeHashPrefix: 'weigh' },
-  { to: '/research', en: 'Research', zh: '研究' },
-  { to: '/revision', en: 'Revision Sheets', zh: '复习页' },
-  { to: '/my-learning', en: 'My learning', zh: '我的学习' },
-  { to: '/teachers', en: 'Teachers', zh: '教师面板' },
-];
-
-/**
- * Custom active-check: two nav entries can share the same pathname
- * (Perspectives and Significance both live at /perspectives) but the
- * URL hash picks between them.
- */
-function isNavActive(link: NavLinkDef, pathname: string, hash: string): boolean {
-  const linkPath = link.to.split('#')[0];
-  const pathMatches = link.end ? pathname === linkPath : pathname.startsWith(linkPath);
-  if (!pathMatches) return false;
-  if (!link.activeHashPrefix) return true;
-  const inWeigh = hash === '#weigh' || hash.startsWith('#weigh-');
-  return link.activeHashPrefix === 'weigh' ? inWeigh : !inWeigh;
-}
+// Search carries the whole practice bank, so it loads only when first opened.
+const SearchDialog = lazy(() => import('./SearchDialog'));
 
 export function SiteLayout() {
   const { lang, toggle } = useLanguage();
   const { pathname } = useLocation();
+  const [searchOpen, setSearchOpen] = useState(false);
+  const openSearch = useCallback(() => setSearchOpen(true), []);
+  useSearchShortcut(openSearch);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
@@ -53,54 +22,135 @@ export function SiteLayout() {
 
   return (
     <div className="min-h-[100dvh] flex flex-col">
-      <SiteHeader lang={lang} toggleLang={toggle} />
+      <SiteHeader lang={lang} toggleLang={toggle} onSearch={() => setSearchOpen(true)} />
       <main className="flex-1">
         <Outlet />
       </main>
       <SiteFooter />
+      {searchOpen && <Suspense fallback={null}><SearchDialog onClose={() => setSearchOpen(false)} /></Suspense>}
     </div>
+  );
+}
+
+function SearchIcon({ size = 14 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 16 16" fill="none" aria-hidden>
+      <circle cx="7" cy="7" r="5" stroke="currentColor" strokeWidth="1.6" />
+      <path d="M11 11l3.5 3.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+function Chevron({ open }: { open: boolean }) {
+  return (
+    <svg width="10" height="10" viewBox="0 0 10 10" aria-hidden className={`transition-transform ${open ? 'rotate-180' : ''}`}>
+      <path d="M2 3.5l3 3 3-3" stroke="currentColor" strokeWidth="1.6" fill="none" />
+    </svg>
   );
 }
 
 function SiteHeader({
   lang,
   toggleLang,
+  onSearch,
 }: {
   lang: 'en' | 'zh';
   toggleLang: () => void;
+  onSearch: () => void;
 }) {
   const { pathname, hash } = useLocation();
+  const [openMenu, setOpenMenu] = useState<SiteGroup['id'] | null>(null);
+  const headerRef = useRef<HTMLElement>(null);
+  const closeTimer = useRef<number>();
+
+  // Publish the header height so sticky sub-bars can sit right under it.
+  useLayoutEffect(() => {
+    const el = headerRef.current;
+    if (!el) return;
+    const set = () => document.documentElement.style.setProperty('--site-header-h', `${el.offsetHeight}px`);
+    set();
+    const ro = new ResizeObserver(set);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+
+  useEffect(() => { setOpenMenu(null); }, [pathname, hash]);
+
+  useEffect(() => {
+    if (!openMenu) return;
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setOpenMenu(null); };
+    const onDown = (e: MouseEvent) => { if (!headerRef.current?.contains(e.target as Node)) setOpenMenu(null); };
+    document.addEventListener('keydown', onKey);
+    document.addEventListener('mousedown', onDown);
+    return () => { document.removeEventListener('keydown', onKey); document.removeEventListener('mousedown', onDown); };
+  }, [openMenu]);
+
+  const canHover = typeof window !== 'undefined' && window.matchMedia?.('(hover: hover)').matches;
+  const hoverOpen = (id: SiteGroup['id']) => { if (!canHover) return; window.clearTimeout(closeTimer.current); setOpenMenu(id); };
+  const hoverClose = () => { if (!canHover) return; closeTimer.current = window.setTimeout(() => setOpenMenu(null), 180); };
+
+  const linkCls = (active: boolean) =>
+    `whitespace-nowrap inline-flex items-center gap-1.5 rounded-md px-2.5 py-2 text-[13.5px] font-semibold transition-colors ${
+      active ? 'text-[color:var(--color-ink)]' : 'text-[color:var(--color-ink-3)] hover:text-[color:var(--color-ink)] hover:bg-[color:var(--color-paper-2)]'
+    }`;
+
   return (
-    <header className="sticky top-0 z-40 pt-[calc(env(safe-area-inset-top)+18px)] lg:pt-0 bg-[color:var(--color-paper)]/90 backdrop-blur-md border-b border-[color:var(--color-line)]">
-      <Container size="wide">
-        <div className="flex items-center justify-between gap-6 py-3">
-          <Link to="/" className="flex items-center gap-3 group">
+    <header
+      ref={headerRef}
+      className="no-print sticky top-0 z-40 pt-[calc(env(safe-area-inset-top)+18px)] lg:pt-0 bg-[color:var(--color-paper)]/95 backdrop-blur-md border-b border-[color:var(--color-line)]"
+    >
+      <Container size="wide" className="relative">
+        <div className="flex items-center justify-between gap-4 py-3">
+          <Link to="/" className="flex items-center gap-3 group shrink-0">
             <WMSIMark />
             <p className="hidden sm:block font-display text-[16px] leading-tight text-[color:var(--color-ink)]">
               WMSI Global Perspectives
             </p>
           </Link>
 
-          <nav className="hidden xl:flex items-center gap-5">
-            {NAV_LINKS.map((l) => {
-              const active = isNavActive(l, pathname, hash);
+          <nav className="hidden xl:flex items-center gap-0.5 flex-1" aria-label="Main">
+            <Link to="/" className={linkCls(pathname === '/')}>Home</Link>
+            {GROUPS.map((g) => {
+              const active = g.match(pathname, hash);
+              const open = openMenu === g.id;
               return (
-                <Link
-                  key={`${l.to}#${l.activeHashPrefix ?? ''}`}
-                  to={l.to}
-                  className={`whitespace-nowrap text-[13.5px] font-semibold transition-colors relative py-1 ${
-                    active
-                      ? 'text-[color:var(--color-ink)] after:absolute after:left-0 after:right-0 after:-bottom-0.5 after:h-[2px] after:bg-[color:var(--color-ink)]'
-                      : 'text-[color:var(--color-ink-3)] hover:text-[color:var(--color-ink)]'
-                  }`}
+                <button
+                  key={g.id}
+                  type="button"
+                  aria-expanded={open}
+                  aria-controls={`mega-${g.id}`}
+                  onClick={() => setOpenMenu(open ? null : g.id)}
+                  onMouseEnter={() => hoverOpen(g.id)}
+                  onMouseLeave={hoverClose}
+                  className={`${linkCls(active)} ${open ? 'bg-[color:var(--color-paper-2)] text-[color:var(--color-ink)]' : ''}`}
                 >
-                  {lang === 'zh' ? l.zh : l.en}
-                </Link>
+                  {g.label} <Chevron open={open} />
+                </button>
               );
             })}
+            {PLAIN_LINKS.map((l) => (
+              <Link key={l.to} to={l.to} className={linkCls(l.end ? pathname === l.to : pathname.startsWith(l.to))}>{l.label}</Link>
+            ))}
           </nav>
 
           <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={onSearch}
+              className="hidden md:inline-flex items-center gap-2 rounded-full border border-[color:var(--color-line)] bg-white px-3 py-[7px] text-[13px] text-[color:var(--color-ink-3)] hover:border-[color:var(--color-ink-3)] min-w-[150px]"
+            >
+              <SearchIcon />
+              <span className="flex-1 text-left">Search notes…</span>
+              <kbd className="font-mono text-[10.5px] rounded border border-[color:var(--color-line)] bg-[color:var(--color-paper)] px-1.5">/</kbd>
+            </button>
+            <button
+              type="button"
+              onClick={onSearch}
+              aria-label="Search"
+              className="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-full border border-[color:var(--color-line)] text-[color:var(--color-ink)]"
+            >
+              <SearchIcon size={16} />
+            </button>
             <button
               type="button"
               onClick={toggleLang}
@@ -109,22 +159,108 @@ function SiteHeader({
             >
               {lang === 'en' ? '中文' : 'EN'}
             </button>
-
-            <MobileMenu lang={lang} />
+            <MobileMenu onSearch={onSearch} />
           </div>
         </div>
+
+        {GROUPS.map((g) => (
+          <MegaMenu
+            key={g.id}
+            group={g}
+            open={openMenu === g.id}
+            onEnter={() => hoverOpen(g.id)}
+            onLeave={hoverClose}
+            other={GROUPS.find((x) => x.id !== g.id)!}
+            onSwitch={(id) => setOpenMenu(id)}
+          />
+        ))}
       </Container>
     </header>
   );
 }
 
-function MobileMenu({ lang }: { lang: 'en' | 'zh' }) {
+function MegaMenu({
+  group, open, onEnter, onLeave, other, onSwitch,
+}: {
+  group: SiteGroup; open: boolean; onEnter: () => void; onLeave: () => void; other: SiteGroup; onSwitch: (id: SiteGroup['id']) => void;
+}) {
+  const { pathname } = useLocation();
+  const { hash } = useLocation();
+  const current = currentPage(group, pathname, hash) ?? group.pages[0];
+  const [focus, setFocus] = useState<SitePage>(current);
+  useEffect(() => { if (open) setFocus(current); }, [open]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  if (!open) return null;
+  return (
+    <div
+      id={`mega-${group.id}`}
+      onMouseEnter={onEnter}
+      onMouseLeave={onLeave}
+      className="hidden xl:grid absolute left-5 right-5 md:left-8 md:right-8 top-[calc(100%-4px)] z-50 grid-cols-[300px_1fr] overflow-hidden rounded-[10px] border border-[color:var(--color-line)] bg-white shadow-[0_18px_40px_-16px_rgba(0,0,0,0.25)]"
+    >
+      <div className="border-r border-[color:var(--color-line)] bg-[color:var(--color-paper)] p-2">
+        {group.pages.map((p) => {
+          const on = p === focus;
+          return (
+            <Link
+              key={p.to}
+              to={p.to}
+              onMouseEnter={() => setFocus(p)}
+              onFocus={() => setFocus(p)}
+              className={`flex items-start gap-2.5 rounded-[7px] px-2.5 py-2 ${on ? 'bg-white shadow-[0_0_0_1px_var(--color-line)]' : ''}`}
+            >
+              <span className="mt-0.5 shrink-0 rounded-[3px] px-1.5 py-0.5 font-mono text-[10.5px] font-semibold text-white" style={{ background: p.color }}>{p.badge}</span>
+              <span>
+                <b className="block text-[14px] text-[color:var(--color-ink)]">{p.title}</b>
+                <small className="block text-[12px] leading-[1.35] text-[color:var(--color-ink-3)]">{p.blurb}</small>
+              </span>
+            </Link>
+          );
+        })}
+      </div>
+      <div className="px-6 py-5">
+        <h3 className="font-display text-[24px] text-[color:var(--color-q2-sea)]">{focus.title}</h3>
+        <p className="mt-0.5 font-mono text-[11px] text-[color:var(--color-ink-3)]">{focus.meta}</p>
+        <p className="mt-4 font-mono text-[10.5px] font-semibold uppercase tracking-[0.14em] text-[color:var(--color-ink-3)]">What it tests</p>
+        <ul className="mt-2 grid grid-cols-2 gap-x-5 gap-y-1.5 text-[13px]">
+          {focus.tests.map((t) => (
+            <li key={t} className="flex gap-2">
+              <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full" style={{ background: focus.color }} />
+              {t}
+            </li>
+          ))}
+        </ul>
+        <div className="mt-4 flex flex-wrap gap-1.5">
+          {focus.branches.map((b) => (
+            <Link key={b.to} to={b.to} className="rounded-full border border-[color:var(--color-line)] bg-[color:var(--color-paper)] px-3 py-1 text-[12.5px] text-[color:var(--color-ink)] hover:border-[color:var(--color-q2-storm)]">
+              {b.label}
+            </Link>
+          ))}
+        </div>
+        <div className="mt-5 flex flex-wrap gap-4 border-t border-[color:var(--color-line-soft)] pt-3 text-[12.5px] text-[color:var(--color-ink-3)]">
+          <Link to={group.foot.to} className="font-semibold text-[color:var(--color-q2-storm)]">{group.foot.label}</Link>
+          <span>
+            Also in Paper 1:{' '}
+            <button type="button" onClick={() => onSwitch(other.id)} className="font-semibold text-[color:var(--color-q2-storm)]">{other.label}</button>
+          </span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function MobileMenu({ onSearch }: { onSearch: () => void }) {
   const [open, setOpen] = useState(false);
   const { pathname, hash } = useLocation();
+  const [expanded, setExpanded] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
     setOpen(false);
   }, [pathname, hash]);
+
+  useEffect(() => {
+    if (open) setExpanded(Object.fromEntries(GROUPS.map((g) => [g.id, g.match(pathname, hash)])));
+  }, [open]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : '';
@@ -132,6 +268,8 @@ function MobileMenu({ lang }: { lang: 'en' | 'zh' }) {
       document.body.style.overflow = '';
     };
   }, [open]);
+
+  const plain = 'block border-b border-[color:var(--color-line-soft)] px-2 py-3 font-display text-[20px] text-[color:var(--color-ink)]';
 
   return (
     <>
@@ -148,10 +286,12 @@ function MobileMenu({ lang }: { lang: 'en' | 'zh' }) {
         </svg>
       </button>
 
-      {open && (
-        <div className="fixed inset-0 z-50 xl:hidden">
-          <div className="absolute inset-0 bg-[color:var(--color-ink)]/40" onClick={() => setOpen(false)} />
-          <div className="absolute right-0 top-0 h-full w-[300px] max-w-[85vw] pt-[calc(env(safe-area-inset-top)+18px)] pb-[env(safe-area-inset-bottom)] bg-[color:var(--color-paper)] border-l border-[color:var(--color-line)] shadow-2xl flex flex-col">
+      {/* Portalled to <body>: the header's backdrop-blur makes it the containing
+          block for fixed children, which clipped the panel to header height. */}
+      {open && createPortal(
+        <div className="fixed inset-0 z-[75] xl:hidden">
+          <div className="absolute inset-0 bg-[color:var(--color-ink)]/45" onClick={() => setOpen(false)} />
+          <div className="absolute right-0 top-0 h-full w-[320px] max-w-[88vw] pt-[calc(env(safe-area-inset-top)+18px)] pb-[env(safe-area-inset-bottom)] bg-[color:var(--color-paper)] border-l border-[color:var(--color-line)] shadow-2xl flex flex-col">
             <div className="flex items-center justify-between px-5 py-4 border-b border-[color:var(--color-line)]">
               <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.16em] text-[color:var(--color-ink-3)]">
                 Menu
@@ -163,35 +303,57 @@ function MobileMenu({ lang }: { lang: 'en' | 'zh' }) {
                 className="w-9 h-9 inline-flex items-center justify-center rounded-full hover:bg-[color:var(--color-paper-2)]"
               >
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden>
-                  <path
-                    d="M1 1l12 12M13 1L1 13"
-                    stroke="currentColor"
-                    strokeWidth="1.6"
-                    strokeLinecap="round"
-                  />
+                  <path d="M1 1l12 12M13 1L1 13" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
                 </svg>
               </button>
             </div>
-            <nav className="flex flex-col p-2">
-              {NAV_LINKS.map((l) => {
-                const active = isNavActive(l, pathname, hash);
+            <button
+              type="button"
+              onClick={() => { setOpen(false); onSearch(); }}
+              className="mx-4 mt-3 mb-1 flex items-center gap-2 rounded-[10px] border border-[color:var(--color-line)] bg-white px-3 py-2.5 text-[15px] text-[color:var(--color-ink-3)]"
+            >
+              <SearchIcon size={15} /> Search notes…
+            </button>
+            <nav className="flex-1 overflow-y-auto px-3 pb-6" aria-label="Main">
+              <Link to="/" className={plain}>Home</Link>
+              {GROUPS.map((g) => {
+                const isOpen = !!expanded[g.id];
                 return (
-                  <Link
-                    key={`${l.to}#${l.activeHashPrefix ?? ''}`}
-                    to={l.to}
-                    className={`font-display text-[19px] px-4 py-3 rounded-md ${
-                      active
-                        ? 'bg-[color:var(--color-paper-2)] text-[color:var(--color-ink)]'
-                        : 'text-[color:var(--color-ink-2)]'
-                    }`}
-                  >
-                    {lang === 'zh' ? l.zh : l.en}
-                  </Link>
+                  <div key={g.id} className="border-b border-[color:var(--color-line-soft)]">
+                    <button
+                      type="button"
+                      aria-expanded={isOpen}
+                      onClick={() => setExpanded((e) => ({ ...e, [g.id]: !isOpen }))}
+                      className="flex w-full items-center justify-between px-2 py-3 font-display text-[20px] text-[color:var(--color-ink)]"
+                    >
+                      {g.label} <Chevron open={isOpen} />
+                    </button>
+                    {isOpen && (
+                      <div className="pb-2">
+                        {g.pages.map((p) => {
+                          const on = currentPage(g, pathname, hash) === p;
+                          return (
+                            <Link key={p.to} to={p.to} className={`flex gap-2.5 rounded-lg px-2 py-2 ${on ? 'bg-[color:var(--color-paper-2)]' : ''}`}>
+                              <span className="mt-0.5 h-fit shrink-0 rounded-[3px] px-1.5 py-0.5 font-mono text-[11px] font-semibold text-white" style={{ background: p.color }}>{p.badge}</span>
+                              <span>
+                                <b className="block text-[16px] font-semibold text-[color:var(--color-ink)]">{p.title}</b>
+                                <small className="block text-[13px] leading-[1.35] text-[color:var(--color-ink-3)]">{p.blurb}</small>
+                              </span>
+                            </Link>
+                          );
+                        })}
+                      </div>
+                    )}
+                  </div>
                 );
               })}
+              {PLAIN_LINKS.map((l) => (
+                <Link key={l.to} to={l.to} className={plain}>{l.label}</Link>
+              ))}
             </nav>
           </div>
-        </div>
+        </div>,
+        document.body,
       )}
     </>
   );
@@ -200,9 +362,25 @@ function MobileMenu({ lang }: { lang: 'en' | 'zh' }) {
 function SiteFooter() {
   const { lang } = useLanguage();
   return (
-    <footer className="mt-24 border-t border-[color:var(--color-line)] py-10 bg-[color:var(--color-paper-2)]">
+    <footer className="no-print mt-24 border-t border-[color:var(--color-line)] py-10 bg-[color:var(--color-paper-2)]">
       <Container size="wide">
-        <div className="flex items-center gap-3 mb-3">
+        <nav aria-label="Site map" className="grid gap-x-6 gap-y-7 grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+          {FOOTER_MAP.map((col) => (
+            <div key={col.heading}>
+              <p className="mb-2 font-mono text-[10.5px] font-semibold uppercase tracking-[0.14em] text-[color:var(--color-ink-3)]">{col.heading}</p>
+              {col.links.map((l) => (
+                <Link
+                  key={l.to + l.label}
+                  to={l.to}
+                  className={`block py-0.5 hover:underline ${l.sub ? 'pl-3 text-[12.5px] text-[color:var(--color-ink-2)]' : 'text-[13px] text-[color:var(--color-ink)]'}`}
+                >
+                  {l.label}
+                </Link>
+              ))}
+            </div>
+          ))}
+        </nav>
+        <div className="mt-10 flex items-center gap-3 mb-3">
           <WMSIMark />
           <div>
             <p className="font-display text-[15px] text-[color:var(--color-ink)]">

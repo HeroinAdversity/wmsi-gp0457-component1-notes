@@ -152,7 +152,7 @@ function ToolkitAnchor() {
         <span>the Significance Toolkit</span>
         <span className="rs-section-label-arrow">↑ pick the weight that best fits the case</span>
       </div>
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 mt-4">
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 mt-4 print:grid-cols-3 print:gap-3">
         {fiveTests.map((t, i) => (
           <TestCard key={t.key} test={t} n={i + 1} />
         ))}
@@ -271,7 +271,7 @@ function ModelStrip() {
 function Footer() {
   return (
     <footer className="mt-10 border-t-[3px] border-[color:var(--color-ink)] pt-6">
-      <div className="grid gap-6 md:grid-cols-3">
+      <div className="grid gap-6 md:grid-cols-3 print:grid-cols-3 print:gap-3">
         <div>
           <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-[color:var(--sheet-accent)]">
             Exam-day reminders

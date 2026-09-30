@@ -1,6 +1,6 @@
 import { useCallback, useSyncExternalStore } from 'react';
 
-export type ActivityKind = 'quiz' | 'answer-2a' | 'answer-2b' | 'checklist';
+export type ActivityKind = 'quiz' | 'answer-2a' | 'answer-2b' | 'checklist' | 'game';
 export type ActivityStatus = 'not-started' | 'in-progress' | 'done';
 
 export interface ActivityRecord {
@@ -12,7 +12,21 @@ export interface ActivityRecord {
   max?: number;
   selfLevel?: 1 | 2 | 3 | 4;
   answerText?: string;
+  /** Running totals for a practice game (kind 'game'). */
+  game?: GameStats;
   updatedAt: string;
+}
+
+/**
+ * Practice-game totals. Short keys keep the result code small:
+ * r rounds · c correct · n attempted · b best round · p points (daily cap) ·
+ * d / dp day and points that day · a0 first-round accuracy · ar recent accuracy ·
+ * i per-idea [correct, attempted].
+ */
+export interface GameStats {
+  r: number; c: number; n: number; b: number; p: number;
+  d: string; dp: number; a0: number; ar: number;
+  i: Partial<Record<string, [number, number]>>;
 }
 
 export interface ProgressState {

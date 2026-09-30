@@ -1,4 +1,4 @@
-import type { ActivityKind, ActivityStatus, ProgressState } from './progress';
+import type { ActivityKind, ActivityStatus, GameStats, ProgressState } from './progress';
 
 export const CODE_PREFIX = 'WMSI2';
 export const CODE_BEGIN = '---WMSI-CODE-BEGIN---';
@@ -10,6 +10,8 @@ export interface CompactActivity {
   // 'q1' only appears on tracker rows read from old Q1 codes; `a` then holds a summary.
   i: string; t: string; k: ActivityKind | 'q1'; st: ActivityStatus;
   s?: number; m?: number; l?: 1 | 2 | 3 | 4; a?: string; w?: number;
+  /** Practice-game totals (kind 'game'). */
+  g?: GameStats;
 }
 export interface ResultPayload { v: 1; scope: string; n: string; c: string; at: string; acts: CompactActivity[] }
 export type DecodeResult = { ok: true; payload: ResultPayload } | { ok: false; error: string };
@@ -26,6 +28,7 @@ export function toPayload(state: ProgressState, scope = 'q2', now: Date = new Da
     if (r.max !== undefined) c.m = r.max;
     if (r.selfLevel !== undefined) c.l = r.selfLevel;
     if (r.answerText) { c.a = r.answerText.slice(0, ANSWER_TRIM); c.w = words(r.answerText); }
+    if (r.game) c.g = r.game;
     return c;
   });
   return { v: 1, scope, n: state.student.name.trim(), c: state.student.className.trim(), at: now.toISOString(), acts };

@@ -155,7 +155,7 @@ function MainGrid() {
     <div className="space-y-6">
       <FactAnchor branch={BY_ID.fact} />
       <VsFactRow />
-      <div className="grid gap-6 md:grid-cols-2">
+      <div className="grid gap-6 md:grid-cols-2 print:grid-cols-2 print:gap-3">
         {PAIRS.map((p) => (
           <PairCard key={p.left.id} pair={p} />
         ))}
@@ -181,7 +181,7 @@ function FactAnchor({ branch }: { branch: Branch }) {
       </header>
       <p className="text-[15px] leading-[1.55] text-[color:var(--color-ink)] max-w-[62ch]"
          dangerouslySetInnerHTML={{ __html: branch.def }} />
-      <div className="mt-4 grid gap-3 md:grid-cols-2">
+      <div className="mt-4 grid gap-3 md:grid-cols-2 print:grid-cols-2 print:gap-3">
         <YesBox text={branch.yes!} label="A fact" />
         <NoBox text={branch.no!} label="Not a fact" />
       </div>
@@ -200,7 +200,7 @@ function VsFactRow() {
         <span>three ways a statement</span>
         <span className="rs-section-label-arrow">↑ isn't a fact</span>
       </div>
-      <div className="grid gap-4 md:grid-cols-3 mt-4">
+      <div className="grid gap-4 md:grid-cols-3 mt-4 print:grid-cols-3 print:gap-3">
         {VS_FACT.map(({ branch, disc }) => (
           <VsFactCard key={branch.id} branch={branch} disc={disc} />
         ))}
@@ -281,7 +281,7 @@ function PairHalf({ branch, side }: { branch: Branch; side: 'left' | 'right' }) 
 function Footer() {
   return (
     <footer className="mt-10 border-t-[3px] border-[color:var(--color-ink)] pt-6">
-      <div className="grid gap-6 md:grid-cols-3">
+      <div className="grid gap-6 md:grid-cols-3 print:grid-cols-3 print:gap-3">
         <div>
           <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-[color:var(--sheet-accent)]">
             Exam-day reminders

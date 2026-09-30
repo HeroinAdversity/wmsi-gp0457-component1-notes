@@ -10,6 +10,7 @@ import { LevelLadder } from './components/LevelLadder';
 import { MarkCard, PointTarget } from './components/MarkCard';
 import { Q2Header } from './components/Q2Header';
 import { Q2Tabs } from './components/Q2Tabs';
+import { WorksheetPrinter } from './components/WorksheetPrinter';
 import { Quiz } from './components/Quiz';
 import { SourceAnnotator } from './components/SourceAnnotator';
 import { getItem } from './data/bank';
@@ -55,6 +56,7 @@ export function EvaluatePage() {
   return (
     <div className="q2-page">
       <Q2Header tone="a" label="Question 2(a) · Evaluate research" title="Strong or Shaky?" subtitle="Judging the strengths and weaknesses of research">
+        <WorksheetPrinter kind="a" defaultItemId="m-j26-12-a" />
         <Q2Tabs tabs={TABS} active={tab} onChange={setTab} />
       </Q2Header>
 

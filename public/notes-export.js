@@ -84,11 +84,13 @@
   function buildPanel(){
     var fab = document.createElement('button');
     fab.id = 'wne-fab'; fab.type = 'button';
-    fab.setAttribute('aria-label', 'Open my notes');
+    // "Page notes": free writing for this page. Highlights and notes pinned to
+    // the page text are a separate feature ("My notes" in the React app).
+    fab.setAttribute('aria-label', 'Open page notes');
     fab.innerHTML =
       '<span class="wne-dot" aria-hidden="true"></span>' +
-      '<span class="en">' + ((CFG && CFG.fabLabelEn) || 'My notes') + '</span>' +
-      '<span class="zh">' + ((CFG && CFG.fabLabelZh) || '我的笔记') + '</span>';
+      '<span class="en">' + ((CFG && CFG.fabLabelEn) || 'Page notes') + '</span>' +
+      '<span class="zh">' + ((CFG && CFG.fabLabelZh) || '页面笔记') + '</span>';
 
     var backdrop = document.createElement('div');
     backdrop.className = 'wne-backdrop';
@@ -96,10 +98,10 @@
     var panel = document.createElement('aside');
     panel.id = 'wne-panel';
     panel.setAttribute('role', 'dialog');
-    panel.setAttribute('aria-label', 'My notes');
+    panel.setAttribute('aria-label', 'Page notes');
     panel.innerHTML =
       '<div class="wne-header">' +
-        '<h3><span class="en">My notes</span><span class="zh">我的笔记</span></h3>' +
+        '<h3><span class="en">Page notes</span><span class="zh">页面笔记</span></h3>' +
         '<button class="wne-close" type="button" aria-label="Close">✕</button>' +
       '</div>' +
       '<div class="wne-toolbar">' +

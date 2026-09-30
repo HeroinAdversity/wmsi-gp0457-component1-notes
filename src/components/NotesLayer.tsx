@@ -2,7 +2,7 @@ import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, typ
 import { createPortal } from 'react-dom';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useActiveTab } from '../lib/activeTab';
-import { MARK_COLORS, findAnchor, makeAnchor, newMarkId, useMarks, type Mark, type MarkColor } from '../lib/marks';
+import { MARK_COLORS, countByTab, findAnchor, makeAnchor, newMarkId, useMarks, type Mark, type MarkColor } from '../lib/marks';
 
 /* ══════════════════════════════════════════════════════════════════
    Highlights and notes on page text.
@@ -363,5 +363,16 @@ export function PageNotesButton({ dark = false }: { dark?: boolean }) {
         document.body,
       )}
     </>
+  );
+}
+
+/** Small count shown on a tab that has notes, so students can find them again. */
+export function TabNoteBadge({ tab }: { tab: string }) {
+  const { pathname } = useLocation();
+  const { marks } = useMarks();
+  const n = useMemo(() => countByTab(marks, pathname)[tab] ?? 0, [marks, pathname, tab]);
+  if (!n) return null;
+  return (
+    <span className="ml-1.5 inline-grid h-[17px] min-w-[17px] place-items-center rounded-full bg-[color:var(--color-q2-ivory)] px-1 align-[1px] font-mono text-[10px] text-[color:var(--color-q2-sea)]" aria-label={`${n} notes`}>{n}</span>
   );
 }

@@ -16,6 +16,8 @@ import {
 } from './data';
 import { WeighingRoomSection } from './WeighingRoomPage';
 import { CRITERIA, BANDS, SELF_CHECK_ITEMS, TOOL_ID as WEIGH_TOOL_ID } from './weighingRoomData';
+import { TabNoteBadge } from '../../components/NotesLayer';
+import { usePublishTab } from '../../lib/activeTab';
 
 const IP_TOOL_ID = 'identifying-perspectives';
 
@@ -34,6 +36,9 @@ type WeighTabKey = 'overview' | 'toolkit' | 'model' | 'levelup' | 'practice' | '
 type Section = 'identify' | 'weigh';
 
 const WEIGH_TAB_KEYS: WeighTabKey[] = ['overview', 'toolkit', 'model', 'levelup', 'practice', 'journal'];
+const WEIGH_TAB_LABELS: Record<WeighTabKey, string> = {
+  overview: 'Overview', toolkit: 'Toolkit', model: 'Worked model', levelup: 'Level-up', practice: 'Exam practice', journal: 'Progress & journal',
+};
 
 /**
  * URL hash convention:
@@ -71,6 +76,11 @@ export function IdentifyingPerspectivesPage() {
   const [section, setSection] = useState<Section>(parsed.section);
   const [identifyTab, setIdentifyTab] = useState<IdentifyTabId>(parsed.identifyTab);
   const [weighTab, setWeighTab] = useState<WeighTabKey>(parsed.weighTab);
+  // Notes belong to the tab's hash, so a weigh tab is saved as "weigh-<tab>".
+  usePublishTab(
+    section === 'weigh' ? `weigh-${weighTab}` : identifyTab,
+    section === 'weigh' ? `Significance · ${WEIGH_TAB_LABELS[weighTab]}` : IDENTIFY_TABS.find((t) => t.id === identifyTab)?.en ?? '',
+  );
 
   useEffect(() => {
     if (parsed.section !== section) setSection(parsed.section);
@@ -144,7 +154,7 @@ export function IdentifyingPerspectivesPage() {
       {section === 'identify' ? (
         <>
           {/* SUB-TAB STRIP (Q1c) */}
-          <div className="sticky top-[64px] z-30 bg-[color:var(--color-paper)]/95 backdrop-blur-md border-b border-[color:var(--color-line)]">
+          <div className="sticky top-[calc(var(--site-header-h,64px)+var(--section-bar-h,0px))] z-20 bg-[color:var(--color-paper)]/95 backdrop-blur-md border-b border-[color:var(--color-line)]">
             <Container size="wide">
               <nav
                 className="flex gap-6 md:gap-8 overflow-x-auto scrollbar-none [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
@@ -165,6 +175,7 @@ export function IdentifyingPerspectivesPage() {
                     }`}
                   >
                     <Bi en={t.en} zh={t.zh} />
+                    <TabNoteBadge tab={t.id} />
                   </button>
                 ))}
               </nav>

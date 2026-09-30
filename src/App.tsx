@@ -27,7 +27,7 @@ import { PracticePage } from './pages/research/PracticePage';
 import { MyLearningPage } from './pages/my-learning/MyLearningPage';
 import { TrackerPage } from './pages/dashboards/tracker/TrackerPage';
 import { ResearchRevisionSheetPage } from './pages/research/ResearchRevisionSheetPage';
-import { Q2Frame } from './pages/research/components/Q2Frame';
+import { Q1Frame, Q2Frame } from './components/SectionFrame';
 import { GamesPage } from './pages/research/games/GamesPage';
 
 export function App() {
@@ -36,35 +36,40 @@ export function App() {
       <Route element={<SiteLayout />}>
         <Route index element={<HomePage />} />
 
-        {/* Q1(a) — Source recall */}
-        <Route path="source-recall" element={<Q1aPage />} />
+        {/* Q1 — Perspectives. Q1Frame adds the section bar, notes and previous/next cards. */}
+        <Route element={<Q1Frame />}>
+          {/* Q1(a) — Source recall */}
+          <Route path="source-recall" element={<Q1aPage />} />
 
-        {/* Q1(c) + Q1(d) — Perspectives (identify) and Weighing Room (weigh),
-            folded into one page with a top-level chapter switcher */}
-        <Route path="perspectives" element={<IdentifyingPerspectivesPage />} />
-        <Route
-          path="perspectives/weighing-room"
-          element={<Navigate to="/perspectives#weigh" replace />}
-        />
+          {/* Q1(c) + Q1(d) — Perspectives (identify) and Weighing Room (weigh),
+              folded into one page with a top-level chapter switcher */}
+          <Route path="perspectives" element={<IdentifyingPerspectivesPage />} />
+          <Route
+            path="perspectives/weighing-room"
+            element={<Navigate to="/perspectives#weigh" replace />}
+          />
 
-        {/* Q1(b) — Types of Statements. /statements now shows the main notes
-            directly (no gateway). The tool hub still exists at /statements/tools
-            for teachers who want the full sub-tool list. Revision sheets live
-            under the /revision/* namespace. */}
-        <Route path="statements" element={<StatementTypesToolPage />} />
-        <Route path="statements/main" element={<Navigate to="/statements" replace />} />
-        <Route path="statements/tools" element={<StatementTypesHubPage />} />
-        <Route path="statements/intensive" element={<StatementTypesIntensivePage />} />
-        <Route path="statements/diagnostic" element={<FindYourGapPage />} />
-        <Route path="statements/claim-vs-evidence" element={<ClaimVsEvidencePage />} />
-        <Route path="statements/mindmap" element={<MindMapPage />} />
-        <Route path="statements/revision" element={<Navigate to="/revision/statements" replace />} />
+          {/* Q1(b) — Types of Statements. /statements now shows the main notes
+              directly (no gateway). The tool hub still exists at /statements/tools
+              for teachers who want the full sub-tool list. Revision sheets live
+              under the /revision/* namespace. */}
+          <Route path="statements" element={<StatementTypesToolPage />} />
+          <Route path="statements/main" element={<Navigate to="/statements" replace />} />
+          <Route path="statements/tools" element={<StatementTypesHubPage />} />
+          <Route path="statements/intensive" element={<StatementTypesIntensivePage />} />
+          <Route path="statements/diagnostic" element={<FindYourGapPage />} />
+          <Route path="statements/claim-vs-evidence" element={<ClaimVsEvidencePage />} />
+          <Route path="statements/mindmap" element={<MindMapPage />} />
+          <Route path="statements/revision" element={<Navigate to="/revision/statements" replace />} />
 
-        {/* Revision Sheets — index + one canonical URL per sheet */}
+          {/* Question 1 revision sheets, one canonical URL each */}
+          <Route path="revision/statements" element={<RevisionSheetPage />} />
+          <Route path="revision/perspectives" element={<PerspectivesRevisionSheetPage />} />
+          <Route path="revision/significance" element={<SignificanceRevisionSheetPage />} />
+        </Route>
+
+        {/* Revision sheets index covers Q1 and Q2 */}
         <Route path="revision" element={<RevisionSheetsIndexPage />} />
-        <Route path="revision/statements" element={<RevisionSheetPage />} />
-        <Route path="revision/perspectives" element={<PerspectivesRevisionSheetPage />} />
-        <Route path="revision/significance" element={<SignificanceRevisionSheetPage />} />
 
         {/* Q2 — Research. Q2Frame adds the section bar and previous/next cards. */}
         <Route element={<Q2Frame />}>

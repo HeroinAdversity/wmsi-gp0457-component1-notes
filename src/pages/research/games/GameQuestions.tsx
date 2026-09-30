@@ -214,7 +214,7 @@ export function SpotView({ q, onDone }: { q: SpotQ; onDone: (o: Outcome) => void
       </div>
       <p className="mt-2 text-[13px] text-[color:var(--color-ink-2)]">Tap a phrase that shows how the research was done, then say whether it is a strength or a weakness. Tapping plain description costs 3 seconds.</p>
       {asking && (
-        <div className="sticky top-[calc(var(--site-header-h,64px)+48px)] z-10 mt-3 flex flex-wrap items-center gap-2 rounded-[8px] bg-[color:var(--color-q2-sea)] px-3 py-2 text-[13px] text-white">
+        <div className="sticky top-[calc(var(--site-header-h,64px)+var(--section-bar-h,48px))] z-10 mt-3 flex flex-wrap items-center gap-2 rounded-[8px] bg-[color:var(--color-q2-sea)] px-3 py-2 text-[13px] text-white">
           <span className="mr-auto">“{byId.get(asking)!.quote}”</span>
           <button type="button" onClick={() => answer('S')} className="rounded-full bg-[color:var(--color-q2-coastal)] px-3 py-1 font-semibold text-[color:var(--color-q2-sea)]">Strength</button>
           <button type="button" onClick={() => answer('W')} className="rounded-full bg-[#E9A08F] px-3 py-1 font-semibold text-[#3A1109]">Weakness</button>

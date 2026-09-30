@@ -22,6 +22,8 @@ import {
   TRAPS,
   WORKED_ITEMS,
 } from './data';
+import { TabNoteBadge } from '../../components/NotesLayer';
+import { usePublishTab } from '../../lib/activeTab';
 
 const TOOL_ID = 'q1a-source-recall';
 
@@ -41,6 +43,7 @@ export function Q1aPage() {
   const navigate = useNavigate();
   const initial: TabId = (location.hash.replace('#', '') as TabId) || 'overview';
   const [tab, setTab] = useState<TabId>(TABS.some((t) => t.id === initial) ? initial : 'overview');
+  usePublishTab(tab, TABS.find((t) => t.id === tab)?.en ?? '');
 
   const setTabAndUrl = (t: TabId) => {
     setTab(t);
@@ -97,7 +100,7 @@ export function Q1aPage() {
       </section>
 
       {/* STICKY TAB STRIP */}
-      <div className="sticky top-[64px] z-30 bg-[color:var(--color-paper)]/95 backdrop-blur-md border-b border-[color:var(--color-line)]">
+      <div className="sticky top-[calc(var(--site-header-h,64px)+var(--section-bar-h,0px))] z-20 bg-[color:var(--color-paper)]/95 backdrop-blur-md border-b border-[color:var(--color-line)]">
         <Container size="wide">
           <nav
             className="flex gap-6 md:gap-8 overflow-x-auto scrollbar-none [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
@@ -117,6 +120,7 @@ export function Q1aPage() {
                 }`}
               >
                 <Bi en={t.en} zh={t.zh} />
+                <TabNoteBadge tab={t.id} />
               </button>
             ))}
           </nav>

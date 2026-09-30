@@ -36,7 +36,7 @@ const inWeigh = (hash: string) => hash === '#weigh' || hash.startsWith('#weigh-'
 
 export const Q1_GROUP: SiteGroup = {
   id: 'q1',
-  label: 'Question 1',
+  label: 'Perspectives · Q1',
   match: (p) => ['/source-recall', '/statements', '/perspectives'].some((x) => p.startsWith(x)),
   foot: { label: 'Question 1 revision sheets →', to: '/revision' },
   pages: [
@@ -196,7 +196,7 @@ export const PLAIN_LINKS: { to: string; label: string; end?: boolean }[] = [
 /** The footer site map. */
 export const FOOTER_MAP: { heading: string; links: (Branch & { sub?: boolean })[] }[] = [
   {
-    heading: 'Question 1',
+    heading: 'Perspectives · Question 1',
     links: [
       { label: '1(a) First Read', to: '/source-recall' },
       { label: '1(b) Statements', to: '/statements' },
@@ -262,4 +262,24 @@ export function currentPage(g: SiteGroup, pathname: string, hash: string): SiteP
     if (path.length > len) { best = p; len = path.length; }
   }
   return best;
+}
+
+/** Order of the Question 1 section bar and its previous/next cards. */
+export const Q1_SEQUENCE: { to: string; label: string; short: string }[] = [
+  { to: '/source-recall', label: 'First Read · 1(a)', short: '1(a) First Read' },
+  { to: '/statements', label: 'Statements · 1(b)', short: '1(b) Statements' },
+  { to: '/perspectives', label: 'Perspectives · 1(c)', short: '1(c) Perspectives' },
+  { to: '/perspectives#weigh', label: 'Significance · 1(d)', short: '1(d) Significance' },
+  { to: '/revision/statements', label: 'Revision sheets', short: 'Revise' },
+];
+
+const Q1_REVISION = ['/revision/statements', '/revision/perspectives', '/revision/significance'];
+
+/** Which Q1 section a path belongs to. 1(c) and 1(d) share a page and differ by hash. */
+export function q1Index(pathname: string, hash: string): number {
+  if (pathname === '/source-recall') return 0;
+  if (pathname === '/statements' || pathname.startsWith('/statements/')) return 1;
+  if (pathname === '/perspectives') return inWeigh(hash) ? 3 : 2;
+  if (Q1_REVISION.includes(pathname)) return 4;
+  return -1;
 }

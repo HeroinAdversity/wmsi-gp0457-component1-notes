@@ -16,6 +16,8 @@ import {
   EXIT_CHECK_ITEMS,
   type StatementType,
 } from './statementTypesData';
+import { TabNoteBadge } from '../../components/NotesLayer';
+import { usePublishTab } from '../../lib/activeTab';
 
 const TABS = [
   { id: 'overview', en: 'Overview', zh: '概览' },
@@ -33,6 +35,7 @@ export function StatementTypesToolPage() {
   const navigate = useNavigate();
   const initial = (location.hash.replace('#', '') as TabId) || 'overview';
   const [tab, setTab] = useState<TabId>(TABS.some((t) => t.id === initial) ? initial : 'overview');
+  usePublishTab(tab, TABS.find((t) => t.id === tab)?.en ?? '');
 
   const switchTab = (t: TabId) => {
     setTab(t);
@@ -92,7 +95,7 @@ export function StatementTypesToolPage() {
       </section>
 
       {/* STICKY TAB STRIP */}
-      <div className="sticky top-[64px] z-30 bg-[color:var(--color-paper)]/95 backdrop-blur-md border-b border-[color:var(--color-line)]">
+      <div className="sticky top-[calc(var(--site-header-h,64px)+var(--section-bar-h,0px))] z-20 bg-[color:var(--color-paper)]/95 backdrop-blur-md border-b border-[color:var(--color-line)]">
         <Container size="wide">
           <nav
             className="flex gap-6 md:gap-8 overflow-x-auto scrollbar-none [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
@@ -113,6 +116,7 @@ export function StatementTypesToolPage() {
                 }`}
               >
                 <Bi en={t.en} zh={t.zh} />
+                <TabNoteBadge tab={t.id} />
               </button>
             ))}
           </nav>

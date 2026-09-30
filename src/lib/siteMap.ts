@@ -127,7 +127,7 @@ export const Q1_GROUP: SiteGroup = {
 export const Q2_GROUP: SiteGroup = {
   id: 'q2',
   label: 'Research · Q2',
-  match: (p) => p.startsWith('/research') || p === '/revision/research',
+  match: (p) => p.startsWith('/research') || p.startsWith('/revision/research'),
   foot: { label: 'Research hub →', to: '/research' },
   pages: [
     {
@@ -200,10 +200,13 @@ export const Q2_GROUP: SiteGroup = {
       ],
     },
     {
-      badge: 'A4', color: 'var(--color-ink-3)', title: 'Revision sheet', to: '/revision/research',
-      blurb: 'Two printable A4 pages', meta: 'Print from the sheet',
-      tests: ['2(a) chain and where to look', '2(b) matrix with a worked row', 'Methods, sources, reliability', 'Traps for both parts'],
-      branches: [{ label: 'Open sheet', to: '/revision/research' }],
+      badge: 'A4', color: 'var(--color-ink-3)', title: 'Revision sheets', to: '/revision/research',
+      blurb: 'One printable sheet for 2(a), one for 2(b)', meta: 'Built on the mark scheme and examiner report',
+      tests: ['2(a) the chain, Table C and a Level 4 answer', '2(b) split the claim, Table D and a Level 4 design', 'What the June 2026 examiner saw', 'Traps for both parts'],
+      branches: [
+        { label: '2(a) Evaluating research', to: '/revision/research/2a' },
+        { label: '2(b) Testing a claim', to: '/revision/research/2b' },
+      ],
     },
   ],
 };
@@ -240,7 +243,8 @@ export const FOOTER_MAP: { heading: string; links: (Branch & { sub?: boolean })[
       { label: 'Statement Types', to: '/revision/statements' },
       { label: 'Perspectives', to: '/revision/perspectives' },
       { label: 'Significance', to: '/revision/significance' },
-      { label: 'Research', to: '/revision/research' },
+      { label: 'Research 2(a)', to: '/revision/research/2a' },
+      { label: 'Research 2(b)', to: '/revision/research/2b' },
     ],
   },
   { heading: 'Your work', links: [{ label: 'My learning', to: '/my-learning' }] },
@@ -262,7 +266,7 @@ export const Q2_SEQUENCE: { to: string; label: string; short: string }[] = [
   { to: '/research/design', label: 'The Test Bench · 2(b)', short: '2(b) The Test Bench' },
   { to: '/research/practice', label: 'Practice bank', short: 'Practice bank' },
   { to: '/research/games', label: 'Practice games', short: 'Games' },
-  { to: '/revision/research', label: 'Revision sheet', short: 'Revise' },
+  { to: '/revision/research', label: 'Revision sheets', short: 'Revise' },
 ];
 
 /** Which Q2 section a path belongs to (longest matching prefix). */

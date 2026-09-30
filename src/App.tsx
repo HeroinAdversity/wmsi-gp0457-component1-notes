@@ -26,7 +26,8 @@ import { DesignPage } from './pages/research/DesignPage';
 import { PracticePage } from './pages/research/PracticePage';
 import { MyLearningPage } from './pages/my-learning/MyLearningPage';
 import { TrackerPage } from './pages/dashboards/tracker/TrackerPage';
-import { ResearchRevisionSheetPage } from './pages/research/ResearchRevisionSheetPage';
+import { EvaluateRevisionSheetPage } from './pages/research/revision/EvaluateRevisionSheetPage';
+import { DesignRevisionSheetPage } from './pages/research/revision/DesignRevisionSheetPage';
 import { Q1Frame, Q2Frame } from './components/SectionFrame';
 import { GamesPage } from './pages/research/games/GamesPage';
 import { Q1GamesPage } from './pages/q1/games/Q1GamesPage';
@@ -80,7 +81,9 @@ export function App() {
 
         {/* Q2 — Research. Q2Frame adds the section bar and previous/next cards. */}
         <Route element={<Q2Frame />}>
-          <Route path="revision/research" element={<ResearchRevisionSheetPage />} />
+          <Route path="revision/research" element={<Navigate to="/revision/research/2a" replace />} />
+          <Route path="revision/research/2a" element={<EvaluateRevisionSheetPage />} />
+          <Route path="revision/research/2b" element={<DesignRevisionSheetPage />} />
           <Route path="research" element={<ResearchHubPage />} />
           <Route path="research/toolkit" element={<ToolkitPage />} />
           <Route path="research/evaluate" element={<EvaluatePage />} />

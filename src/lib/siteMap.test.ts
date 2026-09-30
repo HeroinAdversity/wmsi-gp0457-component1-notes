@@ -8,6 +8,8 @@ describe('siteMap', () => {
     expect(q2Index('/research/practice/r-j26-12')).toBe(4);
     expect(q2Index('/research/games/missing-link')).toBe(5);
     expect(q2Index('/revision/research')).toBe(6);
+    expect(q2Index('/revision/research/2a')).toBe(6);
+    expect(q2Index('/revision/research/2b')).toBe(6);
     expect(q2Index('/statements')).toBe(-1);
   });
 
@@ -37,6 +39,7 @@ describe('siteMap', () => {
   it('marks the right group active', () => {
     expect(Q1_GROUP.match('/statements/mindmap', '')).toBe(true);
     expect(Q2_GROUP.match('/revision/research', '')).toBe(true);
+    expect(Q2_GROUP.match('/revision/research/2b', '')).toBe(true);
     expect(Q2_GROUP.match('/revision/statements', '')).toBe(false);
   });
 

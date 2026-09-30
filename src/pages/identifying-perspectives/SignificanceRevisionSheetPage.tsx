@@ -57,7 +57,7 @@ export function SignificanceRevisionSheetPage() {
     <RevisionSheetShell accent="forest">
       <Container size="wide" className="pt-8 md:pt-12 pb-16">
         <SheetMasthead
-          index="3 of 4"
+          index="3 of 5"
           paper="Paper 1"
           question="Q1(d)"
           marks="8 marks"
@@ -301,7 +301,7 @@ function Footer() {
             <a href="/perspectives#weigh" className="text-[color:var(--sheet-accent)] underline">/perspectives#weigh</a>.
           </p>
           <p className="mt-2 font-mono text-[10.5px] uppercase tracking-[0.16em] text-[color:var(--color-ink-3)]">
-            Sheet 3 of 3 · <a href="/revision" className="underline">See all sheets →</a>
+            Sheet 3 of 5 · <a href="/revision" className="underline">See all sheets →</a>
           </p>
         </div>
       </div>

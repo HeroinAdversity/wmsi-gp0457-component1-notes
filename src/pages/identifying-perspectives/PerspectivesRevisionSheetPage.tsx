@@ -83,7 +83,7 @@ export function PerspectivesRevisionSheetPage() {
     <RevisionSheetShell accent="amber">
       <Container size="wide" className="pt-8 md:pt-12 pb-16">
         <SheetMasthead
-          index="2 of 4"
+          index="2 of 5"
           paper="Paper 1"
           question="Q1(c)"
           marks="6 marks"
@@ -290,7 +290,7 @@ function Footer() {
             <a href="/perspectives" className="text-[color:var(--sheet-accent)] underline">/perspectives</a>.
           </p>
           <p className="mt-2 font-mono text-[10.5px] uppercase tracking-[0.16em] text-[color:var(--color-ink-3)]">
-            Sheet 2 of 3 · <a href="/revision" className="underline">See all sheets →</a>
+            Sheet 2 of 5 · <a href="/revision" className="underline">See all sheets →</a>
           </p>
         </div>
       </div>

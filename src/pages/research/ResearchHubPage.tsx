@@ -34,7 +34,7 @@ const PATH = [
   { to: '/research/evaluate', step: 'Q2(a)', title: 'Strong or Shaky?', body: 'Annotate Source 3 and build strength/weakness chains.' },
   { to: '/research/design', step: 'Q2(b)', title: 'The Test Bench', body: 'Split the claim, then fill the Who · How · What · Why matrix.' },
   { to: '/research/practice', step: 'Practise', title: 'Practice bank', body: '33 Source 3s with answer schemes. Print any as a mock paper.' },
-  { to: '/revision/research', step: 'Revise', title: 'Revision sheet', body: 'One printable page for the week before the exam.' },
+  { to: '/revision/research', step: 'Revise', title: 'Revision sheets', body: 'One printable sheet each for 2(a) and 2(b), built on the mark scheme and examiner report.' },
 ];
 
 export function ResearchHubPage() {

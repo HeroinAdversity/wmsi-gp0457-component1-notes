@@ -1,0 +1,106 @@
+import type { Q1BankItem } from '../../types';
+
+export const N25_11_Q1_REWORDED: Q1BankItem = {
+  id: 'q1r-n25-11',
+  kind: 'reworded',
+  parent: 'N25-11',
+  title: 'Health education',
+  topic: 'Health and well-being',
+  source1: {
+    paragraphs: [
+      'One of the United Nations sustainable goals is healthy lives and well-being for everyone, whatever their age. Schools are a key place to learn about health. Yet around 30 per cent of the world’s population cannot get healthcare, and many children are not in school.',
+    ],
+    list: {
+      title: 'What a healthy lifestyle brings',
+      items: ['for individuals: a longer life, more energy, stronger resistance to disease, better well-being and mental health', 'for the nation: lower spending on medicine, more community involvement, better attendance at work, a stronger economy'],
+    },
+  },
+  source2: {
+    paragraphs: [
+      'Schools should promote healthy living. I am a teacher, and I strongly believe we should teach children how to stay healthy: what to eat, exercise, sleep, well-being and how to use health services.',
+      'We must teach these skills now, through healthy school meals, PE and lessons on health. Health workers should visit schools often to guide children and check how they are developing. Children will then feel confident to ask for advice and live healthily. Otherwise, who will care for the next generation? Healthy children grow into healthy parents.',
+      'When children miss out on health lessons, our community pays the price. Disease spreads, lives are shorter and people do not reach their potential. Poor results at school, weak economic growth and inequality will all get worse.',
+    ],
+    attribution: 'Adapted from a teacher’s blog about health education',
+  },
+  q1a: {
+    stem: 'According to Source 1, what percentage of the world’s population cannot get healthcare?',
+    answer: '30 per cent',
+    accept: ['30%', 'Around 30 per cent'],
+    distractors: [
+      { text: '30', why: 'Without “per cent” the number has no meaning here.' },
+      { text: 'Many children', why: 'That is about school, not healthcare, and it is not a percentage.' },
+      { text: 'Everyone, whatever their age', why: 'That is the UN goal, not the percentage without healthcare.' },
+      { text: '70 per cent', why: 'That is the share who can get healthcare, if you subtract. The question asks who cannot.' },
+    ],
+  },
+  statements: [
+    { source: 2, quote: 'Children will then feel confident to ask for advice and live healthily', type: 'Prediction', signal: 'will then',
+      why: 'It says what will happen in the future if health is taught.' },
+    { source: 2, quote: 'Poor results at school, weak economic growth and inequality will all get worse', type: 'Prediction', signal: 'will all get worse',
+      why: 'A forecast of future results if nothing changes.' },
+    { source: 2, quote: 'I strongly believe we should teach children how to stay healthy', type: 'Opinion', signal: 'I strongly believe',
+      why: 'A personal view, signalled by "I believe".' },
+    { source: 2, quote: 'Schools should promote healthy living', type: 'Value', signal: 'should',
+      why: 'It shows what the teacher thinks is right and important.' },
+    { source: 2, quote: 'Healthy children grow into healthy parents', type: 'Generalisation', signal: 'Healthy children',
+      why: 'Treated as always true for every child, which it is not.' },
+    { source: 1, quote: 'around 30 per cent of the world’s population cannot get healthcare', type: 'Fact', signal: '30 per cent',
+      why: 'A figure that can be checked.' },
+    { source: 2, quote: 'Disease spreads, lives are shorter', type: 'Claim', signal: 'Disease spreads',
+      why: 'A cause and effect stated as true, without evidence.' },
+  ],
+  q1b: {
+    type: 'Prediction',
+    explain: '“Children will then feel confident to ask for advice and live healthily” is a prediction because it says what will happen to children in the future if they are taught about health. It cannot be proved until then.',
+    oneMark: 'It is a prediction because it uses “will”.',
+  },
+  q1c: {
+    holder: 'the teacher',
+    on: 'on health education',
+    level: 'LOCAL',
+    points: [
+      { element: 'issues', quote: 'When children miss out on health lessons, our community pays the price', point: 'The issue is children growing up without health education.' },
+      { element: 'values', quote: 'Schools should promote healthy living', point: 'They believe schools have a duty to teach health.' },
+      { element: 'values', quote: 'who will care for the next generation?', point: 'They care about future generations.' },
+      { element: 'actions', quote: 'healthy school meals, PE and lessons on health', point: 'They want healthy meals, PE and health lessons.' },
+      { element: 'actions', quote: 'Health workers should visit schools often', point: 'They want health workers to visit schools.' },
+      { element: 'consequences', quote: 'Children will then feel confident to ask for advice', point: 'Taught children gain confidence and live healthily.' },
+      { element: 'consequences', quote: 'Disease spreads, lives are shorter', point: 'Without it, disease spreads and lives are shorter.' },
+      { element: 'consequences', quote: 'weak economic growth and inequality will all get worse', point: 'The economy and inequality suffer too.' },
+    ],
+    model: 'The teacher believes that “schools should promote healthy living”. The issue is children who never learn about health. They value future generations, asking “who will care for the next generation?” The actions they want are “healthy school meals, PE and lessons on health”, and “health workers should visit schools often”. They see good consequences, because children “will then feel confident to ask for advice”. They also warn of bad consequences if nothing is done: “disease spreads, lives are shorter”, and “inequality will all get worse”. Their perspective starts from their own school and community.',
+  },
+  voices: [
+    { who: 'A parent', quote: 'My son started eating vegetables after his class grew them in the school garden.', level: 'PERSONAL', why: 'One family’s experience.' },
+    { who: 'A town health officer', quote: 'Our clinic now sends a nurse to every primary school in the district each month.', level: 'LOCAL', why: 'One district’s schools.' },
+    { who: 'A health minister', quote: 'Health education will be a required subject in all state schools from next year.', level: 'NATIONAL', why: 'A rule for the whole country.' },
+    { who: 'A World Health Organization adviser', quote: 'Around the world, teaching children about health is one of the cheapest ways to save lives.', level: 'GLOBAL', why: 'About the whole world.' },
+  ],
+  q1d: {
+    focus: 'benefit of a healthy lifestyle',
+    lead: 'Sources 1 and 2 suggest benefits of a healthy lifestyle.',
+    options: [
+      { label: 'Stronger resistance to disease', source: 1, quote: 'stronger resistance to disease', test: 'crowd',
+        why: 'Fewer people fall ill, so diseases spread less through the whole community.' },
+      { label: 'A stronger economy', source: 1, quote: 'a stronger economy', test: 'domino',
+        why: 'A healthy workforce produces more, which pays for schools and services.' },
+      { label: 'Better well-being and mental health', source: 1, quote: 'better well-being and mental health', test: 'hurt',
+        why: 'Poor mental health can damage every part of a person’s life.' },
+      { label: 'A longer life', source: 1, quote: 'a longer life', test: 'hurt',
+        why: 'Living longer is the biggest possible gain for any individual.' },
+      { label: 'Healthy children grow into healthy parents', source: 2, quote: 'Healthy children grow into healthy parents', test: 'stuck',
+        why: 'Good habits pass down the generations, so the benefit lasts.' },
+    ],
+    model: 'I think stronger resistance to disease is the most significant benefit. It protects the whole community, not just one person. The teacher warns that without health education “disease spreads”, and when fewer people fall ill, infections have fewer chances to spread. This is even more important because around 30 per cent of the world’s population “cannot get healthcare”. For them, staying healthy may be their only protection. A longer life is also a big benefit, but it mainly helps each person on their own. Resistance to disease protects everyone around them too, so it matters most.',
+    levelUp: {
+      base: 'Resistance to disease is the most significant because being ill is bad.',
+      right: 'Use the source (“disease spreads”; 30 per cent “cannot get healthcare”), explain that it protects the whole community, and compare it with a longer life, which mainly helps one person.',
+      wrong: [
+        { text: 'Add the teacher’s ideas for school meals and PE.', why: 'Those are actions for 1(c), not reasons this benefit is most significant.' },
+        { text: 'Add “I have been ill before and it was horrible.”', why: 'A personal story is not support from the source, and it has no comparison.' },
+        { text: 'Copy out the whole list of benefits from Source 1.', why: 'Copying the list shows no judgement.' },
+      ],
+    },
+  },
+};

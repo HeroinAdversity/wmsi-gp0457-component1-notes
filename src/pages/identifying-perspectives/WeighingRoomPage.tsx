@@ -28,6 +28,7 @@ import {
   TOOL_ID,
   type CriterionKey,
 } from './weighingRoomData';
+import { TabNoteBadge } from '../../components/NotesLayer';
 
 type TabKey = 'overview' | 'toolkit' | 'model' | 'levelup' | 'practice' | 'journal';
 
@@ -125,7 +126,7 @@ export function WeighingRoomSection({
   return (
     <>
       {/* STICKY SUB-TAB STRIP */}
-      <div className="sticky top-[64px] z-30 bg-[color:var(--color-paper)]/95 backdrop-blur-md border-b border-[color:var(--color-line)]">
+      <div className="sticky top-[calc(var(--site-header-h,64px)+var(--section-bar-h,0px))] z-20 bg-[color:var(--color-paper)]/95 backdrop-blur-md border-b border-[color:var(--color-line)]">
         <Container size="wide">
           <nav className="flex gap-6 md:gap-8 overflow-x-auto no-scrollbar -mb-px" role="tablist" aria-label="Weighing Room tabs">
             {TABS.map((t) => {
@@ -144,6 +145,7 @@ export function WeighingRoomSection({
                   }`}
                 >
                   <Bi en={t.en} zh={t.zh} />
+                  <TabNoteBadge tab={`weigh-${t.key}`} />
                 </button>
               );
             })}

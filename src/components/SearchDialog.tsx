@@ -5,7 +5,7 @@ import { search, type SearchEntry, type SearchFilter } from '../lib/searchIndex'
 
 const FILTERS: { id: SearchFilter | 'all'; label: string }[] = [
   { id: 'all', label: 'All' },
-  { id: 'Q1', label: 'Question 1' },
+  { id: 'Q1', label: 'Perspectives · Q1' },
   { id: 'Q2', label: 'Question 2' },
   { id: 'Glossary', label: 'Glossary' },
   { id: 'Practice', label: 'Practice papers' },

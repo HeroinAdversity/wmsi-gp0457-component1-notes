@@ -1,0 +1,105 @@
+import type { Q1BankItem } from '../../types';
+
+export const N25_11_Q1_MIRROR_B: Q1BankItem = {
+  id: 'q1m-n25-11-b',
+  kind: 'mirror',
+  parent: 'N25-11',
+  title: 'Learning to swim',
+  topic: 'Health and well-being',
+  source1: {
+    paragraphs: [
+      'Drowning is one of the leading causes of death for children around the world. The World Health Organization estimates that more than 90 per cent of drowning deaths happen in low- and middle-income countries, where few children have swimming lessons.',
+    ],
+    list: {
+      title: 'Benefits of learning to swim',
+      items: ['for individuals: water safety, fitness, confidence, a lifelong hobby', 'for communities: fewer drownings, safer beaches and rivers, jobs as lifeguards and coaches, more tourism'],
+    },
+  },
+  source2: {
+    paragraphs: [
+      'Every child should learn to swim before leaving primary school. As a swimming coach, I strongly believe that swimming is a life skill, not a luxury.',
+      'We must offer free lessons, build more public pools and teach water safety in class. Parents should be taught too. Children who can swim will be safer near rivers and the sea for the rest of their lives. If we do nothing, who will pull the next child out of the water?',
+      'When children cannot swim, families live in fear during the rainy season. Tragedies happen at school trips and family picnics. Whole villages will keep losing children to floods and rivers.',
+    ],
+    attribution: 'Adapted from a swimming coach’s article in a local newspaper',
+  },
+  q1a: {
+    stem: 'According to Source 1, what percentage of drowning deaths happen in low- and middle-income countries?',
+    answer: '90 per cent',
+    accept: ['More than 90 per cent', '90%'],
+    distractors: [
+      { text: '90', why: 'Include “per cent”.' },
+      { text: 'Few children', why: 'That describes swimming lessons, not the percentage of deaths.' },
+      { text: 'Most children', why: 'Too vague, and not what the source says.' },
+      { text: '10 per cent', why: 'That would be the share in high-income countries. The question asks the opposite.' },
+    ],
+  },
+  statements: [
+    { source: 2, quote: 'Children who can swim will be safer near rivers and the sea for the rest of their lives', type: 'Prediction', signal: 'will be safer',
+      why: 'It says what will be true for these children in the future.' },
+    { source: 2, quote: 'Whole villages will keep losing children to floods and rivers', type: 'Prediction', signal: 'will keep losing',
+      why: 'A forecast of what will happen if nothing changes.' },
+    { source: 2, quote: 'I strongly believe that swimming is a life skill, not a luxury', type: 'Opinion', signal: 'I strongly believe',
+      why: 'A personal belief, signalled by "I believe".' },
+    { source: 2, quote: 'Every child should learn to swim before leaving primary school', type: 'Value', signal: 'should',
+      why: 'It shows what the coach thinks is right.' },
+    { source: 2, quote: 'When children cannot swim, families live in fear during the rainy season', type: 'Generalisation', signal: 'families live in fear',
+      why: 'It applies to all such families, without evidence.' },
+    { source: 1, quote: 'more than 90 per cent of drowning deaths happen in low- and middle-income countries', type: 'Fact', signal: '90 per cent',
+      why: 'A figure from a named organisation.' },
+    { source: 2, quote: 'Tragedies happen at school trips and family picnics', type: 'Claim', signal: 'Tragedies happen',
+      why: 'Stated as true, but no examples or figures are given.' },
+  ],
+  q1b: {
+    type: 'Prediction',
+    explain: '“Children who can swim will be safer near rivers and the sea for the rest of their lives” is a prediction because it says what will happen to these children in the future. It cannot be checked yet.',
+    oneMark: 'It is a prediction because it is about the future.',
+  },
+  q1c: {
+    holder: 'the coach',
+    on: 'on swimming lessons',
+    level: 'LOCAL',
+    points: [
+      { element: 'issues', quote: 'When children cannot swim', point: 'The issue is children who cannot swim.' },
+      { element: 'values', quote: 'Every child should learn to swim before leaving primary school', point: 'They believe every child has a right to learn to swim.' },
+      { element: 'values', quote: 'swimming is a life skill, not a luxury', point: 'They see swimming as essential, not a luxury.' },
+      { element: 'actions', quote: 'We must offer free lessons, build more public pools', point: 'They want free lessons and more public pools.' },
+      { element: 'actions', quote: 'teach water safety in class', point: 'They want water safety taught in class.' },
+      { element: 'consequences', quote: 'Children who can swim will be safer', point: 'Children who can swim are safer for life.' },
+      { element: 'consequences', quote: 'Whole villages will keep losing children to floods and rivers', point: 'Without action, children keep drowning.' },
+    ],
+    model: 'The coach believes that “every child should learn to swim before leaving primary school”, and that swimming is “a life skill, not a luxury”. The issue is children who cannot swim. The actions they want are to “offer free lessons, build more public pools and teach water safety in class”, and to teach parents too. The consequence of lessons is that children “will be safer” for the rest of their lives. Without them, “families live in fear” and “whole villages will keep losing children to floods and rivers”. Their view comes from coaching in their own area.',
+  },
+  voices: [
+    { who: 'A mother in a river village', quote: 'I never let my son near the river because none of us can swim.', level: 'PERSONAL', why: 'Her own family.' },
+    { who: 'A town council leader', quote: 'Our new public pool offers free lessons to every child in the district.', level: 'LOCAL', why: 'One district.' },
+    { who: 'An education minister', quote: 'Swimming will be part of the primary curriculum across the country.', level: 'NATIONAL', why: 'A national curriculum.' },
+    { who: 'A WHO safety expert', quote: 'Drowning kills over 200,000 people worldwide every year.', level: 'GLOBAL', why: 'Worldwide figures.' },
+  ],
+  q1d: {
+    focus: 'benefit of learning to swim',
+    lead: 'Sources 1 and 2 suggest benefits of learning to swim.',
+    options: [
+      { label: 'Water safety', source: 1, quote: 'water safety', test: 'hurt',
+        why: 'It can be the difference between life and death.' },
+      { label: 'Fewer drownings', source: 1, quote: 'fewer drownings', test: 'crowd',
+        why: 'It protects whole communities that live near water.' },
+      { label: 'Fitness', source: 1, quote: 'fitness', test: 'domino',
+        why: 'Fitter people have fewer illnesses and more energy for school and work.' },
+      { label: 'A lifelong hobby', source: 1, quote: 'a lifelong hobby', test: 'stuck',
+        why: 'The benefit lasts for life.' },
+      { label: 'Jobs as lifeguards and coaches', source: 1, quote: 'jobs as lifeguards and coaches', test: 'domino',
+        why: 'New jobs bring income and make beaches safer for others.' },
+    ],
+    model: 'I think water safety is the most significant benefit, because it saves lives. Source 1 says drowning is “one of the leading causes of death for children”, and the coach warns that villages “will keep losing children to floods and rivers”. A child who can swim can survive falling into a river, which nothing else can guarantee. Fitness is also a real benefit, and it helps health for years. But a child has to survive to enjoy being fit. Because losing a life is the worst harm of all, water safety is the most significant benefit.',
+    levelUp: {
+      base: 'Water safety is the best because swimming is important.',
+      right: 'Use Source 1 (drowning is “one of the leading causes of death for children”), explain that it saves lives, and compare with fitness, which a child can only enjoy if they survive.',
+      wrong: [
+        { text: 'Describe the free lessons the coach wants.', why: 'That is an action for 1(c), not justification.' },
+        { text: 'Say that swimming is fun.', why: 'A personal view with no support or comparison.' },
+        { text: 'List every benefit in Source 1.', why: 'Listing avoids making a judgement.' },
+      ],
+    },
+  },
+};

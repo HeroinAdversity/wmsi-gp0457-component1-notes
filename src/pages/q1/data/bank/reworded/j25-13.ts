@@ -1,0 +1,101 @@
+import type { Q1BankItem } from '../../types';
+
+export const J25_13_Q1_REWORDED: Q1BankItem = {
+  id: 'q1r-j25-13',
+  kind: 'reworded',
+  parent: 'J25-13',
+  title: 'Art and the environment',
+  topic: 'Sustainable living',
+  source1: {
+    paragraphs: [
+      'People often use the arts to share their views on global issues. Many are anxious about the environment, and the environmental movement has drawn attention to its concerns with pictures of endangered animals, eye-catching posters and the colour green.',
+      'Photographs, films, the media and art have all been used to show the effects of global warming, to persuade people to act.',
+    ],
+  },
+  source2: {
+    paragraphs: [
+      'Save the Planet!',
+      'Wildfires in Europe. Droughts in Africa. Floods and storms in Asia. Glaciers melting in North America.',
+      'Everyone knows that global warming is behind extreme weather and environmental disasters. We are running out of time! But there is still a chance. Together, we can make a difference!',
+      'Join Save the Planet! and back our campaign for a cleaner, safer world. Politicians must start treating global warming seriously. Sign our petition to show you care!',
+    ],
+    attribution: 'Adapted from an advertisement by the environmental action group Save the Planet!',
+  },
+  q1a: {
+    stem: 'According to Source 1, what colour has been used to promote the environmental movement?',
+    answer: 'Green',
+    accept: ['The colour green'],
+    distractors: [
+      { text: 'Blue, for the oceans', why: 'Not in the source. Answer only from what Source 1 says.' },
+      { text: 'Eye-catching posters', why: 'Posters are another method, not a colour.' },
+      { text: 'Pictures of endangered animals', why: 'Also a method used, but the question asks for a colour.' },
+      { text: 'Green and posters', why: 'Adding a wrong part to a right answer can lose the mark.' },
+    ],
+  },
+  statements: [
+    { source: 2, quote: 'Politicians must start treating global warming seriously', type: 'Opinion', signal: 'must',
+      why: 'A personal view of what politicians should do. People could disagree.' },
+    { source: 2, quote: 'We are running out of time', type: 'Opinion', signal: 'running out of time',
+      why: 'A judgement about how urgent things are, not something that can be proved.' },
+    { source: 2, quote: 'But there is still a chance', type: 'Opinion', signal: 'still a chance',
+      why: 'A hopeful view that cannot be checked.' },
+    { source: 2, quote: 'Everyone knows that global warming is behind extreme weather', type: 'Generalisation', signal: 'Everyone knows',
+      why: '"Everyone" applies one belief to all people, which is not true of everyone.' },
+    { source: 2, quote: 'Together, we can make a difference', type: 'Claim', signal: 'can make a difference',
+      why: 'Stated as true, but no evidence shows what difference joining will make.' },
+    { source: 2, quote: 'back our campaign for a cleaner, safer world', type: 'Value', signal: 'cleaner, safer world',
+      why: 'It shows what the group thinks matters: a cleaner, safer world.' },
+    { source: 1, quote: 'Many are anxious about the environment', type: 'Claim', signal: 'Many',
+      why: '"Many" is not measured. It is stated without evidence.' },
+  ],
+  q1b: {
+    type: 'Opinion',
+    explain: '“Politicians must start treating global warming seriously” is an opinion because it is the group’s personal view of what politicians should do. It cannot be proved true or false, and others might disagree.',
+    oneMark: 'It is an opinion because it is what someone thinks.',
+  },
+  q1c: {
+    holder: 'Save the Planet!',
+    on: '',
+    level: 'GLOBAL',
+    points: [
+      { element: 'issues', quote: 'Wildfires in Europe. Droughts in Africa. Floods and storms in Asia.', point: 'The issue is extreme weather and disasters on every continent.' },
+      { element: 'causes', quote: 'global warming is behind extreme weather and environmental disasters', point: 'They blame global warming for these disasters.' },
+      { element: 'consequences', quote: 'Glaciers melting in North America', point: 'Consequences include melting glaciers, fires, droughts and floods.' },
+      { element: 'values', quote: 'a cleaner, safer world', point: 'They value a clean environment and the future.' },
+      { element: 'values', quote: 'Together, we can make a difference', point: 'They believe in collective action and are hopeful.' },
+      { element: 'actions', quote: 'Sign our petition', point: 'They ask people to sign a petition.' },
+      { element: 'actions', quote: 'Politicians must start treating global warming seriously', point: 'They want to pressure politicians.' },
+    ],
+    model: 'Save the Planet! is an action group with a global perspective. The issue is extreme weather: “wildfires in Europe”, “droughts in Africa” and floods in Asia. They see global warming as the cause of these “environmental disasters”, and the consequences include melting glaciers. They value “a cleaner, safer world”, and they are hopeful: “there is still a chance”. They believe people acting “together” can make a difference. Their actions are campaigning and a petition. They want politicians to start “treating global warming seriously”.',
+  },
+  voices: [
+    { who: 'A farmer whose crops failed', quote: 'Two dry years in a row. I have sold my cows to feed my children.', level: 'PERSONAL', why: 'His own farm and family.' },
+    { who: 'A city mayor', quote: 'We are planting 10,000 trees along our streets to cool the city in summer.', level: 'LOCAL', why: 'One city’s plan.' },
+    { who: 'A government environment minister', quote: 'Our country will stop building coal power stations by 2030.', level: 'NATIONAL', why: 'A national energy decision.' },
+    { who: 'A UN climate scientist', quote: 'Glaciers are shrinking on every continent, and sea levels rise with them.', level: 'GLOBAL', why: 'Every continent.' },
+  ],
+  q1d: {
+    focus: 'consequence of global warming',
+    lead: 'Sources 1 and 2 describe some consequences of global warming.',
+    options: [
+      { label: 'Droughts', source: 2, quote: 'Droughts in Africa', test: 'hurt',
+        why: 'Drought destroys crops and water supplies, so people go hungry or have to leave their homes.' },
+      { label: 'Melting glaciers', source: 2, quote: 'Glaciers melting in North America', test: 'stuck',
+        why: 'Once glaciers melt they take centuries to return, and sea levels keep rising.' },
+      { label: 'Floods and storms', source: 2, quote: 'Floods and storms in Asia', test: 'crowd',
+        why: 'Huge numbers of people live in low-lying, crowded parts of Asia.' },
+      { label: 'Wildfires', source: 2, quote: 'Wildfires in Europe', test: 'domino',
+        why: 'Fires destroy forests, which releases more carbon and speeds up the warming.' },
+    ],
+    model: 'I think melting glaciers is the most significant consequence, because it cannot be undone. Source 2 mentions “glaciers melting in North America”. Once a glacier has melted it takes centuries to form again, and the water raises sea levels for good. That threatens coastal cities and whole low-lying countries. Droughts are also very serious, because they destroy crops. However, rain can return and farms can recover after a drought, but a melted glacier cannot come back. Because the damage is permanent and keeps growing, melting glaciers is the most significant consequence.',
+    levelUp: {
+      base: 'Melting glaciers is the most significant because the ice is melting.',
+      right: 'Explain why it matters most (the damage cannot be reversed, and rising seas threaten cities). Quote Source 2, then compare with droughts, which farms can recover from.',
+      wrong: [
+        { text: 'Describe how the environmental movement uses posters.', why: 'Source 1’s posters are not a consequence of global warming, so this is off the question.' },
+        { text: 'Repeat the choice more strongly: “Melting glaciers is definitely the worst.”', why: 'Saying it more strongly does not add support or a comparison.' },
+        { text: 'List all four disasters in Source 2.', why: 'Listing is not judging. Pick one and justify it.' },
+      ],
+    },
+  },
+};

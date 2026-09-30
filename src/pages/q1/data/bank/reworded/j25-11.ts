@@ -1,0 +1,107 @@
+import type { Q1BankItem } from '../../types';
+
+export const J25_11_Q1_REWORDED: Q1BankItem = {
+  id: 'q1r-j25-11',
+  kind: 'reworded',
+  parent: 'J25-11',
+  title: 'Peaceful protest',
+  topic: 'Conflict and peace',
+  source1: {
+    paragraphs: [
+      'Peaceful protest refuses to use force or violence to bring about political or social change. Campaigners for social justice in many countries have used it, and it is often called people power.',
+      'The key idea is that governments and rulers only hold power because ordinary citizens cooperate with them. Peaceful protest challenges that power by withdrawing citizens’ goodwill and cooperation.',
+    ],
+    list: {
+      title: 'Common methods of peaceful protest',
+      items: ['protest marches and campaigns', 'refusing to cooperate or obey, including strikes', 'occupying buildings and staging publicity stunts'],
+    },
+  },
+  source2: {
+    paragraphs: [
+      'People in every country worry about the same global issues: unemployment, poverty and inequality, disease and weak health care, damage to the environment, climate change, crime and corruption, migration, and war.',
+      'Because of globalisation, every country will feel the effects of these issues. If we want a safe future, we cannot look away. The United Nations Sustainable Development Goals show that action is needed.',
+      'Protest movements will get bigger. We must unite to make the world better. We are running out of time, so do not ignore what is happening!',
+    ],
+    attribution: 'Adapted from a leaflet by an action group campaigning for global social justice',
+  },
+  q1a: {
+    stem: 'From Source 1, identify one method of peaceful protest.',
+    answer: 'Protest marches',
+    accept: ['Campaigns', 'Strikes', 'Refusing to cooperate or obey', 'Occupying buildings', 'Publicity stunts'],
+    distractors: [
+      { text: 'Using force to bring about change', why: 'Source 1 says peaceful protest refuses to use force: the opposite of a method.' },
+      { text: 'People power', why: 'That is a name for peaceful protest, not a method it uses.' },
+      { text: 'Withdrawing cooperation from governments', why: 'That is the idea behind protest. The question wants one of the listed methods, such as strikes.' },
+      { text: 'Protest marches, strikes, occupying buildings and publicity stunts', why: 'The question asks for one method. A long list risks including a wrong answer and wastes time.' },
+    ],
+  },
+  statements: [
+    { source: 2, quote: 'Protest movements will get bigger', type: 'Prediction', signal: 'will get',
+      why: 'It says what will happen in the future. It cannot be checked yet.' },
+    { source: 2, quote: 'every country will feel the effects of these issues', type: 'Prediction', signal: 'will feel',
+      why: 'A statement about the future: every country is expected to be affected.' },
+    { source: 2, quote: 'People in every country worry about the same global issues', type: 'Generalisation', signal: 'every country',
+      why: '"Every country" and "the same" stretch a concern to everyone everywhere.' },
+    { source: 2, quote: 'We must unite to make the world better', type: 'Value', signal: 'must',
+      why: 'It shows what the group believes is right: working together for a better world.' },
+    { source: 2, quote: 'We are running out of time', type: 'Opinion', signal: 'running out of time',
+      why: 'A judgement about urgency that people could reasonably disagree with.' },
+    { source: 2, quote: 'The United Nations Sustainable Development Goals show that action is needed', type: 'Claim', signal: 'show that',
+      why: 'Put forward as true, but no detail of the goals is given to back it up.' },
+    { source: 1, quote: 'Campaigners for social justice in many countries have used it', type: 'Fact', signal: 'have used it',
+      why: 'A statement about the past that can be checked against history.' },
+  ],
+  q1b: {
+    type: 'Prediction',
+    explain: '“Protest movements will get bigger” is a prediction because it says what will happen in the future, using “will”. It cannot be proved true or false until that time comes.',
+    oneMark: 'It is a prediction because it is about the future.',
+  },
+  q1c: {
+    holder: 'the writer',
+    on: '',
+    level: 'GLOBAL',
+    points: [
+      { element: 'issues', quote: 'People in every country worry about the same global issues', point: 'The issue is a set of global problems, such as poverty, climate change and war.' },
+      { element: 'causes', quote: 'Because of globalisation', point: 'Globalisation is why these issues now reach every country.' },
+      { element: 'consequences', quote: 'every country will feel the effects of these issues', point: 'All countries will be affected.' },
+      { element: 'consequences', quote: 'If we want a safe future, we cannot look away', point: 'Ignoring the issues puts our future safety at risk.' },
+      { element: 'values', quote: 'We must unite to make the world better', point: 'They value unity and a fairer, better world.' },
+      { element: 'values', quote: 'We are running out of time', point: 'They feel strong urgency.' },
+      { element: 'actions', quote: 'Protest movements will get bigger', point: 'They support protest movements and expect them to grow.' },
+      { element: 'actions', quote: 'The United Nations Sustainable Development Goals show that action is needed', point: 'They point to the UN goals as a call for action.' },
+    ],
+    model: 'The writer is from an action group and has a global perspective. The issue is a set of problems felt “in every country”, such as poverty, climate change and war. They see globalisation as the cause, so “every country will feel the effects”. The consequence of ignoring the problems is that we will not have “a safe future”. They value unity and urgency: “We must unite to make the world better” and “We are running out of time”. The action they want is protest. They say “protest movements will get bigger”, and they use the UN Sustainable Development Goals to show “action is needed”.',
+  },
+  voices: [
+    { who: 'A student who joined her first march', quote: 'I marched because my family can’t afford clean water. I wanted someone to see us.', level: 'PERSONAL', why: 'Her own reason and her own family.' },
+    { who: 'A neighbourhood organiser', quote: 'Our street protest stopped the council closing the only clinic in our district.', level: 'LOCAL', why: 'One district and its clinic.' },
+    { who: 'A national trade union leader', quote: 'Workers across the country will strike next month unless the minimum wage rises.', level: 'NATIONAL', why: 'A nationwide strike about a national wage.' },
+    { who: 'A spokesperson for a worldwide climate movement', quote: 'Young people on every continent are marching because climate change ignores borders.', level: 'GLOBAL', why: 'Every continent, and an issue that crosses borders.' },
+  ],
+  q1d: {
+    focus: 'global issue',
+    lead: 'Sources 1 and 2 identify some global issues.',
+    options: [
+      { label: 'Climate change', source: 2, quote: 'climate change', test: 'stuck',
+        why: 'Once the climate warms and species are lost, the damage lasts for generations and is very hard to reverse.' },
+      { label: 'War', source: 2, quote: 'war', test: 'hurt',
+        why: 'War kills and injures people and destroys homes, so it damages lives more than any other issue.' },
+      { label: 'Poverty and inequality', source: 2, quote: 'poverty and inequality', test: 'domino',
+        why: 'Poverty leads to poor health, lost schooling and crime, so it causes many of the other issues.' },
+      { label: 'Crime and corruption', source: 2, quote: 'crime and corruption', test: 'fair',
+        why: 'Corruption lets a few people take what belongs to everyone, which is deeply unfair.' },
+      { label: 'Unemployment', source: 2, quote: 'unemployment', test: 'crowd',
+        why: 'Millions of workers and their families in every country depend on having jobs.' },
+    ],
+    model: 'I think climate change is the most significant global issue. Its effects last and are very hard to reverse. Source 2 warns that “every country will feel the effects” of these issues, and climate change is the clearest example. Rising temperatures affect farming, water and health everywhere. Poverty is also very serious and causes many other problems. However, poverty can be reduced within a generation through jobs and education, whereas the damage from a warming climate cannot be undone. Because it is so hard to reverse, climate change is the most significant issue.',
+    levelUp: {
+      base: 'I think climate change is the most significant issue because it is really bad for the planet.',
+      right: 'Explain why it matters most (the damage lasts and is very hard to reverse), quote Source 2 (“every country will feel the effects”), and compare it with poverty, which can be reduced faster.',
+      wrong: [
+        { text: 'Add two more issues from Source 2 and say they are also bad.', why: 'More issues without a reason is still Level 2. The answer needs one clear, supported choice.' },
+        { text: 'Add a sentence describing what globalisation is.', why: 'Describing the topic does not explain why this issue is the most significant.' },
+        { text: 'End with “So everyone should care about the planet.”', why: 'A call to action is not a justification. It adds no evidence or comparison.' },
+      ],
+    },
+  },
+};

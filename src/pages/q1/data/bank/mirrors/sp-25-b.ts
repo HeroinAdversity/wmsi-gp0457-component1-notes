@@ -1,0 +1,105 @@
+import type { Q1BankItem } from '../../types';
+
+export const SP_25_Q1_MIRROR_B: Q1BankItem = {
+  id: 'q1m-sp-25-b',
+  kind: 'mirror',
+  parent: 'SP-25',
+  title: 'Child labour',
+  topic: 'Employment',
+  source1: {
+    paragraphs: [
+      'The United Nations has a goal to end child labour in all its forms. There has been progress since 2000.',
+      'However, the International Labour Organization estimated that 160 million children were in child labour in 2020. Almost half of them, about 79 million, were doing hazardous work that could harm their health or safety.',
+    ],
+    list: {
+      title: 'Causes of child labour',
+      items: ['family poverty', 'no school nearby or school fees', 'demand for cheap labour', 'debts passed down in families', 'crises such as war or pandemics', 'weak laws and inspections'],
+    },
+  },
+  source2: {
+    paragraphs: [
+      'We are a charity campaigning against child labour.',
+      'Pandemics and falling family incomes mean more children are being sent to work. In some regions, one in five children works instead of going to school. Child labour always robs children of their education and their health.',
+      'We must protect every child’s right to a childhood. We cannot buy products made by children and look away. Join us and demand that companies check their supply chains. Support our schools programme and help thousands of children return to class. When shoppers speak up, companies listen. Together we can make child labour history.',
+    ],
+    attribution: 'Adapted from a children’s rights charity website, accessed 2022',
+  },
+  q1a: {
+    stem: 'According to Source 1, how many children were in child labour in 2020?',
+    answer: '160 million',
+    accept: ['160 million children'],
+    distractors: [
+      { text: '79 million', why: 'That is the number doing hazardous work, not all child labour.' },
+      { text: 'One in five', why: 'That is from Source 2, for some regions only.' },
+      { text: '160', why: 'Without “million” the figure is wrong.' },
+      { text: 'Almost half', why: 'That is the share doing hazardous work.' },
+    ],
+  },
+  statements: [
+    { source: 2, quote: 'Child labour always robs children of their education and their health', type: 'Generalisation', signal: 'always',
+      why: '"Always" makes it true in every case.' },
+    { source: 2, quote: 'When shoppers speak up, companies listen', type: 'Generalisation', signal: 'When shoppers speak up',
+      why: 'It says companies always respond.' },
+    { source: 2, quote: 'We must protect every child’s right to a childhood', type: 'Value', signal: 'right to a childhood',
+      why: 'A belief about children’s rights.' },
+    { source: 2, quote: 'more children are being sent to work', type: 'Claim', signal: 'more children',
+      why: 'A trend stated without figures.' },
+    { source: 1, quote: 'the International Labour Organization estimated that 160 million children were in child labour in 2020', type: 'Fact', signal: '160 million',
+      why: 'A figure from a named organisation.' },
+    { source: 2, quote: 'Join us and demand that companies check their supply chains', type: 'Vested interest', signal: 'Join us',
+      why: 'The charity wants supporters, so it presents the issue strongly.' },
+    { source: 2, quote: 'Together we can make child labour history', type: 'Prediction', signal: 'can make',
+      why: 'It looks ahead to ending child labour.' },
+  ],
+  q1b: {
+    type: 'Generalisation',
+    explain: '“Child labour always robs children of their education and their health” is a generalisation because the word “always” says it happens in every case. Some working children still go to school, so it is not always true.',
+    oneMark: 'It is a generalisation because it says “always”.',
+  },
+  q1c: {
+    holder: 'the charity',
+    on: 'on child labour',
+    level: 'GLOBAL',
+    points: [
+      { element: 'issues', quote: 'one in five children works instead of going to school', point: 'The issue is children working instead of going to school.' },
+      { element: 'causes', quote: 'Pandemics and falling family incomes', point: 'Pandemics and falling incomes push children into work.' },
+      { element: 'consequences', quote: 'robs children of their education and their health', point: 'Children lose education and health.' },
+      { element: 'values', quote: 'We must protect every child’s right to a childhood', point: 'They believe every child has a right to a childhood.' },
+      { element: 'actions', quote: 'demand that companies check their supply chains', point: 'They pressure companies to check supply chains.' },
+      { element: 'actions', quote: 'Support our schools programme', point: 'They run a schools programme.' },
+    ],
+    model: 'The charity sees child labour as a growing problem: “more children are being sent to work”, and in some regions “one in five children works instead of going to school”. They blame “pandemics and falling family incomes”. The consequence is that child labour “robs children of their education and their health”. They value children’s rights, saying “we must protect every child’s right to a childhood”. Their actions are asking people to “demand that companies check their supply chains” and to support their schools programme. They believe “when shoppers speak up, companies listen”.',
+  },
+  voices: [
+    { who: 'A 12-year-old who works in a brick kiln', quote: 'I carry bricks from six in the morning. I want to go back to school.', level: 'PERSONAL', why: 'His own life.' },
+    { who: 'A village school teacher', quote: 'Our free lunch scheme has brought thirty working children back to class.', level: 'LOCAL', why: 'One village school.' },
+    { who: 'A labour minister', quote: 'Factories that employ children will lose their licence across the country.', level: 'NATIONAL', why: 'A national law.' },
+    { who: 'An ILO official', quote: 'Child labour exists in every region of the world, not only the poorest.', level: 'GLOBAL', why: 'Every region.' },
+  ],
+  q1d: {
+    focus: 'cause of child labour',
+    lead: 'Sources 1 and 2 suggest causes of child labour.',
+    options: [
+      { label: 'Family poverty', source: 1, quote: 'family poverty', test: 'crowd',
+        why: 'It is behind most child labour, in every region.' },
+      { label: 'Demand for cheap labour', source: 1, quote: 'demand for cheap labour', test: 'fair',
+        why: 'Companies profit from children who cannot refuse.' },
+      { label: 'Debts passed down in families', source: 1, quote: 'debts passed down in families', test: 'stuck',
+        why: 'Children are trapped for years paying off debts they did not make.' },
+      { label: 'No school nearby or school fees', source: 1, quote: 'no school nearby or school fees', test: 'domino',
+        why: 'Without school, children work, earn little and stay poor as adults.' },
+      { label: 'Pandemics', source: 2, quote: 'Pandemics', test: 'hurt',
+        why: 'Sudden crises push families into desperate choices.' },
+    ],
+    model: 'I think family poverty is the most significant cause of child labour, because it is the reason behind most of the others. Source 2 says that “falling family incomes mean more children are being sent to work”. Families send children to work because they need the money to survive. Demand for cheap labour is also important, because companies profit from it. But companies can only hire children whose families are desperate for income. If families were not poor, far fewer children would be available to exploit. So family poverty is the most significant cause.',
+    levelUp: {
+      base: 'Poverty is the main cause because poor families need money.',
+      right: 'Quote Source 2 (“falling family incomes mean more children are being sent to work”), explain that it lies behind the other causes, and compare with demand for cheap labour.',
+      wrong: [
+        { text: 'Add that 79 million children do hazardous work.', why: 'A figure not linked to why poverty matters most.' },
+        { text: 'Describe the schools programme.', why: 'That is 1(c) material.' },
+        { text: 'Say that child labour is wrong.', why: 'A value, not a justification of the cause.' },
+      ],
+    },
+  },
+};

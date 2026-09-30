@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { FOOTER_MAP, GROUPS, Q1_GROUP, Q2_GROUP, Q2_SEQUENCE, currentPage, q2Index } from './siteMap';
+import { FOOTER_MAP, GROUPS, Q1_GROUP, Q2_GROUP, Q2_SEQUENCE, currentPage, q1Index, q2Index } from './siteMap';
 import { buildIndex, search } from './searchIndex';
 
 describe('siteMap', () => {
@@ -9,6 +9,18 @@ describe('siteMap', () => {
     expect(q2Index('/research/games/missing-link')).toBe(5);
     expect(q2Index('/revision/research')).toBe(6);
     expect(q2Index('/statements')).toBe(-1);
+  });
+
+  it('finds the Q1 section, splitting 1(c) and 1(d) by hash', () => {
+    expect(q1Index('/source-recall', '')).toBe(0);
+    expect(q1Index('/statements/mindmap', '')).toBe(1);
+    expect(q1Index('/perspectives', '#framework')).toBe(2);
+    expect(q1Index('/perspectives', '#weigh-toolkit')).toBe(3);
+    expect(q1Index('/perspectives/practice/q1r-j25-11', '')).toBe(4);
+    expect(q1Index('/perspectives/games/q1-level', '')).toBe(5);
+    expect(q1Index('/revision/significance', '')).toBe(6);
+    expect(q1Index('/revision/research', '')).toBe(-1);
+    expect(Q1_GROUP.label).toBe('Perspectives · Q1');
   });
 
   it('tells Perspectives and Significance apart by hash', () => {

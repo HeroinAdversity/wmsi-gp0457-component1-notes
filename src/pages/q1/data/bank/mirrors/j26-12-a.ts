@@ -1,0 +1,107 @@
+import type { Q1BankItem } from '../../types';
+
+export const J26_12_Q1_MIRROR_A: Q1BankItem = {
+  id: 'q1m-j26-12-a',
+  kind: 'mirror',
+  parent: 'J26-12',
+  title: 'Online fraud',
+  topic: 'Law and criminality',
+  source1: {
+    paragraphs: [
+      'A report estimated that victims around the world lost $1.03 trillion to online scams in 2023. The average loss per victim was $1,250.',
+      'Online fraud has grown every year since 2015. Scammers now use fake shopping sites, messages pretending to come from banks, and AI-generated voices of family members.',
+    ],
+    list: {
+      title: 'Causes of online fraud',
+      items: ['weak passwords and security', 'people not recognising scams', 'criminals hiding in other countries', 'the promise of quick profits', 'loneliness, which scammers exploit'],
+    },
+  },
+  source2: {
+    paragraphs: [
+      'Online fraud includes stealing money and stealing personal information. Scams destroy people’s trust in the internet, and businesses lose customers. Victims often feel too ashamed to report the crime!',
+      'Scam centres are frequently run by criminal gangs that also traffic people and launder money across borders.',
+      'Fraud is a growing danger, so sharing information about scam websites and working with banks helps stop criminals. We train police officers in many countries, but online fraud can only be stopped if every country works together.',
+    ],
+    attribution: 'Adapted from the website of an international cybercrime agency, 2024',
+  },
+  q1a: {
+    stem: 'From Source 1, identify the average loss per victim of online scams in 2023.',
+    answer: '$1,250',
+    accept: ['1,250 dollars'],
+    note: 'Units ($ or dollars) must be included.',
+    distractors: [
+      { text: '$1.03 trillion', why: 'That is the total lost worldwide, not the average per victim.' },
+      { text: '1,250', why: 'Right number, but no units.' },
+      { text: '2015', why: 'That is when the growth started.' },
+      { text: 'Fake shopping sites', why: 'That is a method scammers use.' },
+    ],
+  },
+  statements: [
+    { source: 2, quote: 'Scams destroy people’s trust in the internet', type: 'Generalisation', signal: 'destroy',
+      why: 'It says scams always destroy everyone’s trust.' },
+    { source: 2, quote: 'businesses lose customers', type: 'Generalisation', signal: 'businesses',
+      why: 'Said of all businesses, without evidence.' },
+    { source: 2, quote: 'online fraud can only be stopped if every country works together', type: 'Generalisation', signal: 'only',
+      why: '"Only … every country" allows no other way.' },
+    { source: 2, quote: 'Fraud is a growing danger', type: 'Opinion', signal: 'danger',
+      why: 'How dangerous it is is a judgement.' },
+    { source: 2, quote: 'Scam centres are frequently run by criminal gangs', type: 'Claim', signal: 'frequently',
+      why: 'Stated as true with no evidence given.' },
+    { source: 2, quote: 'Victims often feel too ashamed to report the crime', type: 'Claim', signal: 'often',
+      why: '"Often" is not measured.' },
+    { source: 1, quote: 'The average loss per victim was $1,250', type: 'Fact', signal: '$1,250',
+      why: 'A figure from a report that can be checked.' },
+  ],
+  q1b: {
+    type: 'Generalisation',
+    explain: '“Scams destroy people’s trust in the internet” is a generalisation because it says every scam destroys everyone’s trust. It is only sometimes true, and no evidence is given.',
+    oneMark: 'It is a generalisation because it is a broad statement.',
+  },
+  q1c: {
+    holder: 'the cybercrime agency',
+    on: 'on online fraud',
+    level: 'GLOBAL',
+    points: [
+      { element: 'issues', quote: 'Online fraud includes stealing money and stealing personal information', point: 'The issue is online fraud, both money and data.' },
+      { element: 'consequences', quote: 'Scams destroy people’s trust in the internet', point: 'People lose trust in the internet.' },
+      { element: 'consequences', quote: 'Victims often feel too ashamed to report the crime', point: 'Victims feel ashamed and stay silent.' },
+      { element: 'causes', quote: 'run by criminal gangs that also traffic people and launder money', point: 'Organised gangs run the scams.' },
+      { element: 'values', quote: 'Fraud is a growing danger', point: 'They see fraud as serious and wrong.' },
+      { element: 'values', quote: 'every country works together', point: 'They value international cooperation.' },
+      { element: 'actions', quote: 'We train police officers in many countries', point: 'They train police and work with banks.' },
+    ],
+    model: 'The cybercrime agency sees online fraud as “a growing danger”. The issue is stealing “money” and “personal information”. It blames organised crime, because scam centres are “frequently run by criminal gangs that also traffic people and launder money”. The consequences go beyond money: scams “destroy people’s trust in the internet”, businesses lose customers, and victims “feel too ashamed to report the crime”. They value cooperation, believing fraud “can only be stopped if every country works together”. Their actions are sharing information on scam websites, working with banks and training police “in many countries”.',
+  },
+  voices: [
+    { who: 'A retired nurse', quote: 'A caller who sounded exactly like my grandson asked me for money. I sent it.', level: 'PERSONAL', why: 'Her own loss.' },
+    { who: 'A town police sergeant', quote: 'Scam reports in our town have doubled since last year.', level: 'LOCAL', why: 'One town.' },
+    { who: 'A finance minister', quote: 'Banks across the country must refund scam victims within two weeks.', level: 'NATIONAL', why: 'A national rule.' },
+    { who: 'An Interpol spokesperson', quote: 'Scam networks now operate across more than 60 countries.', level: 'GLOBAL', why: 'Crime across many countries.' },
+  ],
+  q1d: {
+    focus: 'cause of online fraud',
+    lead: 'Sources 1 and 2 suggest causes of online fraud.',
+    options: [
+      { label: 'Criminals hiding in other countries', source: 1, quote: 'criminals hiding in other countries', test: 'stuck',
+        why: 'Police cannot reach them, so the scams keep going.' },
+      { label: 'People not recognising scams', source: 1, quote: 'people not recognising scams', test: 'crowd',
+        why: 'Anyone with a phone can be fooled.' },
+      { label: 'Criminal gangs', source: 2, quote: 'run by criminal gangs', test: 'domino',
+        why: 'Scam money funds people trafficking and other crimes.' },
+      { label: 'Loneliness', source: 1, quote: 'loneliness, which scammers exploit', test: 'fair',
+        why: 'Scammers deliberately target the most vulnerable people.' },
+      { label: 'Weak passwords', source: 1, quote: 'weak passwords and security', test: 'crowd',
+        why: 'Millions of accounts are easy to break into.' },
+    ],
+    model: 'I think the most significant cause is that scam centres are “run by criminal gangs”, because the harm spreads far beyond the victim. Source 2 says these gangs “also traffic people and launder money”, so every scam helps pay for other serious crimes. People not recognising scams is also important, because it affects huge numbers of people. But better education can teach people to spot scams, while gangs will keep inventing new ones. Because gang-run fraud funds so much other harm, it is the most significant cause.',
+    levelUp: {
+      base: 'Gangs are the biggest cause because they are criminals.',
+      right: 'Quote Source 2 (they “traffic people and launder money”), explain the knock-on harm, and compare with people not recognising scams, which education can reduce.',
+      wrong: [
+        { text: 'Add the $1.03 trillion figure.', why: 'The total loss does not explain why this cause matters most.' },
+        { text: 'List all five causes in Source 1.', why: 'Listing is not judging.' },
+        { text: 'Describe AI-generated voices.', why: 'A method, not a justification of the cause.' },
+      ],
+    },
+  },
+};

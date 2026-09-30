@@ -229,7 +229,7 @@ function Panel({ row, setDb }: { row: StudentRow; setDb: (f: (p: TrackerDb) => T
   }, [comment, row.key, row.comment, setDb]);
 
   const q1 = q1Work(row);
-  const answers = (latestQ2(row)?.acts ?? []).filter((a) => a.k === 'answer-2a' || a.k === 'answer-2b');
+  const answers = (latestQ2(row)?.acts ?? []).filter((a) => a.k === 'answer-q1' || a.k === 'answer-2a' || a.k === 'answer-2b');
   const markInput = (part: 'a' | 'b') => (
     <span className="flex items-center gap-1.5">
       <input type="number" min={0} max={8} step={1} aria-label={`2(${part}) mark out of 8`}

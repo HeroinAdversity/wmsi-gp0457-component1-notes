@@ -1,0 +1,106 @@
+import type { Q1BankItem } from '../../types';
+
+export const SP_25_Q1_MIRROR_A: Q1BankItem = {
+  id: 'q1m-sp-25-a',
+  kind: 'mirror',
+  parent: 'SP-25',
+  title: 'Homelessness',
+  topic: 'Poverty and inequality',
+  source1: {
+    paragraphs: [
+      'One of the United Nations goals is adequate, safe and affordable housing for all. Some countries have made progress.',
+      'However, the UN estimates that 1.6 billion people live in inadequate housing. In 2021, around 150 million people were homeless, sleeping on the streets or in temporary shelters.',
+    ],
+    list: {
+      title: 'Causes of homelessness',
+      items: ['high rents and house prices', 'losing a job', 'family breakdown', 'mental illness and addiction', 'natural disasters', 'war and conflict'],
+    },
+  },
+  source2: {
+    paragraphs: [
+      'We are a charity working to end homelessness.',
+      'Rising rents and low wages mean more families are losing their homes. Many homeless people are children. Once you are on the streets, you lose everything: your job, your health and your friends.',
+      'We must treat every person with dignity. We cannot walk past people sleeping in doorways. Join us and give someone a safe place to sleep tonight. Volunteer at our shelters and help thousands each winter. Write to your local council. When communities act together, homelessness can end. Everyone deserves a home.',
+    ],
+    attribution: 'Adapted from a homelessness charity’s website, accessed 2023',
+  },
+  q1a: {
+    stem: 'According to Source 1, how many people were homeless in 2021?',
+    answer: '150 million',
+    accept: ['Around 150 million', '150 million people'],
+    distractors: [
+      { text: '1.6 billion', why: 'That is people living in inadequate housing, not homeless people.' },
+      { text: '150', why: 'Without “million” the figure is wrong.' },
+      { text: 'Thousands each winter', why: 'That is how many the charity helps, from Source 2.' },
+      { text: '2021', why: 'That is the year, not the number.' },
+    ],
+  },
+  statements: [
+    { source: 2, quote: 'Once you are on the streets, you lose everything', type: 'Generalisation', signal: 'everything',
+      why: '"Everything" says it is true for every homeless person.' },
+    { source: 2, quote: 'When communities act together, homelessness can end', type: 'Generalisation', signal: 'When communities act together',
+      why: 'It says joint action always ends homelessness.' },
+    { source: 2, quote: 'We must treat every person with dignity', type: 'Value', signal: 'dignity',
+      why: 'A belief about what is right.' },
+    { source: 2, quote: 'Everyone deserves a home', type: 'Value', signal: 'deserves',
+      why: 'A belief about rights.' },
+    { source: 2, quote: 'Many homeless people are children', type: 'Claim', signal: 'Many',
+      why: '"Many" is not measured.' },
+    { source: 1, quote: 'the UN estimates that 1.6 billion people live in inadequate housing', type: 'Fact', signal: '1.6 billion',
+      why: 'A figure from a named organisation.' },
+    { source: 2, quote: 'Join us and give someone a safe place to sleep tonight', type: 'Vested interest', signal: 'Join us',
+      why: 'The charity needs support, so it presents the issue in the most moving way.' },
+  ],
+  q1b: {
+    type: 'Generalisation',
+    explain: '“Once you are on the streets, you lose everything” is a generalisation because the word “everything” says it happens to every homeless person. Some keep their jobs, friends or health, so it is only sometimes true.',
+    oneMark: 'It is a generalisation because it says “everything”.',
+  },
+  q1c: {
+    holder: 'the charity',
+    on: 'on homelessness',
+    level: 'GLOBAL',
+    points: [
+      { element: 'issues', quote: 'more families are losing their homes', point: 'The issue is rising homelessness, including children.' },
+      { element: 'causes', quote: 'Rising rents and low wages', point: 'Rising rents and low wages cause homelessness.' },
+      { element: 'consequences', quote: 'you lose everything: your job, your health and your friends', point: 'People lose their jobs, health and friends.' },
+      { element: 'values', quote: 'We must treat every person with dignity', point: 'They value dignity for everyone.' },
+      { element: 'values', quote: 'Everyone deserves a home', point: 'They believe housing is a right.' },
+      { element: 'actions', quote: 'Volunteer at our shelters', point: 'They run shelters and ask for volunteers.' },
+      { element: 'actions', quote: 'Write to your local council', point: 'They urge people to lobby councils.' },
+    ],
+    model: 'The charity sees homelessness as a growing problem: “more families are losing their homes”, and “many homeless people are children”. They blame “rising rents and low wages”. The consequence is severe, because on the streets “you lose everything: your job, your health and your friends”. They value dignity, saying “we must treat every person with dignity” and “everyone deserves a home”. Their actions are running shelters, asking people to “volunteer” and “write to your local council”. They believe that “when communities act together, homelessness can end”.',
+  },
+  voices: [
+    { who: 'A man sleeping in a train station', quote: 'I lost my flat when the factory closed. Nobody looks me in the eye now.', level: 'PERSONAL', why: 'His own situation.' },
+    { who: 'A city council housing officer', quote: 'Our city will open two new night shelters before the rainy season.', level: 'LOCAL', why: 'One city.' },
+    { who: 'A housing minister', quote: 'Rents on public housing will be frozen across the country for three years.', level: 'NATIONAL', why: 'A national policy.' },
+    { who: 'A UN housing expert', quote: 'Around the world, rising rents are pushing working families onto the streets.', level: 'GLOBAL', why: 'The whole world.' },
+  ],
+  q1d: {
+    focus: 'cause of homelessness',
+    lead: 'Sources 1 and 2 suggest causes of homelessness.',
+    options: [
+      { label: 'High rents and house prices', source: 1, quote: 'high rents and house prices', test: 'crowd',
+        why: 'Rising rents affect millions of low-income families in every city.' },
+      { label: 'Losing a job', source: 1, quote: 'losing a job', test: 'domino',
+        why: 'No income leads to debt, eviction and then homelessness.' },
+      { label: 'War and conflict', source: 1, quote: 'war and conflict', test: 'hurt',
+        why: 'War destroys whole neighbourhoods and forces families to flee.' },
+      { label: 'Mental illness and addiction', source: 1, quote: 'mental illness and addiction', test: 'stuck',
+        why: 'Without treatment, people struggle to leave the streets for years.' },
+      { label: 'Low wages', source: 2, quote: 'low wages', test: 'fair',
+        why: 'People who work full time still cannot afford a home.' },
+    ],
+    model: 'I think high rents and house prices is the most significant cause of homelessness, because it affects the most people. Source 2 says “rising rents and low wages mean more families are losing their homes”. This happens in almost every city, so millions of ordinary working families are at risk. War is also a terrible cause, because it can make whole communities homeless at once. However, war affects particular regions, while high rents push people out of their homes in nearly every country. So high rents is the most significant cause.',
+    levelUp: {
+      base: 'High rents are the biggest cause because rent is expensive.',
+      right: 'Quote Source 2 (“more families are losing their homes”), explain how widely it reaches, and compare with war, which affects particular regions.',
+      wrong: [
+        { text: 'Add that 1.6 billion people live in inadequate housing.', why: 'A figure not linked to why rents matter most.' },
+        { text: 'Describe the charity’s shelters.', why: 'That is 1(c) material.' },
+        { text: 'Add “Everyone deserves a home.”', why: 'A value repeated from the source, not a justification.' },
+      ],
+    },
+  },
+};

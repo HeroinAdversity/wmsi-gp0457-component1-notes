@@ -1,0 +1,103 @@
+import type { Q1BankItem } from '../../types';
+
+export const J26_11_Q1_MIRROR_B: Q1BankItem = {
+  id: 'q1m-j26-11-b',
+  kind: 'mirror',
+  parent: 'J26-11',
+  title: 'Fair trade',
+  topic: 'Trade and aid',
+  source1: {
+    paragraphs: [
+      'Fair trade is a way of buying and selling that guarantees farmers a minimum price for their crops, plus an extra payment to spend on their community.',
+      'According to Fairtrade International, there are about 2 million fair trade farmers and workers in 68 countries. Coffee, cocoa, bananas and tea are the most common fair trade products.',
+    ],
+  },
+  source2: {
+    paragraphs: [
+      'We are a group of small coffee farmers in the hills of Sumatra. Before we joined fair trade, traders paid whatever they liked. Now we know what we will earn, and we can plan for the future.',
+      'Fair trade products are found in supermarkets everywhere. Every shopper can make a difference!',
+      'Fair trade respects the people who grow our food. Each year we vote together on how to spend the extra payment: this year it paid for a new school roof and clean water pipes. It is right that farmers should be paid enough to live with dignity.',
+      'Our group values honesty and hard work. Our coffee is the best in the region. Choose fair trade and stand with farmers!',
+    ],
+    attribution: 'Adapted from the website of a fair trade coffee cooperative in Indonesia',
+  },
+  q1a: {
+    stem: 'According to Source 1, how many fair trade farmers and workers are there?',
+    answer: 'About 2 million',
+    accept: ['2 million'],
+    distractors: [
+      { text: '68', why: 'That is the number of countries, not farmers.' },
+      { text: 'Coffee, cocoa, bananas and tea', why: 'Those are products, not a number.' },
+      { text: '2', why: 'Without “million” the figure is wrong.' },
+      { text: 'Everywhere', why: 'Too vague, and not a figure from Source 1.' },
+    ],
+  },
+  statements: [
+    { source: 2, quote: 'It is right that farmers should be paid enough to live with dignity', type: 'Value', signal: 'It is right',
+      why: 'A belief about what is fair and right.' },
+    { source: 2, quote: 'Our group values honesty and hard work', type: 'Value', signal: 'values',
+      why: 'It names what the group thinks matters.' },
+    { source: 2, quote: 'Fair trade respects the people who grow our food', type: 'Value', signal: 'respects',
+      why: 'It shows what fair trade stands for.' },
+    { source: 2, quote: 'Fair trade products are found in supermarkets everywhere', type: 'Generalisation', signal: 'everywhere',
+      why: '"Everywhere" is an overstatement.' },
+    { source: 2, quote: 'Our coffee is the best in the region', type: 'Opinion', signal: 'the best',
+      why: '"The best" is a judgement.' },
+    { source: 1, quote: 'there are about 2 million fair trade farmers and workers in 68 countries', type: 'Fact', signal: '68 countries',
+      why: 'A figure from a named organisation.' },
+    { source: 2, quote: 'Choose fair trade and stand with farmers!', type: 'Vested interest', signal: 'Choose fair trade',
+      why: 'The farmers profit when people buy fair trade, so they present it positively.' },
+  ],
+  q1b: {
+    type: 'Value',
+    explain: '“It is right that farmers should be paid enough to live with dignity” is a value because it expresses a belief about what is morally right. “It is right” and “dignity” show what the writer thinks is important.',
+    oneMark: 'It is a value because it shows what they believe.',
+  },
+  q1c: {
+    holder: 'the cooperative',
+    on: '',
+    level: 'LOCAL',
+    points: [
+      { element: 'issues', quote: 'Before we joined fair trade, traders paid whatever they liked', point: 'The issue is unfair prices for small farmers.' },
+      { element: 'values', quote: 'It is right that farmers should be paid enough to live with dignity', point: 'They believe farmers deserve a living wage and dignity.' },
+      { element: 'values', quote: 'Our group values honesty and hard work', point: 'They value honesty and hard work.' },
+      { element: 'consequences', quote: 'Now we know what we will earn, and we can plan for the future', point: 'Farmers can plan with a secure income.' },
+      { element: 'consequences', quote: 'it paid for a new school roof and clean water pipes', point: 'The extra payment improved the school and water.' },
+      { element: 'actions', quote: 'Each year we vote together on how to spend the extra payment', point: 'They vote together on the extra payment.' },
+      { element: 'actions', quote: 'Choose fair trade and stand with farmers!', point: 'They urge shoppers to choose fair trade.' },
+    ],
+    model: 'The cooperative is a group of small coffee farmers. The issue is fairness: before fair trade, “traders paid whatever they liked”. They believe “it is right that farmers should be paid enough to live with dignity”, and they value “honesty and hard work”. The consequences of fair trade are good: “we know what we will earn”, and the extra payment “paid for a new school roof and clean water pipes”. In action, they “vote together on how to spend the extra payment”, and they ask shoppers to “choose fair trade”.',
+  },
+  voices: [
+    { who: 'A cocoa farmer', quote: 'With the fair price, my daughter can stay in school instead of working on the farm.', level: 'PERSONAL', why: 'His own family.' },
+    { who: 'A village cooperative treasurer', quote: 'Our village used this year’s extra payment to build a health clinic.', level: 'LOCAL', why: 'One village.' },
+    { who: 'A trade minister', quote: 'All coffee served in government offices will be fair trade from next year.', level: 'NATIONAL', why: 'A national policy.' },
+    { who: 'A Fairtrade International spokesperson', quote: 'Shoppers in over 140 countries now buy fair trade products.', level: 'GLOBAL', why: 'Over 140 countries.' },
+  ],
+  q1d: {
+    focus: 'benefit of fair trade',
+    lead: 'Sources 1 and 2 identify benefits of fair trade.',
+    options: [
+      { label: 'A guaranteed minimum price', source: 1, quote: 'guarantees farmers a minimum price', test: 'stuck',
+        why: 'It protects farmers year after year, even when world prices crash.' },
+      { label: 'Extra payment for the community', source: 1, quote: 'an extra payment to spend on their community', test: 'domino',
+        why: 'The money pays for schools and water, which help everyone in the village.' },
+      { label: 'Living with dignity', source: 2, quote: 'paid enough to live with dignity', test: 'fair',
+        why: 'Farmers get a fair share of what shoppers pay.' },
+      { label: 'Being able to plan', source: 2, quote: 'we can plan for the future', test: 'hurt',
+        why: 'Uncertainty about income causes real hardship.' },
+      { label: 'Reaching 2 million farmers', source: 1, quote: 'about 2 million fair trade farmers and workers', test: 'crowd',
+        why: 'Millions of families benefit.' },
+    ],
+    model: 'I think the extra payment for the community is the most significant benefit, because it helps everyone in a village, not just the farmers. Source 2 shows it “paid for a new school roof and clean water pipes”, which help children and families whether they farm or not. The guaranteed minimum price is also very important, because it protects farmers’ incomes. But that money goes to each farmer’s own family, while the extra payment improves life for the whole community. Because its benefits spread so widely, the community payment is the most significant.',
+    levelUp: {
+      base: 'The extra payment is the best benefit because it gives more money.',
+      right: 'Use Source 2 (it paid for “a new school roof and clean water pipes”), explain that it helps the whole village, and compare with the minimum price, which helps each farmer’s own family.',
+      wrong: [
+        { text: 'Add that fair trade farmers are in 68 countries.', why: 'A figure not tied to this benefit.' },
+        { text: 'Add that their coffee is the best in the region.', why: 'An opinion from the source, not support.' },
+        { text: 'Explain what fair trade is.', why: 'A definition, not a justification.' },
+      ],
+    },
+  },
+};

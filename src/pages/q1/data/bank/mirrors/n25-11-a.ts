@@ -1,0 +1,105 @@
+import type { Q1BankItem } from '../../types';
+
+export const N25_11_Q1_MIRROR_A: Q1BankItem = {
+  id: 'q1m-n25-11-a',
+  kind: 'mirror',
+  parent: 'N25-11',
+  title: 'Mental health in schools',
+  topic: 'Health and well-being',
+  source1: {
+    paragraphs: [
+      'The World Health Organization says that good mental health is as important as good physical health. Around 14 per cent of young people aged 10 to 19 live with a mental health condition, yet most never receive any help.',
+    ],
+    list: {
+      title: 'Benefits of good mental health',
+      items: ['for young people: better concentration, stronger friendships, more resilience, better sleep', 'for society: fewer days off school and work, lower health costs, safer communities, a more productive economy'],
+    },
+  },
+  source2: {
+    paragraphs: [
+      'Every school should teach students how to look after their minds. I am a school counsellor, and I am convinced that talking about feelings is a skill that can be learned, just like maths.',
+      'We need weekly well-being lessons, a quiet room students can go to, and trained staff in every year group. When students know the warning signs, they will ask for help sooner. Who else will notice a student who is struggling in silence?',
+      'If schools ignore mental health, students fall behind. Anxiety grows into depression, friendships break down and exam results drop. Young people will carry these problems into adult life.',
+    ],
+    attribution: 'Adapted from a school counsellor’s blog',
+  },
+  q1a: {
+    stem: 'According to Source 1, what percentage of young people aged 10 to 19 live with a mental health condition?',
+    answer: '14 per cent',
+    accept: ['Around 14 per cent', '14%'],
+    distractors: [
+      { text: '14', why: 'Without “per cent” the answer is incomplete.' },
+      { text: 'Most young people', why: 'Source 1 says most never receive help. That is not the percentage asked for.' },
+      { text: '10 to 19', why: 'That is the age range, not the percentage.' },
+      { text: 'As important as physical health', why: 'That is the WHO’s view, not a figure.' },
+    ],
+  },
+  statements: [
+    { source: 2, quote: 'When students know the warning signs, they will ask for help sooner', type: 'Prediction', signal: 'will ask',
+      why: 'It says what students will do in the future if they are taught.' },
+    { source: 2, quote: 'Young people will carry these problems into adult life', type: 'Prediction', signal: 'will carry',
+      why: 'A forecast about what will happen later in their lives.' },
+    { source: 2, quote: 'I am convinced that talking about feelings is a skill that can be learned', type: 'Opinion', signal: 'I am convinced',
+      why: '"I am convinced" shows a personal view.' },
+    { source: 2, quote: 'Every school should teach students how to look after their minds', type: 'Value', signal: 'should',
+      why: 'It shows what the counsellor believes schools ought to do.' },
+    { source: 2, quote: 'Anxiety grows into depression', type: 'Generalisation', signal: 'Anxiety grows',
+      why: 'It says this always happens, though it is only true for some people.' },
+    { source: 1, quote: 'Around 14 per cent of young people aged 10 to 19 live with a mental health condition', type: 'Fact', signal: '14 per cent',
+      why: 'A figure that can be checked.' },
+    { source: 2, quote: 'If schools ignore mental health, students fall behind', type: 'Claim', signal: 'fall behind',
+      why: 'A cause and effect stated as true without evidence.' },
+  ],
+  q1b: {
+    type: 'Prediction',
+    explain: '“When students know the warning signs, they will ask for help sooner” is a prediction because it says what students will do in the future, using “will”. It cannot be proved until it happens.',
+    oneMark: 'It is a prediction because it says “will”.',
+  },
+  q1c: {
+    holder: 'the counsellor',
+    on: 'on mental health in schools',
+    level: 'LOCAL',
+    points: [
+      { element: 'issues', quote: 'If schools ignore mental health, students fall behind', point: 'The issue is students’ mental health being ignored at school.' },
+      { element: 'values', quote: 'Every school should teach students how to look after their minds', point: 'They believe schools have a duty to teach mental health.' },
+      { element: 'values', quote: 'Who else will notice a student who is struggling in silence?', point: 'They care about students who suffer alone.' },
+      { element: 'actions', quote: 'We need weekly well-being lessons, a quiet room students can go to', point: 'They want well-being lessons and a quiet room.' },
+      { element: 'actions', quote: 'trained staff in every year group', point: 'They want trained staff in every year group.' },
+      { element: 'consequences', quote: 'they will ask for help sooner', point: 'Taught students ask for help sooner.' },
+      { element: 'consequences', quote: 'Anxiety grows into depression, friendships break down and exam results drop', point: 'If ignored, anxiety worsens and results drop.' },
+    ],
+    model: 'The counsellor believes that “every school should teach students how to look after their minds”. The issue is what happens when schools ignore mental health. They care about any student “struggling in silence”. The actions they want are “weekly well-being lessons, a quiet room” and “trained staff in every year group”. They expect good consequences, because students “will ask for help sooner”. They also warn of bad ones: “anxiety grows into depression, friendships break down and exam results drop”, and young people carry these problems “into adult life”. Their view comes from their own school.',
+  },
+  voices: [
+    { who: 'A Year 10 student', quote: 'I didn’t tell anyone I was panicking before exams until my friend noticed.', level: 'PERSONAL', why: 'Her own experience.' },
+    { who: 'A headteacher', quote: 'Our school now starts every Monday with a ten-minute check-in for each class.', level: 'LOCAL', why: 'One school.' },
+    { who: 'A health minister', quote: 'Every secondary school in the country will have a trained counsellor by 2028.', level: 'NATIONAL', why: 'A national target.' },
+    { who: 'A World Health Organization adviser', quote: 'Half of all mental health conditions start by the age of 14, in every country.', level: 'GLOBAL', why: 'Every country.' },
+  ],
+  q1d: {
+    focus: 'benefit of good mental health',
+    lead: 'Sources 1 and 2 suggest benefits of good mental health.',
+    options: [
+      { label: 'More resilience', source: 1, quote: 'more resilience', test: 'stuck',
+        why: 'Resilience learned young lasts a lifetime and helps people through every later setback.' },
+      { label: 'Stronger friendships', source: 1, quote: 'stronger friendships', test: 'hurt',
+        why: 'Loneliness badly damages young people’s lives.' },
+      { label: 'Fewer days off school and work', source: 1, quote: 'fewer days off school and work', test: 'domino',
+        why: 'Better attendance leads to better results, better jobs and a stronger economy.' },
+      { label: 'Better concentration', source: 1, quote: 'better concentration', test: 'crowd',
+        why: 'It helps every student in every lesson.' },
+      { label: 'Safer communities', source: 1, quote: 'safer communities', test: 'crowd',
+        why: 'Everyone in the area benefits, not just the individual.' },
+    ],
+    model: 'I think more resilience is the most significant benefit, because it lasts a lifetime. The counsellor warns that without help, young people “will carry these problems into adult life”. Resilience works the other way: a young person who learns to cope with stress keeps that skill for exams, jobs and relationships. Better concentration is also useful, because it helps students in lessons. But it mostly helps at school, while resilience helps in every part of life for years. Because the benefit is long-lasting, resilience is the most significant.',
+    levelUp: {
+      base: 'Resilience is the best benefit because it helps people.',
+      right: 'Explain why it lasts (skills learned young help for life), use Source 2 (problems carried “into adult life”), and compare with better concentration, which mostly helps at school.',
+      wrong: [
+        { text: 'Add that 14 per cent of young people have a condition.', why: 'A true figure, but not linked to why resilience matters most.' },
+        { text: 'Describe the quiet room the counsellor wants.', why: 'That is an action for 1(c), not justification.' },
+        { text: 'List all the benefits for society.', why: 'Listing is not judging.' },
+      ],
+    },
+  },
+};

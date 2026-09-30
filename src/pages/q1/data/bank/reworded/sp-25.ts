@@ -1,0 +1,106 @@
+import type { Q1BankItem } from '../../types';
+
+export const SP_25_Q1_REWORDED: Q1BankItem = {
+  id: 'q1r-sp-25',
+  kind: 'reworded',
+  parent: 'SP-25',
+  title: 'World hunger',
+  topic: 'Water, food and agriculture',
+  source1: {
+    paragraphs: [
+      'Ending hunger and poor nutrition is one of the United Nations sustainable development goals, and the world has made some progress towards it.',
+      'Even so, more than 2 billion people face food insecurity: on certain days they cannot get enough to eat. The United Nations estimated that in 2021, 800 million people regularly went hungry or were poorly nourished.',
+    ],
+    list: {
+      title: 'What causes hunger',
+      items: ['not having money or work', 'too little food being produced', 'extreme weather and a changing climate', 'wasted food', 'wars and fighting', 'trade rules that treat poor countries unfairly'],
+    },
+  },
+  source2: {
+    paragraphs: [
+      'We are a food charity fighting world hunger.',
+      'Because of pandemics and rising food prices, food shortages are hitting more and more people. Around the world, roughly a quarter of all children go without the food needed to grow into healthy adults and achieve their dreams. Hunger always ruins health, education and jobs.',
+      'We must show compassion and care for everyone, and we must not ignore people who are struggling to survive. Join us to bring hope to hungry people. Back our food programmes to help millions every year. Speak out against hunger. Donate to the UN World Food Programme. When people unite and demand change, amazing things happen. Together we can create a fairer world where food is everyone’s right.',
+    ],
+    attribution: 'Adapted from a food charity’s website, accessed 2021',
+  },
+  q1a: {
+    stem: 'According to Source 1, how many people regularly suffered from hunger and poor nutrition in 2021?',
+    answer: '800 million',
+    accept: ['800 million people'],
+    distractors: [
+      { text: 'More than 2 billion', why: 'That is people facing food insecurity on some days, not regular hunger.' },
+      { text: 'A quarter', why: 'That is children in Source 2 who do not get the food they need.' },
+      { text: '800', why: 'Without “million” the figure is wrong.' },
+      { text: '2021', why: 'That is the year, not the number of people.' },
+    ],
+  },
+  statements: [
+    { source: 2, quote: 'Hunger always ruins health, education and jobs', type: 'Generalisation', signal: 'always',
+      why: '"Always" makes it true in every case, which it is not.' },
+    { source: 2, quote: 'When people unite and demand change, amazing things happen', type: 'Generalisation', signal: 'When people unite',
+      why: 'It says uniting always leads to amazing results.' },
+    { source: 2, quote: 'We must show compassion and care for everyone', type: 'Value', signal: 'compassion',
+      why: 'It states what the charity believes is right.' },
+    { source: 2, quote: 'food is everyone’s right', type: 'Value', signal: 'right',
+      why: 'A belief about human rights.' },
+    { source: 2, quote: 'food shortages are hitting more and more people', type: 'Claim', signal: 'more and more',
+      why: 'A trend stated without figures.' },
+    { source: 1, quote: 'more than 2 billion people face food insecurity', type: 'Fact', signal: '2 billion',
+      why: 'A figure that can be checked.' },
+    { source: 2, quote: 'Join us to bring hope to hungry people', type: 'Vested interest', signal: 'Join us',
+      why: 'The charity wants support, so it presents the issue in the most moving way.' },
+  ],
+  q1b: {
+    type: 'Generalisation',
+    explain: '“Hunger always ruins health, education and jobs” is a generalisation because the word “always” says it happens to everyone who is hungry. It is often true, but not in every case.',
+    oneMark: 'It is a generalisation because it says “always”.',
+  },
+  q1c: {
+    holder: 'the food charity',
+    on: 'on hunger',
+    level: 'GLOBAL',
+    points: [
+      { element: 'issues', quote: 'roughly a quarter of all children go without the food needed', point: 'The issue is world hunger, especially among children.' },
+      { element: 'causes', quote: 'Because of pandemics and rising food prices', point: 'Pandemics and rising prices cause shortages.' },
+      { element: 'consequences', quote: 'Hunger always ruins health, education and jobs', point: 'Hunger harms health, education and work.' },
+      { element: 'values', quote: 'We must show compassion and care for everyone', point: 'They value compassion and care.' },
+      { element: 'values', quote: 'food is everyone’s right', point: 'They believe food is a human right.' },
+      { element: 'actions', quote: 'Back our food programmes', point: 'They run food programmes.' },
+      { element: 'actions', quote: 'Donate to the UN World Food Programme', point: 'They urge donations and protest.' },
+    ],
+    model: 'The food charity sees world hunger as a growing problem. “Roughly a quarter of all children go without the food needed”. They say the causes are “pandemics and rising food prices”, and the consequence is that hunger “ruins health, education and jobs”. They value compassion, saying “we must show compassion and care for everyone”, and they believe “food is everyone’s right”. Their actions are running “food programmes”, asking people to “speak out against hunger” and to give to the UN World Food Programme. They believe that “when people unite”, change happens.',
+  },
+  voices: [
+    { who: 'A mother of three', quote: 'Some nights I eat nothing so my children can have dinner.', level: 'PERSONAL', why: 'Her own family.' },
+    { who: 'A school cook in a small town', quote: 'For many children here, the school lunch is the only hot meal of the day.', level: 'LOCAL', why: 'One town’s school.' },
+    { who: 'A national food minister', quote: 'We will cut taxes on rice and flour to bring down food prices for every family.', level: 'NATIONAL', why: 'A national policy.' },
+    { who: 'A UN World Food Programme director', quote: 'Conflict is now the main driver of hunger in the world.', level: 'GLOBAL', why: 'Hunger worldwide.' },
+  ],
+  q1d: {
+    focus: 'cause of hunger',
+    lead: 'Sources 1 and 2 suggest causes of hunger.',
+    options: [
+      { label: 'War and conflict', source: 1, quote: 'wars and fighting', test: 'hurt',
+        why: 'War destroys farms, markets and roads, and cuts whole populations off from food.' },
+      { label: 'Poverty and unemployment', source: 1, quote: 'not having money or work', test: 'crowd',
+        why: 'Most hungry people have food nearby but cannot afford it.' },
+      { label: 'Extreme weather and climate change', source: 1, quote: 'extreme weather and a changing climate', test: 'stuck',
+        why: 'Climate change will keep making harvests fail for decades.' },
+      { label: 'Unfair international trade', source: 1, quote: 'trade rules that treat poor countries unfairly', test: 'fair',
+        why: 'Poor farmers are paid too little for what they grow.' },
+      { label: 'Rising food prices', source: 2, quote: 'rising food prices', test: 'domino',
+        why: 'Higher prices push families into debt and pull children out of school.' },
+    ],
+    model: 'I think poverty and unemployment is the most significant cause of hunger, because it affects the most people. Many of the 800 million people who regularly go hungry live near food but cannot afford it. Source 2 also shows that “rising food prices” make this worse, and poor families feel that first. War is also a terrible cause, because it can cut off food completely. However, war affects particular regions, while poverty exists in every country. Because poverty is behind hunger almost everywhere, it is the most significant cause.',
+    levelUp: {
+      base: 'Poverty is the main cause because poor people cannot buy food.',
+      right: 'Use the evidence (800 million go hungry, and “rising food prices”), explain that it reaches every country, and compare it with war, which affects particular regions.',
+      wrong: [
+        { text: 'Add that the charity asks people to donate.', why: 'That is an action for 1(c), not a reason poverty matters most.' },
+        { text: 'List every cause in Source 1.', why: 'A list is not a judgement.' },
+        { text: 'Add “Hunger is the worst problem in the world.”', why: 'That is an assertion about hunger, not about this cause.' },
+      ],
+    },
+  },
+};

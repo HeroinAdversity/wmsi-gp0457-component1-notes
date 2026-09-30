@@ -6,8 +6,8 @@ import { encodeResultCode, toPayload, wrapCodeForPdf } from '../../lib/resultCod
 import { nx, useNotesExport, type Block } from '../../lib/useNotesExport';
 import { MyNotes } from './MyNotes';
 
-const KIND_ORDER: Record<ActivityRecord['kind'], number> = { quiz: 0, game: 1, 'answer-2a': 2, 'answer-2b': 3, checklist: 4 };
-const KIND_LABEL: Record<ActivityRecord['kind'], string> = { quiz: 'Quiz', game: 'Practice game', 'answer-2a': '2(a) answer', 'answer-2b': '2(b) answer', checklist: 'Checklist' };
+const KIND_ORDER: Record<ActivityRecord['kind'], number> = { quiz: 0, game: 1, 'answer-q1': 2, 'answer-2a': 3, 'answer-2b': 4, checklist: 5 };
+const KIND_LABEL: Record<ActivityRecord['kind'], string> = { quiz: 'Quiz', game: 'Practice game', 'answer-q1': 'Q1 answer', 'answer-2a': '2(a) answer', 'answer-2b': '2(b) answer', checklist: 'Checklist' };
 const STATUS_LABEL: Record<ActivityRecord['status'], string> = { done: 'Done', 'in-progress': 'In progress', 'not-started': 'Not started' };
 
 function rowsOf(state: ProgressState): ActivityRecord[] {
@@ -23,7 +23,7 @@ function ratio(r: ActivityRecord): number {
   return r.status === 'done' ? 1 : r.status === 'in-progress' ? 0.5 : 0;
 }
 function answerBlocks(state: ProgressState): Block[] {
-  const answers = rowsOf(state).filter((r) => r.kind === 'answer-2a' || r.kind === 'answer-2b');
+  const answers = rowsOf(state).filter((r) => r.kind === 'answer-q1' || r.kind === 'answer-2a' || r.kind === 'answer-2b');
   if (!answers.length) return [nx.p('No written answers yet.')];
   return answers.flatMap((r) => [
     nx.h(3, `${r.title}${r.selfLevel ? ` — self-assessed Level ${r.selfLevel}` : ''}`),
@@ -49,7 +49,7 @@ export function MyLearningPage() {
   stateRef.current = state;
   useNotesExport({
     toolId: 'my_learning',
-    pageTitleEn: 'My learning — Question 2',
+    pageTitleEn: 'My learning — Questions 1 and 2',
     subtitleEn: 'IGCSE Global Perspectives 0457 · Summary for your teacher',
     filenameStem: 'GP_MyLearning',
     studentNameSelector: '#wne-student-name',
@@ -105,7 +105,7 @@ export function MyLearningPage() {
 
             {rows.length === 0 ? (
               <div className="rounded-[8px] border border-dashed border-[color:var(--color-line)] bg-white px-5 py-8 text-[14.5px] text-[color:var(--color-ink-2)]">
-                Nothing here yet. Try the <Link to="/research/toolkit#quiz" className="font-semibold text-[color:var(--color-q2-storm)] underline">Toolkit quiz</Link> or a <Link to="/research/practice" className="font-semibold text-[color:var(--color-q2-storm)] underline">practice paper</Link>.
+                Nothing here yet. Try a <Link to="/perspectives/games" className="font-semibold text-[color:var(--color-q2-storm)] underline">Question 1 game</Link>, a <Link to="/perspectives/practice" className="font-semibold text-[color:var(--color-q2-storm)] underline">Question 1 paper</Link>, the <Link to="/research/toolkit#quiz" className="font-semibold text-[color:var(--color-q2-storm)] underline">Toolkit quiz</Link> or a <Link to="/research/practice" className="font-semibold text-[color:var(--color-q2-storm)] underline">Question 2 paper</Link>.
               </div>
             ) : (
               <ul className="border-t border-[color:var(--color-ink)]">
@@ -129,7 +129,7 @@ export function MyLearningPage() {
 
           <div>
             <div className={`${rows.length ? 'flex' : 'hidden lg:flex'} aspect-[1/1.3] flex-col rounded-[4px] border border-[color:var(--color-line)] bg-white p-5 text-[10.5px] text-[color:var(--color-ink-2)] shadow-[0_10px_30px_-14px_rgba(0,0,0,0.3)]`} aria-label="Preview of your PDF">
-              <p className="font-display text-[18px] text-[color:var(--color-q2-sea)]">My learning · Question 2</p>
+              <p className="font-display text-[18px] text-[color:var(--color-q2-sea)]">My learning · Questions 1 and 2</p>
               <p>{state.student.name || 'Your name'} · {state.student.className || 'Class'}</p>
               {[92, 80, 86, 60, 90, 74].map((w, i) => <div key={i} className="mt-1.5 h-[5px] rounded bg-[color:var(--color-q2-arctic)]" style={{ width: `${w}%`, marginTop: i === 3 ? 12 : undefined }} />)}
               <div className="mt-auto rounded-[5px] border-[1.5px] border-[color:var(--color-q2-sea)] p-2.5">

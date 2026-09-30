@@ -1,0 +1,106 @@
+import type { Q1BankItem } from '../../types';
+
+export const J25_12_Q1_MIRROR_A: Q1BankItem = {
+  id: 'q1m-j25-12-a',
+  kind: 'mirror',
+  parent: 'J25-12',
+  title: 'Clean water',
+  topic: 'Water, food and agriculture',
+  source1: {
+    paragraphs: [
+      'Safe drinking water changes lives. When a village gets a clean water supply, health, schooling and incomes all improve, especially for women and girls, who usually collect the water.',
+      'According to the World Health Organization, 2.2 billion people still do not have safe drinking water at home.',
+    ],
+    list: {
+      title: 'Benefits of clean water',
+      items: ['fewer deaths from diseases such as cholera', 'more time for girls to go to school', 'more time for women to earn money', 'better hygiene in schools and clinics', 'healthier crops and animals'],
+    },
+  },
+  source2: {
+    paragraphs: [
+      'WaterBridge',
+      'Women and girls spend 200 million hours every day collecting water. That is time taken away from learning, working and resting.',
+      'Clean water is the starting point for every other kind of development. A tap in the village gives girls their future back. Clean water ends the cycle of poverty and disease.',
+      'We drill wells, repair broken pumps and train local people to keep them running. We believe that no child should die from drinking dirty water.',
+    ],
+    attribution: 'Adapted from the annual report of WaterBridge, a water charity, 2024',
+  },
+  q1a: {
+    stem: 'According to Source 1, how many people do not have safe drinking water at home?',
+    answer: '2.2 billion',
+    accept: ['2.2 billion people'],
+    distractors: [
+      { text: '200 million', why: 'That is the hours spent collecting water each day, from Source 2.' },
+      { text: '2.2', why: 'Without “billion” the figure is wrong.' },
+      { text: 'Women and girls', why: 'That says who collects water, not how many lack it.' },
+      { text: 'Most villages', why: 'Too vague, and not what Source 1 says.' },
+    ],
+  },
+  statements: [
+    { source: 2, quote: 'Clean water is the starting point for every other kind of development', type: 'Claim', signal: 'starting point',
+      why: 'Stated as true with no evidence given.' },
+    { source: 2, quote: 'Clean water ends the cycle of poverty and disease', type: 'Claim', signal: 'ends the cycle',
+      why: 'A big cause-and-effect claim, not backed up in the source.' },
+    { source: 2, quote: 'A tap in the village gives girls their future back', type: 'Claim', signal: 'gives girls their future back',
+      why: 'Put forward as true, but no evidence shows what happens to the girls.' },
+    { source: 2, quote: 'We believe that no child should die from drinking dirty water', type: 'Value', signal: 'should',
+      why: 'A moral belief about what is right.' },
+    { source: 2, quote: 'Women and girls spend 200 million hours every day collecting water', type: 'Fact', signal: '200 million hours',
+      why: 'A measured figure that can be checked.' },
+    { source: 1, quote: '2.2 billion people still do not have safe drinking water at home', type: 'Fact', signal: '2.2 billion',
+      why: 'A figure from a named organisation.' },
+    { source: 1, quote: 'Safe drinking water changes lives', type: 'Generalisation', signal: 'changes lives',
+      why: 'A broad statement said to be true in every case.' },
+  ],
+  q1b: {
+    type: 'Claim',
+    explain: '“Clean water is the starting point for every other kind of development” is a claim because WaterBridge states it as true, but gives no evidence to prove it. It could be tested, but the source does not test it.',
+    oneMark: 'It is a claim because it is said to be true.',
+  },
+  q1c: {
+    holder: 'WaterBridge',
+    on: '',
+    level: 'GLOBAL',
+    points: [
+      { element: 'issues', quote: 'Women and girls spend 200 million hours every day collecting water', point: 'The issue is the lack of clean water, and the time lost fetching it.' },
+      { element: 'consequences', quote: 'time taken away from learning, working and resting', point: 'Girls and women lose time for school and work.' },
+      { element: 'consequences', quote: 'Clean water ends the cycle of poverty and disease', point: 'Clean water breaks the link between poverty and disease.' },
+      { element: 'values', quote: 'no child should die from drinking dirty water', point: 'They believe no child should die from dirty water.' },
+      { element: 'values', quote: 'gives girls their future back', point: 'They care about girls’ futures and equality.' },
+      { element: 'actions', quote: 'We drill wells, repair broken pumps and train local people', point: 'They drill wells, repair pumps and train local people.' },
+    ],
+    model: 'WaterBridge is a charity that sees clean water as the key to development. The issue is that women and girls “spend 200 million hours every day collecting water”. The consequence is time “taken away from learning, working and resting”. They believe clean water “ends the cycle of poverty and disease” and “gives girls their future back”, which shows they value girls’ futures. Their strongest value is that “no child should die from drinking dirty water”. Their actions are practical: they “drill wells, repair broken pumps and train local people”.',
+  },
+  voices: [
+    { who: 'A 12-year-old girl in Malawi', quote: 'I used to walk two hours for water. Now there is a pump, I am never late for school.', level: 'PERSONAL', why: 'Her own life.' },
+    { who: 'A village health worker', quote: 'Since the new well opened, our clinic has had no cholera cases.', level: 'LOCAL', why: 'One village clinic.' },
+    { who: 'A minister for water', quote: 'Every town in our country will have piped water by 2035.', level: 'NATIONAL', why: 'A national target.' },
+    { who: 'A UN water spokesperson', quote: 'Unsafe water kills more children worldwide than war does.', level: 'GLOBAL', why: 'Children worldwide.' },
+  ],
+  q1d: {
+    focus: 'benefit of clean water',
+    lead: 'Sources 1 and 2 describe some benefits of clean water.',
+    options: [
+      { label: 'Fewer deaths from disease', source: 1, quote: 'fewer deaths from diseases such as cholera', test: 'hurt',
+        why: 'Diseases like cholera kill, especially young children. Nothing is more harmful.' },
+      { label: 'More time for girls to go to school', source: 1, quote: 'more time for girls to go to school', test: 'domino',
+        why: 'Educated girls earn more and raise healthier families, so the benefit spreads.' },
+      { label: 'More time for women to earn money', source: 1, quote: 'more time for women to earn money', test: 'fair',
+        why: 'It gives women the same chance to work that men have.' },
+      { label: 'Healthier crops and animals', source: 1, quote: 'healthier crops and animals', test: 'crowd',
+        why: 'Whole villages depend on farming for food and income.' },
+      { label: 'Better hygiene in schools and clinics', source: 1, quote: 'better hygiene in schools and clinics', test: 'crowd',
+        why: 'Everyone who uses a school or clinic is protected.' },
+    ],
+    model: 'I think fewer deaths from disease is the most significant benefit, because dirty water can kill. Source 1 names diseases “such as cholera”, and WaterBridge says “no child should die from drinking dirty water”. Losing a life is the worst possible harm, and it cannot be undone. More time for girls to go to school is also very important, because it improves their futures. But a child has to survive before she can go to school. So preventing deaths from disease comes first, which makes it the most significant benefit.',
+    levelUp: {
+      base: 'Fewer deaths is the best benefit because dying is bad.',
+      right: 'Name the disease (cholera, from Source 1), use WaterBridge’s value (“no child should die”), and compare with girls going to school, which depends on children surviving first.',
+      wrong: [
+        { text: 'Add that 2.2 billion people lack safe water.', why: 'A true figure, but it is not tied to why this benefit matters most.' },
+        { text: 'Describe how WaterBridge drills wells.', why: 'That is 1(c) material about actions, not justification.' },
+        { text: 'Add a second benefit and say it is just as important.', why: 'Two choices weaken the judgement.' },
+      ],
+    },
+  },
+};

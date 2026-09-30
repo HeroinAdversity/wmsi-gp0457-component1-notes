@@ -79,7 +79,7 @@ export function MyNotes() {
         </div>
       </div>
       <p className="mt-2 max-w-[70ch] text-[13px] text-[color:var(--color-ink-3)]">
-        Select any words on a Question 2 page to highlight them or add a note. Notes stay on this device; use “Save a backup” to move them to another one. {msg && <b className="text-[color:var(--color-q2-storm)]" aria-live="polite">{msg}</b>}
+        Select any words on a Question 1 or Question 2 page to highlight them or add a note. Notes stay on this device; use “Save a backup” to move them to another one. {msg && <b className="text-[color:var(--color-q2-storm)]" aria-live="polite">{msg}</b>}
       </p>
 
       <div className="mt-3 flex flex-wrap gap-1.5">

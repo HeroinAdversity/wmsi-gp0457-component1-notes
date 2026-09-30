@@ -1,0 +1,105 @@
+import type { Q1BankItem } from '../../types';
+
+export const J25_11_Q1_MIRROR_A: Q1BankItem = {
+  id: 'q1m-j25-11-a',
+  kind: 'mirror',
+  parent: 'J25-11',
+  title: 'Online activism',
+  topic: 'Digital world',
+  source1: {
+    paragraphs: [
+      'Online activism means using the internet to push for social or political change. Campaigners no longer need to meet in person: a message can reach millions of people in a few hours.',
+      'Supporters say it gives a voice to people who have never been heard before. Critics call it “clicktivism”, because liking a post takes far less effort than turning up to a meeting.',
+    ],
+    list: {
+      title: 'Common methods of online activism',
+      items: ['online petitions', 'hashtag campaigns', 'boycotts organised on social media', 'crowdfunding for a cause'],
+    },
+  },
+  source2: {
+    paragraphs: [
+      'Young people everywhere care about the same digital issues: fake news, online bullying, the theft of personal data, online scams, and the millions who still have no internet at all.',
+      'As more of life moves online, these problems will reach every family. Nobody can stay safe by switching off. Governments have been far too slow to act.',
+      'Online campaigns will become the main way young people make change happen. We must stand together for a fair and safe internet. The time to act is now.',
+    ],
+    attribution: 'Adapted from a leaflet by a youth digital rights network',
+  },
+  q1a: {
+    stem: 'From Source 1, identify one method of online activism.',
+    answer: 'Online petitions',
+    accept: ['Hashtag campaigns', 'Boycotts organised on social media', 'Crowdfunding for a cause'],
+    distractors: [
+      { text: 'Clicktivism', why: 'That is the critics’ name for online activism, not a method.' },
+      { text: 'Meeting in person', why: 'Source 1 says campaigners no longer need to do this.' },
+      { text: 'Reaching millions of people in a few hours', why: 'That is a result of online activism, not one of the methods.' },
+      { text: 'Online petitions, hashtags, boycotts and crowdfunding', why: 'One method is asked for. Listing everything wastes time and can include a wrong answer.' },
+    ],
+  },
+  statements: [
+    { source: 2, quote: 'Online campaigns will become the main way young people make change happen', type: 'Prediction', signal: 'will become',
+      why: 'It says what will happen in the future. It cannot be checked yet.' },
+    { source: 2, quote: 'these problems will reach every family', type: 'Prediction', signal: 'will reach',
+      why: 'A statement about what is expected to happen as life moves online.' },
+    { source: 2, quote: 'Young people everywhere care about the same digital issues', type: 'Generalisation', signal: 'everywhere',
+      why: '"Everywhere" and "the same" apply one view to all young people.' },
+    { source: 2, quote: 'Governments have been far too slow to act', type: 'Opinion', signal: 'far too slow',
+      why: 'A judgement that others could disagree with.' },
+    { source: 2, quote: 'We must stand together for a fair and safe internet', type: 'Value', signal: 'fair and safe',
+      why: 'It shows what the network believes matters: fairness and safety online.' },
+    { source: 2, quote: 'Nobody can stay safe by switching off', type: 'Generalisation', signal: 'Nobody',
+      why: '"Nobody" makes it true of every single person, with no evidence.' },
+    { source: 1, quote: 'a message can reach millions of people in a few hours', type: 'Claim', signal: 'can reach millions',
+      why: 'Stated as true, but no example or figure is given.' },
+  ],
+  q1b: {
+    type: 'Prediction',
+    explain: '“Online campaigns will become the main way young people make change happen” is a prediction because it says what will happen in the future, using “will become”. We cannot know yet whether it is true.',
+    oneMark: 'It is a prediction because it says “will”.',
+  },
+  q1c: {
+    holder: 'the writer',
+    on: '',
+    level: 'GLOBAL',
+    points: [
+      { element: 'issues', quote: 'fake news, online bullying, the theft of personal data, online scams', point: 'The issue is a set of online harms that affect young people everywhere.' },
+      { element: 'causes', quote: 'As more of life moves online', point: 'More of life happening online is what spreads these problems.' },
+      { element: 'consequences', quote: 'these problems will reach every family', point: 'Every family will be affected.' },
+      { element: 'values', quote: 'We must stand together for a fair and safe internet', point: 'They value a fair, safe internet and unity.' },
+      { element: 'values', quote: 'Governments have been far too slow to act', point: 'They believe governments have let young people down.' },
+      { element: 'actions', quote: 'Online campaigns will become the main way young people make change happen', point: 'They back online campaigning as the way to make change.' },
+    ],
+    model: 'The writer is from a youth network with a global perspective. The issue is digital harm: “fake news, online bullying, the theft of personal data, online scams”, and people with no internet at all. The cause is that “more of life moves online”, so the consequence is that “these problems will reach every family”. They value “a fair and safe internet” and unity, and they criticise governments as “far too slow to act”. The action they want is online campaigning, which they predict “will become the main way young people make change happen”.',
+  },
+  voices: [
+    { who: 'A 15-year-old who was bullied online', quote: 'I deleted my account after a fake video of me went round my class.', level: 'PERSONAL', why: 'Her own experience.' },
+    { who: 'A school principal', quote: 'Every student at our school now takes a lesson on spotting fake news.', level: 'LOCAL', why: 'One school.' },
+    { who: 'A minister for communications', quote: 'A new law will force social media firms operating here to remove scams within 24 hours.', level: 'NATIONAL', why: 'A national law.' },
+    { who: 'A UN digital rights adviser', quote: 'A third of the world’s people have still never used the internet.', level: 'GLOBAL', why: 'The whole world.' },
+  ],
+  q1d: {
+    focus: 'digital issue',
+    lead: 'Sources 1 and 2 identify some digital issues.',
+    options: [
+      { label: 'Fake news', source: 2, quote: 'fake news', test: 'domino',
+        why: 'False stories can swing elections, spread fear about health and lead to violence.' },
+      { label: 'Online bullying', source: 2, quote: 'online bullying', test: 'hurt',
+        why: 'It can damage a young person’s mental health for years.' },
+      { label: 'Theft of personal data', source: 2, quote: 'the theft of personal data', test: 'stuck',
+        why: 'Once data is stolen it can never be taken back.' },
+      { label: 'No internet at all', source: 2, quote: 'the millions who still have no internet at all', test: 'fair',
+        why: 'People without access miss out on school, jobs and services others take for granted.' },
+      { label: 'Online scams', source: 2, quote: 'online scams', test: 'crowd',
+        why: 'Anyone with a phone can be targeted, so huge numbers of people are at risk.' },
+    ],
+    model: 'I think fake news is the most significant digital issue, because it causes so many other problems. Source 2 lists it first among the issues young people care about, and Source 1 shows that “a message can reach millions of people in a few hours”, so a false story spreads just as fast. Fake news can mislead voters, spread fear about vaccines and even lead to violence. Online bullying is also very serious, because it deeply hurts the people targeted. However, bullying mostly harms one person at a time, while one fake story can mislead millions. So fake news is the most significant issue.',
+    levelUp: {
+      base: 'Fake news is the most significant because lots of news online is fake.',
+      right: 'Explain the knock-on effects (misled voters, health scares, violence), use Source 1 (“reach millions of people in a few hours”), and compare with online bullying, which mostly harms one person at a time.',
+      wrong: [
+        { text: 'List all the digital issues from Source 2.', why: 'Listing shows no judgement. Choose one and justify it.' },
+        { text: 'Explain what clicktivism means.', why: 'A definition from Source 1 does not explain why fake news matters most.' },
+        { text: 'Add “Everyone agrees that fake news is terrible.”', why: 'An assertion about everyone is not evidence or a comparison.' },
+      ],
+    },
+  },
+};

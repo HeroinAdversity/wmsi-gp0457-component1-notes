@@ -9,6 +9,7 @@ import { LevelLadder } from './components/LevelLadder';
 import { MarkCard } from './components/MarkCard';
 import { Q2Header } from './components/Q2Header';
 import { Q2Tabs } from './components/Q2Tabs';
+import { WorksheetPrinter } from './components/WorksheetPrinter';
 import { Quiz } from './components/Quiz';
 import { WhoHowWhatWhy, matrixToBlocks, readMatrix } from './components/WhoHowWhatWhy';
 import { getItem } from './data/bank';
@@ -63,6 +64,7 @@ export function DesignPage() {
   return (
     <div className="q2-page">
       <Q2Header tone="b" label="Question 2(b) · Research design" title="The Test Bench" subtitle="Designing research to test a claim">
+        <WorksheetPrinter kind="b" defaultItemId="m-j26-12-a" />
         <Q2Tabs tabs={TABS} active={tab} onChange={setTab} />
       </Q2Header>
 

@@ -7,7 +7,8 @@ export const CODE_MAX = 8000;
 export const ANSWER_TRIM = 1200;
 
 export interface CompactActivity {
-  i: string; t: string; k: ActivityKind; st: ActivityStatus;
+  // 'q1' only appears on tracker rows read from old Q1 codes; `a` then holds a summary.
+  i: string; t: string; k: ActivityKind | 'q1'; st: ActivityStatus;
   s?: number; m?: number; l?: 1 | 2 | 3 | 4; a?: string; w?: number;
 }
 export interface ResultPayload { v: 1; scope: string; n: string; c: string; at: string; acts: CompactActivity[] }

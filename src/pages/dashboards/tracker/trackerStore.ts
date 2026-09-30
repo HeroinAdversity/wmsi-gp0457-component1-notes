@@ -17,18 +17,38 @@ export function emptyDb(): TrackerDb { return { version: 1, students: {} }; }
 
 export function addSubmission(db: TrackerDb, p: ResultPayload): { db: TrackerDb; status: 'added' | 'duplicate' | 'no-name' } {
   if (!tidy(p.n)) return { db, status: 'no-name' };
-  const key = studentKey(p.n, p.c);
-  const existing = db.students[key];
+  const students = { ...db.students };
+  let key = studentKey(p.n, p.c);
+  const sameName = Object.values(students).filter((s) => s.key.split('|')[0] === key.split('|')[0]);
+  if (!tidy(p.c) && !students[key] && sameName.length === 1) {
+    // Old Q1 codes have no class: file them under the one student with this name.
+    key = sameName[0].key;
+  } else if (tidy(p.c) && !students[key]) {
+    // A class-less row made from old Q1 codes joins this student once their class is known.
+    const orphan = students[studentKey(p.n, '')];
+    if (orphan) { delete students[orphan.key]; students[key] = { ...orphan, key, className: tidy(p.c) }; }
+  }
+  const existing = students[key];
   if (existing?.submissions.some((s) => s.at === p.at)) return { db, status: 'duplicate' };
   const row: StudentRow = existing ?? { key, name: tidy(p.n), className: tidy(p.c), submissions: [], marks: {}, nextSteps: [], comment: '' };
   const submissions = [...row.submissions, { at: p.at, acts: p.acts }].sort((x, y) => y.at.localeCompare(x.at));
-  return { db: { ...db, students: { ...db.students, [key]: { ...row, submissions } } }, status: 'added' };
+  return { db: { ...db, students: { ...students, [key]: { ...row, submissions } } }, status: 'added' };
 }
 
 export function latest(row: StudentRow): Submission | undefined { return row.submissions[0]; }
 
+const isQ1 = (s: Submission) => s.acts.length > 0 && s.acts.every((a) => a.k === 'q1');
+/** Newest Question 2 submission; old Q1 codes are kept apart so they never hide Q2 work. */
+export function latestQ2(row: StudentRow): Submission | undefined { return row.submissions.find((s) => !isQ1(s)); }
+/** Newest entry for each Q1 tool. */
+export function q1Work(row: StudentRow): CompactActivity[] {
+  const seen = new Map<string, CompactActivity>();
+  for (const s of row.submissions) if (isQ1(s)) for (const a of s.acts) if (!seen.has(a.i)) seen.set(a.i, a);
+  return [...seen.values()];
+}
+
 export function quizTotals(row: StudentRow): { score: number; max: number } {
-  const quizzes = (latest(row)?.acts ?? []).filter((a) => a.k === 'quiz');
+  const quizzes = (latestQ2(row)?.acts ?? []).filter((a) => a.k === 'quiz');
   return { score: quizzes.reduce((n, a) => n + (a.s ?? 0), 0), max: quizzes.reduce((n, a) => n + (a.m ?? 0), 0) };
 }
 

@@ -98,6 +98,17 @@
 .wne-export-btn.secondary:hover{background:var(--wne-navy);color:var(--wne-cream);box-shadow:none;}
 .wne-export-btn:disabled{opacity:0.55;cursor:wait;transform:none;box-shadow:none;}
 
+/* Show only the site's current language (body.lang-en / body.lang-zh). */
+body.lang-en #wne-fab .zh, body.lang-en #wne-panel .zh,
+body.lang-zh #wne-fab .en, body.lang-zh #wne-panel .en{display:none;}
+
+/* Phones: a smaller button above the home bar, and room at the page end so the
+   last lines and the footer buttons can scroll clear of it. */
+@media (max-width:640px){
+  #wne-fab{right:14px;bottom:calc(14px + env(safe-area-inset-bottom));padding:9px 14px;font-size:13px;}
+  body:has(#wne-fab){padding-bottom:calc(64px + env(safe-area-inset-bottom));}
+}
+
 @media print{
   #wne-fab, #wne-panel, .wne-backdrop{display:none !important;}
 }

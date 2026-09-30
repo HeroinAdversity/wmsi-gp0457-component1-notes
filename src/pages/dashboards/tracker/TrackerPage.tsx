@@ -3,8 +3,10 @@ import { Container } from '../../../components/primitives';
 import { downloadFile, formatTimestamp } from '../../../lib/dashboards';
 import { decodeResultCode, extractCode } from '../../../lib/resultCode';
 import { usePersistentState } from '../../../lib/useNotesExport';
+import { docxToText } from './docxText';
+import { decodeLegacyCode } from './legacyCode';
 import {
-  NEXT_STEPS, addSubmission, emptyDb, latest, parseBackup, quizTotals, setComment, setMark, toggleNextStep, trackerCsv,
+  NEXT_STEPS, addSubmission, emptyDb, latest, latestQ2, parseBackup, q1Work, quizTotals, setComment, setMark, toggleNextStep, trackerCsv,
   type StudentRow, type TrackerDb,
 } from './trackerStore';
 
@@ -32,27 +34,31 @@ export function TrackerPage() {
   /** Decode one code and add it; reports the outcome. */
   const ingest = async (rawCode: string, label: string) => {
     const r = await decodeResultCode(rawCode);
-    if (!r.ok) { say(`${label}: ${r.error}`, 'err'); return; }
+    const legacy = r.ok ? null : decodeLegacyCode(rawCode);
+    if (!r.ok && !legacy) { say(`${label}: ${r.error}`, 'err'); return; }
+    const payload = r.ok ? r.payload : legacy!;
     // Work from the latest db (a ref, so several files in a row each see the last result).
-    const out = addSubmission(dbRef.current, r.payload);
+    const out = addSubmission(dbRef.current, payload);
     dbRef.current = out.db;
     setDb(out.db);
-    const who = r.payload.n.trim() || 'This code';
-    if (out.status === 'added') say(`Added ${who}.`, 'ok');
-    else if (out.status === 'duplicate') say(`${who} — already added, skipped.`, 'ok');
+    const who = payload.n.trim() || 'This code';
+    const what = legacy ? ` (${legacy.acts[0].t})` : '';
+    if (out.status === 'added') say(`Added ${who}${what}.`, 'ok');
+    else if (out.status === 'duplicate') say(`${who}${what} — already added, skipped.`, 'ok');
     else say(`${label}: this code has no student name.`, 'err');
   };
 
   const onFiles = async (files: FileList | File[]) => {
-    const { pdfToText } = await import('./pdfText');
     for (const f of Array.from(files)) {
-      if (!/\.pdf$/i.test(f.name)) { say(`${f.name}: only PDF files can be dropped. Paste codes from Word files instead.`, 'err'); continue; }
+      const kind = /\.pdf$/i.test(f.name) ? 'pdf' : /\.docx$/i.test(f.name) ? 'docx' : null;
+      if (!kind) { say(`${f.name}: drop a PDF or Word (.docx) file.`, 'err'); continue; }
       try {
-        const code = extractCode(await pdfToText(f));
+        const text = kind === 'pdf' ? await (await import('./pdfText')).pdfToText(f) : await docxToText(f);
+        const code = extractCode(text);
         if (!code) { say(`No result code found in ${f.name}.`, 'err'); continue; }
         await ingest(code, f.name);
       } catch {
-        say(`${f.name}: could not read this PDF.`, 'err');
+        say(`${f.name}: could not read this ${kind === 'pdf' ? 'PDF' : 'Word file'}.`, 'err');
       }
     }
   };
@@ -111,10 +117,10 @@ export function TrackerPage() {
           onDragOver={(e) => { e.preventDefault(); setDragging(true); }} onDragLeave={() => setDragging(false)} onDrop={onDrop}
           className={`mt-5 flex flex-wrap items-center gap-3 rounded-[8px] border-[1.5px] border-dashed px-4 py-3.5 text-[13.5px] text-[color:var(--color-q2-sea)] ${dragging ? 'border-[color:var(--color-q2-storm)] bg-[color:var(--color-q2-coastal)]/20' : 'border-[#9DB3C6] bg-[color:var(--color-q2-coastal-tint)]'}`}>
           <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 17v3h16v-3" fill="none" stroke="#021526" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>
-          <span><b>Drop My learning PDFs here</b>, <button type="button" className="underline" onClick={() => fileRef.current?.click()}>choose files</button>, or paste a code</span>
-          <input ref={fileRef} type="file" accept="application/pdf,.pdf" multiple hidden onChange={(e) => { if (e.target.files) void onFiles(e.target.files); e.target.value = ''; }} />
+          <span><b>Drop My learning PDFs or Word files here</b>, <button type="button" className="underline" onClick={() => fileRef.current?.click()}>choose files</button>, or paste a code</span>
+          <input ref={fileRef} type="file" accept="application/pdf,.pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,.docx" multiple hidden onChange={(e) => { if (e.target.files) void onFiles(e.target.files); e.target.value = ''; }} />
           <input value={paste} onChange={(e) => setPaste(e.target.value)} onKeyDown={(e) => { if (e.key === 'Enter') void addPasted(); }}
-            placeholder="WMSI2.q2.…" aria-label="Paste a result code"
+            placeholder="WMSI2.q2.… or an old Q1 code" aria-label="Paste a result code"
             className="min-w-[180px] flex-1 rounded-[5px] border border-[color:var(--color-line)] bg-white px-2.5 py-2 font-mono text-[12px]" />
           <button type="button" onClick={() => void addPasted()} className={`${btn} border-[color:var(--color-q2-sea)] bg-white text-[color:var(--color-q2-sea)]`}>Add</button>
         </div>
@@ -134,7 +140,7 @@ export function TrackerPage() {
             </div>
 
             {rows.length === 0 ? (
-              <p className="rounded-[8px] border border-dashed border-[color:var(--color-line)] bg-white px-5 py-8 text-[14px] text-[color:var(--color-ink-2)]">No submissions yet. Drop students’ My learning PDFs above.</p>
+              <p className="rounded-[8px] border border-dashed border-[color:var(--color-line)] bg-white px-5 py-8 text-[14px] text-[color:var(--color-ink-2)]">No submissions yet. Drop students’ My learning PDFs or Word files above.</p>
             ) : (
               <>
                 <table className="hidden w-full border-collapse text-[13px] md:table">
@@ -206,7 +212,8 @@ function Panel({ row, setDb }: { row: StudentRow; setDb: (f: (p: TrackerDb) => T
     return () => clearTimeout(id);
   }, [comment, row.key, row.comment, setDb]);
 
-  const answers = (latest(row)?.acts ?? []).filter((a) => a.k === 'answer-2a' || a.k === 'answer-2b');
+  const q1 = q1Work(row);
+  const answers = (latestQ2(row)?.acts ?? []).filter((a) => a.k === 'answer-2a' || a.k === 'answer-2b');
   const markInput = (part: 'a' | 'b') => (
     <span className="flex items-center gap-1.5">
       <input type="number" min={0} max={8} step={1} aria-label={`2(${part}) mark out of 8`}
@@ -250,6 +257,17 @@ function Panel({ row, setDb }: { row: StudentRow; setDb: (f: (p: TrackerDb) => T
           );
         })}
       </details>
+      {q1.length > 0 && (
+        <details className="mt-2 text-[13px]">
+          <summary className="cursor-pointer font-semibold text-[color:var(--color-q2-storm)]">Question 1 work ({q1.length})</summary>
+          {q1.map((a) => (
+            <div key={a.i} className="mt-3 border-t border-[color:var(--color-line)] pt-2">
+              <p className="font-semibold">{a.t}</p>
+              <p className="mt-1 whitespace-pre-wrap text-[12.5px] leading-[1.5] text-[color:var(--color-ink-2)]">{a.a}</p>
+            </div>
+          ))}
+        </details>
+      )}
     </aside>
   );
 }

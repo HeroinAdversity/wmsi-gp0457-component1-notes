@@ -49,7 +49,7 @@ export function MyLearningPage() {
   stateRef.current = state;
   useNotesExport({
     toolId: 'my_learning',
-    pageTitleEn: 'My learning — Question 2',
+    pageTitleEn: 'My learning — Questions 1 and 2',
     subtitleEn: 'IGCSE Global Perspectives 0457 · Summary for your teacher',
     filenameStem: 'GP_MyLearning',
     studentNameSelector: '#wne-student-name',
@@ -105,7 +105,7 @@ export function MyLearningPage() {
 
             {rows.length === 0 ? (
               <div className="rounded-[8px] border border-dashed border-[color:var(--color-line)] bg-white px-5 py-8 text-[14.5px] text-[color:var(--color-ink-2)]">
-                Nothing here yet. Try the <Link to="/research/toolkit#quiz" className="font-semibold text-[color:var(--color-q2-storm)] underline">Toolkit quiz</Link> or a <Link to="/research/practice" className="font-semibold text-[color:var(--color-q2-storm)] underline">practice paper</Link>.
+                Nothing here yet. Try a <Link to="/perspectives/games" className="font-semibold text-[color:var(--color-q2-storm)] underline">Question 1 game</Link>, a <Link to="/perspectives/practice" className="font-semibold text-[color:var(--color-q2-storm)] underline">Question 1 paper</Link>, the <Link to="/research/toolkit#quiz" className="font-semibold text-[color:var(--color-q2-storm)] underline">Toolkit quiz</Link> or a <Link to="/research/practice" className="font-semibold text-[color:var(--color-q2-storm)] underline">Question 2 paper</Link>.
               </div>
             ) : (
               <ul className="border-t border-[color:var(--color-ink)]">
@@ -129,7 +129,7 @@ export function MyLearningPage() {
 
           <div>
             <div className={`${rows.length ? 'flex' : 'hidden lg:flex'} aspect-[1/1.3] flex-col rounded-[4px] border border-[color:var(--color-line)] bg-white p-5 text-[10.5px] text-[color:var(--color-ink-2)] shadow-[0_10px_30px_-14px_rgba(0,0,0,0.3)]`} aria-label="Preview of your PDF">
-              <p className="font-display text-[18px] text-[color:var(--color-q2-sea)]">My learning · Question 2</p>
+              <p className="font-display text-[18px] text-[color:var(--color-q2-sea)]">My learning · Questions 1 and 2</p>
               <p>{state.student.name || 'Your name'} · {state.student.className || 'Class'}</p>
               {[92, 80, 86, 60, 90, 74].map((w, i) => <div key={i} className="mt-1.5 h-[5px] rounded bg-[color:var(--color-q2-arctic)]" style={{ width: `${w}%`, marginTop: i === 3 ? 12 : undefined }} />)}
               <div className="mt-auto rounded-[5px] border-[1.5px] border-[color:var(--color-q2-sea)] p-2.5">

@@ -1,0 +1,107 @@
+import type { Q1BankItem } from '../../types';
+
+export const J26_12_Q1_MIRROR_B: Q1BankItem = {
+  id: 'q1m-j26-12-b',
+  kind: 'mirror',
+  parent: 'J26-12',
+  title: 'Wildlife trafficking',
+  topic: 'Biodiversity and ecosystem loss',
+  source1: {
+    paragraphs: [
+      'The illegal wildlife trade is estimated to be worth up to $23 billion a year. In 2022, customs officers seized about 1,800 shipments of protected animals and plants. The average weight of each seized shipment was 450 kg.',
+      'Trafficking has risen since 2010, helped by online sales and faster shipping.',
+    ],
+    list: {
+      title: 'Causes of wildlife trafficking',
+      items: ['demand for traditional medicines', 'exotic pets bought as status symbols', 'poverty in areas near wildlife', 'weak border checks', 'high profits and small fines'],
+    },
+  },
+  source2: {
+    paragraphs: [
+      'Wildlife crime covers killing, capturing and smuggling protected species. Trafficking pushes animals towards extinction, and tourism suffers when wildlife disappears. It also spreads diseases from animals to people!',
+      'Smuggling routes for ivory and pangolin scales are often the same routes used for drugs and weapons.',
+      'Trafficking is a terrible crime, so training border officers and using sniffer dogs helps catch smugglers. We run awareness campaigns in shopping centres, but trafficking can only end if people stop buying wildlife products.',
+    ],
+    attribution: 'Adapted from the website of an international wildlife protection organisation, 2023',
+  },
+  q1a: {
+    stem: 'From Source 1, identify the average weight of each seized shipment in 2022.',
+    answer: '450 kg',
+    accept: ['450 kilograms'],
+    note: 'Units must be included.',
+    distractors: [
+      { text: '1,800', why: 'That is the number of shipments seized.' },
+      { text: '$23 billion', why: 'That is the value of the trade per year.' },
+      { text: '450', why: 'Right number, but no units.' },
+      { text: '2010', why: 'That is when trafficking began to rise.' },
+    ],
+  },
+  statements: [
+    { source: 2, quote: 'Trafficking pushes animals towards extinction', type: 'Generalisation', signal: 'pushes',
+      why: 'It says trafficking always does this, for all animals.' },
+    { source: 2, quote: 'tourism suffers when wildlife disappears', type: 'Generalisation', signal: 'tourism suffers',
+      why: 'A broad rule applied everywhere without evidence.' },
+    { source: 2, quote: 'trafficking can only end if people stop buying wildlife products', type: 'Generalisation', signal: 'only',
+      why: '"Only" allows no other solution.' },
+    { source: 2, quote: 'Trafficking is a terrible crime', type: 'Opinion', signal: 'terrible',
+      why: '"Terrible" is a judgement.' },
+    { source: 2, quote: 'It also spreads diseases from animals to people', type: 'Claim', signal: 'spreads diseases',
+      why: 'Stated as true without evidence in the source.' },
+    { source: 2, quote: 'often the same routes used for drugs and weapons', type: 'Claim', signal: 'often',
+      why: '"Often" is not measured.' },
+    { source: 1, quote: 'The average weight of each seized shipment was 450 kg', type: 'Fact', signal: '450 kg',
+      why: 'A measured figure.' },
+  ],
+  q1b: {
+    type: 'Generalisation',
+    explain: '“Trafficking pushes animals towards extinction” is a generalisation because it says trafficking always does this, for every species. It is true for some species, but not for all, and no evidence is given.',
+    oneMark: 'It is a generalisation because it says it always happens.',
+  },
+  q1c: {
+    holder: 'the wildlife organisation',
+    on: 'on wildlife trafficking',
+    level: 'GLOBAL',
+    points: [
+      { element: 'issues', quote: 'killing, capturing and smuggling protected species', point: 'The issue is the illegal trade in protected species.' },
+      { element: 'consequences', quote: 'Trafficking pushes animals towards extinction', point: 'Species are driven towards extinction.' },
+      { element: 'consequences', quote: 'It also spreads diseases from animals to people', point: 'Diseases spread to people.' },
+      { element: 'causes', quote: 'people stop buying wildlife products', point: 'Buyers’ demand drives the trade.' },
+      { element: 'values', quote: 'Trafficking is a terrible crime', point: 'They see trafficking as a terrible crime.' },
+      { element: 'actions', quote: 'training border officers and using sniffer dogs', point: 'They train border officers and use sniffer dogs.' },
+      { element: 'actions', quote: 'We run awareness campaigns in shopping centres', point: 'They run awareness campaigns.' },
+    ],
+    model: 'The wildlife organisation sees trafficking as “a terrible crime”. The issue is “killing, capturing and smuggling protected species”. The consequences are wide: it “pushes animals towards extinction”, tourism suffers, and it “spreads diseases from animals to people”. They link it to other crime, because the smuggling routes are “often the same routes used for drugs and weapons”. They see buyers as the cause, saying it “can only end if people stop buying wildlife products”. Their actions are “training border officers and using sniffer dogs”, and running “awareness campaigns in shopping centres”.',
+  },
+  voices: [
+    { who: 'A park ranger', quote: 'I found three snares near our camp this morning.', level: 'PERSONAL', why: 'His own work.' },
+    { who: 'A village chief near a reserve', quote: 'Our village now earns more from eco-tours than poachers ever paid.', level: 'LOCAL', why: 'One village.' },
+    { who: 'A national wildlife minister', quote: 'Fines for smuggling protected animals will rise tenfold across the country.', level: 'NATIONAL', why: 'A national law.' },
+    { who: 'A UN crime expert', quote: 'Wildlife trafficking is among the most profitable crimes in the world.', level: 'GLOBAL', why: 'The world.' },
+  ],
+  q1d: {
+    focus: 'cause of wildlife trafficking',
+    lead: 'Sources 1 and 2 suggest causes of wildlife trafficking.',
+    options: [
+      { label: 'Demand for traditional medicines', source: 1, quote: 'demand for traditional medicines', test: 'crowd',
+        why: 'Millions of buyers create a huge market.' },
+      { label: 'High profits and small fines', source: 1, quote: 'high profits and small fines', test: 'stuck',
+        why: 'While crime pays and punishment is weak, trafficking keeps returning.' },
+      { label: 'Poverty near wildlife', source: 1, quote: 'poverty in areas near wildlife', test: 'fair',
+        why: 'Poor people are drawn into poaching while gangs take most of the profit.' },
+      { label: 'Weak border checks', source: 1, quote: 'weak border checks', test: 'domino',
+        why: 'Weak borders let drugs and weapons through as well.' },
+      { label: 'Exotic pets as status symbols', source: 1, quote: 'exotic pets bought as status symbols', test: 'hurt',
+        why: 'Many captured animals die in transport.' },
+    ],
+    model: 'I think the most significant cause is “demand for traditional medicines”, because without buyers there would be no trade. The wildlife organisation agrees, saying trafficking “can only end if people stop buying wildlife products”. Millions of buyers create a market worth “up to $23 billion a year”. High profits and small fines also matter, because they make the crime worth the risk. But the profits only exist because of demand. If demand fell, even small fines would be enough to stop the trade. So demand is the most significant cause.',
+    levelUp: {
+      base: 'Demand is the biggest cause because people want the products.',
+      right: 'Use both sources (it “can only end if people stop buying”, and the trade is worth “$23 billion”), then compare with high profits, which only exist because of demand.',
+      wrong: [
+        { text: 'Add the average shipment weight of 450 kg.', why: 'A figure that does not support the choice.' },
+        { text: 'Describe sniffer dogs.', why: 'A solution, not a justification.' },
+        { text: 'Say that trafficking is a terrible crime.', why: 'An opinion, with no support or comparison.' },
+      ],
+    },
+  },
+};

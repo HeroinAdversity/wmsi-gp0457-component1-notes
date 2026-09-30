@@ -1,0 +1,103 @@
+import type { Q1BankItem } from '../../types';
+
+export const J26_11_Q1_MIRROR_A: Q1BankItem = {
+  id: 'q1m-j26-11-a',
+  kind: 'mirror',
+  parent: 'J26-11',
+  title: 'Community gardens',
+  topic: 'Changing communities',
+  source1: {
+    paragraphs: [
+      'Community gardens are shared plots of land where neighbours grow food together. They are spreading in cities as more people want fresh food and green space.',
+      'A 2023 city survey counted 550 community gardens in Kuala Lumpur and its suburbs, looked after by around 12,000 volunteers. The gardens produce an estimated 900 tonnes of vegetables a year.',
+    ],
+  },
+  source2: {
+    paragraphs: [
+      'Our garden belongs to the whole street, not to one landowner. Children, retired people and families all share the work and the harvest. Our gardeners are healthier, happier and better neighbours.',
+      'Gardens like ours are everywhere now. There is a garden on every empty corner! Rooftops, school fields, car parks and river banks. Some are huge city farms and some are just a few boxes of herbs.',
+      'Gardens bring people together. Everyone has a plot and everyone has a say at our monthly meeting. It is right that land in a city should be used for the good of the people who live there.',
+      'Our garden cares for people and for nature. We grow enough to share our vegetables with the local food bank. Come and dig with us!',
+    ],
+    attribution: 'Adapted from a leaflet by a neighbourhood garden association in Kuala Lumpur',
+  },
+  q1a: {
+    stem: 'According to Source 1, how many community gardens were counted in Kuala Lumpur and its suburbs?',
+    answer: '550',
+    accept: ['550 gardens'],
+    distractors: [
+      { text: '12,000', why: 'That is the number of volunteers, not gardens.' },
+      { text: '900 tonnes', why: 'That is how many vegetables the gardens produce.' },
+      { text: '2023', why: 'That is the year of the survey.' },
+      { text: 'A garden on every empty corner', why: 'That is a claim from Source 2, not a number.' },
+    ],
+  },
+  statements: [
+    { source: 2, quote: 'It is right that land in a city should be used for the good of the people who live there', type: 'Value', signal: 'It is right',
+      why: 'It shows what the writer believes is right.' },
+    { source: 2, quote: 'Our garden cares for people and for nature', type: 'Value', signal: 'cares for',
+      why: 'It names what the association thinks matters.' },
+    { source: 2, quote: 'Gardens bring people together', type: 'Generalisation', signal: 'Gardens bring',
+      why: 'Said of all gardens, which may not always be true.' },
+    { source: 2, quote: 'There is a garden on every empty corner!', type: 'Generalisation', signal: 'every empty corner',
+      why: 'An exaggeration that cannot be true.' },
+    { source: 2, quote: 'Our gardeners are healthier, happier and better neighbours', type: 'Claim', signal: 'healthier, happier',
+      why: 'Stated as true without evidence.' },
+    { source: 1, quote: 'A 2023 city survey counted 550 community gardens', type: 'Fact', signal: '550',
+      why: 'A figure from a survey that can be checked.' },
+    { source: 2, quote: 'Come and dig with us!', type: 'Vested interest', signal: 'Come and dig',
+      why: 'The association wants new members, so it presents gardens in the best light.' },
+  ],
+  q1b: {
+    type: 'Value',
+    explain: '“It is right that land in a city should be used for the good of the people who live there” is a value because it shows what the writer believes is morally right. “It is right” shows a belief, not a fact that could be checked.',
+    oneMark: 'It is a value because it says what is right.',
+  },
+  q1c: {
+    holder: 'the garden association',
+    on: '',
+    level: 'LOCAL',
+    points: [
+      { element: 'issues', quote: 'Our garden belongs to the whole street, not to one landowner', point: 'The issue is how city land is used, and who it is for.' },
+      { element: 'values', quote: 'It is right that land in a city should be used for the good of the people who live there', point: 'They believe city land should serve local people.' },
+      { element: 'values', quote: 'Our garden cares for people and for nature', point: 'They care for people and nature.' },
+      { element: 'causes', quote: 'Children, retired people and families all share the work and the harvest', point: 'Because everyone shares, people feel involved.' },
+      { element: 'consequences', quote: 'Our gardeners are healthier, happier and better neighbours', point: 'Gardeners are healthier and closer as neighbours.' },
+      { element: 'actions', quote: 'everyone has a say at our monthly meeting', point: 'Decisions are shared at monthly meetings.' },
+      { element: 'actions', quote: 'share our vegetables with the local food bank', point: 'They give vegetables to the food bank.' },
+    ],
+    model: 'The garden association believes land should “belong to the whole street, not to one landowner”. It values fairness and community: “it is right that land in a city should be used for the good of the people who live there”, and the garden “cares for people and for nature”. Because children, retired people and families “share the work and the harvest”, its gardeners are “healthier, happier and better neighbours”. In action, “everyone has a say at our monthly meeting”, and they “share our vegetables with the local food bank”. Their view is local, rooted in one street.',
+  },
+  voices: [
+    { who: 'A retired teacher', quote: 'Since I joined the garden I have made more friends than in ten years of living here.', level: 'PERSONAL', why: 'His own life.' },
+    { who: 'A city councillor', quote: 'We are turning six empty car parks into gardens this year.', level: 'LOCAL', why: 'One city’s plan.' },
+    { who: 'A housing minister', quote: 'Every new housing estate in the country must include shared green space.', level: 'NATIONAL', why: 'A national rule.' },
+    { who: 'A UN food official', quote: 'Urban farms now supply a sixth of the world’s food.', level: 'GLOBAL', why: 'The whole world.' },
+  ],
+  q1d: {
+    focus: 'benefit of community gardens',
+    lead: 'Sources 1 and 2 identify benefits of community gardens.',
+    options: [
+      { label: 'Fresh food', source: 1, quote: '900 tonnes of vegetables a year', test: 'crowd',
+        why: 'Hundreds of tonnes of food reach many families.' },
+      { label: 'Food for the food bank', source: 2, quote: 'share our vegetables with the local food bank', test: 'fair',
+        why: 'People who cannot afford fresh food get a share.' },
+      { label: 'Bringing people together', source: 2, quote: 'Gardens bring people together', test: 'domino',
+        why: 'Stronger communities lead to less loneliness and safer streets.' },
+      { label: 'Healthier gardeners', source: 2, quote: 'Our gardeners are healthier, happier', test: 'hurt',
+        why: 'Better health improves every part of a person’s life.' },
+      { label: 'Green space in the city', source: 1, quote: 'green space', test: 'stuck',
+        why: 'Once land is built on, green space is almost never returned.' },
+    ],
+    model: 'I think bringing people together is the most significant benefit, because it leads to so many other good things. Source 2 describes children, retired people and families who “share the work and the harvest”. When neighbours know each other, lonely people have company and streets feel safer. Fresh food is also a clear benefit: the gardens grow about “900 tonnes of vegetables a year”. But food can be bought in shops, while friendship between neighbours cannot. Because its effects spread through the whole community, bringing people together is the most significant benefit.',
+    levelUp: {
+      base: 'Bringing people together is the best benefit because people like being together.',
+      right: 'Explain the knock-on effects (less loneliness, safer streets), quote Source 2 (“share the work and the harvest”), and compare with fresh food, which can be bought elsewhere.',
+      wrong: [
+        { text: 'Add that there are 550 gardens.', why: 'A count does not justify the choice.' },
+        { text: 'Say that the garden has a monthly meeting.', why: 'An action for 1(c), not a reason this benefit matters most.' },
+        { text: 'Add “Gardening is fun.”', why: 'A personal view with no support.' },
+      ],
+    },
+  },
+};

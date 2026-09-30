@@ -2,22 +2,20 @@ import { describe, expect, it } from 'vitest';
 import { Q1_BANK, sourceBody, sourceOf, wordCount } from './index';
 import { SESSIONS } from '../../../research/data/types';
 
-const FULL = process.env.Q1_BANK_FULL === '1';
-
 describe('Q1 bank audit', () => {
   it('has unique ids', () => {
     const ids = Q1_BANK.map((b) => b.id);
     expect(new Set(ids).size).toBe(ids.length);
   });
 
-  it('has at most one reworded item per session and two mirrors per session', () => {
+  it('has one reworded item and two mirrors per session', () => {
     for (const s of Object.keys(SESSIONS)) {
-      expect(Q1_BANK.filter((b) => b.kind === 'reworded' && b.parent === s).length).toBeLessThanOrEqual(1);
-      expect(Q1_BANK.filter((b) => b.kind === 'mirror' && b.parent === s).length).toBeLessThanOrEqual(2);
+      expect(Q1_BANK.filter((b) => b.kind === 'reworded' && b.parent === s)).toHaveLength(1);
+      expect(Q1_BANK.filter((b) => b.kind === 'mirror' && b.parent === s)).toHaveLength(2);
     }
   });
 
-  it.runIf(FULL)('is complete: 11 reworded + 22 mirrors', () => {
+  it('is complete: 11 reworded + 22 mirrors', () => {
     expect(Q1_BANK.filter((b) => b.kind === 'reworded')).toHaveLength(11);
     expect(Q1_BANK.filter((b) => b.kind === 'mirror')).toHaveLength(22);
   });

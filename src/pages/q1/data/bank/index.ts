@@ -10,17 +10,42 @@ import { J26_11_Q1_REWORDED } from './reworded/j26-11';
 import { J26_12_Q1_REWORDED } from './reworded/j26-12';
 import { J26_13_Q1_REWORDED } from './reworded/j26-13';
 import { SP_25_Q1_REWORDED } from './reworded/sp-25';
-
 import { J25_11_Q1_MIRROR_A } from './mirrors/j25-11-a';
 import { J25_11_Q1_MIRROR_B } from './mirrors/j25-11-b';
 import { J25_12_Q1_MIRROR_A } from './mirrors/j25-12-a';
 import { J25_12_Q1_MIRROR_B } from './mirrors/j25-12-b';
 import { J25_13_Q1_MIRROR_A } from './mirrors/j25-13-a';
 import { J25_13_Q1_MIRROR_B } from './mirrors/j25-13-b';
+import { N25_11_Q1_MIRROR_A } from './mirrors/n25-11-a';
+import { N25_11_Q1_MIRROR_B } from './mirrors/n25-11-b';
+import { N25_12_Q1_MIRROR_A } from './mirrors/n25-12-a';
+import { N25_12_Q1_MIRROR_B } from './mirrors/n25-12-b';
+import { N25_13_Q1_MIRROR_A } from './mirrors/n25-13-a';
+import { N25_13_Q1_MIRROR_B } from './mirrors/n25-13-b';
+import { M26_12_Q1_MIRROR_A } from './mirrors/m26-12-a';
+import { M26_12_Q1_MIRROR_B } from './mirrors/m26-12-b';
+import { J26_11_Q1_MIRROR_A } from './mirrors/j26-11-a';
+import { J26_11_Q1_MIRROR_B } from './mirrors/j26-11-b';
+import { J26_12_Q1_MIRROR_A } from './mirrors/j26-12-a';
+import { J26_12_Q1_MIRROR_B } from './mirrors/j26-12-b';
+import { J26_13_Q1_MIRROR_A } from './mirrors/j26-13-a';
+import { J26_13_Q1_MIRROR_B } from './mirrors/j26-13-b';
+import { SP_25_Q1_MIRROR_A } from './mirrors/sp-25-a';
+import { SP_25_Q1_MIRROR_B } from './mirrors/sp-25-b';
 
 export const Q1_BANK: Q1BankItem[] = [
-  J25_11_Q1_REWORDED, J25_12_Q1_REWORDED, J25_13_Q1_REWORDED, N25_11_Q1_REWORDED, N25_12_Q1_REWORDED, N25_13_Q1_REWORDED, M26_12_Q1_REWORDED, J26_11_Q1_REWORDED, J26_12_Q1_REWORDED, J26_13_Q1_REWORDED, SP_25_Q1_REWORDED,
-  J25_11_Q1_MIRROR_A, J25_11_Q1_MIRROR_B, J25_12_Q1_MIRROR_A, J25_12_Q1_MIRROR_B, J25_13_Q1_MIRROR_A, J25_13_Q1_MIRROR_B,
+  J25_11_Q1_REWORDED, J25_12_Q1_REWORDED, J25_13_Q1_REWORDED,
+  N25_11_Q1_REWORDED, N25_12_Q1_REWORDED, N25_13_Q1_REWORDED,
+  M26_12_Q1_REWORDED, J26_11_Q1_REWORDED, J26_12_Q1_REWORDED,
+  J26_13_Q1_REWORDED, SP_25_Q1_REWORDED,
+  J25_11_Q1_MIRROR_A, J25_11_Q1_MIRROR_B, J25_12_Q1_MIRROR_A,
+  J25_12_Q1_MIRROR_B, J25_13_Q1_MIRROR_A, J25_13_Q1_MIRROR_B,
+  N25_11_Q1_MIRROR_A, N25_11_Q1_MIRROR_B, N25_12_Q1_MIRROR_A,
+  N25_12_Q1_MIRROR_B, N25_13_Q1_MIRROR_A, N25_13_Q1_MIRROR_B,
+  M26_12_Q1_MIRROR_A, M26_12_Q1_MIRROR_B, J26_11_Q1_MIRROR_A,
+  J26_11_Q1_MIRROR_B, J26_12_Q1_MIRROR_A, J26_12_Q1_MIRROR_B,
+  J26_13_Q1_MIRROR_A, J26_13_Q1_MIRROR_B, SP_25_Q1_MIRROR_A,
+  SP_25_Q1_MIRROR_B,
 ];
 
 export function getQ1Item(id: string): Q1BankItem | undefined {

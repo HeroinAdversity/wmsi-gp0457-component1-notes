@@ -1,0 +1,106 @@
+import type { Q1BankItem } from '../../types';
+
+export const M26_12_Q1_MIRROR_A: Q1BankItem = {
+  id: 'q1m-m26-12-a',
+  kind: 'mirror',
+  parent: 'M26-12',
+  title: 'Studying abroad',
+  topic: 'Migration and urbanisation',
+  source1: {
+    paragraphs: [
+      'More young people than ever are leaving home to study in another country. UNESCO says there were over 6 million international students in 2022.',
+      'The number of students studying abroad went from about 2 million in 2000 to over 6 million in 2022. It has more than tripled.',
+    ],
+    list: {
+      title: 'Why students study abroad',
+      items: ['better-ranked universities', 'courses not offered at home', 'learning a new language', 'better job prospects', 'experiencing another culture', 'the chance to settle in the new country'],
+    },
+  },
+  source2: {
+    paragraphs: [
+      'The Global Student Network (GSN) is a not-for-profit organisation that supports international students. Studying abroad changes everyone who does it, and every host university benefits from the ideas international students bring.',
+      'Yet many students arrive alone, with little money and no one to turn to. Homesickness, high rents and visa rules make their first year very hard. We believe no student should face these problems alone.',
+      'Working with universities and city councils, we run welcome programmes, find affordable housing and match new students with mentors. Please volunteer as a mentor or donate to our hardship fund.',
+    ],
+    attribution: 'Extract from the Global Student Network’s mission statement',
+  },
+  q1a: {
+    stem: 'Using Source 1, identify the trend in the number of students studying abroad.',
+    answer: 'It has more than tripled',
+    accept: ['It has increased', 'Rising'],
+    distractors: [
+      { text: 'Over 6 million', why: 'That is the 2022 number, not the trend.' },
+      { text: 'About 2 million', why: 'That is the 2000 number.' },
+      { text: 'Better job prospects', why: 'That is a reason for studying abroad, not the trend.' },
+      { text: 'It has stayed the same', why: 'Source 1 shows it rose from 2 million to over 6 million.' },
+    ],
+  },
+  statements: [
+    { source: 2, quote: 'Studying abroad changes everyone who does it', type: 'Generalisation', signal: 'everyone',
+      why: '"Everyone" applies the claim to every student.' },
+    { source: 2, quote: 'every host university benefits from the ideas international students bring', type: 'Generalisation', signal: 'every host university',
+      why: 'Said of all universities, without evidence.' },
+    { source: 2, quote: 'We believe no student should face these problems alone', type: 'Value', signal: 'should',
+      why: 'A belief about what is right.' },
+    { source: 2, quote: 'many students arrive alone, with little money and no one to turn to', type: 'Claim', signal: 'many students',
+      why: '"Many" is not measured.' },
+    { source: 1, quote: 'UNESCO says there were over 6 million international students in 2022', type: 'Fact', signal: '6 million',
+      why: 'A figure from a named organisation.' },
+    { source: 2, quote: 'Please volunteer as a mentor or donate to our hardship fund', type: 'Vested interest', signal: 'donate',
+      why: 'The organisation needs donations, so it has a reason to stress students’ problems.' },
+    { source: 2, quote: 'Homesickness, high rents and visa rules make their first year very hard', type: 'Opinion', signal: 'very hard',
+      why: 'How hard it is is a judgement.' },
+  ],
+  q1b: {
+    type: 'Generalisation',
+    explain: '“Studying abroad changes everyone who does it” is a generalisation because the word “everyone” says it is true of every student, when it is only true of some.',
+    oneMark: 'It is a generalisation because it says “everyone”.',
+  },
+  q1c: {
+    holder: 'the organisation',
+    on: 'on international students',
+    level: 'GLOBAL',
+    points: [
+      { element: 'issues', quote: 'many students arrive alone, with little money and no one to turn to', point: 'The issue is international students struggling alone.' },
+      { element: 'causes', quote: 'Homesickness, high rents and visa rules', point: 'Homesickness, rents and visas make life hard.' },
+      { element: 'consequences', quote: 'make their first year very hard', point: 'Their first year is very difficult.' },
+      { element: 'values', quote: 'We believe no student should face these problems alone', point: 'They believe no student should struggle alone.' },
+      { element: 'values', quote: 'every host university benefits from the ideas international students bring', point: 'They value what international students bring.' },
+      { element: 'actions', quote: 'we run welcome programmes, find affordable housing and match new students with mentors', point: 'They run welcome programmes, housing help and mentoring.' },
+      { element: 'actions', quote: 'Please volunteer as a mentor or donate to our hardship fund', point: 'They ask for volunteers and donations.' },
+    ],
+    model: 'The GSN is a not-for-profit organisation that values international students, believing “every host university benefits from the ideas” they bring. The issue is that “many students arrive alone, with little money and no one to turn to”. The causes are “homesickness, high rents and visa rules”, and the consequence is a “very hard” first year. They believe “no student should face these problems alone”. Their actions are to “run welcome programmes, find affordable housing and match new students with mentors”, and they ask readers to volunteer or donate.',
+  },
+  voices: [
+    { who: 'A Malaysian student in Australia', quote: 'I cried every night for the first month, but now I love my course.', level: 'PERSONAL', why: 'Her own experience.' },
+    { who: 'A university town landlord', quote: 'Half the flats on our street are rented by international students.', level: 'LOCAL', why: 'One street.' },
+    { who: 'An immigration minister', quote: 'International students will be allowed to work for two years after they graduate.', level: 'NATIONAL', why: 'A national visa rule.' },
+    { who: 'A UNESCO education official', quote: 'Student movement between countries is one of the great exchanges of our time.', level: 'GLOBAL', why: 'Between countries worldwide.' },
+  ],
+  q1d: {
+    focus: 'reason for studying abroad',
+    lead: 'Source 1 suggests reasons for studying abroad.',
+    options: [
+      { label: 'Better job prospects', source: 1, quote: 'better job prospects', test: 'domino',
+        why: 'A better job brings income that supports a whole family.' },
+      { label: 'Courses not offered at home', source: 1, quote: 'courses not offered at home', test: 'fair',
+        why: 'Without going abroad, some students could never study the subject they want.' },
+      { label: 'Better-ranked universities', source: 1, quote: 'better-ranked universities', test: 'crowd',
+        why: 'It attracts huge numbers of students from every country.' },
+      { label: 'The chance to settle in the new country', source: 1, quote: 'the chance to settle in the new country', test: 'stuck',
+        why: 'It changes a person’s whole life, permanently.' },
+      { label: 'Learning a new language', source: 1, quote: 'learning a new language', test: 'stuck',
+        why: 'A language is a skill kept for life.' },
+    ],
+    model: 'I think better job prospects is the most significant reason for studying abroad, because most of the other reasons lead back to it. Students choose “better-ranked universities” and learn new languages largely because these improve their chances of a good job. A good job brings an income that can support a whole family, sometimes back in the home country. Experiencing another culture is also valuable. But few families could afford the high costs Source 2 describes, such as “high rents”, just for the experience. So job prospects is the most significant reason.',
+    levelUp: {
+      base: 'Jobs are the main reason because everyone wants a job.',
+      right: 'Explain the link (rankings and languages lead to better jobs, which support families), use Source 2’s “high rents”, and compare with experiencing another culture.',
+      wrong: [
+        { text: 'Add that there were over 6 million international students.', why: 'The figure does not explain why jobs matter most.' },
+        { text: 'Describe GSN’s welcome programmes.', why: 'That is 1(c) material.' },
+        { text: 'Add “Studying abroad changes everyone.”', why: 'A generalisation from the source, not support.' },
+      ],
+    },
+  },
+};

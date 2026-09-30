@@ -1,0 +1,690 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-30T00:20:55.514Z",
+  "title": "Design System: WMSI Global Perspectives",
+  "extensions": {
+    "colorMeta": {
+      "paper": {
+        "role": "neutral",
+        "displayName": "Study Paper",
+        "canonical": "#FCFBF6",
+        "tonalRamp": [
+          "#393313",
+          "#635821",
+          "#8E7E2F",
+          "#B8A33D",
+          "#CBB962",
+          "#D9CC8C",
+          "#E8E0BA",
+          "#F9F6EC"
+        ]
+      },
+      "paper-2": {
+        "role": "neutral",
+        "displayName": "Paper 2",
+        "canonical": "#F4F2EA",
+        "tonalRamp": [
+          "#322D1A",
+          "#574F2E",
+          "#7C7041",
+          "#A19154",
+          "#B7AA76",
+          "#CAC19B",
+          "#DFDAC3",
+          "#F6F5EE"
+        ]
+      },
+      "paper-3": {
+        "role": "neutral",
+        "displayName": "Paper 3",
+        "canonical": "#E8E5D8",
+        "tonalRamp": [
+          "#302C1C",
+          "#534D31",
+          "#776E46",
+          "#9A8E5B",
+          "#B1A77B",
+          "#C6BF9F",
+          "#DDD9C5",
+          "#F6F4EF"
+        ]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "#E2DECD",
+        "tonalRamp": [
+          "#302D1C",
+          "#544D31",
+          "#776E45",
+          "#9B8F5A",
+          "#B2A87B",
+          "#C7BF9E",
+          "#DDD9C5",
+          "#F6F4EF"
+        ]
+      },
+      "line-soft": {
+        "role": "neutral",
+        "displayName": "Soft Hairline",
+        "canonical": "#EDEADB",
+        "tonalRamp": [
+          "#332F19",
+          "#58512C",
+          "#7E733F",
+          "#A39652",
+          "#B9AE74",
+          "#CCC399",
+          "#E0DBC2",
+          "#F7F5EE"
+        ]
+      },
+      "ink": {
+        "role": "primary",
+        "displayName": "Warm Ink",
+        "canonical": "#1B222D",
+        "tonalRamp": [
+          "#1D2430",
+          "#323F53",
+          "#475976",
+          "#5C7499",
+          "#7C91B1",
+          "#9FAEC6",
+          "#C6CFDD",
+          "#EFF2F5"
+        ]
+      },
+      "ink-2": {
+        "role": "neutral",
+        "displayName": "Ink 2",
+        "canonical": "#4A5160",
+        "tonalRamp": [
+          "#21242B",
+          "#3A3F4B",
+          "#525A6B",
+          "#6B758A",
+          "#8992A4",
+          "#A9AFBC",
+          "#CBCFD7",
+          "#F1F2F4"
+        ]
+      },
+      "ink-3": {
+        "role": "neutral",
+        "displayName": "Ink 3",
+        "canonical": "#7A8290",
+        "tonalRamp": [
+          "#23252A",
+          "#3C4148",
+          "#565C67",
+          "#6F7785",
+          "#8D94A0",
+          "#ACB1B9",
+          "#CDD0D5",
+          "#F1F2F3"
+        ]
+      },
+      "cobalt": {
+        "role": "primary",
+        "displayName": "Classroom Cobalt",
+        "canonical": "#2258C4",
+        "tonalRamp": [
+          "#0B1D41",
+          "#143371",
+          "#1C48A1",
+          "#245ED1",
+          "#4D7EE0",
+          "#7DA1E8",
+          "#B1C6F1",
+          "#E9EFFB"
+        ]
+      },
+      "cobalt-soft": {
+        "role": "primary",
+        "displayName": "Cobalt Soft",
+        "canonical": "#E8EFFB",
+        "tonalRamp": [
+          "#0B1F41",
+          "#143671",
+          "#1C4DA1",
+          "#2464D1",
+          "#4D83E0",
+          "#7DA4E8",
+          "#B1C9F1",
+          "#E9F0FB"
+        ]
+      },
+      "cobalt-deep": {
+        "role": "primary",
+        "displayName": "Cobalt Deep",
+        "canonical": "#143C8A",
+        "tonalRamp": [
+          "#0A1D43",
+          "#113274",
+          "#1848A5",
+          "#1F5DD6",
+          "#487DE5",
+          "#79A0EC",
+          "#AFC6F3",
+          "#E9EFFC"
+        ]
+      },
+      "amber": {
+        "role": "secondary",
+        "displayName": "Perspective Amber",
+        "canonical": "#8F5D0F",
+        "tonalRamp": [
+          "#452D07",
+          "#784E0D",
+          "#AB6F12",
+          "#DE9017",
+          "#EBA942",
+          "#F0C075",
+          "#F6D9AC",
+          "#FDF5E8"
+        ]
+      },
+      "amber-soft": {
+        "role": "secondary",
+        "displayName": "Amber Soft",
+        "canonical": "#F5E7C6",
+        "tonalRamp": [
+          "#41310B",
+          "#715514",
+          "#A1791C",
+          "#D09D25",
+          "#E0B44D",
+          "#E8C87D",
+          "#F1DEB1",
+          "#FBF6E9"
+        ]
+      },
+      "forest": {
+        "role": "secondary",
+        "displayName": "Weighing Forest",
+        "canonical": "#276A50",
+        "tonalRamp": [
+          "#15382A",
+          "#246149",
+          "#338A68",
+          "#42B387",
+          "#66C7A1",
+          "#8FD6BA",
+          "#BCE6D6",
+          "#ECF8F4"
+        ]
+      },
+      "forest-soft": {
+        "role": "secondary",
+        "displayName": "Forest Soft",
+        "canonical": "#DFECDF",
+        "tonalRamp": [
+          "#1C301C",
+          "#315331",
+          "#467646",
+          "#5B9A5B",
+          "#7CB17C",
+          "#9FC69F",
+          "#C5DDC5",
+          "#EFF6EF"
+        ]
+      },
+      "violet": {
+        "role": "secondary",
+        "displayName": "First-Read Violet",
+        "canonical": "#6C3AB8",
+        "tonalRamp": [
+          "#22123A",
+          "#3B2065",
+          "#542D8F",
+          "#6D3BBA",
+          "#8B60CD",
+          "#AA8BDA",
+          "#CCB9E9",
+          "#F1ECF9"
+        ]
+      },
+      "violet-soft": {
+        "role": "secondary",
+        "displayName": "Violet Soft",
+        "canonical": "#EDE3F7",
+        "tonalRamp": [
+          "#26113C",
+          "#421D67",
+          "#5E2A93",
+          "#7A36BE",
+          "#965CD1",
+          "#B388DD",
+          "#D1B8EB",
+          "#F2EBF9"
+        ]
+      },
+      "ember": {
+        "role": "neutral",
+        "displayName": "Ember (warnings, weakness)",
+        "canonical": "#B33520",
+        "tonalRamp": [
+          "#41130C",
+          "#702114",
+          "#A02F1D",
+          "#D03D25",
+          "#DF624E",
+          "#E88C7D",
+          "#F1BAB1",
+          "#FBECE9"
+        ]
+      },
+      "ember-soft": {
+        "role": "neutral",
+        "displayName": "Ember Soft",
+        "canonical": "#F7E4DE",
+        "tonalRamp": [
+          "#3E1A0F",
+          "#6B2D1A",
+          "#984025",
+          "#C55430",
+          "#D67557",
+          "#E19A84",
+          "#EDC3B5",
+          "#FAEEEA"
+        ]
+      },
+      "q2-night": {
+        "role": "tertiary",
+        "displayName": "Deep Sapphire Night",
+        "canonical": "#201E43",
+        "tonalRamp": [
+          "#191835",
+          "#2C295C",
+          "#3E3A82",
+          "#514CA9",
+          "#736FBE",
+          "#9895D0",
+          "#C1C0E3",
+          "#EEEDF7"
+        ]
+      },
+      "q2-sea": {
+        "role": "tertiary",
+        "displayName": "Black Sea",
+        "canonical": "#021526",
+        "tonalRamp": [
+          "#042849",
+          "#07467E",
+          "#0963B3",
+          "#0C81E9",
+          "#389CF5",
+          "#6EB6F7",
+          "#A8D3FA",
+          "#E7F3FE"
+        ]
+      },
+      "q2-sapphire": {
+        "role": "tertiary",
+        "displayName": "Sapphire",
+        "canonical": "#03346E",
+        "tonalRamp": [
+          "#02234A",
+          "#043D81",
+          "#0557B8",
+          "#0671EE",
+          "#338EF9",
+          "#6AACFB",
+          "#A6CDFD",
+          "#E6F1FE"
+        ]
+      },
+      "q2-storm": {
+        "role": "tertiary",
+        "displayName": "Storm",
+        "canonical": "#134B70",
+        "tonalRamp": [
+          "#0B2C41",
+          "#134C71",
+          "#1B6CA1",
+          "#248CD1",
+          "#4CA6E1",
+          "#7CBEE9",
+          "#B1D8F2",
+          "#E9F4FB"
+        ]
+      },
+      "q2-sage": {
+        "role": "tertiary",
+        "displayName": "Blue Sage",
+        "canonical": "#508C9B",
+        "tonalRamp": [
+          "#1A2E32",
+          "#2D4F57",
+          "#40707C",
+          "#5392A1",
+          "#75AAB8",
+          "#9AC1CB",
+          "#C2DAE0",
+          "#EEF5F6"
+        ]
+      },
+      "q2-sage-ink": {
+        "role": "tertiary",
+        "displayName": "Sage Ink",
+        "canonical": "#35697A",
+        "tonalRamp": [
+          "#172E35",
+          "#28505C",
+          "#397184",
+          "#4A93AB",
+          "#6DABC0",
+          "#94C2D1",
+          "#BFDAE3",
+          "#EDF5F7"
+        ]
+      },
+      "q2-coastal": {
+        "role": "tertiary",
+        "displayName": "Coastal",
+        "canonical": "#6EACDA",
+        "tonalRamp": [
+          "#102A3D",
+          "#1B486A",
+          "#266796",
+          "#3285C3",
+          "#58A0D4",
+          "#85B9E0",
+          "#B6D5EC",
+          "#EBF3FA"
+        ]
+      },
+      "q2-coastal-tint": {
+        "role": "tertiary",
+        "displayName": "Coastal Tint",
+        "canonical": "#E7F1FA",
+        "tonalRamp": [
+          "#0D283F",
+          "#17456E",
+          "#21629C",
+          "#2A7FCB",
+          "#529ADB",
+          "#80B5E5",
+          "#B3D3EF",
+          "#EAF3FB"
+        ]
+      },
+      "q2-ivory": {
+        "role": "tertiary",
+        "displayName": "Olive Ivory",
+        "canonical": "#E2E2B6",
+        "tonalRamp": [
+          "#373716",
+          "#5F5F26",
+          "#878736",
+          "#AFAF46",
+          "#C4C469",
+          "#D3D392",
+          "#E5E5BD",
+          "#F8F8ED"
+        ]
+      },
+      "q2-ivory-tint": {
+        "role": "tertiary",
+        "displayName": "Ivory Tint",
+        "canonical": "#F4F4E2",
+        "tonalRamp": [
+          "#373715",
+          "#606024",
+          "#898934",
+          "#B1B143",
+          "#C5C567",
+          "#D5D590",
+          "#E6E6BC",
+          "#F8F8ED"
+        ]
+      },
+      "q2-arctic": {
+        "role": "tertiary",
+        "displayName": "Arctic",
+        "canonical": "#EEEEEE",
+        "tonalRamp": [
+          "#262626",
+          "#424242",
+          "#5E5E5E",
+          "#7A7A7A",
+          "#969696",
+          "#B3B3B3",
+          "#D1D1D1",
+          "#F2F2F2"
+        ]
+      },
+      "q2-olive": {
+        "role": "tertiary",
+        "displayName": "Olive",
+        "canonical": "#8C8C45",
+        "tonalRamp": [
+          "#333319",
+          "#59592C",
+          "#7E7E3E",
+          "#A4A451",
+          "#BABA73",
+          "#CCCC99",
+          "#E1E1C2",
+          "#F7F7EE"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Q1 page titles."
+      },
+      "display-q2": {
+        "displayName": "Q2 Display",
+        "purpose": "Q2 page titles in Black Sea, 40px mobile / 60px desktop."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section heads."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Card and panel heads."
+      },
+      "subtitle": {
+        "displayName": "Italic Subtitle",
+        "purpose": "Q2 italic serif subtitle in territory accent (19/22px)."
+      },
+      "lede": {
+        "displayName": "Lede",
+        "purpose": "Intro paragraph, ink-2, max 62ch."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Long prose, max 65ch."
+      },
+      "body-dense": {
+        "displayName": "Dense Body",
+        "purpose": "Working text inside Q2 components (teacher: compact density)."
+      },
+      "label": {
+        "displayName": "Mono Label",
+        "purpose": "Exam metadata only: marks, tables, sources, dates."
+      }
+    },
+    "shadows": [
+      {
+        "name": "paper-slip",
+        "value": "0 1px 0 #D8D8A8, 0 6px 14px -8px rgba(0,0,0,0.18)",
+        "purpose": "Examiner's note only."
+      },
+      {
+        "name": "popover",
+        "value": "0 10px 30px -14px rgba(0,0,0,0.3)",
+        "purpose": "Floating popovers on Q2 pages."
+      },
+      {
+        "name": "inset-underline",
+        "value": "inset 0 -2px 0 var(--color-q2-coastal)",
+        "purpose": "Highlight underline for strengths (ember #E0A493 for weakness; 3px in claim-part colour for claims)."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out-soft",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Default soft deceleration for reveals."
+      },
+      {
+        "name": "state-transition",
+        "value": "200ms",
+        "purpose": "Button and tab colour transitions; all motion collapses under prefers-reduced-motion."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "md",
+        "value": "768px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      },
+      {
+        "name": "xl",
+        "value": "1280px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Ink pill; the main action (export, submit).",
+      "html": "<button class=\"ds-btn-primary\">Export worksheet (PDF)</button>",
+      "css": ".ds-btn-primary{background:var(--color-ink,#1B222D);color:var(--color-paper,#FCFBF6);font:600 14px 'Inter Tight',sans-serif;padding:10px 20px;border:0;border-radius:9999px;cursor:pointer;transition:background .2s,transform .2s}.ds-btn-primary:hover{background:var(--color-cobalt,#2258C4)}.ds-btn-primary:active{transform:translateY(1px)}.ds-btn-primary:focus-visible{outline:2px solid var(--color-cobalt,#2258C4);outline-offset:2px}"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Paper pill with hairline; secondary action.",
+      "html": "<button class=\"ds-btn-secondary\">Open my notes</button>",
+      "css": ".ds-btn-secondary{background:var(--color-paper-2,#F4F2EA);color:var(--color-ink,#1B222D);font:600 14px 'Inter Tight',sans-serif;padding:10px 20px;border:1px solid var(--color-line,#E2DECD);border-radius:9999px;cursor:pointer;transition:border-color .2s}.ds-btn-secondary:hover{border-color:var(--color-ink,#1B222D)}.ds-btn-secondary:focus-visible{outline:2px solid var(--color-cobalt,#2258C4);outline-offset:2px}"
+    },
+    {
+      "name": "Chip",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "Mono uppercase pill tag with territory soft fill.",
+      "html": "<span class=\"ds-chip\">Table C</span>",
+      "css": ".ds-chip{display:inline-flex;align-items:center;font:600 11px 'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.1em;padding:4px 10px;border-radius:9999px;background:var(--color-cobalt-soft,#E8EFFB);color:var(--color-cobalt-deep,#143C8A)}"
+    },
+    {
+      "name": "Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Flat white card on a hairline.",
+      "html": "<article class=\"ds-card\"><h3>The Test Bench</h3><p>Split the claim, then fill the Who · How · What · Why matrix.</p></article>",
+      "css": ".ds-card{background:#fff;border:1px solid var(--color-line,#E2DECD);border-radius:6px;padding:24px;max-width:320px}.ds-card h3{margin:0 0 6px;font:400 21px/1.25 'DM Serif Display',Georgia,serif;color:var(--color-q2-sea,#021526)}.ds-card p{margin:0;font:400 13.5px/1.55 'Inter Tight',sans-serif;color:var(--color-ink-2,#4A5160)}"
+    },
+    {
+      "name": "Q2 Tabs",
+      "kind": "nav",
+      "refersTo": "q2-tab-active",
+      "description": "Underline tab bar under the Q2 title; scrolls sideways on phones.",
+      "html": "<nav class=\"ds-tabs\" role=\"tablist\"><button role=\"tab\">Overview</button><button role=\"tab\" aria-selected=\"true\">The move</button><button role=\"tab\">Traps</button><button role=\"tab\">Practice</button></nav>",
+      "css": ".ds-tabs{display:flex;gap:24px;border-bottom:1px solid var(--color-line,#E2DECD);font:600 13px 'Inter Tight',sans-serif;overflow-x:auto}.ds-tabs button{font:inherit;background:none;border:0;border-bottom:2px solid transparent;margin-bottom:-1px;padding:12px 0;color:var(--color-ink-3,#7A8290);cursor:pointer;white-space:nowrap;transition:color .2s}.ds-tabs button:hover{color:var(--color-ink,#1B222D)}.ds-tabs button[aria-selected=true]{color:var(--color-q2-sea,#021526);border-bottom-color:var(--color-q2-sea,#021526)}.ds-tabs button:focus-visible{outline:2px solid var(--color-q2-storm,#134B70);outline-offset:2px}"
+    },
+    {
+      "name": "The Mark Card",
+      "kind": "custom",
+      "refersTo": "q2-mark-card",
+      "description": "Sticky Deep Sapphire mark-scheme card beside the Q2 bench.",
+      "html": "<aside class=\"ds-mark\"><p class=\"ds-mark-label\">The mark</p><dl><dt>Marks</dt><dd>8</dd><dt>Marked on</dt><dd>Table C</dd><dt>Time</dt><dd>~10 min</dd></dl><hr><p class=\"ds-mark-rule\"><strong>Level 4 (7–8):</strong> a wide range of reasoned points, both strengths and weaknesses.</p><div class=\"ds-target\"><span class=\"s\">S</span><span class=\"s\">S</span><span class=\"s\">S</span><span class=\"w\">W</span><span class=\"w\">W</span></div></aside>",
+      "css": ".ds-mark{background:var(--color-q2-night,#201E43);color:#E9E8F5;border-radius:8px;padding:20px 22px;max-width:280px;font-family:'Inter Tight',sans-serif}.ds-mark-label{margin:0;font:600 10.5px 'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.16em;color:var(--color-q2-ivory,#E2E2B6)}.ds-mark dl{display:grid;grid-template-columns:1fr auto;row-gap:8px;margin:14px 0 0;font-size:13.5px}.ds-mark dt{color:#B9B8D6}.ds-mark dd{margin:0;text-align:right;font:600 13.5px 'JetBrains Mono',monospace;color:#fff}.ds-mark hr{border:0;border-top:1px solid rgba(255,255,255,.15);margin:16px 0}.ds-mark-rule{margin:0;font-size:13px;line-height:1.55;color:#D6D5EA}.ds-mark-rule strong{color:var(--color-q2-ivory,#E2E2B6)}.ds-target{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;margin-top:10px}.ds-target span{height:26px;border-radius:3px;display:grid;place-items:center;font:600 10.5px 'JetBrains Mono',monospace}.ds-target .s{background:var(--color-q2-coastal,#6EACDA);color:var(--color-q2-sea,#021526)}.ds-target .w{background:#E9A08F;color:#3A1109}"
+    },
+    {
+      "name": "Examiner's Note",
+      "kind": "card",
+      "refersTo": "q2-examiner-note",
+      "description": "Olive-Ivory paper slip; the only container for examiner advice.",
+      "html": "<aside class=\"ds-exnote\"><div class=\"ds-exnote-head\"><svg width=\"22\" height=\"26\" viewBox=\"0 0 22 26\" aria-hidden=\"true\"><path d=\"M2 1h12l6 6v17a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z\" fill=\"#fff\" stroke=\"#021526\" stroke-width=\"1.4\"/><path d=\"M14 1v6h6\" fill=\"none\" stroke=\"#021526\" stroke-width=\"1.4\"/><path d=\"M5 12h11M5 16h11M5 20h7\" stroke=\"#8C8C45\" stroke-width=\"1.4\"/></svg><b>What the examiner saw</b><span>Examiner Report · June 2026</span></div><blockquote><i>“</i>Some candidates discussed general strengths and weaknesses of different methods.<i>”</i></blockquote><p><b>So:</b> only judge what Source 3 actually did.</p></aside>",
+      "css": ".ds-exnote{background:var(--color-q2-ivory-tint,#F4F4E2);border:1px solid #D8D8A8;border-radius:6px;box-shadow:0 1px 0 #D8D8A8,0 6px 14px -8px rgba(0,0,0,.18);padding:18px 20px 16px;max-width:560px;font-family:'Inter Tight',sans-serif}.ds-exnote-head{display:flex;align-items:center;gap:10px;margin-bottom:10px}.ds-exnote-head b{font-size:12.5px;color:var(--color-q2-sea,#021526)}.ds-exnote-head span{margin-left:auto;font:10.5px 'JetBrains Mono',monospace;color:#6B6B3A}.ds-exnote blockquote{margin:0;font:400 18px/1.45 'DM Serif Display',Georgia,serif;color:var(--color-q2-sea,#021526)}.ds-exnote blockquote i{font-style:normal;color:var(--color-q2-olive,#8C8C45)}.ds-exnote p{margin:12px 0 0;padding-top:10px;border-top:1px dashed #CFCF9A;font-size:13.5px;color:var(--color-ink-2,#4A5160)}.ds-exnote p b{color:var(--color-q2-sea,#021526)}"
+    },
+    {
+      "name": "Annotated Source Highlights",
+      "kind": "custom",
+      "description": "Tappable strength (Coastal) and weakness (ember) features in Source 3 text.",
+      "html": "<p class=\"ds-src\">The student <span class=\"ds-s\" tabindex=\"0\">signed a confidentiality agreement<sup>S2</sup></span> before asking questions, at <span class=\"ds-w sel\" tabindex=\"0\">one local building company<sup>W1</sup></span>.</p>",
+      "css": ".ds-src{max-width:520px;font:400 15px/1.85 'Inter Tight',sans-serif;color:var(--color-ink,#1B222D)}.ds-src span{border-radius:2px;padding:0 2px;cursor:pointer;transition:background .2s}.ds-s{background:var(--color-q2-coastal-tint,#E7F1FA);box-shadow:inset 0 -2px 0 var(--color-q2-coastal,#6EACDA)}.ds-w{background:var(--color-ember-soft,#F7E4DE);box-shadow:inset 0 -2px 0 #E0A493}.ds-src sup{font:700 9.5px 'JetBrains Mono',monospace;margin-left:2px}.ds-s sup{color:var(--color-q2-storm,#134B70)}.ds-w sup{color:var(--color-ember,#B33520)}.ds-src .sel,.ds-src span:focus-visible{outline:2px solid var(--color-q2-sea,#021526);outline-offset:1px}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Marked Script on the Study Desk",
+    "overview": "The site is ivory study paper under a serif voice: warm off-white ground (paper), warm near-black ink, DM Serif Display for every heading, Inter Tight for reading text, and JetBrains Mono for the small administrative voice of the exam (marks, tables, source lines). Each Paper 1 question owns a colour territory. Q1(a) is violet, Q1(b) cobalt, Q1(c) amber and Q1(d) forest. Q2 has its own teacher-chosen palette of Deep Sapphire night, Storm, Sage, Coastal and Olive-Ivory. The shell stays the same everywhere: the paper, the header, the footer and the serif. Only the territory colour changes.\n\nThe Q2 territory is a working bench, not a brochure. Students act on real Source 3 text: they tap features, build three-step chains and fill the Who/How/What/Why matrix, with the mark scheme visible beside them. The first viewport shows a mono label, a big serif title, an italic serif subtitle and a tab bar. Below that, the content sits on the left and a sticky Deep Sapphire \"The mark\" card sits on the right. On phones that card becomes a collapsible strip. Q2 is an extension of the shipped Q1 page pattern, not a new world.\n\nDensity is compact on purpose. The teacher asked for tight working components, so dense Q2 components use about 13.5px body text. Long-form prose keeps 15.5px with a 65ch measure. The teacher has rejected side-bar callouts (\"they look like AI\"). Advice from the examiner goes in the ExaminerNote card, which is a paper slip, not a stripe.",
+    "keyCharacteristics": [
+      "Ivory paper ground, warm ink, hairline rules (#E2DECD) instead of heavy boxes.",
+      "DM Serif Display at weight 400 for all headings, and italic serif for subtitles and quoted claims.",
+      "Mono small caps are only for exam metadata (marks, tables, sources, dates).",
+      "One colour territory per question. Q2 colours stay on Q2 pages.",
+      "Flat surfaces. Elevation is reserved for the examiner's note, the dropdown and the drawer.",
+      "Icons are drawn SVG with a 1.8 stroke in currentColor."
+    ],
+    "rules": [
+      {
+        "name": "The Territory Rule",
+        "body": "Each question's colours stay in its own territory. Q2 tokens are never used on Q1 pages. The Q1 shell (paper, header, footer, serif) is never recoloured for Q2.",
+        "section": "colors"
+      },
+      {
+        "name": "The Small-Text Contrast Rule",
+        "body": "Coastal and Sage never carry text under 18px. Use sage-ink for small Sage text. Coastal only fills, underlines and backs dark text.",
+        "section": "colors"
+      },
+      {
+        "name": "The Claim-Part Rule",
+        "body": "Claim parts are always Storm (1), Sage (2) and Olive (3), as a 3px inset underline in the claim and as a square swatch or chip fill in the explainers and coverage chips.",
+        "section": "colors"
+      },
+      {
+        "name": "The Strength/Weakness Rule",
+        "body": "Strength is always Coastal and weakness is always ember, both in the annotated source and in the S/W target strip. Never swap them or reuse them for anything else on Q2.",
+        "section": "colors"
+      },
+      {
+        "name": "The Serif-Is-The-Exam Rule",
+        "body": "Quoted source claims and examiner-report quotes are always set in DM Serif Display. Student-facing instructions are always set in Inter Tight.",
+        "section": "typography"
+      },
+      {
+        "name": "The Plain-Words Rule",
+        "body": "Skills-map box labels are at least 15px and use no jargon (\"Break a claim into parts\", not \"Claim deconstruction\").",
+        "section": "typography"
+      },
+      {
+        "name": "The Flat-Paper Rule",
+        "body": "Cards sit flat on hairlines. A shadow means a physical slip or a floating layer, never decoration.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do keep Q2 colours on Q2 pages (/research, /my-learning, /teachers/tracker) and keep the shared Q1 shell unchanged around them.",
+      "Do put all examiner advice in the ExaminerNote card: Ivory Tint slip, serif quote, \"So:\" action line.",
+      "Do set dense component text at about 13.5px (13px minimum) and keep long prose at 15.5px with a 65ch measure.",
+      "Do use sage-ink for any Sage-coloured text under 18px, and use Coastal only as a fill or underline.",
+      "Do colour claim parts Storm (1), Sage (2) and Olive (3), and strengths Coastal and weaknesses ember, every time.",
+      "Do pad the mobile header and drawer with `calc(env(safe-area-inset-top) + 18px)`.",
+      "Do draw icons as inline SVG with a 1.8 stroke in currentColor.",
+      "Do keep skills-map labels at 15px or larger and in plain words."
+    ],
+    "donts": [
+      "Don't put a coloured border-left or border-right wider than 1px on any card or callout. The teacher said side-bar callouts \"look like AI\".",
+      "Don't use glyphs or emoji as icons.",
+      "Don't set Coastal or Sage text below 18px.",
+      "Don't put more than one Deep Sapphire night surface of weight in a viewport. The mark card is the anchor.",
+      "Don't add shadows to flat cards. Shadows belong to the examiner's slip, popovers and the drawer."
+    ]
+  }
+}

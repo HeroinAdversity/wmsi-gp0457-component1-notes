@@ -1,0 +1,571 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Q2 Research Mockups</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+/* ── Q1 tokens, copied verbatim from src/styles.css ── */
+:root{
+  --paper:#FCFBF6; --paper-2:#F4F2EA; --paper-3:#E8E5D8; --line:#E2DECD; --line-soft:#EDEADB;
+  --ink:#1B222D; --ink-2:#4A5160; --ink-3:#7A8290;
+  --cobalt:#2258C4; --amber:#8F5D0F; --forest:#276A50; --violet:#6C3AB8; --ember:#B33520; --ember-soft:#F7E4DE;
+  /* ── NEW: Q2 territory (teal). 2(a) = deep, 2(b) = bright ── */
+  --teal:#0E6E7A;        /* 2(a) · text-safe 5.8:1 on paper */
+  --teal-bright:#1590A0; /* 2(b) · decorative / large only (3.6:1) */
+  --teal-ink:#0A5761;    /* 2(b) text colour, 7.5:1 */
+  --teal-deep:#083F47;
+  --teal-soft:#E0F2F4; --teal-tint:#F1F9FA;
+  --display:"DM Serif Display",Georgia,serif;
+  --body:"Inter Tight",-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:var(--body);background:#E9E6DB;color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+::selection{background:var(--teal-soft);color:var(--teal-deep)}
+h1,h2,h3{font-family:var(--display);font-weight:400;margin:0}
+p{margin:0}
+.mono{font-family:var(--mono)}
+.eyebrow{font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase}
+
+/* ── Mockup chrome (not part of the design) ── */
+.mk-bar{position:sticky;top:0;z-index:50;background:var(--ink);color:#fff;display:flex;gap:18px;align-items:center;padding:10px 20px;font-size:13px;flex-wrap:wrap}
+.mk-bar b{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;opacity:.7}
+.mk-bar a{color:#fff;text-decoration:none;opacity:.85}.mk-bar a:hover{opacity:1;text-decoration:underline}
+.board{max-width:1280px;margin:40px auto;padding:0 20px}
+.board-h{display:flex;align-items:baseline;gap:14px;margin:0 0 12px;flex-wrap:wrap}
+.board-h .tag{font-family:var(--mono);font-size:11px;font-weight:600;background:var(--ink);color:#fff;padding:3px 8px;border-radius:3px}
+.board-h h2{font-family:var(--body);font-weight:700;font-size:17px}
+.board-h p{font-size:13.5px;color:var(--ink-2);flex-basis:100%}
+.frame{background:var(--paper);border-radius:10px;box-shadow:0 1px 2px rgba(27,34,45,.06),0 12px 40px -12px rgba(27,34,45,.25);overflow:hidden}
+.frame-bar{height:34px;background:var(--paper-2);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:6px;padding:0 14px}
+.frame-bar i{width:10px;height:10px;border-radius:50%;background:var(--paper-3)}
+.frame-bar span{margin-left:12px;font-family:var(--mono);font-size:11px;color:var(--ink-3);background:var(--paper);padding:3px 10px;border-radius:4px}
+.note{font-size:12.5px;color:var(--ink-2);background:#fff;border:1px dashed var(--ink-3);border-radius:6px;padding:10px 12px;margin-top:12px}
+.note b{color:var(--ink)}
+
+/* ── Site header (mirrors SiteLayout) ── */
+.site-h{position:relative;background:rgba(252,251,246,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:14px 32px}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--display);font-size:17px;line-height:1.05}
+.brand .seal{width:34px;height:34px;border:1px solid var(--ink);border-radius:50%;display:grid;place-items:center;font-size:17px}
+.nav{display:flex;gap:22px;font-size:12.5px;font-weight:600;color:var(--ink-2)}
+.nav a{color:inherit;text-decoration:none;padding-bottom:4px;border-bottom:2px solid transparent}
+.nav a.on{color:var(--ink);border-color:var(--teal)}
+.nav .grp{display:flex;gap:22px;padding-left:22px;border-left:1px solid var(--line)}
+
+/* ── Page header ── */
+.wrap{max-width:1120px;margin:0 auto;padding:0 32px}
+.ph{padding:56px 0 8px}
+.ph .eyebrow{color:var(--teal)}
+.ph h1{font-size:64px;letter-spacing:-.02em;line-height:1.05;margin-top:14px}
+.ph .lede{font-size:17px;color:var(--ink-2);max-width:62ch;margin-top:18px;line-height:1.6}
+.tabs{display:flex;gap:26px;border-bottom:1px solid var(--line);margin-top:34px;font-size:13px;font-weight:600;color:var(--ink-3);overflow-x:auto}
+.tabs a{padding:12px 0;border-bottom:2px solid transparent;white-space:nowrap;text-decoration:none;color:inherit}
+.tabs a.on{color:var(--ink);border-color:var(--ink)}
+.two{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:48px;padding:44px 0 56px}
+h2.sec{font-size:36px;letter-spacing:-.015em;line-height:1.15}
+.body{font-size:15.5px;color:var(--ink-2);max-width:66ch;margin-top:14px}
+
+/* The mark card (mirrors Q1a sidebar) */
+.markcard{background:var(--teal-tint);border:1px solid var(--teal-soft);border-radius:6px;padding:20px 22px;align-self:start;position:sticky;top:90px}
+.markcard .eyebrow{color:var(--teal)}
+.markcard dl{margin:14px 0 0;display:grid;grid-template-columns:1fr auto;row-gap:10px;font-size:13.5px}
+.markcard dt{color:var(--ink-2)}.markcard dd{margin:0;font-family:var(--mono);font-weight:600;text-align:right}
+.markcard hr{border:0;border-top:1px solid var(--teal-soft);margin:16px 0}
+.markcard .rule{font-size:13px;color:var(--ink-2)}
+.markcard .rule strong{color:var(--teal-deep)}
+
+.callout{background:var(--paper-2);border-left:3px solid var(--teal);padding:16px 22px;border-radius:0 4px 4px 0;margin-top:22px}
+.callout .eyebrow{color:var(--teal);margin-bottom:6px}
+.callout.ember{border-left-color:var(--ember)}.callout.ember .eyebrow{color:var(--ember)}
+.callout p{font-size:14.5px;color:var(--ink-2)}
+
+/* ═════ BOARD A · palette ═════ */
+.pal{padding:36px 40px 40px}
+.terr{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-top:18px}
+.sw{border-radius:6px;overflow:hidden;border:1px solid var(--line);background:#fff}
+.sw .chip{height:84px;display:flex;align-items:flex-end;padding:10px;color:#fff;font-family:var(--mono);font-size:11px}
+.sw .meta{padding:10px 12px;font-size:12.5px}
+.sw .meta b{display:block;font-size:13.5px}
+.sw.new{outline:2px solid var(--teal);outline-offset:2px}
+.tealscale{display:grid;grid-template-columns:repeat(6,1fr);margin-top:26px;border-radius:6px;overflow:hidden;border:1px solid var(--line)}
+.tealscale div{padding:14px 12px 12px;font-family:var(--mono);font-size:11px;min-height:92px;display:flex;flex-direction:column;justify-content:space-between}
+.type{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:28px;margin-top:30px;padding-top:26px;border-top:1px solid var(--line)}
+.type small{display:block;font-family:var(--mono);font-size:10.5px;color:var(--ink-3);letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px}
+
+/* ═════ BOARD B · Skills map ═════ */
+.map-wrap{background:var(--paper);padding:0 0 48px}
+.map{position:relative;margin-top:30px;border:1px solid var(--line);border-radius:8px;background:
+  radial-gradient(circle at 1px 1px,var(--line-soft) 1px,transparent 0) 0 0/22px 22px, var(--paper)}
+.map svg{display:block;width:100%;height:auto}
+.node text{font-family:var(--body)}
+.legend{display:flex;gap:22px;font-size:12.5px;color:var(--ink-2);margin-top:14px;flex-wrap:wrap}
+.legend span{display:inline-flex;align-items:center;gap:8px}
+.legend i{display:inline-block;width:28px;height:0;border-top:2.5px solid var(--teal)}
+.legend i.dash{border-top:2px dashed var(--ink-3)}
+.linkrow{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:34px;border-top:1px solid var(--ink)}
+.linkrow > div{padding:20px 22px 22px 0}
+.linkrow > div + div{padding-left:22px;border-left:1px solid var(--line)}
+.linkrow h3{font-size:22px;margin-top:8px;line-height:1.2}
+.linkrow p{font-size:14px;color:var(--ink-2);margin-top:8px}
+.linkrow .same{margin-top:12px;font-size:13px;background:var(--teal-tint);border-radius:4px;padding:10px 12px;color:var(--teal-deep)}
+.path{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:36px}
+.step{border:1px solid var(--line);border-radius:6px;padding:16px 18px;background:#fff}
+.step .mono{font-size:11px;color:var(--teal)}
+.step h4{font-family:var(--display);font-weight:400;font-size:19px;margin:6px 0 4px}
+.step p{font-size:13px;color:var(--ink-2)}
+
+/* ═════ BOARD C · 2(a) The Inspection ═════ */
+.source{background:#fff;border:1px solid var(--line);border-radius:6px;padding:22px 26px;margin-top:24px}
+.source .src-h{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:10px;margin-bottom:14px}
+.source .src-h b{font-family:var(--display);font-weight:400;font-size:20px}
+.source .src-h span{font-family:var(--mono);font-size:10.5px;color:var(--ink-3)}
+.source p{font-size:15px;line-height:1.85;color:var(--ink)}
+.source p + p{margin-top:10px}
+mark{background:none;color:inherit;padding:1px 0;cursor:pointer;border-bottom:2px solid;transition:background .2s var(--ease)}
+mark.s{border-color:var(--teal);background:var(--teal-tint)}
+mark.w{border-color:var(--ember);background:var(--ember-soft)}
+mark.sel{outline:2px solid var(--ink);outline-offset:2px;border-radius:2px}
+.sup{font-family:var(--mono);font-size:9.5px;font-weight:600;vertical-align:super;margin-left:2px}
+mark.s .sup{color:var(--teal)} mark.w .sup{color:var(--ember)}
+.chain{margin-top:22px;border:1px solid var(--ink);border-radius:6px;overflow:hidden;background:#fff}
+.chain-top{display:flex;justify-content:space-between;align-items:center;background:var(--ink);color:#fff;padding:10px 18px;font-size:13px}
+.chain-top .pill{font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:3px 8px;border-radius:3px;background:var(--ember)}
+.chain-top .pill.s{background:var(--teal)}
+.links{display:grid;grid-template-columns:repeat(3,1fr)}
+.links > div{padding:16px 18px;position:relative}
+.links > div + div{border-left:1px solid var(--line)}
+.links > div + div::before{content:"";position:absolute;left:-7px;top:22px;width:12px;height:12px;background:#fff;border-right:1px solid var(--line);border-top:1px solid var(--line);transform:rotate(45deg)}
+.links .mono{font-size:10.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+.links p{font-size:14px;margin-top:6px}
+.links .starter{font-size:12px;color:var(--ink-3);margin-top:8px;font-style:italic}
+.tally{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap}
+.tally span{font-size:12.5px;font-weight:600;border-radius:999px;padding:5px 12px;border:1px solid var(--line);background:#fff}
+.tally .ok{border-color:var(--teal);color:var(--teal)}
+.tally .warn{border-color:var(--ember);color:var(--ember)}
+
+/* ═════ BOARD D · 2(b) The Test Bench ═════ */
+.ph.b .eyebrow{color:var(--teal-ink)}
+.claim{margin-top:24px;background:#fff;border:1px solid var(--line);border-radius:6px;padding:26px 28px}
+.claim .q{font-family:var(--display);font-size:32px;line-height:1.35}
+.claim .part{border-bottom:3px solid;padding-bottom:2px;position:relative}
+.claim .p1{border-color:var(--teal-bright)}.claim .p2{border-color:var(--amber)}.claim .p3{border-color:var(--violet)}
+.parts{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:22px}
+.parts > div{border-top:3px solid;padding-top:10px;font-size:13.5px;color:var(--ink-2)}
+.parts b{display:block;font-size:12px;font-family:var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink)}
+.matrix{margin-top:26px;border:1px solid var(--ink);border-radius:6px;overflow:hidden;background:#fff}
+.mx-head,.mx-row{display:grid;grid-template-columns:44px 1fr 1fr 1.25fr 1.35fr}
+.mx-head > div{background:var(--ink);color:#fff;padding:12px 14px;font-size:12px}
+.mx-head b{display:block;font-family:var(--display);font-weight:400;font-size:21px;line-height:1}
+.mx-head span{opacity:.72}
+.mx-row > div{padding:14px;border-top:1px solid var(--line);font-size:13.5px;line-height:1.5}
+.mx-row > div + div{border-left:1px solid var(--line-soft)}
+.mx-row .n{font-family:var(--display);font-size:24px;color:var(--teal-ink);text-align:center}
+.mx-row .tests{display:flex;gap:4px;margin-top:8px;flex-wrap:wrap}
+.mx-row .tests i{font-style:normal;font-size:10.5px;font-family:var(--mono);font-weight:600;padding:2px 6px;border-radius:3px;color:#fff}
+.t1{background:var(--teal-bright)}.t2{background:var(--amber)}.t3{background:var(--violet)}
+.mx-row.draft > div{background:var(--teal-tint)}
+.field{border:1px solid var(--line);background:#fff;border-radius:4px;padding:8px 10px;color:var(--ink-3);font-size:13px;min-height:58px}
+.field.focus{border-color:var(--teal);box-shadow:0 0 0 3px var(--teal-soft);color:var(--ink)}
+.cover{display:flex;align-items:center;gap:16px;margin-top:16px;font-size:13px;color:var(--ink-2);flex-wrap:wrap}
+.meter{display:flex;gap:6px}
+.meter span{font-family:var(--mono);font-size:11px;font-weight:600;padding:4px 9px;border-radius:3px;border:1px solid var(--line)}
+.meter .on1{background:var(--teal-bright);color:#fff;border-color:transparent}
+.meter .on2{background:var(--amber);color:#fff;border-color:transparent}
+.meter .off{color:var(--ink-3);border-style:dashed}
+.lint{margin-top:14px;display:flex;gap:10px;align-items:flex-start;font-size:13px;background:var(--ember-soft);color:#7A2414;border-radius:4px;padding:10px 12px}
+.lint b{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase}
+
+/* ═════ BOARD E · phones ═════ */
+.phones{display:flex;gap:28px;justify-content:center;flex-wrap:wrap;padding:30px 10px 40px;background:#E0DCCF;border-radius:10px}
+.phone{width:375px;height:760px;border-radius:38px;border:10px solid #1B222D;background:var(--paper);overflow:hidden;display:flex;flex-direction:column;box-shadow:0 20px 50px -18px rgba(0,0,0,.4)}
+.phone .ps{flex:1;overflow-y:auto;padding:0 16px 90px}
+.phone .ptop{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-bottom:1px solid var(--line);font-family:var(--display);font-size:15px;background:var(--paper)}
+.phone .ptop .ham{width:22px;height:14px;border-top:2px solid var(--ink);border-bottom:2px solid var(--ink);position:relative}
+.phone .ptop .ham::after{content:"";position:absolute;left:0;right:0;top:4px;border-top:2px solid var(--ink)}
+.phone h1{font-size:40px;margin-top:10px;line-height:1.05}
+.phone .tabs{margin-top:18px;gap:18px;font-size:12.5px}
+.pcard{border:1px solid var(--line);border-radius:6px;background:#fff;margin-top:12px;overflow:hidden}
+.pcard .ph-h{display:flex;justify-content:space-between;align-items:center;background:var(--ink);color:#fff;padding:10px 14px}
+.pcard .ph-h b{font-family:var(--display);font-weight:400;font-size:20px}
+.pcard dl{margin:0;padding:4px 14px 12px}
+.pcard dt{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--teal-ink);margin-top:10px}
+.pcard dd{margin:3px 0 0;font-size:13.5px;color:var(--ink)}
+.pstack{margin-top:18px;display:flex;flex-direction:column;align-items:stretch;gap:0}
+.pn{border:1px solid var(--line);background:#fff;border-radius:6px;padding:12px 14px;font-size:13px}
+.pn b{display:block;font-size:14px}
+.pn.hub{background:var(--teal);color:#fff;border-color:var(--teal)}
+.pn.hub small{opacity:.8}
+.pconn{height:18px;width:2px;background:var(--teal);margin:0 auto}
+.pgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.fab{position:absolute}
+.pfab{margin:0 16px 14px auto;background:var(--ink);color:#fff;font-size:12px;font-weight:600;padding:9px 14px;border-radius:999px;align-self:flex-end}
+
+@media (max-width:900px){
+  .two,.links,.linkrow,.path,.terr,.type,.parts{grid-template-columns:1fr}
+  .links > div + div,.linkrow > div + div{border-left:0;border-top:1px solid var(--line);padding-left:0}
+  .links > div + div::before{display:none}
+  .mx-head,.mx-row{grid-template-columns:1fr}
+  .mx-head > div:not(:first-child){display:none}
+  .nav{display:none}.ph h1{font-size:44px}.wrap{padding:0 16px}.site-h{padding:12px 16px}
+  .tealscale{grid-template-columns:repeat(3,1fr)}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+
+<div class="mk-bar">
+  <b>Q2 mockups · for approval</b>
+  <a href="#A">A · Colour &amp; type</a>
+  <a href="#B">B · Skills map (hub)</a>
+  <a href="#C">C · 2(a) The Inspection</a>
+  <a href="#D">D · 2(b) The Test Bench</a>
+  <a href="#E">E · Phone</a>
+</div>
+
+<!-- ═════════════════════ A ═════════════════════ -->
+<section class="board" id="A">
+  <div class="board-h"><span class="tag">A</span><h2>Colour territory &amp; type — extends the Q1 system, changes nothing in it</h2>
+    <p>Q2 joins the paper as a fifth territory. The deep teal is 2(a) and all teal text. The bright teal is used only for 2(b) accents and large marks, never for small text, because its contrast is too low.</p></div>
+  <div class="frame"><div class="pal">
+    <p class="eyebrow" style="color:var(--ink-3)">Paper 1 territories</p>
+    <div class="terr">
+      <div class="sw"><div class="chip" style="background:var(--violet)">#6C3AB8</div><div class="meta"><b>Q1(a)</b>First Read</div></div>
+      <div class="sw"><div class="chip" style="background:var(--cobalt)">#2258C4</div><div class="meta"><b>Q1(b)</b>Statements</div></div>
+      <div class="sw"><div class="chip" style="background:var(--amber)">#8F5D0F</div><div class="meta"><b>Q1(c)</b>Perspectives</div></div>
+      <div class="sw"><div class="chip" style="background:var(--forest)">#276A50</div><div class="meta"><b>Q1(d)</b>Significance</div></div>
+      <div class="sw new"><div class="chip" style="background:var(--teal)">#0E6E7A</div><div class="meta"><b>Q2(a) · new</b>The Inspection</div></div>
+      <div class="sw new"><div class="chip" style="background:var(--teal-bright)">#1590A0</div><div class="meta"><b>Q2(b) · new</b>The Test Bench</div></div>
+    </div>
+    <div class="tealscale">
+      <div style="background:var(--teal-deep);color:#fff">teal-deep<span>#083F47 · headings on tint</span></div>
+      <div style="background:var(--teal-ink);color:#fff">teal-ink<span>#0A5761 · 2(b) text</span></div>
+      <div style="background:var(--teal);color:#fff">teal<span>#0E6E7A · 2(a), links, focus</span></div>
+      <div style="background:var(--teal-bright);color:#fff">teal-bright<span>#1590A0 · 2(b) accent</span></div>
+      <div style="background:var(--teal-soft)">teal-soft<span>#E0F2F4 · borders</span></div>
+      <div style="background:var(--teal-tint)">teal-tint<span>#F1F9FA · panels</span></div>
+    </div>
+    <div class="type">
+      <div><small>Display · DM Serif Display</small><div style="font-family:var(--display);font-size:46px;line-height:1.05">The Inspection.</div></div>
+      <div><small>Body · Inter Tight</small><p style="font-size:15.5px;color:var(--ink-2)">Explain why each feature of the research makes the evidence more or less trustworthy for its purpose.</p></div>
+      <div><small>Labels &amp; marks · JetBrains Mono</small><p class="mono" style="font-size:13px">TABLE C · 8 MARKS · L4 7–8</p></div>
+    </div>
+  </div></div>
+</section>
+
+<!-- ═════════════════════ B ═════════════════════ -->
+<section class="board" id="B">
+  <div class="board-h"><span class="tag">B</span><h2>/research: the Q2 hub, which opens with the skills map</h2>
+    <p>The mindmap is the page's first real content. Left: the SOW skills. Centre: Q2. Right: where the same skill earns marks again in C1 Q3, C2 and C3. In the build, tapping a node highlights its links (try it here). On a phone the map becomes a vertical chain (see board E).</p></div>
+  <div class="frame">
+    <div class="frame-bar"><i></i><i></i><i></i><span>wmsi-gp0457 · /research</span></div>
+    <header class="site-h">
+      <div class="brand"><span class="seal">W</span><span>WMSI Global<br>Perspectives</span></div>
+      <nav class="nav"><a>Home</a><a>First Read</a><a>Statements</a><a>Perspectives</a><a>Significance</a>
+        <span class="grp"><a class="on">Research</a></span><a>Revision</a><a>Teachers</a></nav>
+    </header>
+    <div class="map-wrap"><div class="wrap">
+      <div class="ph">
+        <p class="eyebrow">Q2 · Research · 16 marks</p>
+        <h1>Research, inside out.</h1>
+        <p class="lede">Question 2 never asks what you think about the issue. It asks how we would <em>know</em>. In 2(a) you inspect someone else's research; in 2(b) you design your own. You'll use the same skills again in your Individual Report and your Team Project.</p>
+      </div>
+
+      <div class="map" id="skillmap">
+        <svg viewBox="0 0 1056 520" role="img" aria-label="Skills map linking SOW skills to Question 2 and to Components 2 and 3">
+          <defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#0E6E7A"/></marker></defs>
+          <!-- column labels -->
+          <g font-family="JetBrains Mono" font-size="10.5" font-weight="600" letter-spacing="1.8" fill="#7A8290">
+            <text x="24" y="34">SOW SKILLS YOU LEARN</text><text x="430" y="34">COMPONENT 1 · Q2</text><text x="770" y="34">WHERE IT PAYS AGAIN</text>
+          </g>
+          <!-- links (drawn first) -->
+          <g fill="none" stroke-linecap="round" id="links">
+            <path data-a="r1 a" d="M258,78 C340,78 350,150 420,150" stroke="#0E6E7A" stroke-width="2.5"/>
+            <path data-a="r2 a" d="M258,138 C340,138 350,160 420,160" stroke="#0E6E7A" stroke-width="2.5"/>
+            <path data-a="r2 b" d="M258,138 C340,138 350,330 420,330" stroke="#1590A0" stroke-width="2.5"/>
+            <path data-a="r3 b" d="M258,198 C340,198 350,340 420,340" stroke="#1590A0" stroke-width="2.5"/>
+            <path data-a="r3 a" d="M258,198 C340,198 350,170 420,170" stroke="#0E6E7A" stroke-width="2.5"/>
+            <path data-a="e1 a" d="M258,258 C340,258 350,180 420,180" stroke="#0E6E7A" stroke-width="2.5"/>
+            <path data-a="e2 a" d="M258,318 C340,318 350,190 420,190" stroke="#0E6E7A" stroke-width="2.5"/>
+            <path data-a="a1 b" d="M258,378 C340,378 350,350 420,350" stroke="#1590A0" stroke-width="2.5"/>
+            <path data-a="c1 a b" d="M258,438 C340,438 350,200 420,200" stroke="#7A8290" stroke-width="1.6" stroke-dasharray="5 5"/>
+            <path data-a="c1 a b" d="M258,438 C340,438 350,360 420,360" stroke="#7A8290" stroke-width="1.6" stroke-dasharray="5 5"/>
+            <!-- right side -->
+            <path data-a="a q3" d="M636,160 C700,160 700,86 760,86" stroke="#0E6E7A" stroke-width="2.5"/>
+            <path data-a="a c2" d="M636,180 C700,180 700,210 760,210" stroke="#0E6E7A" stroke-width="2.5"/>
+            <path data-a="b c2" d="M636,330 C700,330 700,230 760,230" stroke="#1590A0" stroke-width="2.5"/>
+            <path data-a="b c3" d="M636,350 C700,350 700,370 760,370" stroke="#1590A0" stroke-width="2.5"/>
+            <path data-a="a c3" d="M636,190 C700,190 700,440 760,440" stroke="#7A8290" stroke-width="1.6" stroke-dasharray="5 5"/>
+          </g>
+          <!-- SOW skill nodes -->
+          <g class="node" font-size="13.5">
+            <g data-n="r1"><rect x="24" y="58" width="234" height="40" rx="5" fill="#fff" stroke="#E2DECD"/><text x="38" y="83" fill="#1B222D" font-weight="600">Set a research aim / question</text></g>
+            <g data-n="r2"><rect x="24" y="118" width="234" height="40" rx="5" fill="#fff" stroke="#E2DECD"/><text x="38" y="143" fill="#1B222D" font-weight="600">Choose research methods (7)</text></g>
+            <g data-n="r3"><rect x="24" y="178" width="234" height="40" rx="5" fill="#fff" stroke="#E2DECD"/><text x="38" y="203" fill="#1B222D" font-weight="600">Choose sources of information (5)</text></g>
+            <g data-n="e1"><rect x="24" y="238" width="234" height="40" rx="5" fill="#fff" stroke="#E2DECD"/><text x="38" y="263" fill="#1B222D" font-weight="600">Judge reliability &amp; bias</text></g>
+            <g data-n="e2"><rect x="24" y="298" width="234" height="40" rx="5" fill="#fff" stroke="#E2DECD"/><text x="38" y="323" fill="#1B222D" font-weight="600">Judge fitness for purpose</text></g>
+            <g data-n="a1"><rect x="24" y="358" width="234" height="40" rx="5" fill="#fff" stroke="#E2DECD"/><text x="38" y="383" fill="#1B222D" font-weight="600">Break a claim into testable parts</text></g>
+            <g data-n="c1"><rect x="24" y="418" width="234" height="40" rx="5" fill="#fff" stroke="#E2DECD"/><text x="38" y="443" fill="#1B222D" font-weight="600">Explain in a chain (so… because…)</text></g>
+          </g>
+          <!-- Q2 hub -->
+          <g class="node" data-n="a">
+            <rect x="420" y="120" width="216" height="104" rx="6" fill="#0E6E7A"/>
+            <text x="436" y="146" fill="#fff" font-family="JetBrains Mono" font-size="10.5" font-weight="600" letter-spacing="1.5" opacity=".8">2(a) · TABLE C · 8</text>
+            <text x="436" y="176" fill="#fff" font-family="DM Serif Display" font-size="24">Evaluate research</text>
+            <text x="436" y="202" fill="#fff" font-size="12.5" opacity=".85">Strengths + weaknesses, tied</text>
+            <text x="436" y="218" fill="#fff" font-size="12.5" opacity=".85">to the research purpose</text>
+          </g>
+          <g class="node" data-n="b">
+            <rect x="420" y="296" width="216" height="104" rx="6" fill="#fff" stroke="#1590A0" stroke-width="2"/>
+            <text x="436" y="322" fill="#0A5761" font-family="JetBrains Mono" font-size="10.5" font-weight="600" letter-spacing="1.5">2(b) · TABLE D · 8</text>
+            <text x="436" y="352" fill="#1B222D" font-family="DM Serif Display" font-size="24">Design research</text>
+            <text x="436" y="378" fill="#4A5160" font-size="12.5">Who · How · What · Why —</text>
+            <text x="436" y="394" fill="#4A5160" font-size="12.5">to test both halves of a claim</text>
+          </g>
+          <!-- right side nodes -->
+          <g class="node" font-size="12.5">
+            <g data-n="q3"><rect x="760" y="56" width="272" height="62" rx="5" fill="#fff" stroke="#E2DECD"/>
+              <text x="774" y="80" fill="#1B222D" font-weight="700">C1 · Q3 Which argument is stronger?</text>
+              <text x="774" y="100" fill="#4A5160">Same reliability checklist: expertise, bias…</text></g>
+            <g data-n="c2"><rect x="760" y="170" width="272" height="100" rx="5" fill="#fff" stroke="#E2DECD"/>
+              <text x="774" y="194" fill="#1B222D" font-weight="700">C2 · Individual Report</text>
+              <text x="774" y="214" fill="#4A5160">Table E — evaluate evidence &amp; sources</text>
+              <text x="774" y="232" fill="#4A5160">(4 developed points = 9–10)</text>
+              <text x="774" y="254" fill="#4A5160">Your own research design + sources</text></g>
+            <g data-n="c3"><rect x="760" y="336" width="272" height="126" rx="5" fill="#fff" stroke="#E2DECD"/>
+              <text x="774" y="360" fill="#1B222D" font-weight="700">C3 · Team Project</text>
+              <text x="774" y="380" fill="#4A5160">Table A — plan how the action will be</text>
+              <text x="774" y="398" fill="#4A5160">evidenced &amp; success measured</text>
+              <text x="774" y="424" fill="#4A5160">Table E — evaluate the action</text>
+              <text x="774" y="442" fill="#4A5160">and its evidence in the Reflective Paper</text></g>
+          </g>
+        </svg>
+      </div>
+      <div class="legend"><span><i></i>Direct link: the same skill, marked again</span><span><i class="dash"></i>Supporting link</span><span style="color:var(--ink-3)">Tap any node to isolate its links</span></div>
+
+      <div class="linkrow">
+        <div><p class="eyebrow" style="color:var(--teal)">Q2(a) ⇄ C2 Table E</p><h3>Inspecting research is evaluating sources.</h3>
+          <p>In 2(a) you judge a stranger's interview. In your Report you judge the websites and studies you cite. Either way you name a feature, show how it affects the evidence, and say why that matters for the purpose.</p>
+          <p class="same">Same sentence shape: "Because ___, the evidence may be ___, so it is less useful for finding out ___."</p></div>
+        <div><p class="eyebrow" style="color:var(--teal-ink)">Q2(b) ⇄ C3 Table A</p><h3>Testing a claim is planning evidence.</h3>
+          <p>Table A rewards a plan that shows "how the action will be evidenced and how its success will be measured". That is a 2(b) research design pointed at your own project.</p>
+          <p class="same">Same matrix: Who will you ask? How? What will you find out? Why does it prove success?</p></div>
+        <div><p class="eyebrow" style="color:var(--ink-3)">Q2 ⇄ C1 Q3</p><h3>One reliability checklist, four questions.</h3>
+          <p>Expertise, accuracy, bias, vested interest, "reason to lie?". The checklist you use to inspect research in 2(a) is the one you use to judge arguments in Q3.</p>
+          <p class="same">Learn it once in the Toolkit. It appears in 2(a), Q3, C2 and C3.</p></div>
+      </div>
+
+      <div class="path">
+        <div class="step"><span class="mono">Start here</span><h4>The Toolkit</h4><p>7 methods, 5 sources, reliability checks. The words both parts need.</p></div>
+        <div class="step"><span class="mono">Q2(a)</span><h4>The Inspection</h4><p>Annotate Source 3 and build strength/weakness chains.</p></div>
+        <div class="step"><span class="mono">Q2(b)</span><h4>The Test Bench</h4><p>Split the claim, then fill the Who · How · What · Why matrix.</p></div>
+        <div class="step"><span class="mono">Revise</span><h4>Revision sheet</h4><p>One printable page for the week before the exam.</p></div>
+      </div>
+    </div></div>
+  </div>
+  <p class="note"><b>Decision to approve:</b> the mindmap as a three-column "skills → Q2 → where it pays again" diagram, rather than a radial bubble map. A radial map looks busier but doesn't read left to right as cause and effect, and it can't collapse cleanly to a phone column.</p>
+</section>
+
+<!-- ═════════════════════ C ═════════════════════ -->
+<section class="board" id="C">
+  <div class="board-h"><span class="tag">C</span><h2>/research/evaluate: 2(a) "The Inspection", "The move" tab</h2>
+    <p>Same page structure as First Read: header, tabs, content plus a sticky "The mark" card. The key interaction: students tap a highlighted feature of Source 3 and build a <b>Feature → Effect on evidence → Purpose</b> chain. A tally keeps them honest about covering both strengths and weaknesses.</p></div>
+  <div class="frame">
+    <div class="frame-bar"><i></i><i></i><i></i><span>wmsi-gp0457 · /research/evaluate#move</span></div>
+    <header class="site-h">
+      <div class="brand"><span class="seal">W</span><span>WMSI Global<br>Perspectives</span></div>
+      <nav class="nav"><a>Home</a><a>First Read</a><a>Statements</a><a>Perspectives</a><a>Significance</a>
+        <span class="grp"><a class="on">Research</a></span><a>Revision</a><a>Teachers</a></nav>
+    </header>
+    <div class="wrap">
+      <div class="ph">
+        <p class="eyebrow">Q2(a) · Evaluate research</p>
+        <h1>The Inspection.</h1>
+        <p class="lede">"Explain the strengths and weaknesses of the research outlined in Source 3." You are marking the <em>method</em>, not the topic. Each point needs three links: what the researcher did, what that does to the evidence, and why it matters for what they were trying to find out.</p>
+        <nav class="tabs"><a>Overview</a><a>Toolkit</a><a class="on">The move</a><a>Traps</a><a>Worked examples</a><a>Practice</a><a>Checklist</a></nav>
+      </div>
+      <div class="two">
+        <div>
+          <h2 class="sec">Find it, then follow it through.</h2>
+          <p class="body">Tap a highlighted phrase. Teal phrases help the research and red ones weaken it, but you still have to explain <em>why</em>. That explanation is where the marks are.</p>
+
+          <div class="source">
+            <div class="src-h"><b>Source 3: A student's project</b><span>JUNE 2026 · 0457/12 · INSERT</span></div>
+            <p>While studying international law<span class="sup"></span>, <mark class="s" data-k="law">I wanted to research the amount of vehicle crime<span class="sup">S1</span></mark>. I contacted <mark class="w sel" data-k="firm">a local building firm<span class="sup">W1</span></mark> to arrange an interview.</p>
+            <p><mark class="s" data-k="conf">Signing a confidentiality document<span class="sup">S2</span></mark> gave me the opportunity to ask questions. I asked Mr Grant, the manager, <mark class="s" data-k="rec">permission to record the meeting<span class="sup">S3</span></mark>. Mr Grant <mark class="w" data-k="month">had only worked at the company for one month<span class="sup">W2</span></mark> but was happy to talk during his coffee break.</p>
+            <p>The building firm's café was <mark class="w" data-k="noisy">busy and noisy<span class="sup">W3</span></mark>. …</p>
+          </div>
+
+          <div class="chain" id="chain">
+            <div class="chain-top"><span><b>W1</b> · "a local building firm"</span><span class="pill">Weakness</span></div>
+            <div class="links">
+              <div><span class="mono">1 · Feature</span><p>The only data comes from <strong>one local building firm</strong>.</p><p class="starter">"The researcher only…"</p></div>
+              <div><span class="mono">2 · Effect on evidence</span><p>One small, unrepresentative sample: a builder's experience of van theft can't show a national pattern.</p><p class="starter">"This means the evidence may be…"</p></div>
+              <div><span class="mono">3 · Purpose link</span><p>The aim was the <strong>amount</strong> of vehicle crime, so the conclusion about national trends is not supported.</p><p class="starter">"…so it is less useful for finding out…"</p></div>
+            </div>
+          </div>
+          <div class="tally"><span class="ok">✓ Strengths explained: 1</span><span class="ok">✓ Weaknesses explained: 2</span><span>Target: at least 2 strengths + 2 weaknesses (Level 4 = "wide range", both sides)</span></div>
+
+          <div class="callout ember"><p class="eyebrow">Examiner report · June 2026</p>
+            <p>Low-scoring answers "discussed general strengths and weaknesses of different methods, some of which were not part of the research in the source." Stick to what Source 3 actually says.</p></div>
+        </div>
+
+        <aside class="markcard">
+          <p class="eyebrow">The mark</p>
+          <dl><dt>Marks</dt><dd>8</dd><dt>Marked on</dt><dd>Table C</dd><dt>Suggested time</dt><dd>10 min</dd><dt>Command word</dt><dd>Explain</dd></dl>
+          <hr>
+          <p class="rule"><strong>Level 4 (7–8)</strong> needs a <em>wide range</em> of reasoned points, <strong>both strengths and weaknesses</strong>, clearly related to the purpose of the research.</p>
+          <hr>
+          <p class="rule"><strong>Floor:</strong> 1 strength + 1 weakness, each fully explained.<br><strong>Safe:</strong> 2 + 2, or 2 + 1 developed.</p>
+        </aside>
+      </div>
+    </div>
+  </div>
+  <p class="note"><b>Decisions to approve:</b> (1) the name "The Inspection", (2) the three-link chain as the house method for 2(a), (3) strength/weakness colours: teal = strength, ember = weakness (ember is already the site's warning colour), (4) the floor/safe target from your colleague's "1 each, 2 + 1 to be safe" rule, shown in the mark card.</p>
+</section>
+
+<!-- ═════════════════════ D ═════════════════════ -->
+<section class="board" id="D">
+  <div class="board-h"><span class="tag">D</span><h2>/research/design: 2(b) "The Test Bench", matrix tab</h2>
+    <p>Step 1 splits the claim into its testable parts, which answers the examiner's point about "both aspects of the claim". Step 2 is your colleague's Who · How · What · Why matrix: 3 rows = 3 developed points. Each row is tagged with the part of the claim it tests, and a coverage meter shows which parts are still untested.</p></div>
+  <div class="frame">
+    <div class="frame-bar"><i></i><i></i><i></i><span>wmsi-gp0457 · /research/design#matrix</span></div>
+    <header class="site-h">
+      <div class="brand"><span class="seal">W</span><span>WMSI Global<br>Perspectives</span></div>
+      <nav class="nav"><a>Home</a><a>First Read</a><a>Statements</a><a>Perspectives</a><a>Significance</a>
+        <span class="grp"><a class="on">Research</a></span><a>Revision</a><a>Teachers</a></nav>
+    </header>
+    <div class="wrap">
+      <div class="ph b">
+        <p class="eyebrow">Q2(b) · Test a claim</p>
+        <h1>The Test Bench.</h1>
+        <p class="lede">"Explain how this claim could be tested. You should consider the research methods and evidence that could be used." Don't argue for or against the claim, and don't critique your own methods. Design the investigation and justify each choice.</p>
+        <nav class="tabs"><a>Overview</a><a>Toolkit</a><a>Split the claim</a><a class="on">The matrix</a><a>Worked examples</a><a>Practice</a><a>Checklist</a></nav>
+      </div>
+      <div class="two">
+        <div>
+          <h2 class="sec">Three rows. Three developed points.</h2>
+          <div class="claim">
+            <p class="eyebrow" style="color:var(--ink-3);margin-bottom:10px">The claim · June 2026 · 0457/12</p>
+            <p class="q">"<span class="part p1">The amount of vehicle crime</span> <span class="part p2">is increasing</span> <span class="part p3">nationally</span>."</p>
+            <div class="parts">
+              <div style="border-color:var(--teal-bright)"><b>1 What</b>How much vehicle crime is there? You need a measurable quantity.</div>
+              <div style="border-color:var(--amber)"><b>2 Change</b>"Increasing" means comparing over time, so you need data from past years.</div>
+              <div style="border-color:var(--violet)"><b>3 Scope</b>"Nationally", not in one town, so you need nationwide coverage.</div>
+            </div>
+          </div>
+
+          <div class="matrix">
+            <div class="mx-head"><div></div>
+              <div><b>Who</b><span>can I get it from?</span></div>
+              <div><b>How</b><span>will I get it?</span></div>
+              <div><b>What</b><span>will I find out?</span></div>
+              <div><b>Why</b><span>does that test the claim?</span></div></div>
+            <div class="mx-row"><div class="n">1</div>
+              <div>National police / government crime statistics office</div>
+              <div>Secondary data analysis of published annual figures</div>
+              <div>Recorded vehicle thefts per year, for the last 5–10 years<div class="tests"><i class="t1">1 what</i><i class="t2">2 change</i><i class="t3">3 scope</i></div></div>
+              <div>Official national figures over several years show directly whether the total is rising across the whole country, not just locally.</div></div>
+            <div class="mx-row"><div class="n">2</div>
+              <div>Insurance companies</div>
+              <div>Interview a claims manager; request claims data</div>
+              <div>Number of vehicle-crime claims per year, by region<div class="tests"><i class="t1">1 what</i><i class="t2">2 change</i></div></div>
+              <div>Not all crime is reported to the police, but victims claim on insurance. This gives a second count to compare with the police trend.</div></div>
+            <div class="mx-row draft"><div class="n">3</div>
+              <div><div class="field">Car owners in several regions</div></div>
+              <div><div class="field">Online survey</div></div>
+              <div><div class="field focus">Whether they've experienced vehicle crime this year vs. previous years|</div></div>
+              <div><div class="field">Explain why this helps test the claim…</div></div></div>
+          </div>
+          <div class="cover">Claim coverage
+            <div class="meter"><span class="on1">1 what ✓</span><span class="on2">2 change ✓</span><span class="off">3 scope · 1 row</span></div>
+            <span>Test the scope in at least 2 rows so the answer covers "nationally" fully.</span></div>
+          <div class="lint"><b>Check</b><span>Row 2 · "…but interviews can be biased." In 2(b), don't critique your methods. Justify why they help test the claim.</span></div>
+        </div>
+
+        <aside class="markcard">
+          <p class="eyebrow" style="color:var(--teal-ink)">The mark</p>
+          <dl><dt>Marks</dt><dd>8</dd><dt>Marked on</dt><dd>Table D</dd><dt>Suggested time</dt><dd>10 min</dd><dt>Command word</dt><dd>Explain</dd></dl>
+          <hr>
+          <p class="rule"><strong>Level 4 (7–8):</strong> a <em>wide range</em> of methods <strong>and</strong> evidence, with reasoned explanations "clearly related to testing the claim".</p>
+          <hr>
+          <p class="rule"><strong>Target:</strong> 3 methods × 3 developed points, covering every part of the claim.</p>
+        </aside>
+      </div>
+    </div>
+  </div>
+  <p class="note"><b>Decisions to approve:</b> (1) the name "The Test Bench", (2) the claim-splitting colours (123 reuse the Q1 territory hues as neutral part-markers), (3) the "no critique" check that flags words like <i>however / biased / unreliable / but</i> in the Why column, (4) the coverage meter. Answers typed here go into the Word/PDF export.</p>
+</section>
+
+<!-- ═════════════════════ E ═════════════════════ -->
+<section class="board" id="E">
+  <div class="board-h"><span class="tag">E</span><h2>Phone (375px): layout for home study, and for the future app</h2>
+    <p>The skills map turns into a vertical chain. Matrix rows become one card per method with Who/How/What/Why stacked. The "My notes" button stays visible, and the mark card moves above the content as a collapsible strip.</p></div>
+  <div class="phones">
+    <div class="phone">
+      <div class="ptop"><span>WMSI Global Perspectives</span><span class="ham"></span></div>
+      <div class="ps">
+        <p class="eyebrow" style="color:var(--teal);margin-top:22px">Q2 · Research · 16 marks</p>
+        <h1>Research, inside out.</h1>
+        <p style="font-size:14.5px;color:var(--ink-2);margin-top:10px">Q2 asks how we would <em>know</em>, not what you think.</p>
+        <div class="pstack">
+          <div class="pgrid"><div class="pn"><b>Methods (7)</b>+ sources (5)</div><div class="pn"><b>Reliability</b>bias · expertise</div></div>
+          <div class="pconn"></div>
+          <div class="pn hub"><small class="mono" style="font-size:10px">2(a) · TABLE C</small><b style="font-family:var(--display);font-weight:400;font-size:20px">Evaluate research</b></div>
+          <div class="pconn"></div>
+          <div class="pn" style="border-color:var(--teal-bright);border-width:2px"><small class="mono" style="font-size:10px;color:var(--teal-ink)">2(b) · TABLE D</small><b style="font-family:var(--display);font-weight:400;font-size:20px">Design research</b></div>
+          <div class="pconn"></div>
+          <div class="pgrid"><div class="pn"><b>C2 Report</b>Table E sources</div><div class="pn"><b>C3 Project</b>Table A plan</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="phone">
+      <div class="ptop"><span>The Test Bench</span><span class="ham"></span></div>
+      <div class="ps">
+        <nav class="tabs"><a>Split</a><a class="on">Matrix</a><a>Worked</a><a>Practice</a></nav>
+        <p class="mono" style="font-size:11px;margin-top:14px;color:var(--ink-3)">TABLE D · 8 MARKS · 3 × WHO/HOW/WHAT/WHY ▾</p>
+        <div class="pcard"><div class="ph-h"><b>Method 1</b><span class="mono" style="font-size:10px">1 2 3</span></div>
+          <dl><dt>Who</dt><dd>National police / government statistics office</dd>
+            <dt>How</dt><dd>Secondary data analysis of annual figures</dd>
+            <dt>What</dt><dd>Vehicle thefts per year, last 5–10 years</dd>
+            <dt>Why</dt><dd>Official national figures over time show directly whether the total is rising across the country.</dd></dl></div>
+        <div class="pcard"><div class="ph-h" style="background:var(--teal-ink)"><b>Method 2</b><span class="mono" style="font-size:10px">1 2</span></div>
+          <dl><dt>Who</dt><dd>Insurance companies</dd><dt>How</dt><dd>Interview a claims manager…</dd></dl></div>
+      </div>
+      <div class="pfab">My notes</div>
+    </div>
+  </div>
+</section>
+
+<script>
+/* Mockup-only interactions: highlight links from a map node; swap chain on source tap */
+const svg=document.querySelector('#skillmap svg');
+svg.querySelectorAll('[data-n]').forEach(n=>{n.style.cursor='pointer';n.addEventListener('click',()=>{
+  const id=n.dataset.n,on=svg.dataset.sel!==id;svg.dataset.sel=on?id:'';
+  svg.querySelectorAll('#links path').forEach(p=>{p.style.transition='opacity .3s';p.style.opacity=!on||p.dataset.a.split(' ').includes(id)?1:.08});
+  svg.querySelectorAll('[data-n]').forEach(m=>{const linked=[...svg.querySelectorAll('#links path')].some(p=>{const a=p.dataset.a.split(' ');return a.includes(id)&&a.includes(m.dataset.n)});m.style.transition='opacity .3s';m.style.opacity=!on||m===n||linked?1:.3});
+});});
+const chains={
+  firm:['W1 · "a local building firm"','w','The only data comes from <strong>one local building firm</strong>.','One small, unrepresentative sample: a builder\'s experience of van theft can\'t show a national pattern.','The aim was the <strong>amount</strong> of vehicle crime, so the conclusion about national trends is not supported.'],
+  law:['S1 · "research the amount of vehicle crime"','s','The research has a <strong>clear aim</strong>: the amount of vehicle crime.','A clear aim guides which questions are asked and keeps the data relevant.','It keeps the interview focused on measuring vehicle crime rather than wandering off-topic.'],
+  conf:['S2 · "confidentiality document"','s','The researcher <strong>signed a confidentiality agreement</strong>.','The interviewee may speak more openly, so answers are more honest and complete.','More honest data about the firm\'s crime makes the findings more trustworthy for the aim.'],
+  rec:['S3 · "permission to record"','s','The interview was <strong>recorded with permission</strong>.','Answers are captured exactly, so nothing is misremembered or lost. It is also ethical.','Accurate records make the evidence about crime at the firm more reliable.'],
+  month:['W2 · "only worked… one month"','w','Mr Grant had <strong>only worked there for one month</strong>.','He may not know the firm\'s history of vehicle crime, so his answers could be incomplete.','He can\'t say whether crime is increasing over time, which is exactly what the research needs.'],
+  noisy:['W3 · "busy and noisy"','w','The interview was in a <strong>busy, noisy café</strong>.','Answers may be misheard, and others listening could make him less open.','Inaccurate or guarded answers weaken any conclusion about the amount of vehicle crime.']
+};
+document.querySelectorAll('.source mark').forEach(m=>m.addEventListener('click',()=>{
+  document.querySelectorAll('.source mark').forEach(x=>x.classList.remove('sel'));m.classList.add('sel');
+  const c=chains[m.dataset.k],el=document.getElementById('chain');
+  el.querySelector('.chain-top span').innerHTML='<b>'+c[0].split(' · ')[0]+'</b> · '+c[0].split(' · ')[1];
+  const pill=el.querySelector('.pill');pill.textContent=c[1]==='s'?'Strength':'Weakness';pill.className='pill'+(c[1]==='s'?' s':'');
+  el.querySelectorAll('.links > div > p:not(.starter)').forEach((p,i)=>p.innerHTML=c[2+i]);
+}));
+</script>
+</body>
+</html>

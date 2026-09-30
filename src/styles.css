@@ -40,6 +40,21 @@
   --color-violet-tint: #F6F0FB;
   --color-violet-deep: #3F1C7A;
 
+  /* Q2 territory — teacher palette (Deep Sapphire · Black Sea · Sapphire ·
+     Storm · Blue Sage · Coastal · Olive Ivory · Arctic Gray) */
+  --color-q2-night: #201E43;
+  --color-q2-sea: #021526;
+  --color-q2-sapphire: #03346E;
+  --color-q2-storm: #134B70;
+  --color-q2-sage: #508C9B;
+  --color-q2-sage-ink: #35697A;
+  --color-q2-coastal: #6EACDA;
+  --color-q2-coastal-tint: #E7F1FA;
+  --color-q2-ivory: #E2E2B6;
+  --color-q2-ivory-tint: #F4F4E2;
+  --color-q2-arctic: #EEEEEE;
+  --color-q2-olive: #8C8C45;
+
   /* Reserved for real warnings only */
   --color-ember: #B33520;
   --color-ember-soft: #F7E4DE;
@@ -133,4 +148,12 @@ h3 { line-height: 1.25; }
 @media print {
   body::before { display: none; }
   .no-print { display: none !important; }
+}
+
+/* ─────────── Q2 helpers ─────────── */
+.q2-page ::selection { background: var(--color-q2-ivory); color: var(--color-q2-sea); }
+.q2-page :where(a, button, input, textarea, select, [tabindex]):focus-visible { outline-color: var(--color-q2-storm); }
+@media print {
+  .q2-no-print { display: none !important; }
+  .q2-print-break { break-before: page; }
 }

@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Container, DisplayH1, Eyebrow, Lede } from '../components/primitives';
 
-type Accent = 'cobalt' | 'amber' | 'forest';
+type Accent = 'cobalt' | 'amber' | 'forest' | 'q2';
 
 interface Sheet {
   to?: string;
@@ -45,6 +45,16 @@ const SHEETS: Sheet[] = [
     accent: 'forest',
     status: 'live',
   },
+  {
+    to: '/revision/research',
+    paper: 'Paper 1',
+    question: 'Q2',
+    marks: '16 marks',
+    title: 'Research',
+    tagline: 'Three-step chain · claim parts · Who/How/What/Why.',
+    accent: 'q2',
+    status: 'live',
+  },
 ];
 
 const ACCENT: Record<Accent, { text: string; border: string; tint: string; deep: string }> = {
@@ -65,6 +75,12 @@ const ACCENT: Record<Accent, { text: string; border: string; tint: string; deep:
     border: 'border-[color:var(--color-forest)]',
     tint: 'bg-[color:var(--color-forest-tint)]',
     deep: 'text-[color:var(--color-forest-deep)]',
+  },
+  q2: {
+    text: 'text-[color:var(--color-q2-storm)]',
+    border: 'border-[color:var(--color-q2-storm)]',
+    tint: 'bg-[color:var(--color-q2-coastal-tint)]',
+    deep: 'text-[color:var(--color-q2-sea)]',
   },
 };
 

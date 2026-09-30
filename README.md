@@ -28,8 +28,24 @@ Interactive teaching resources for **Year 10, Term 1** at Wesley Methodist Schoo
 | `/statements/mindmap` → `/legacy/mindmap.html` | Interactive mind map of all eight terms |
 | `/teachers/statements` → `/legacy/…Teacher-Dashboard.html` | Lesson sequencing, timings, answer keys; imports student export codes |
 | `/teachers/statements-intensive` → `/legacy/…Intensive_Teacher-Dashboard.html` | Aggregates class scores from the Intensive, flags students under 60%, exports CSV |
+| `/research` | **Q2 hub** — "Research, inside out.": skills map linking Q2 to Q3, the Individual Report (C2) and the Team Project (C3) |
+| `/research/toolkit` | Q2 Toolkit — 8 methods, 5 sources, reliability (Q3) and research-design (2a) checklists, testing prompts, glossary, quiz |
+| `/research/evaluate` | Q2(a) **Strong or Shaky?** — annotated Source 3, three-step chain builder with coach, traps, Level 1–4 ladder, spot-it quiz |
+| `/research/design` | Q2(b) **The Test Bench** — claim splitter, Who/How/What/Why matrix with coverage meter and coach, traps, worked levels |
+| `/research/practice(/:id)` | Practice bank — 11 reworded past papers + 22 mirror papers, answer schemes unlock after an attempt, print as mock paper |
+| `/revision/research` | Q2 revision sheet |
+| `/my-learning` | Student export — progress summary + answers as Word/PDF with a checksummed result code |
+| `/teachers/tracker` | Class tracker — drop students' My learning PDFs or paste codes; marks, next-step chips, comments, CSV, backup/restore |
 
 The legacy static HTML tools (`legacy/*.html`) still open standalone from the filesystem — no build required.
+
+## Tests
+
+```bash
+npm test           # vitest: progress store, result codes, coach, tracker store, practice-bank audit
+```
+
+Practice-bank content is audited automatically (word counts, quotes present in the source, non-overlapping highlights, full answer schemes, 11 reworded + 22 mirrors). `scripts/check-verbatim.py` checks a bank item for 6-word runs shared with its Cambridge insert (inserts live in the git-ignored `.cache/papers/`).
 
 ## Local development
 

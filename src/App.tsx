@@ -19,6 +19,14 @@ import { TeachersHubPage } from './pages/dashboards/TeachersHubPage';
 import { PerspectivesDashboardPage } from './pages/dashboards/PerspectivesDashboardPage';
 import { WeighingRoomDashboardPage } from './pages/dashboards/WeighingRoomDashboardPage';
 import { NotFoundPage } from './pages/NotFoundPage';
+import { ToolkitPage } from './pages/research/ToolkitPage';
+import { ResearchHubPage } from './pages/research/ResearchHubPage';
+import { EvaluatePage } from './pages/research/EvaluatePage';
+import { DesignPage } from './pages/research/DesignPage';
+import { PracticePage } from './pages/research/PracticePage';
+import { MyLearningPage } from './pages/my-learning/MyLearningPage';
+import { TrackerPage } from './pages/dashboards/tracker/TrackerPage';
+import { ResearchRevisionSheetPage } from './pages/research/ResearchRevisionSheetPage';
 
 export function App() {
   return (
@@ -55,9 +63,22 @@ export function App() {
         <Route path="revision/statements" element={<RevisionSheetPage />} />
         <Route path="revision/perspectives" element={<PerspectivesRevisionSheetPage />} />
         <Route path="revision/significance" element={<SignificanceRevisionSheetPage />} />
+        <Route path="revision/research" element={<ResearchRevisionSheetPage />} />
+
+        {/* Q2 — Research */}
+        <Route path="research" element={<ResearchHubPage />} />
+        <Route path="research/toolkit" element={<ToolkitPage />} />
+        <Route path="research/evaluate" element={<EvaluatePage />} />
+        <Route path="research/design" element={<DesignPage />} />
+        <Route path="research/practice" element={<PracticePage />} />
+        <Route path="research/practice/:id" element={<PracticePage />} />
+
+        {/* Site-wide student export */}
+        <Route path="my-learning" element={<MyLearningPage />} />
 
         {/* Teacher dashboards */}
         <Route path="teachers" element={<TeachersHubPage />} />
+        <Route path="teachers/tracker" element={<TrackerPage />} />
         <Route path="teachers/statements" element={<TeacherDashboardPage />} />
         <Route path="teachers/statements-intensive" element={<IntensiveDashboardPage />} />
         <Route path="teachers/perspectives" element={<PerspectivesDashboardPage />} />

@@ -262,8 +262,8 @@ button{cursor:pointer}
 .seg button.on{background:var(--q2-sea);color:#fff}
 .toggle{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:600;border:1px solid var(--line);border-radius:999px;padding:5px 12px;background:#fff}
 .sw{width:30px;height:17px;border-radius:999px;background:var(--paper-3);position:relative;transition:background .2s}
-.sw:after{content:"";position:absolute;top:2px;left:2px;width:13px;height:13px;border-radius:50%;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.3);transition:left .2s}
-.toggle.on .sw{background:var(--q2-storm)} .toggle.on .sw:after{left:15px}
+.sw:after{content:"";position:absolute;top:2px;left:2px;width:13px;height:13px;border-radius:50%;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.3);transition:transform .2s}
+.toggle.on .sw{background:var(--q2-storm)} .toggle.on .sw:after{transform:translateX(13px)}
 .tk-grid{margin-top:16px;display:grid;grid-template-columns:1.25fr 1fr;gap:18px}
 .lb{background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden}
 .lb table{width:100%;border-collapse:collapse;font-size:13px}

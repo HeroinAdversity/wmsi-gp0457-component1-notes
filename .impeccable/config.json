@@ -12,6 +12,15 @@
         ],
         "createdAt": "2026-09-29T23:20:25.472Z",
         "reason": "Claude: approved static mockup (not shipped); the examiner-note shadow is a downward-offset neutral elevation on a light background, not a glow"
+      },
+      {
+        "rule": "layout-transition",
+        "value": "*",
+        "files": [
+          "docs/superpowers/mockups/site-feedback-mockups-v1.html"
+        ],
+        "createdAt": "2026-09-30T05:56:35.072Z",
+        "reason": "Claude: flagged lines 468/475 animate only transform on chevron SVGs (false positive); real left-transition fixed"
       }
     ]
   }

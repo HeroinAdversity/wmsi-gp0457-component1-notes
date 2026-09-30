@@ -34,7 +34,7 @@ export function LeaderboardView({ rows }: { rows: StudentRow[] }) {
         <button type="button" aria-pressed={projector} onClick={() => setProjector((p) => !p)}
           className="inline-flex items-center gap-2 rounded-full border border-[color:var(--color-line)] bg-white px-3 py-1 text-[12.5px] font-semibold">
           <span className={`relative h-[17px] w-[30px] rounded-full transition-colors ${projector ? 'bg-[color:var(--color-q2-storm)]' : 'bg-[color:var(--color-paper-3)]'}`}>
-            <span className={`absolute top-[2px] h-[13px] w-[13px] rounded-full bg-white shadow transition-all ${projector ? 'left-[15px]' : 'left-[2px]'}`} />
+            <span className={`absolute left-[2px] top-[2px] h-[13px] w-[13px] rounded-full bg-white shadow transition-transform ${projector ? 'translate-x-[13px]' : ''}`} />
           </span>
           Initials only (projector)
         </button>

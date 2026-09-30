@@ -4,6 +4,8 @@ import { downloadFile, formatTimestamp } from '../../../lib/dashboards';
 import { decodeResultCode, extractCode } from '../../../lib/resultCode';
 import { usePersistentState } from '../../../lib/useNotesExport';
 import { docxToText } from './docxText';
+import { LeaderboardView } from './LeaderboardView';
+import { useHashTab } from '../../research/lib/useHashTab';
 import { decodeLegacyCode } from './legacyCode';
 import {
   NEXT_STEPS, addSubmission, emptyDb, latest, latestQ2, parseBackup, q1Work, quizTotals, setComment, setMark, toggleNextStep, trackerCsv,
@@ -11,6 +13,8 @@ import {
 } from './trackerStore';
 
 type SortKey = 'name' | 'className' | 'last' | 'quiz';
+const VIEWS = ['students', 'leaderboard'] as const;
+type View = (typeof VIEWS)[number];
 interface Msg { id: number; text: string; tone: 'ok' | 'err' }
 
 export function TrackerPage() {
@@ -23,6 +27,7 @@ export function TrackerPage() {
   const [cls, setCls] = useState('all');
   const [sort, setSort] = useState<{ key: SortKey; dir: 1 | -1 }>({ key: 'className', dir: 1 });
   const [dragging, setDragging] = useState(false);
+  const [view, setView] = useHashTab<View>(VIEWS, 'students');
   const fileRef = useRef<HTMLInputElement>(null);
   const restoreRef = useRef<HTMLInputElement>(null);
   const msgId = useRef(0);
@@ -128,16 +133,26 @@ export function TrackerPage() {
           {msgs.map((m) => <li key={m.id} className={m.tone === 'ok' ? 'text-[color:var(--color-q2-storm)]' : 'text-[color:var(--color-ember)]'}>{m.text}</li>)}
         </ul>
 
+        <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3 border-b border-[color:var(--color-line)]">
+          {VIEWS.map((v) => (
+            <button key={v} type="button" role="tab" aria-selected={view === v} onClick={() => setView(v)}
+              className={`-mb-px border-b-2 py-2.5 text-[13.5px] font-semibold ${view === v ? 'border-[color:var(--color-q2-sea)] text-[color:var(--color-q2-sea)]' : 'border-transparent text-[color:var(--color-ink-3)]'}`}>
+              {v === 'students' ? 'Students' : 'Leaderboard'}
+            </button>
+          ))}
+          <div className="ml-auto flex items-center gap-2 pb-2 text-[13px]">
+            <label htmlFor="cls">Class</label>
+            <select id="cls" value={cls} onChange={(e) => setCls(e.target.value)} className="rounded-[5px] border border-[color:var(--color-line)] bg-white px-2 py-1">
+              <option value="all">All classes</option>
+              {classes.map((c) => <option key={c} value={c}>{c || '(no class)'}</option>)}
+            </select>
+            <span className="text-[color:var(--color-ink-3)]">{rows.length} student{rows.length === 1 ? '' : 's'}</span>
+          </div>
+        </div>
+
+        {view === 'leaderboard' ? <div className="mt-5"><LeaderboardView rows={rows} /></div> : (
         <div className="mt-5 grid gap-5 lg:grid-cols-[minmax(0,1fr)_330px]">
           <div className="min-w-0">
-            <div className="mb-3 flex items-center gap-2 text-[13px]">
-              <label htmlFor="cls">Class</label>
-              <select id="cls" value={cls} onChange={(e) => setCls(e.target.value)} className="rounded-[5px] border border-[color:var(--color-line)] bg-white px-2 py-1">
-                <option value="all">All classes</option>
-                {classes.map((c) => <option key={c} value={c}>{c || '(no class)'}</option>)}
-              </select>
-              <span className="text-[color:var(--color-ink-3)]">{rows.length} student{rows.length === 1 ? '' : 's'}</span>
-            </div>
 
             {rows.length === 0 ? (
               <p className="rounded-[8px] border border-dashed border-[color:var(--color-line)] bg-white px-5 py-8 text-[14px] text-[color:var(--color-ink-2)]">No submissions yet. Drop students’ My learning PDFs or Word files above.</p>
@@ -181,6 +196,7 @@ export function TrackerPage() {
             <aside className="self-start rounded-[8px] border border-[color:var(--color-line)] bg-white px-4 py-4 text-[13.5px] text-[color:var(--color-ink-2)]">Select a student to add marks and next steps.</aside>
           )}
         </div>
+        )}
       </Container>
     </div>
   );

@@ -1,19 +1,23 @@
-import { deflateRawSync } from 'node:zlib';
 import { describe, expect, it } from 'vitest';
 import { CODE_BEGIN, CODE_END, extractCode } from '../../../lib/resultCode';
 import { docxToText, documentXmlToText } from './docxText';
 import { decodeLegacyCode, summarise } from './legacyCode';
 import { addSubmission, emptyDb, latestQ2, q1Work, quizTotals } from './trackerStore';
 
+async function deflateRaw(bytes: Uint8Array): Promise<Uint8Array> {
+  const out = new Blob([new Uint8Array(bytes)]).stream().pipeThrough(new CompressionStream('deflate-raw'));
+  return new Uint8Array(await new Response(out).arrayBuffer());
+}
+
 /** Minimal zip writer (deflate) for building a test .docx. */
-function zip(files: Record<string, string>): Uint8Array {
+async function zip(files: Record<string, string>): Promise<Uint8Array> {
   const enc = new TextEncoder();
   const locals: Uint8Array[] = [];
   const centrals: Uint8Array[] = [];
   let offset = 0;
   for (const [name, text] of Object.entries(files)) {
     const nameB = enc.encode(name);
-    const data = new Uint8Array(deflateRawSync(enc.encode(text)));
+    const data = await deflateRaw(enc.encode(text));
     const lh = new DataView(new ArrayBuffer(30));
     lh.setUint32(0, 0x04034b50, true); lh.setUint16(8, 8, true);
     lh.setUint32(18, data.length, true); lh.setUint16(26, nameB.length, true);
@@ -42,7 +46,7 @@ describe('Word (.docx) import', () => {
   it('finds the result code in a Word export', async () => {
     const lines = [CODE_BEGIN, 'WMSI2.q2.0123abcd.' + 'x'.repeat(38), 'y'.repeat(20), CODE_END];
     const xml = `<w:document><w:body>${para('My learning')}${lines.map(para).join('')}</w:body></w:document>`;
-    const bytes = zip({ '[Content_Types].xml': '<Types/>', 'word/document.xml': xml });
+    const bytes = await zip({ '[Content_Types].xml': '<Types/>', 'word/document.xml': xml });
     const text = await docxToText(new Blob([new Uint8Array(bytes)]));
     expect(extractCode(text)).toBe(`WMSI2.q2.0123abcd.${'x'.repeat(38)}${'y'.repeat(20)}`);
   });

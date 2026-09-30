@@ -101,7 +101,7 @@ export function DesignPage() {
               <section>
                 <h2 className={h2}>Split the claim before you plan</h2>
                 <p className={body}>Every claim has parts. Each part tells you something your research must include.</p>
-                <ClaimSplitter claim={model.claim} />
+                <ClaimSplitter claim={model.claim} source="Reworded from June 2026 · 0457/12" />
                 <h3 className="mt-10 font-display text-[24px] text-[color:var(--color-q2-sea)]">Quick check: what does each claim need?</h3>
                 <Quiz activityId="quiz-split" title="Test Bench · split-the-claim quiz" questions={SPLIT_QUIZ} />
               </section>
@@ -110,7 +110,11 @@ export function DesignPage() {
             {tab === 'matrix' && (
               <section>
                 <h2 className={h2}>Three rows. Every part of the claim.</h2>
-                <ClaimSplitter claim={model.claim} />
+                <ClaimSplitter claim={model.claim} source="Reworded from June 2026 · 0457/12" />
+                <h3 className="mt-7 font-display text-[21px] text-[color:var(--color-q2-sea)]">Worked row — how one method is written</h3>
+                <p className="mt-1 text-[13.5px] text-[color:var(--color-ink-2)]">Every box filled, the evidence type named, and the parts of the claim it tests.</p>
+                <WhoHowWhatWhy parts={model.claim.parts} storageId="research_design_worked" readOnlyRows={[model.scheme.modelMatrix[0]]} />
+                <h3 className="mt-8 font-display text-[21px] text-[color:var(--color-q2-sea)]">Your turn — write the next rows</h3>
                 <WhoHowWhatWhy parts={model.claim.parts} storageId={MATRIX_STORE}
                   activityId={`answer-2b:${model.id}`} activityTitle={`Practice · ${model.title} (reworded) · 2(b)`} />
               </section>
@@ -148,7 +152,7 @@ export function DesignPage() {
             {tab === 'practice' && (
               <section>
                 <h2 className={h2}>Your turn</h2>
-                <ClaimSplitter claim={practice.claim} />
+                <ClaimSplitter claim={practice.claim} source="WMSI mirror of June 2026 · 0457/12" />
                 <WhoHowWhatWhy parts={practice.claim.parts} storageId={PRACTICE_STORE}
                   activityId={`answer-2b:${practice.id}`} activityTitle={`Practice · ${practice.title} (mirror) · 2(b)`} />
                 <p className="mt-6 text-[14px]"><Link to={`/research/practice/${practice.id}`} className="font-semibold text-[color:var(--color-q2-storm)] underline">Check against the answer scheme →</Link> <span className="text-[color:var(--color-ink-3)]">· more claims in the <Link to="/research/practice" className="underline">practice bank</Link></span></p>

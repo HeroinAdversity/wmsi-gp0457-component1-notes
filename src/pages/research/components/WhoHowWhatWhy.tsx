@@ -5,6 +5,7 @@ import { PART_STYLE } from '../data/design';
 import type { ClaimPart, EvidenceTag, MatrixRow, PartId } from '../data/types';
 import { rowDeveloped, type MatrixDraft } from '../lib/coach';
 import { CoachPanel } from './CoachPanel';
+import { Icon } from './Icon';
 
 export interface MatrixState { rows: MatrixDraft[]; compare: string }
 const EVIDENCE: EvidenceTag[] = ['quantitative', 'qualitative', 'primary', 'secondary'];
@@ -130,7 +131,8 @@ export function WhoHowWhatWhy({ parts, storageId, activityId, activityTitle, rea
               </span>
               {!ro && rows.length > 1 && (
                 <button type="button" onClick={() => setM((p) => ({ ...p, rows: p.rows.filter((__, j) => j !== i) }))}
-                  className="text-[11px] text-white/70 md:mt-2 md:text-[color:var(--color-ink-3)]" aria-label={`Remove row ${i + 1}`}>Remove</button>
+                  className="grid h-8 w-8 place-items-center rounded-full text-white/80 hover:bg-white/10 md:mx-auto md:mt-1 md:text-[color:var(--color-ink-2)] md:hover:bg-[color:var(--color-paper-2)]"
+                  aria-label={`Remove row ${i + 1}`} title="Remove row"><Icon name="cross" size={14} /></button>
               )}
             </div>
             {(['who', 'how', 'what', 'why'] as const).map((k, ci) => (
@@ -150,13 +152,13 @@ export function WhoHowWhatWhy({ parts, storageId, activityId, activityTitle, rea
           className="mt-3 text-[13px] font-semibold text-[color:var(--color-q2-storm)] underline underline-offset-2">+ Add row</button>
       )}
 
-      <label className="mt-4 block">
+      {(!ro || compare) && <label className="mt-4 block">
         <span className="text-[12.5px] font-bold text-[color:var(--color-q2-sea)]">Compare line (triangulation)</span>
         {ro
           ? <p className="mt-1 rounded-[5px] bg-[color:var(--color-q2-arctic)] px-3 py-2 text-[13.5px]">{compare}</p>
           : <textarea rows={2} value={m.compare} onChange={(e) => setM((p) => ({ ...p, compare: e.target.value }))}
               placeholder="If … and … both show …, the claim is better supported." className={`mt-1 ${field} text-[13.5px]`} />}
-      </label>
+      </label>}
 
       {!ro && <CoachPanel rows={m.rows} parts={parts} compare={m.compare} />}
     </div>

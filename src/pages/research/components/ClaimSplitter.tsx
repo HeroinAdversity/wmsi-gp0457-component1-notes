@@ -2,10 +2,11 @@ import type { ClaimPart } from '../data/types';
 import { PART_STYLE } from '../data/design';
 import { segmentText } from '../lib/segments';
 
-export function ClaimSplitter({ claim }: { claim: { text: string; parts: ClaimPart[] } }) {
+export function ClaimSplitter({ claim, source }: { claim: { text: string; parts: ClaimPart[] }; source?: string }) {
   const segs = segmentText(claim.text, claim.parts.map((p) => ({ id: String(p.id), quote: p.phrase })));
   return (
     <div className="mt-5 rounded-[6px] border border-[color:var(--color-line)] bg-white px-5 py-5 md:px-6">
+      {source && <p className="mb-2 font-mono text-[10.5px] uppercase tracking-[0.1em] text-[color:var(--color-ink-3)]">The claim · {source}</p>}
       <p className="font-display text-[22px] md:text-[29px] leading-[1.4] text-[color:var(--color-q2-sea)]">
         “{segs.map((s, i) => (s.id
           ? <span key={i} className={PART_STYLE[Number(s.id) as 1 | 2 | 3].underline}>{s.text}</span>

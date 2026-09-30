@@ -9,6 +9,7 @@ import { Q2Header } from './components/Q2Header';
 import { WhoHowWhatWhy } from './components/WhoHowWhatWhy';
 import { BANK, getItem } from './data/bank';
 import { SESSIONS, type BankItem } from './data/types';
+import { Icon } from './components/Icon';
 
 type Filter = 'all' | 'reworded' | 'mirror';
 type Level = 0 | 1 | 2 | 3 | 4;
@@ -69,7 +70,7 @@ export function PracticePage() {
               <span className="sr-only">Choose a practice item</span>
               <select value={item.id} onChange={(e) => navigate(`/research/practice/${e.target.value}`)}
                 className="w-full rounded-[6px] border border-[color:var(--color-line)] bg-white px-3 py-2 text-[14px]">
-                {list.map((b) => <option key={b.id} value={b.id}>{b.title} — {b.kind === 'reworded' ? 'reworded' : 'mirror'} ({shortParent(b)}){attempted(b) ? ' ✓' : ''}</option>)}
+                {list.map((b) => <option key={b.id} value={b.id}>{b.title} — {b.kind === 'reworded' ? 'reworded' : 'mirror'} ({shortParent(b)}){attempted(b) ? ' (done)' : ''}</option>)}
               </select>
             </label>
             <nav className="mt-3 hidden max-h-[70vh] space-y-2 overflow-y-auto pr-1 lg:block" aria-label="Practice items">
@@ -82,7 +83,7 @@ export function PracticePage() {
                       {b.kind === 'reworded' ? 'Reworded' : 'Mirror'}
                     </span>
                     <span className="font-mono text-[10.5px] text-[color:var(--color-ink-3)]">{shortParent(b)}</span>
-                    {attempted(b) && <span className="font-mono text-[10.5px] text-[color:var(--color-q2-storm)]">✓ attempted</span>}
+                    {attempted(b) && <span className="inline-flex items-center gap-1 font-mono text-[10.5px] text-[color:var(--color-q2-storm)]"><Icon name="check" size={12} />attempted</span>}
                   </span>
                 </Link>
               ))}
@@ -137,7 +138,7 @@ function PracticeItem({ item }: { item: BankItem }) {
           activityTitle={`Practice · ${item.title} (${item.kind}) · 2(a)`} selfLevel={self.a || undefined} />
 
         <h3 className="mt-10 font-display text-[22px] text-[color:var(--color-q2-sea)]">2(b) “{item.claim.text}” Explain how this claim could be tested. You should consider the research methods and evidence that could be used. <span className="font-mono text-[13px]">[8]</span></h3>
-        <ClaimSplitter claim={item.claim} />
+        <ClaimSplitter claim={item.claim} source={item.kind === 'reworded' ? `Reworded from ${SESSIONS[item.parent]}` : `WMSI mirror of ${SESSIONS[item.parent]}`} />
         <WhoHowWhatWhy parts={item.claim.parts} storageId={`research_bank_${item.id}_b`} activityId={`answer-2b:${item.id}`}
           activityTitle={`Practice · ${item.title} (${item.kind}) · 2(b)`} selfLevel={self.b || undefined} />
 

@@ -127,7 +127,7 @@ export function MyLearningPage() {
           </div>
 
           <div>
-            <div className="flex aspect-[1/1.3] flex-col rounded-[4px] border border-[color:var(--color-line)] bg-white p-5 text-[10.5px] text-[color:var(--color-ink-2)] shadow-[0_10px_30px_-14px_rgba(0,0,0,0.3)]" aria-label="Preview of your PDF">
+            <div className={`${rows.length ? 'flex' : 'hidden lg:flex'} aspect-[1/1.3] flex-col rounded-[4px] border border-[color:var(--color-line)] bg-white p-5 text-[10.5px] text-[color:var(--color-ink-2)] shadow-[0_10px_30px_-14px_rgba(0,0,0,0.3)]`} aria-label="Preview of your PDF">
               <p className="font-display text-[18px] text-[color:var(--color-q2-sea)]">My learning · Question 2</p>
               <p>{state.student.name || 'Your name'} · {state.student.className || 'Class'}</p>
               {[92, 80, 86, 60, 90, 74].map((w, i) => <div key={i} className="mt-1.5 h-[5px] rounded bg-[color:var(--color-q2-arctic)]" style={{ width: `${w}%`, marginTop: i === 3 ? 12 : undefined }} />)}

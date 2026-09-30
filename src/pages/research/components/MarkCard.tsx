@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+import { Icon } from './Icon';
 
 export function MarkCard({ marks, table, time, command, rule, target }: {
   marks: number; table: string; time: string; command: string; rule: ReactNode; target: ReactNode;
@@ -9,7 +10,7 @@ export function MarkCard({ marks, table, time, command, rule, target }: {
       {/* Phone: collapsible strip */}
       <details className="lg:hidden mt-3 rounded-[6px] bg-[color:var(--color-q2-night)] text-white">
         <summary className="list-none cursor-pointer px-3 py-2.5 font-mono text-[10.5px] flex justify-between">
-          <span>{table.toUpperCase()} · {marks} MARKS · {time.toUpperCase()}</span><span aria-hidden>▾</span>
+          <span>{table.toUpperCase()} · {marks} MARKS · {time.toUpperCase()}</span><Icon name="chevron" size={14} />
         </summary>
         <div className="px-3 pb-3 text-[13px] text-[#D6D5EA] space-y-2">{rule}{target}</div>
       </details>

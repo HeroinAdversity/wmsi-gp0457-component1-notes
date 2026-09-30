@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { Container } from '../../components/primitives';
 import { Q2Header } from './components/Q2Header';
 import { SkillsMap } from './components/SkillsMap';
+import { Icon } from './components/Icon';
 
 const LINK_TABLE: { skill: string; cells: string[] }[] = [
   { skill: 'Set a research question', cells: ['● judge the aim', '● the claim is the aim', '', '●', '● Table A'] },
@@ -76,7 +77,7 @@ export function ResearchHubPage() {
           {BRIDGES.map((b) => (
             <article key={b.title} className="rounded-[8px] border border-[color:var(--color-line)] bg-white px-5 py-[18px]">
               <p className="flex items-center gap-2 font-mono text-[11px] font-semibold">
-                <span className={`rounded-[3px] px-1.5 py-0.5 ${b.aStyle}`}>{b.a}</span>↔
+                <span className={`rounded-[3px] px-1.5 py-0.5 ${b.aStyle}`}>{b.a}</span><Icon name="swap" size={14} className="text-[color:var(--color-ink-3)]" /><span className="sr-only">links to</span>
                 <span className="rounded-[3px] bg-[color:var(--color-q2-arctic)] px-1.5 py-0.5">{b.b}</span>
               </p>
               <h3 className="mt-2.5 font-display text-[21px] leading-[1.2] text-[color:var(--color-q2-sea)]">{b.title}</h3>

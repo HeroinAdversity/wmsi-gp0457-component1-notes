@@ -16,7 +16,7 @@ web
 Exam-skill study site for Cambridge 0457 Paper 1 (Component 1). Each question on the paper gets its own "territory": notes, anatomy of the question, traps, worked examples at each mark level, practice, and a checklist. Success means students write answers the way the Cambridge mark scheme and examiner reports reward them.
 
 - Question 1 (a–d) is shipped.
-- Question 2 (2a: evaluate research; 2b: design research to test a claim) is the next territory.
+- Question 2 (2a: evaluate research; 2b: design research to test a claim) is shipped under `/research`, with `/my-learning` and `/teachers/tracker`.
 
 ## Positioning
 
@@ -24,9 +24,7 @@ Built from the real Cambridge documents: 2025–2026 mark schemes, principal exa
 
 ## Operating Context
 
-- Taught in lessons and used for self-study.
-- Students export their notes and answers as Word or PDF (the existing notes-export) and hand them in, e.g. on Google Classroom.
-- For Q2, this export is the only thing that returns to the teacher. There are no export codes or dashboards for Q2.
+Used in lessons and for self-study. Students export their notes and answers as Word/PDF. For Q2, the `/my-learning` export also carries a checksummed result code; the teacher drops the PDFs (or pastes the codes) into `/teachers/tracker`, which stores marks, next-step chips and comments in the teacher's browser (backup/restore JSON, CSV export). No server, no accounts.
 
 ## Capabilities and Constraints
 
@@ -37,9 +35,9 @@ Built from the real Cambridge documents: 2025–2026 mark schemes, principal exa
 
 ## Brand Commitments
 
-- WMSI GP0457 editorial-academic identity as shipped in `src/styles.css`.
-- Each Paper 1 question keeps its own colour territory.
-- The accent-border callout style is intentional (see `.impeccable/config.json` in the GP folder).
+- WMSI GP0457 editorial-academic identity as shipped in `src/styles.css`; each Paper 1 question keeps its own colour territory. Q2 uses the teacher's own palette (Deep Sapphire, Black Sea, Sapphire, Storm Blue, Blue Sage, Coastal Blue, Olive Ivory, Arctic Gray) on Q2 pages only.
+- Examiner advice on Q2 pages is a card-style "examiner's note" (icon, citation, "So:" action line). The teacher rejected coloured side-bar callouts as looking AI-made; do not use them on new work.
+- Teacher-confirmed exception: new sections must "closely mirror" the shipped Q1 site, so the Q1 conventions they inherit — mono uppercase labels above page titles, and the revision-sheet chrome (halftone band, rotated stamp, offset shadows) — are kept deliberately. Changing them is a whole-site decision for the teacher, not a per-page fix.
 
 ## Evidence on Hand
 

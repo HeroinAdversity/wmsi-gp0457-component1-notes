@@ -3,6 +3,7 @@ import { RevisionSheetShell, SheetMasthead, SidebarPanel } from '../../component
 import { DESIGN_TRAPS } from './data/design';
 import { EVALUATE_TRAPS } from './data/evaluate';
 import { METHODS, RELIABILITY, RESEARCH_DESIGN_CHECK, SOURCES } from './data/toolkit';
+import { Icon } from './components/Icon';
 
 /* ══════════════════════════════════════════════════════════════════
    Research — Revision Sheet (Q2(a) Strong or Shaky? + Q2(b) The Test Bench)
@@ -70,10 +71,10 @@ export function ResearchRevisionSheetPage() {
 
         <div className="mt-6 grid gap-6 md:grid-cols-2">
           <SidebarPanel eyebrow="2(a) traps" variant="ink">
-            <ul className="space-y-1 p-4 text-[13px]">{EVALUATE_TRAPS.map((t) => <li key={t.id}>✕ {t.title}</li>)}</ul>
+            <ul className="space-y-1 p-4 text-[13px]">{EVALUATE_TRAPS.map((t) => <li key={t.id} className="flex items-center gap-2"><Icon name="cross" size={12} className="text-[color:var(--color-ember)]" />{t.title}</li>)}</ul>
           </SidebarPanel>
           <SidebarPanel eyebrow="2(b) traps" variant="ink">
-            <ul className="space-y-1 p-4 text-[13px]">{DESIGN_TRAPS.map((t) => <li key={t.id}>✕ {t.title}</li>)}</ul>
+            <ul className="space-y-1 p-4 text-[13px]">{DESIGN_TRAPS.map((t) => <li key={t.id} className="flex items-center gap-2"><Icon name="cross" size={12} className="text-[color:var(--color-ember)]" />{t.title}</li>)}</ul>
           </SidebarPanel>
         </div>
       </Container>

@@ -105,9 +105,21 @@ export function SkillsMap() {
       {/* Phone: vertical chain */}
       <div className="md:hidden flex flex-col">
         <div className="grid grid-cols-2 gap-2">
-          {MAP_NODES.filter((n) => n.col === 'skill').map((n) => (
-            <div key={n.id} className="rounded-[6px] border border-[color:var(--color-line)] bg-white px-3 py-2.5 text-[13px] font-semibold text-[color:var(--color-q2-sea)]">{n.title}</div>
-          ))}
+          {MAP_NODES.filter((n) => n.col === 'skill').map((n) => {
+            const feeds = MAP_LINKS.filter((l) => l.from === n.id);
+            return (
+              <div key={n.id} className="rounded-[6px] border border-[color:var(--color-line)] bg-white px-3 py-2.5 text-[13px] font-semibold text-[color:var(--color-q2-sea)]">
+                {n.title}
+                <span className="mt-1.5 flex flex-wrap gap-1" aria-label={`Feeds ${feeds.map((l) => (l.to === 'a' ? '2(a)' : '2(b)')).join(' and ')}`}>
+                  {feeds.map((l) => (
+                    <span key={l.to} className={`rounded-[3px] px-1.5 py-px font-mono text-[10px] ${l.to === 'a' ? 'bg-[color:var(--color-q2-night)] text-[color:var(--color-q2-ivory)]' : 'border border-[color:var(--color-q2-sage)] text-[color:var(--color-q2-sage-ink)]'}`}>
+                      {l.to === 'a' ? '2(a)' : '2(b)'}
+                    </span>
+                  ))}
+                </span>
+              </div>
+            );
+          })}
         </div>
         <Connector />
         <div className="rounded-[6px] bg-[color:var(--color-q2-night)] px-3.5 py-3 text-white">
@@ -124,7 +136,7 @@ export function SkillsMap() {
           {MAP_NODES.filter((n) => n.col === 'pays').map((n) => (
             <div key={n.id} className="rounded-[6px] border border-[color:var(--color-line)] bg-white px-3 py-2.5 text-[13px]">
               <b className="block text-[color:var(--color-q2-sea)]">{n.title}</b>
-              <span className="text-[color:var(--color-ink-2)]">{n.lines.join(' ')}</span>
+              {n.lines.map((l) => <span key={l} className="block text-[color:var(--color-ink-2)]">{l}</span>)}
             </div>
           ))}
         </div>

@@ -18,7 +18,7 @@ export const Q1_GAMES: Q1GameInfo[] = [
   { id: 'q1-element', part: 'c', title: 'Element sort', blurb: 'Issue, value, cause, consequence or action? Tag each part of the perspective.', skill: 'Five elements', rounds: 10 },
   { id: 'q1-which-test', part: 'd', title: 'Which test?', blurb: 'A reason for “most significant”: crowd, hurt, fair, domino or stuck?', skill: 'Judging', rounds: 8 },
   { id: 'q1-level-up', part: 'd', title: 'Level up', blurb: 'A Level 2 judgement: choose the edit that lifts it to Level 4.', skill: 'Justifying', rounds: 6 },
-  { id: 'q1-mixed', part: 'mix', title: 'Mixed round', blurb: 'Ten questions across all four parts, your weakest ideas first.', skill: 'Everything', rounds: 10 },
+  { id: 'q1-mixed', part: 'mix', title: 'Q1 mixed round', blurb: 'Ten questions across all four parts, your weakest ideas first.', skill: 'Everything', rounds: 10 },
 ];
 
 /* ── Ideas a round reports on (shown in results and on the teacher's heatmap) ── */

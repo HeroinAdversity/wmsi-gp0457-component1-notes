@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
+import { useLocation } from 'react-router-dom';
+import { useMarks, type Mark } from '../../../lib/marks';
 import { BANK, getItem } from '../data/bank';
 import { DESIGN_CHECKLIST } from '../data/design';
 import { EVALUATE_CHECKLIST } from '../data/evaluate';
@@ -137,6 +139,25 @@ function StudentCopy({ kind, item }: { kind: Kind; item: BankItem }) {
   );
 }
 
+function NotesCopy({ kind, marks }: { kind: Kind; marks: Mark[] }) {
+  return (
+    <section className="ws-page">
+      <div className="ws-head">
+        <div><p className="ws-mono">My notes · Q2({kind})</p><h1>{TITLE[kind]}</h1></div>
+        <p className="ws-mono">What I highlighted on this page</p>
+      </div>
+      <ol>
+        {marks.map((m) => (
+          <li key={m.id}>
+            {m.tabLabel && <b>{m.tabLabel}: </b>}“{m.quote}”
+            {m.note && <><br /><i>Note: {m.note}</i></>}
+          </li>
+        ))}
+      </ol>
+    </section>
+  );
+}
+
 function SchemeCopy({ kind, item }: { kind: Kind; item: BankItem }) {
   const s = item.scheme;
   return (
@@ -187,6 +208,10 @@ export function WorksheetPrinter({ kind, defaultItemId }: { kind: Kind; defaultI
   const [student, setStudent] = useState(true);
   const [scheme, setScheme] = useState(false);
   const item = getItem(itemId) ?? getItem(defaultItemId)!;
+  const { pathname } = useLocation();
+  const { marks } = useMarks();
+  const myMarks = marks.filter((m) => m.page === pathname);
+  const [withNotes, setWithNotes] = useState(true);
 
   useEffect(() => { if (!student && !scheme) setStudent(true); }, [student, scheme]);
 
@@ -211,6 +236,9 @@ export function WorksheetPrinter({ kind, defaultItemId }: { kind: Kind; defaultI
           </label>
           <label className="flex items-center gap-1.5"><input type="checkbox" checked={student} onChange={(e) => setStudent(e.target.checked)} /> Student copy</label>
           <label className="flex items-center gap-1.5"><input type="checkbox" checked={scheme} onChange={(e) => setScheme(e.target.checked)} /> Answer scheme (teacher copy)</label>
+          {myMarks.length > 0 && (
+            <label className="flex items-center gap-1.5"><input type="checkbox" checked={withNotes} onChange={(e) => setWithNotes(e.target.checked)} /> My notes ({myMarks.length})</label>
+          )}
           <button type="button" onClick={printWorksheet} className="rounded-full bg-[color:var(--color-q2-sea)] px-4 py-1.5 font-semibold text-white">Print</button>
           <span className="text-[12px] text-[color:var(--color-ink-3)]">A4 · black and white · {student ? '2 pages' : ''}{student && scheme ? ' + ' : ''}{scheme ? '1 page' : ''}</span>
         </div>
@@ -218,6 +246,7 @@ export function WorksheetPrinter({ kind, defaultItemId }: { kind: Kind; defaultI
       {createPortal(
         <div className="ws-print" aria-hidden>
           {student && <StudentCopy kind={kind} item={item} />}
+          {student && withNotes && myMarks.length > 0 && <NotesCopy kind={kind} marks={myMarks} />}
           {scheme && <SchemeCopy kind={kind} item={item} />}
         </div>,
         document.body,

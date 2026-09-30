@@ -1,6 +1,8 @@
 import { useEffect, useRef } from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { Container } from '../../../components/primitives';
+import { NotesLayer, PageNotesButton } from '../../../components/NotesLayer';
+import { ActiveTabProvider } from '../../../lib/activeTab';
 import { Q2_SEQUENCE, q2Index } from '../../../lib/siteMap';
 
 /**
@@ -21,7 +23,7 @@ export function Q2Frame() {
   const next = at >= 0 && at < Q2_SEQUENCE.length - 1 ? Q2_SEQUENCE[at + 1] : null;
 
   return (
-    <>
+    <ActiveTabProvider>
       <nav
         ref={barRef}
         aria-label="Question 2 sections"
@@ -29,25 +31,30 @@ export function Q2Frame() {
         style={{ top: 'var(--site-header-h, 64px)' }}
       >
         <Container size="wide">
-          <div className="flex items-center gap-1 overflow-x-auto py-2 whitespace-nowrap [scrollbar-width:none]">
-            <span className="mr-2 font-mono text-[10.5px] uppercase tracking-[0.14em] text-[color:var(--color-q2-ivory)]">Question 2</span>
-            {Q2_SEQUENCE.map((s, i) => (
-              <Link
-                key={s.to}
-                to={s.to}
-                aria-current={i === at ? 'page' : undefined}
-                className={`rounded-full px-3 py-1 text-[13px] font-semibold ${
-                  i === at ? 'bg-[color:var(--color-q2-ivory)] text-[color:var(--color-q2-sea)]' : 'text-[#cfd9e3] hover:bg-white/10 hover:text-white'
-                }`}
-              >
-                {s.short}
-              </Link>
-            ))}
+          <div className="flex items-center gap-2">
+            <div className="flex min-w-0 flex-1 items-center gap-1 overflow-x-auto py-2 whitespace-nowrap [scrollbar-width:none]">
+              <span className="mr-2 font-mono text-[10.5px] uppercase tracking-[0.14em] text-[color:var(--color-q2-ivory)]">Question 2</span>
+              {Q2_SEQUENCE.map((s, i) => (
+                <Link
+                  key={s.to}
+                  to={s.to}
+                  aria-current={i === at ? 'page' : undefined}
+                  className={`rounded-full px-3 py-1 text-[13px] font-semibold ${
+                    i === at ? 'bg-[color:var(--color-q2-ivory)] text-[color:var(--color-q2-sea)]' : 'text-[#cfd9e3] hover:bg-white/10 hover:text-white'
+                  }`}
+                >
+                  {s.short}
+                </Link>
+              ))}
+            </div>
+            <PageNotesButton dark />
           </div>
         </Container>
       </nav>
 
-      <Outlet />
+      <NotesLayer>
+        <Outlet />
+      </NotesLayer>
 
       {(prev || next) && (
         <Container size="wide" className="no-print">
@@ -67,6 +74,6 @@ export function Q2Frame() {
           </div>
         </Container>
       )}
-    </>
+    </ActiveTabProvider>
   );
 }

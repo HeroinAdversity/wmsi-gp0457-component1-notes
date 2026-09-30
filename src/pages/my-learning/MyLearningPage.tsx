@@ -4,6 +4,7 @@ import { Container } from '../../components/primitives';
 import { useProgress, type ActivityRecord, type ProgressState } from '../../lib/progress';
 import { encodeResultCode, toPayload, wrapCodeForPdf } from '../../lib/resultCode';
 import { nx, useNotesExport, type Block } from '../../lib/useNotesExport';
+import { MyNotes } from './MyNotes';
 
 const KIND_ORDER: Record<ActivityRecord['kind'], number> = { quiz: 0, game: 1, 'answer-2a': 2, 'answer-2b': 3, checklist: 4 };
 const KIND_LABEL: Record<ActivityRecord['kind'], string> = { quiz: 'Quiz', game: 'Practice game', 'answer-2a': '2(a) answer', 'answer-2b': '2(b) answer', checklist: 'Checklist' };
@@ -150,6 +151,7 @@ export function MyLearningPage() {
             <p className="mt-2 text-[12px] text-[color:var(--color-ink-3)]">The code carries your scores, answers and self-assessments. Nothing is uploaded anywhere. Enter your name before downloading.</p>
           </div>
         </div>
+        <MyNotes />
       </Container>
     </div>
   );

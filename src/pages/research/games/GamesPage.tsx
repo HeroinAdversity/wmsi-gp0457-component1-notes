@@ -136,6 +136,8 @@ function GamePlayer({ id }: { id: GameId }) {
 
   return (
     <div className="q2-page pb-6">
+      {/* data-no-notes: tapping text is part of play, so no highlighting here. */}
+      <div data-no-notes>
       <Container size="narrow" className="pt-8">
         <p className="text-[13px]"><Link to="/research/games" className="font-semibold text-[color:var(--color-q2-storm)]">← All games</Link></p>
         {finished ? (
@@ -167,6 +169,7 @@ function GamePlayer({ id }: { id: GameId }) {
           </div>
         )}
       </Container>
+      </div>
     </div>
   );
 }

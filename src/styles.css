@@ -157,6 +157,20 @@ h3 { line-height: 1.25; }
   h1, h2, h3 { break-after: avoid; }
 }
 
+/* "Print my notes" on My learning: only the notes list prints. */
+.mn-print { display: none; }
+@media print {
+  html[data-print="mynotes"] #root { display: none !important; }
+  html[data-print="mynotes"] .mn-print { display: block; font-family: var(--font-body); color: #111; }
+}
+
+/* ─────────── Student highlights (CSS Custom Highlight API) ─────────── */
+::highlight(wm-y) { background-color: #F3E7A6; color: inherit; }
+::highlight(wm-b) { background-color: #CFE3F5; color: inherit; }
+::highlight(wm-p) { background-color: #F6D5CB; color: inherit; }
+::highlight(wm-note) { text-decoration: underline 2px var(--color-q2-storm); text-underline-offset: 3px; }
+::highlight(wm-flash) { background-color: var(--color-q2-coastal); }
+
 /* ─────────── Phone type scale ───────────
    Dense components use fixed px sizes tuned for laptops (≈13.5px body).
    On phones those read too small, so step each small size up once.

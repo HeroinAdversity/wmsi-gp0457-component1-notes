@@ -3,9 +3,10 @@ import { Container } from '../../components/primitives';
 import { Q2Header } from './components/Q2Header';
 import { Q2Tabs } from './components/Q2Tabs';
 import { Quiz } from './components/Quiz';
+import { CueCards } from './components/CueCards';
 import { useHashTab } from './lib/useHashTab';
 import {
-  GLOSSARY, METHOD_QUIZ, METHODS, RELIABILITY, RESEARCH_DESIGN_CHECK, SOURCES, TESTING_PROMPTS,
+  GLOSSARY, METHOD_QUIZ, METHODS, RELIABILITY, RESEARCH_DESIGN_CHECK, SOURCES, TESTING_CUES,
 } from './data/toolkit';
 
 const TABS = [
@@ -143,10 +144,8 @@ export function ToolkitPage() {
         {tab === 'testing' && (
           <section>
             <h2 className={h2}>Testing a claim: what makes a strong “Why”</h2>
-            <p className={lede}>Use these prompts to justify each method in the 2(b) matrix. Justify; don't critique.</p>
-            <ol className="mt-6 list-decimal space-y-2 pl-5 text-[14.5px]">
-              {TESTING_PROMPTS.map((t) => <li key={t}>{t}</li>)}
-            </ol>
+            <p className={lede}>Use these six checks to justify each method in your 2(b) matrix. Justify; don’t critique.</p>
+            <CueCards cues={TESTING_CUES} />
           </section>
         )}
 

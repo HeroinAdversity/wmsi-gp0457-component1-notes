@@ -175,7 +175,7 @@ function FourLevels() {
         <span>the four levels</span>
         <span className="rs-section-label-arrow">↑ whose viewpoint is this?</span>
       </div>
-      <div className="grid gap-4 md:grid-cols-2 mt-4">
+      <div className="grid gap-4 md:grid-cols-2 mt-4 print:grid-cols-2 print:gap-3">
         {LEVEL_DEFS.map((l) => (
           <LevelCard key={l.key} lvl={l} />
         ))}
@@ -217,7 +217,7 @@ function FiveElements() {
         <span>the five elements</span>
         <span className="rs-section-label-arrow">↑ what to say about the perspective</span>
       </div>
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5 mt-4">
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5 mt-4 print:grid-cols-5 print:gap-3">
         {FIVE_ELEMENTS.map((e, i) => (
           <ElementCard key={e.id} el={e} n={i + 1} />
         ))}
@@ -227,7 +227,7 @@ function FiveElements() {
         <p className="font-mono text-[10.5px] font-semibold uppercase tracking-[0.2em] text-[color:var(--sheet-accent)]">
           Frame sentences · fill the blanks with source words
         </p>
-        <ul className="mt-2 grid gap-1.5 md:grid-cols-2 text-[13px] leading-[1.55] text-[color:var(--color-ink)]">
+        <ul className="mt-2 grid gap-1.5 md:grid-cols-2 text-[13px] leading-[1.55] text-[color:var(--color-ink)] print:grid-cols-2 print:gap-3">
           <li>· "One issue this organisation identifies is <span className="italic text-[color:var(--color-ink-3)]">______</span>."</li>
           <li>· "They value <span className="italic text-[color:var(--color-ink-3)]">______</span>, because <span className="italic text-[color:var(--color-ink-3)]">______</span>."</li>
           <li>· "They see this as caused by <span className="italic text-[color:var(--color-ink-3)]">______</span>."</li>
@@ -260,7 +260,7 @@ function ElementCard({ el, n }: { el: Element; n: number }) {
 function Footer() {
   return (
     <footer className="mt-10 border-t-[3px] border-[color:var(--color-ink)] pt-6">
-      <div className="grid gap-6 md:grid-cols-3">
+      <div className="grid gap-6 md:grid-cols-3 print:grid-cols-3 print:gap-3">
         <div>
           <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-[color:var(--sheet-accent)]">
             Exam-day reminders

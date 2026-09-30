@@ -53,7 +53,26 @@ export function RevisionSheetShell({
   return (
     <div className="revision-sheet" style={ACCENT_STYLES[accent]}>
       <RevisionSheetStyles />
+      <PrintBar />
       {children}
+    </div>
+  );
+}
+
+/* ══════════════════ Print bar ══════════════════ */
+function PrintBar() {
+  return (
+    <div className="no-print mx-auto flex max-w-[1180px] justify-end px-5 pt-5 md:px-8">
+      <button
+        type="button"
+        onClick={() => window.print()}
+        className="inline-flex items-center gap-2 rounded-full border border-[color:var(--color-ink)] bg-[color:var(--color-paper)] px-4 py-2 text-[13px] font-semibold text-[color:var(--color-ink)] hover:bg-[color:var(--color-paper-2)]"
+      >
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden>
+          <path d="M4 6V1.5h8V6M4 12H2.5A1 1 0 0 1 1.5 11V7a1 1 0 0 1 1-1h11a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H12M4 9.5h8v5H4z" stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round" />
+        </svg>
+        Print this sheet
+      </button>
     </div>
   );
 }
@@ -457,8 +476,16 @@ function RevisionSheetStyles() {
 
       /* ── Print ── */
       @media print {
+        .revision-sheet { background: #fff !important; }
+        .revision-sheet > div { padding-top: 0 !important; padding-bottom: 0 !important; max-width: none !important; padding-left: 0 !important; padding-right: 0 !important; }
         .rs-panel, .rs-card { box-shadow: none !important; }
-        .rs-halftone-band, .rs-halftone-corner { opacity: 0.06 !important; }
+        .rs-halftone-band, .rs-halftone-corner { display: none !important; }
+        .rs-title { text-shadow: none !important; font-size: 40px !important; }
+        .rs-section-label { break-after: avoid; page-break-after: avoid; }
+        .rs-masthead { padding-top: 10px !important; padding-bottom: 10px !important; }
+        .revision-sheet .mt-8, .revision-sheet .mt-6 { margin-top: 10px !important; }
+        .revision-sheet .mt-12, .revision-sheet .mt-10 { margin-top: 14px !important; }
+        .revision-sheet .gap-6 { gap: 10px !important; }
       }
     `}</style>
   );

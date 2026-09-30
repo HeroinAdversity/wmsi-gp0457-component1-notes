@@ -27,6 +27,7 @@ import { PracticePage } from './pages/research/PracticePage';
 import { MyLearningPage } from './pages/my-learning/MyLearningPage';
 import { TrackerPage } from './pages/dashboards/tracker/TrackerPage';
 import { ResearchRevisionSheetPage } from './pages/research/ResearchRevisionSheetPage';
+import { Q2Frame } from './pages/research/components/Q2Frame';
 
 export function App() {
   return (
@@ -63,15 +64,17 @@ export function App() {
         <Route path="revision/statements" element={<RevisionSheetPage />} />
         <Route path="revision/perspectives" element={<PerspectivesRevisionSheetPage />} />
         <Route path="revision/significance" element={<SignificanceRevisionSheetPage />} />
-        <Route path="revision/research" element={<ResearchRevisionSheetPage />} />
 
-        {/* Q2 — Research */}
-        <Route path="research" element={<ResearchHubPage />} />
-        <Route path="research/toolkit" element={<ToolkitPage />} />
-        <Route path="research/evaluate" element={<EvaluatePage />} />
-        <Route path="research/design" element={<DesignPage />} />
-        <Route path="research/practice" element={<PracticePage />} />
-        <Route path="research/practice/:id" element={<PracticePage />} />
+        {/* Q2 — Research. Q2Frame adds the section bar and previous/next cards. */}
+        <Route element={<Q2Frame />}>
+          <Route path="revision/research" element={<ResearchRevisionSheetPage />} />
+          <Route path="research" element={<ResearchHubPage />} />
+          <Route path="research/toolkit" element={<ToolkitPage />} />
+          <Route path="research/evaluate" element={<EvaluatePage />} />
+          <Route path="research/design" element={<DesignPage />} />
+          <Route path="research/practice" element={<PracticePage />} />
+          <Route path="research/practice/:id" element={<PracticePage />} />
+        </Route>
 
         {/* Site-wide student export */}
         <Route path="my-learning" element={<MyLearningPage />} />

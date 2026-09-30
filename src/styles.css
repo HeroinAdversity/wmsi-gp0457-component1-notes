@@ -146,8 +146,29 @@ h3 { line-height: 1.25; }
 
 /* ─────────── Print ─────────── */
 @media print {
+  @page { size: A4; margin: 10mm; }
+  html, body { background: #fff !important; }
   body::before { display: none; }
   .no-print { display: none !important; }
+  main { padding: 0 !important; }
+  /* Keep coloured panel headers and highlights on paper. */
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  article, fieldset, .rs-panel, blockquote, li { break-inside: avoid; }
+  h1, h2, h3 { break-after: avoid; }
+}
+
+/* ─────────── Phone type scale ───────────
+   Dense components use fixed px sizes tuned for laptops (≈13.5px body).
+   On phones those read too small, so step each small size up once.
+   Unlayered, so it beats Tailwind's utility layer; md:/lg: variants never
+   match below 640px, so larger screens are untouched. */
+@media (max-width: 639px) {
+  .text-\[10px\], .text-\[10\.5px\] { font-size: 11.5px; }
+  .text-\[11px\], .text-\[11\.5px\] { font-size: 12.5px; }
+  .text-\[12px\], .text-\[12\.5px\] { font-size: 14px; }
+  .text-\[13px\], .text-\[13\.5px\] { font-size: 15px; }
+  .text-\[14px\], .text-\[14\.5px\] { font-size: 15.5px; }
+  .text-\[15px\], .text-\[15\.5px\] { font-size: 16px; }
 }
 
 /* ─────────── Q2 helpers ─────────── */

@@ -69,13 +69,41 @@ export const RESEARCH_DESIGN_CHECK: CheckItem[] = [
   { id: 'methods', question: 'One method or several? Does the conclusion fit the data?', strengthIf: 'Several methods allow triangulation.', weaknessIf: 'One method, and a conclusion wider than the data supports.' },
 ];
 
-export const TESTING_PROMPTS = [
-  'Is the information from a reputable organisation with research expertise?',
-  'Does the source cite where its data comes from, so it can be checked?',
-  'Does the person or group have expertise or direct experience?',
-  'Does the evidence cover the whole scope of the claim (national? many? over time?)',
-  'Can the numbers be compared between groups or years?',
-  'Will you compare two methods to check they agree (triangulation)?',
+export type CueIcon = 'building' | 'document' | 'expert' | 'scope' | 'bars' | 'triangle';
+export interface TestingCue { id: string; icon: CueIcon; title: string; ask: string; example: string; links: string; check: string; answer: string }
+
+/** Six checks for a strong "Why" in 2(b). Examples all use the vehicle-crime claim. */
+export const TESTING_CUES: TestingCue[] = [
+  { id: 'reputable', icon: 'building', title: 'Reputable organisation',
+    ask: 'Is the information from an organisation with research expertise and a reputation to protect?',
+    example: 'National police statistics office, not a car-alarm seller’s blog.', links: 'Reliability · Q3',
+    check: 'Which is stronger: an insurer’s published claims data, or one garage owner?',
+    answer: 'The insurer: national records, and data it has to account for.' },
+  { id: 'traceable', icon: 'document', title: 'Traceable data',
+    ask: 'Does the source say where its numbers come from, so someone else could check them?',
+    example: 'A report that names its survey, dates and sample size.', links: 'Accuracy of facts',
+    check: 'True or false? “A statistic with no source is fine if it looks official.”',
+    answer: 'False: if it can’t be checked, it can’t be trusted.' },
+  { id: 'expertise', icon: 'expert', title: 'Expertise or experience',
+    ask: 'Does the person or group know the topic from training, or from living through it?',
+    example: 'A traffic police officer, not a manager who joined last month.', links: 'The “Who” column',
+    check: 'Name one expert you could interview for this claim, and say why.',
+    answer: 'For example a police crime analyst, who sees theft reports every week.' },
+  { id: 'scope', icon: 'scope', title: 'Covers the whole claim',
+    ask: 'Does the evidence reach as far as the claim does: national? “many”? over time?',
+    example: '“Across the country” needs national figures, not one firm.', links: 'Split the claim',
+    check: 'Which word sets the scope? “Many schools recycle waste food.”',
+    answer: '“Many”: you need a count across lots of schools.' },
+  { id: 'comparable', icon: 'bars', title: 'Comparable numbers',
+    ask: 'Can the figures be compared fairly between groups or years (same measure, same definition)?',
+    example: 'Thefts per year, 2015–2025, counted the same way each year.', links: '“Going up”',
+    check: 'What’s missing? “Thefts in 2025: 4,000.”',
+    answer: 'A comparison: you need earlier years to show “going up”.' },
+  { id: 'triangulate', icon: 'triangle', title: 'Triangulation',
+    ask: 'Will you compare two or more methods, and say what it means if they agree?',
+    example: 'Police figures + insurance claims + a driver survey all rising → claim supported.', links: 'The compare line',
+    check: 'Finish the line: “If both methods show a rise…”',
+    answer: '“…the claim is more likely to be true, because two independent sources agree.”' },
 ];
 
 export const GLOSSARY = [

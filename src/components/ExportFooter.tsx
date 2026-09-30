@@ -23,7 +23,7 @@ export function ExportFooter({ toolId }: { toolId: string }) {
   }, [storageKey]);
 
   return (
-    <section className="border-t border-[color:var(--color-line)] mt-16 md:mt-24 pt-12 pb-16">
+    <section className="no-print border-t border-[color:var(--color-line)] mt-16 md:mt-24 pt-12 pb-16">
       <Container size="wide">
         <div className="max-w-[720px]">
           <p className="font-mono text-[10.5px] font-semibold uppercase tracking-[0.16em] text-[color:var(--color-ink-3)]">

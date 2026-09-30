@@ -1,0 +1,960 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Site Feedback Mockups</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --paper:#FCFBF6; --paper-2:#F4F2EA; --paper-3:#E8E5D8; --line:#E2DECD; --line-soft:#EDEADB;
+  --ink:#1B222D; --ink-2:#4A5160; --ink-3:#6E7684;
+  --ember:#B33520; --ember-soft:#F7E4DE;
+  --violet:#6C3AB8; --violet-tint:#F6F0FB; --cobalt:#2258C4; --cobalt-tint:#F4F7FD;
+  --amber:#8F5D0F; --amber-tint:#FAF3DE; --forest:#276A50; --forest-tint:#EEF5EE;
+  --q2-night:#201E43; --q2-sea:#021526; --q2-sapphire:#03346E; --q2-storm:#134B70;
+  --q2-sage:#508C9B; --q2-sage-ink:#35697A; --q2-coastal:#6EACDA; --q2-coastal-tint:#E7F1FA;
+  --q2-ivory:#E2E2B6; --q2-ivory-tint:#F4F4E2; --q2-arctic:#EEEEEE; --q2-olive:#8C8C45;
+  --display:"DM Serif Display",Georgia,serif;
+  --body:"Inter Tight",-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:60px}
+body{margin:0;font-family:var(--body);background:#E6E6E0;color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:var(--display);font-weight:400;margin:0}
+p{margin:0}
+button,input{font:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--q2-storm);outline-offset:2px;border-radius:3px}
+.label{font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase}
+
+/* mockup chrome */
+.mk-bar{position:sticky;top:0;z-index:80;background:var(--q2-sea);color:#fff;display:flex;gap:4px 16px;align-items:center;padding:10px 20px;font-size:12.5px;flex-wrap:wrap}
+.mk-bar b{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--q2-ivory);margin-right:6px}
+.mk-bar a{color:#fff;text-decoration:none;opacity:.8}.mk-bar a:hover{opacity:1;text-decoration:underline}
+.board{max-width:1280px;margin:44px auto;padding:0 20px}
+.board-h{display:flex;align-items:baseline;gap:12px;margin:0 0 12px;flex-wrap:wrap}
+.board-h .tag{font-family:var(--mono);font-size:11px;font-weight:600;background:var(--q2-sea);color:var(--q2-ivory);padding:3px 8px;border-radius:3px}
+.board-h h2{font-family:var(--body);font-weight:700;font-size:17px}
+.board-h p{font-size:13.5px;color:var(--ink-2);flex-basis:100%;max-width:110ch}
+.fb{display:inline-block;font-family:var(--mono);font-size:10px;font-weight:600;background:var(--q2-ivory);color:var(--q2-sea);padding:1px 6px;border-radius:3px;margin-right:4px}
+.frame{background:var(--paper);border-radius:10px;box-shadow:0 1px 2px rgba(0,0,0,.06),0 14px 40px -14px rgba(0,0,0,.22);overflow:hidden}
+.frame-bar{height:32px;background:var(--paper-2);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:6px;padding:0 14px}
+.frame-bar i{width:10px;height:10px;border-radius:50%;background:var(--paper-3)}
+.frame-bar span{margin-left:12px;font-family:var(--mono);font-size:11px;color:var(--ink-3);background:var(--paper);padding:2px 10px;border-radius:4px}
+.note{margin-top:10px;font-size:12.5px;color:var(--ink-2);max-width:110ch}
+.note b{color:var(--ink)}
+
+/* ── A. site header with dropdowns ── */
+.hdr{position:relative;background:rgba(252,251,246,.96);border-bottom:1px solid var(--line)}
+.hdr-in{display:flex;align-items:center;gap:22px;padding:12px 28px}
+.mark{width:38px;height:38px;border-radius:50%;border:2px solid var(--ink);display:grid;place-items:center;font-family:var(--display);font-size:16px;flex:none}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--display);font-size:16px;white-space:nowrap}
+.nav{display:flex;gap:4px;align-items:center;flex:1}
+.nav>button,.nav>a{background:none;border:0;padding:8px 10px;border-radius:6px;font-size:13.5px;font-weight:600;color:var(--ink-3);text-decoration:none;display:inline-flex;align-items:center;gap:5px;white-space:nowrap}
+.nav>button:hover,.nav>a:hover,.nav>button[aria-expanded=true]{color:var(--ink);background:var(--paper-2)}
+.nav>button.cur{color:var(--ink)}
+.nav .chev{transition:transform .2s}
+.nav>button[aria-expanded=true] .chev{transform:rotate(180deg)}
+.search-pill{display:flex;align-items:center;gap:8px;border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 12px;font-size:13px;color:var(--ink-3);min-width:150px;cursor:text;white-space:nowrap}
+.search-pill kbd{margin-left:auto;font-family:var(--mono);font-size:10.5px;border:1px solid var(--line);border-radius:4px;padding:0 5px;background:var(--paper)}
+.lang{font-family:var(--mono);font-size:12px;font-weight:600;padding:7px 13px;border-radius:999px;border:1px solid var(--line);background:var(--paper)}
+
+.mega{position:absolute;left:28px;right:28px;top:calc(100% + 6px);background:#fff;border:1px solid var(--line);border-radius:10px;box-shadow:0 18px 40px -16px rgba(0,0,0,.18);display:none;grid-template-columns:300px 1fr;overflow:hidden;z-index:20}
+.mega.open{display:grid}
+.mega-list{border-right:1px solid var(--line);padding:8px;background:var(--paper)}
+.mega-item{display:flex;gap:10px;align-items:flex-start;padding:9px 10px;border-radius:7px;cursor:pointer;text-decoration:none;color:inherit}
+.mega-item .qp{font-family:var(--mono);font-size:10.5px;font-weight:600;border-radius:3px;padding:2px 6px;flex:none;margin-top:2px;color:#fff}
+.mega-item b{display:block;font-size:14px}
+.mega-item small{display:block;font-size:12px;color:var(--ink-3);line-height:1.35}
+.mega-item.on{background:#fff;box-shadow:0 0 0 1px var(--line)}
+.mega-pane{padding:18px 22px}
+.mega-pane h3{font-size:24px;color:var(--q2-sea)}
+.mega-pane .meta{margin-top:2px;font-family:var(--mono);font-size:11px;color:var(--ink-3)}
+.tests{margin-top:12px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px 18px;font-size:13px}
+.tests li{list-style:none;display:flex;gap:7px}
+.tests li:before{content:"";width:6px;height:6px;border-radius:50%;background:var(--pc,var(--q2-storm));margin-top:7px;flex:none}
+.branches{margin-top:14px;display:flex;flex-wrap:wrap;gap:6px}
+.branches a{font-size:12.5px;border:1px solid var(--line);border-radius:999px;padding:4px 11px;color:var(--ink);text-decoration:none;background:var(--paper)}
+.branches a:hover{border-color:var(--q2-storm)}
+.mega-foot{margin-top:16px;padding-top:12px;border-top:1px solid var(--line-soft);font-size:12.5px;color:var(--ink-3);display:flex;gap:14px;flex-wrap:wrap}
+.mega-foot a{color:var(--q2-storm);font-weight:600;text-decoration:none}
+.stage{min-height:470px;background:var(--paper);position:relative}
+.stage-ghost{padding:40px 28px;opacity:.35}
+.stage-ghost h1{font-size:52px;color:var(--q2-sea)}
+
+/* ── B. mobile ── */
+.phones{display:flex;gap:28px;flex-wrap:wrap;align-items:flex-start}
+.phone{width:375px;height:760px;border-radius:34px;background:#111;padding:10px;box-shadow:0 20px 50px -20px rgba(0,0,0,.4);flex:none}
+.phone-in{width:100%;height:100%;border-radius:26px;overflow:hidden;background:var(--paper);position:relative;display:flex;flex-direction:column}
+.status{height:44px;flex:none;display:flex;justify-content:space-between;align-items:flex-end;padding:0 24px 4px;font-size:12px;font-weight:600}
+.m-hdr{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid var(--line);flex:none}
+.m-menu{position:absolute;inset:0;background:rgba(27,34,45,.45);display:flex;justify-content:flex-end}
+.m-panel{width:310px;height:100%;background:var(--paper);display:flex;flex-direction:column;box-shadow:-10px 0 30px rgba(0,0,0,.2)}
+.m-panel .top{padding:52px 16px 10px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
+.m-search{margin:12px 16px 4px;display:flex;align-items:center;gap:8px;border:1px solid var(--line);background:#fff;border-radius:10px;padding:10px 12px;font-size:15px;color:var(--ink-3)}
+.m-scroll{overflow:auto;flex:1;padding:6px 10px 20px}
+.acc{border-bottom:1px solid var(--line-soft)}
+.acc>button{width:100%;display:flex;justify-content:space-between;align-items:center;background:none;border:0;padding:13px 8px;font-family:var(--display);font-size:20px;color:var(--ink)}
+.acc-body{padding:0 4px 10px;display:none}
+.acc.open .acc-body{display:block}
+.acc.open>button .chev{transform:rotate(180deg)}
+.m-link{display:flex;gap:10px;padding:9px 8px;border-radius:8px;text-decoration:none;color:var(--ink)}
+.m-link.on{background:var(--paper-2)}
+.m-link .qp{font-family:var(--mono);font-size:11px;font-weight:600;border-radius:3px;padding:2px 6px;color:#fff;flex:none;height:fit-content;margin-top:2px}
+.m-link b{display:block;font-size:16px;font-weight:600}
+.m-link small{display:block;font-size:13px;color:var(--ink-3);line-height:1.35}
+.m-plain{display:block;padding:13px 8px;font-family:var(--display);font-size:20px;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line-soft)}
+.cmp{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:14px 16px}
+.cmp div{border:1px solid var(--line);border-radius:8px;padding:10px;background:#fff}
+.cmp .h{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);margin-bottom:4px}
+
+/* ── C. section bar + footer map ── */
+.secbar{display:flex;align-items:center;gap:6px;padding:8px 28px;background:var(--q2-sea);color:#fff;overflow-x:auto;white-space:nowrap}
+.secbar .lbl{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;color:var(--q2-ivory);margin-right:8px;text-transform:uppercase}
+.secbar a{color:#cfd9e3;text-decoration:none;font-size:13px;font-weight:600;padding:5px 11px;border-radius:999px}
+.secbar a.on{background:var(--q2-ivory);color:var(--q2-sea)}
+.secbar a:hover:not(.on){color:#fff;background:rgba(255,255,255,.08)}
+.secbar .sp{flex:1}
+.pn{display:flex;justify-content:space-between;gap:14px;padding:18px 28px;border-top:1px solid var(--line)}
+.pn a{flex:1;border:1px solid var(--line);border-radius:8px;padding:12px 14px;text-decoration:none;color:var(--ink);background:#fff}
+.pn a small{display:block;font-family:var(--mono);font-size:10.5px;color:var(--ink-3);letter-spacing:.1em;text-transform:uppercase}
+.pn a b{font-family:var(--display);font-weight:400;font-size:19px;color:var(--q2-sea)}
+.pn a:last-child{text-align:right}
+.sitemap{background:var(--paper-2);border-top:1px solid var(--line);padding:26px 28px}
+.sitemap-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:22px}
+.sitemap h4{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);font-weight:600;margin-bottom:8px}
+.sitemap a{display:block;font-size:13px;color:var(--ink);text-decoration:none;padding:2px 0}
+.sitemap a:hover{text-decoration:underline}
+.sitemap a.sub{padding-left:12px;color:var(--ink-2);font-size:12.5px}
+
+/* ── D. search ── */
+.srch-stage{background:rgba(2,21,38,.35);padding:60px 20px;min-height:520px}
+.srch{max-width:680px;margin:0 auto;background:#fff;border-radius:12px;box-shadow:0 24px 60px -20px rgba(0,0,0,.5);overflow:hidden}
+.srch-in{display:flex;align-items:center;gap:10px;padding:14px 18px;border-bottom:1px solid var(--line)}
+.srch-in input{border:0;outline:0;flex:1;font-size:17px;background:transparent}
+.srch-chips{display:flex;gap:6px;padding:10px 18px;border-bottom:1px solid var(--line-soft);flex-wrap:wrap}
+.chip{font-size:12px;border:1px solid var(--line);border-radius:999px;padding:3px 10px;background:var(--paper);color:var(--ink-2)}
+.chip.on{background:var(--q2-sea);color:#fff;border-color:var(--q2-sea)}
+.srch-res{max-height:360px;overflow:auto;padding:6px 8px 10px}
+.srch-grp{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);padding:10px 10px 4px}
+.hit{display:flex;gap:12px;padding:9px 10px;border-radius:8px;text-decoration:none;color:inherit}
+.hit:hover,.hit.on{background:var(--q2-coastal-tint)}
+.hit .qp{font-family:var(--mono);font-size:10.5px;font-weight:600;border-radius:3px;padding:2px 6px;color:#fff;flex:none;height:fit-content;margin-top:2px;min-width:44px;text-align:center}
+.hit b{display:block;font-size:14px}
+.hit small{display:block;font-size:12.5px;color:var(--ink-3)}
+.hit mark{background:var(--q2-ivory);color:inherit;border-radius:2px;padding:0 1px}
+.srch-foot{display:flex;gap:14px;padding:9px 18px;border-top:1px solid var(--line-soft);font-size:11.5px;color:var(--ink-3);font-family:var(--mono)}
+
+/* ── E. cue cards ── */
+.pg{padding:30px 28px 34px}
+.pg h2.t{font-size:32px;color:var(--q2-sea);letter-spacing:-.015em}
+.pg .lede{margin-top:6px;font-size:15px;color:var(--ink-2);max-width:66ch}
+.cues{margin-top:22px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.cue{position:relative;background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px 16px 14px;display:flex;flex-direction:column;perspective:900px}
+.cue .num{font-family:var(--mono);font-size:10.5px;font-weight:600;color:var(--q2-storm);letter-spacing:.12em}
+.cue h3{margin-top:4px;font-size:22px;line-height:1.15;color:var(--q2-sea);padding-right:74px}
+.cue .ill{position:absolute;right:14px;top:14px;width:64px;height:64px;border-radius:10px;background:var(--q2-coastal-tint);display:grid;place-items:center}
+.cue .ask{margin-top:10px;font-size:13.5px;color:var(--ink-2)}
+.cue .eg{margin-top:12px;background:var(--q2-ivory-tint);border-radius:6px;padding:8px 10px;font-size:12.5px;color:var(--q2-sea)}
+.cue .eg b{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;display:block;color:var(--q2-olive);margin-bottom:2px}
+.cue .row{margin-top:auto;padding-top:12px;display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--ink-3)}
+.cue .flip{border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:3px 10px;font-size:12px;font-weight:600;color:var(--q2-storm)}
+.cue .back{display:none;margin-top:10px;font-size:13px;background:var(--q2-coastal-tint);border-radius:6px;padding:8px 10px}
+.cue.flipped .back{display:block}
+
+/* ── F. worksheet ── */
+.a4row{display:flex;gap:24px;flex-wrap:wrap;justify-content:center;padding:26px;background:#d8d8d2}
+.a4{width:520px;aspect-ratio:210/297;background:#fff;box-shadow:0 8px 24px -8px rgba(0,0,0,.35);padding:28px 30px;font-size:9.6px;line-height:1.45;color:#111;display:flex;flex-direction:column;overflow:hidden}
+.a4 .wh{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:2px solid #111;padding-bottom:6px}
+.a4 .wh h3{font-size:20px;line-height:1}
+.a4 .wh .mono{font-family:var(--mono);font-size:7.5px;letter-spacing:.14em;text-transform:uppercase}
+.a4 .fields{display:flex;gap:14px;margin-top:8px;font-size:9px}
+.a4 .fields span{flex:1;border-bottom:1px solid #888;padding-bottom:1px}
+.a4 .src{margin-top:10px;border:1px solid #111;padding:8px 10px}
+.a4 .src p+p{margin-top:4px}
+.a4 .q{margin-top:9px;font-weight:700;font-size:10.5px}
+.a4 .find{margin-top:8px;display:grid;grid-template-columns:repeat(2,1fr);gap:6px}
+.a4 .find div{border:1px dashed #777;padding:5px 7px;min-height:44px}
+.a4 .find b{font-family:var(--mono);font-size:7.5px;letter-spacing:.12em}
+.a4 .chain{margin-top:8px;border:1px solid #111}
+.a4 .chain-h{display:flex;justify-content:space-between;background:#111;color:#fff;padding:2px 7px;font-family:var(--mono);font-size:7.5px;letter-spacing:.1em}
+.a4 .chain-b{display:grid;grid-template-columns:repeat(3,1fr)}
+.a4 .chain-b div{padding:4px 6px 0;border-right:1px solid #bbb}
+.a4 .chain-b div:last-child{border-right:0}
+.a4 .chain-b i{font-style:normal;font-family:var(--mono);font-size:7px;color:#555;display:block}
+.lines{height:40px;background:repeating-linear-gradient(transparent 0 12px,#bbb 12px 13px)}
+.a4 .ticks{margin-top:auto;border-top:1px solid #111;padding-top:6px;display:grid;grid-template-columns:1fr 1fr;gap:2px 12px;font-size:8.8px}
+.a4 .ticks span:before{content:"☐ "}
+.a4 .pfoot{margin-top:6px;display:flex;justify-content:space-between;font-family:var(--mono);font-size:7px;color:#555}
+.printbtn{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--ink);background:var(--paper);border-radius:999px;padding:7px 14px;font-size:13px;font-weight:600}
+.print-menu{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:14px 26px;border-bottom:1px solid var(--line);background:var(--paper)}
+.print-menu label{font-size:13px;display:flex;gap:6px;align-items:center}
+
+/* ── G. games ── */
+.gh{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:18px}
+.gcard{background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:6px;text-align:left;color:inherit}
+.gcard:hover{border-color:var(--q2-storm)}
+.gcard .top{display:flex;justify-content:space-between;align-items:center}
+.pt{font-family:var(--mono);font-size:10.5px;font-weight:600;border-radius:3px;padding:2px 6px;color:#fff}
+.pt.a{background:var(--q2-night)} .pt.b{background:var(--q2-sage)}
+.gcard h4{font-size:20px;color:var(--q2-sea);line-height:1.15}
+.gcard p{font-size:13px;color:var(--ink-2)}
+.gcard .meta{margin-top:auto;font-family:var(--mono);font-size:10.5px;color:var(--ink-3);display:flex;justify-content:space-between}
+.stars{color:var(--q2-olive);letter-spacing:1px}
+.gtile{display:grid;place-items:center;height:52px;border-radius:8px;background:var(--q2-coastal-tint)}
+.play{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:22px}
+.game{background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
+.game-top{display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--q2-night);color:#fff;font-size:12.5px}
+.game-top.b{background:var(--q2-sage-ink)}
+.game-top .ttl{font-weight:700}
+.game-top .sp{flex:1}
+.pips{display:flex;gap:4px}
+.pips i{width:18px;height:5px;border-radius:3px;background:rgba(255,255,255,.25)}
+.pips i.ok{background:#8fd0a3}.pips i.bad{background:#e9a08f}.pips i.cur{background:var(--q2-ivory)}
+.streak{font-family:var(--mono);font-size:11px;background:rgba(255,255,255,.12);padding:2px 8px;border-radius:999px}
+.game-body{padding:16px;flex:1}
+.src-q{font-size:13px;background:var(--paper);border:1px solid var(--line-soft);border-radius:8px;padding:10px 12px;color:var(--ink-2)}
+.src-q mark{background:#FBE3DC;color:var(--ink);padding:0 2px;border-radius:2px}
+.links3{margin-top:12px;display:grid;gap:8px}
+.lnk{border:1px solid var(--line);border-radius:8px;padding:9px 12px;font-size:13.5px;background:#fff}
+.lnk .n{font-family:var(--mono);font-size:10px;font-weight:600;color:var(--q2-storm);letter-spacing:.1em;display:block}
+.lnk.gap{border-style:dashed;border-color:var(--q2-storm);background:var(--q2-coastal-tint);color:var(--q2-storm);font-style:italic}
+.lnk.gap.filled{font-style:normal;color:var(--ink);border-style:solid}
+.opts{margin-top:12px;display:grid;gap:7px}
+.opt{text-align:left;border:1px solid var(--line);border-radius:8px;padding:9px 12px;background:#fff;font-size:13.5px}
+.opt:hover:not(:disabled){border-color:var(--q2-storm)}
+.opt.right{background:#E3F2E7;border-color:#3E8A58}
+.opt.wrong{background:var(--ember-soft);border-color:#E0A493}
+.fbk{margin-top:10px;font-size:13px;color:var(--ink-2);min-height:20px}
+.fbk b{color:var(--ink)}
+.gbtn{margin-top:12px;border:0;background:var(--q2-sea);color:#fff;border-radius:999px;padding:8px 16px;font-size:13px;font-weight:600}
+.gbtn:disabled{opacity:.35;cursor:default}
+.claimline{font-family:var(--display);font-size:25px;line-height:1.45;color:var(--q2-sea);margin-top:6px}
+.claimline .w{cursor:pointer;border-radius:4px;padding:0 2px;transition:background .15s}
+.claimline .w:hover{background:var(--paper-2)}
+.claimline .w.t1{background:#D8E6F4;box-shadow:inset 0 -2px 0 var(--q2-storm)}
+.claimline .w.t2{background:#DCEBEE;box-shadow:inset 0 -2px 0 var(--q2-sage)}
+.claimline .w.t3{background:#ECECD2;box-shadow:inset 0 -2px 0 var(--q2-olive)}
+.tagbar{margin-top:12px;display:flex;gap:6px;flex-wrap:wrap}
+.tagbar button{border:1px solid var(--line);border-radius:999px;padding:5px 12px;font-size:12.5px;font-weight:600;background:#fff}
+.tagbar button.sel{color:#fff}
+.tagbar button[data-t="1"].sel{background:var(--q2-storm);border-color:var(--q2-storm)}
+.tagbar button[data-t="2"].sel{background:var(--q2-sage);border-color:var(--q2-sage)}
+.tagbar button[data-t="3"].sel{background:var(--q2-olive);border-color:var(--q2-olive)}
+.need{margin-top:10px;display:grid;gap:5px;font-size:12.5px}
+.need div{border-radius:6px;padding:6px 10px;background:var(--paper)}
+.result{margin-top:18px;display:grid;grid-template-columns:260px 1fr;gap:18px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px}
+.ring{width:120px;height:120px}
+.skillbars{display:grid;gap:8px;font-size:13px}
+.skillbars .bar{height:8px;border-radius:4px;background:var(--q2-arctic);overflow:hidden}
+.skillbars .bar i{display:block;height:100%;background:var(--q2-storm)}
+
+/* ── H. teacher leaderboard ── */
+.tk{padding:22px 26px}
+.tk-top{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.tk-top h3{font-size:26px;color:var(--q2-sea);margin-right:auto}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:#fff}
+.seg button{border:0;background:none;padding:5px 12px;font-size:12.5px;font-weight:600;color:var(--ink-3)}
+.seg button.on{background:var(--q2-sea);color:#fff}
+.toggle{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:600;border:1px solid var(--line);border-radius:999px;padding:5px 12px;background:#fff}
+.sw{width:30px;height:17px;border-radius:999px;background:var(--paper-3);position:relative;transition:background .2s}
+.sw:after{content:"";position:absolute;top:2px;left:2px;width:13px;height:13px;border-radius:50%;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.3);transition:left .2s}
+.toggle.on .sw{background:var(--q2-storm)} .toggle.on .sw:after{left:15px}
+.tk-grid{margin-top:16px;display:grid;grid-template-columns:1.25fr 1fr;gap:18px}
+.lb{background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.lb table{width:100%;border-collapse:collapse;font-size:13px}
+.lb th{text-align:left;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);font-weight:600;padding:9px 10px;border-bottom:1px solid var(--q2-sea)}
+.lb td{padding:8px 10px;border-bottom:1px solid var(--line-soft)}
+.lb td.r{text-align:right;font-family:var(--mono)}
+.rank{font-family:var(--mono);font-weight:600;color:var(--q2-storm)}
+.medal{display:inline-grid;place-items:center;width:20px;height:20px;border-radius:50%;font-size:10.5px;font-weight:700;color:#fff}
+.heat{background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.heat h4{font-family:var(--body);font-weight:700;font-size:13.5px}
+.heat .hrow{display:grid;grid-template-columns:130px repeat(5,1fr);gap:3px;margin-top:4px;font-size:11.5px;align-items:center}
+.heat .hrow span.c{height:22px;border-radius:3px;display:grid;place-items:center;font-family:var(--mono);font-size:10px}
+.heat .hh span{font-family:var(--mono);font-size:9.5px;color:var(--ink-3);text-align:center}
+.heat .miss{margin-top:12px;font-size:12.5px;background:var(--q2-ivory-tint);border-radius:6px;padding:8px 10px}
+.proj-note{margin-top:10px;font-size:12px;color:var(--ink-3)}
+
+
+/* ── I. notes + highlights ── */
+.nh-wrap{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:0}
+.nh-page{padding:22px 26px 26px 40px;position:relative}
+.nh-tabs{display:flex;gap:18px;border-bottom:1px solid var(--line);font-size:13px;font-weight:600;margin-bottom:18px;flex-wrap:wrap}
+.nh-tabs span{padding:10px 0;color:var(--ink-3);display:inline-flex;gap:6px;align-items:center;border-bottom:2px solid transparent;margin-bottom:-1px}
+.nh-tabs span.on{color:var(--q2-sea);border-color:var(--q2-sea)}
+.nh-dot{min-width:17px;height:17px;border-radius:999px;background:var(--q2-ivory);color:var(--q2-sea);font-family:var(--mono);font-size:10px;display:inline-grid;place-items:center;padding:0 4px}
+.nh-body{font-size:15px;line-height:1.7;max-width:62ch}
+.nh-body p{position:relative;margin-top:12px}
+.nh-body mark.hl{border-radius:2px;padding:0 1px;color:inherit;cursor:pointer}
+.hl-y{background:#F3E7A6}.hl-b{background:#CFE3F5}.hl-p{background:#F6D5CB}
+.nh-body mark.hl.has-note{box-shadow:inset 0 -2px 0 var(--q2-storm)}
+.pin{position:absolute;left:-26px;top:3px;width:18px;height:18px;border-radius:50%;background:var(--q2-storm);color:#fff;font-size:10px;display:grid;place-items:center;cursor:pointer}
+.selbar{position:absolute;display:none;gap:2px;background:var(--q2-sea);border-radius:8px;padding:4px;box-shadow:0 8px 20px -6px rgba(0,0,0,.35);z-index:5}
+.selbar button{border:0;background:none;color:#fff;font-size:12px;font-weight:600;padding:5px 8px;border-radius:5px;display:flex;gap:5px;align-items:center}
+.selbar button:hover{background:rgba(255,255,255,.12)}
+.selbar i{width:12px;height:12px;border-radius:50%;display:inline-block}
+.nh-pop{position:absolute;display:none;width:280px;background:#fff;border:1px solid var(--line);border-radius:10px;box-shadow:0 14px 30px -12px rgba(0,0,0,.3);padding:10px;z-index:6}
+.nh-pop textarea{width:100%;min-height:70px;border:1px solid var(--line);border-radius:6px;padding:7px;font:inherit;font-size:13.5px;resize:vertical}
+.nh-pop .q{font-size:12px;color:var(--ink-3);margin-bottom:6px;font-style:italic}
+.nh-pop .acts{display:flex;justify-content:space-between;margin-top:6px}
+.nh-pop .acts button{border:0;background:none;font-size:12.5px;font-weight:600;color:var(--q2-storm)}
+.nh-side{border-left:1px solid var(--line);background:var(--paper-2);padding:16px 16px 20px}
+.nh-side h4{font-family:var(--body);font-weight:700;font-size:14px;display:flex;justify-content:space-between;align-items:center}
+.nh-list{margin-top:10px;display:grid;gap:8px}
+.nh-item{background:#fff;border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:12.5px;cursor:pointer}
+.nh-item .qt{border-radius:2px;padding:0 2px}
+.nh-item .nt{margin-top:4px;color:var(--ink);font-size:13px}
+.nh-item .where{margin-top:4px;font-family:var(--mono);font-size:10px;color:var(--ink-3)}
+.nh-empty{font-size:12.5px;color:var(--ink-3);margin-top:10px}
+.mynotes{display:grid;grid-template-columns:220px 1fr;gap:0}
+.mn-nav{border-right:1px solid var(--line);padding:16px;background:var(--paper)}
+.mn-nav a{display:flex;justify-content:space-between;font-size:13px;padding:6px 8px;border-radius:6px;color:var(--ink);text-decoration:none}
+.mn-nav a.on{background:var(--paper-2);font-weight:600}
+.mn-main{padding:18px 22px}
+.mn-grp{margin-top:14px}
+.mn-grp h5{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);font-weight:600}
+.mn-card{margin-top:6px;border:1px solid var(--line);background:#fff;border-radius:8px;padding:9px 12px;font-size:13px;display:grid;grid-template-columns:1fr auto;gap:4px 12px}
+.mn-card a{font-size:12px;color:var(--q2-storm);font-weight:600;text-decoration:none;white-space:nowrap}
+.pr-note{font-size:9px;border:1px solid #111;margin-top:8px;padding:6px 8px}
+.pr-note b{font-family:var(--mono);font-size:7.5px;letter-spacing:.12em}
+.pr-note ol{margin:4px 0 0 14px;padding:0}
+.a4 sup{font-size:7px;font-weight:700}
+.a4 .phl{background:#ddd}
+@media (max-width:1000px){.nh-wrap,.mynotes{grid-template-columns:1fr}.nh-side{border-left:0;border-top:1px solid var(--line)}}
+
+@media (max-width:1000px){
+  .cues,.gh{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .play,.tk-grid,.result{grid-template-columns:1fr}
+  .sitemap-grid{grid-template-columns:repeat(2,1fr)}
+  .hdr-in{flex-wrap:wrap;gap:10px 16px}
+  .nav{order:3;flex-basis:100%;flex-wrap:wrap}
+  .mega{grid-template-columns:1fr;left:12px;right:12px}
+  .mega-list{border-right:0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr}
+  .tests{grid-template-columns:1fr}
+  .a4{width:100%;max-width:520px}
+}
+</style>
+</head>
+<body>
+
+<nav class="mk-bar">
+  <b>Mockups · feedback round 30 Sep</b>
+  <a href="#nav">A · Menu + dropdowns</a>
+  <a href="#mobile">B · Phone menu + text size</a>
+  <a href="#wayfinding">C · Q2 bar + site map</a>
+  <a href="#search">D · Search</a>
+  <a href="#cues">E · Testing-a-claim cards</a>
+  <a href="#print">F · Printable worksheet</a>
+  <a href="#games">G · Practice games</a>
+  <a href="#leader">H · Teacher leaderboard</a>
+  <a href="#notes" style="color:var(--q2-ivory)">I · My notes + highlights (new)</a>
+</nav>
+
+<!-- ═════════════ A ═════════════ -->
+<section class="board" id="nav">
+  <div class="board-h"><span class="tag">A</span><h2>Top menu with Question 1 and Research dropdowns</h2>
+    <p><span class="fb">#1 #2 #9</span>Question 1 groups First Read, Statements, Perspectives and Significance. Research has its own dropdown. Hover a row (or tap on a tablet) and the right pane shows what that part tests, plus links straight to each branch. <b>Try it:</b> hover the menu items, or click "Question 1" / "Research".</p></div>
+  <div class="frame">
+    <div class="frame-bar"><i></i><i></i><i></i><span>wmsi-gp0457…/research/evaluate</span></div>
+    <div class="hdr">
+      <div class="hdr-in">
+        <div class="brand"><div class="mark">W</div>WMSI Global Perspectives</div>
+        <div class="nav" id="deskNav">
+          <a href="#nav">Home</a>
+          <button type="button" data-menu="q1" aria-expanded="false">Question 1 <svg class="chev" width="10" height="10" viewBox="0 0 10 10"><path d="M2 3.5l3 3 3-3" stroke="currentColor" stroke-width="1.6" fill="none"/></svg></button>
+          <button type="button" data-menu="q2" aria-expanded="true" class="cur">Research · Q2 <svg class="chev" width="10" height="10" viewBox="0 0 10 10"><path d="M2 3.5l3 3 3-3" stroke="currentColor" stroke-width="1.6" fill="none"/></svg></button>
+          <a href="#nav">Revision sheets</a>
+          <a href="#nav">My learning</a>
+          <a href="#nav">Teachers</a>
+        </div>
+        <div class="search-pill" onclick="location.hash='search'"><svg width="14" height="14" viewBox="0 0 16 16"><circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.6" fill="none"/><path d="M11 11l3.5 3.5" stroke="currentColor" stroke-width="1.6"/></svg>Search notes…<kbd>/</kbd></div>
+        <button class="lang" type="button">中文</button>
+      </div>
+
+      <!-- Question 1 mega menu -->
+      <div class="mega" id="mega-q1">
+        <div class="mega-list">
+          <a class="mega-item on" data-pane="q1a"><span class="qp" style="background:var(--violet)">1(a)</span><span><b>First Read</b><small>Find information in Source 1 · 1 mark</small></span></a>
+          <a class="mega-item" data-pane="q1b"><span class="qp" style="background:var(--cobalt)">1(b)</span><span><b>Statements</b><small>Name the type of statement · 3 marks</small></span></a>
+          <a class="mega-item" data-pane="q1c"><span class="qp" style="background:var(--amber)">1(c)</span><span><b>Perspectives</b><small>Describe a perspective · 6 marks</small></span></a>
+          <a class="mega-item" data-pane="q1d"><span class="qp" style="background:var(--forest)">1(d)</span><span><b>Significance</b><small>Judge the most significant · 8 marks</small></span></a>
+        </div>
+        <div class="mega-pane">
+          <div data-p="q1a" style="--pc:var(--violet)">
+            <h3>First Read</h3><p class="meta">Paper 1 · Q1(a) · 1 mark · ~2 min</p>
+            <ul class="tests" style="padding:0"><li>Locating a detail in Source 1</li><li>Copying only what the question asks</li><li>Spotting distractor details</li><li>Answering in two lines</li></ul>
+            <div class="branches"><a href="#nav">Overview</a><a href="#nav">Anatomy</a><a href="#nav">Traps</a><a href="#nav">Worked examples</a><a href="#nav">Practice</a><a href="#nav">Checklist</a></div>
+          </div>
+          <div data-p="q1b" style="--pc:var(--cobalt);display:none">
+            <h3>Statements</h3><p class="meta">Paper 1 · Q1(b) · 3 marks · ~4 min</p>
+            <ul class="tests" style="padding:0"><li>Eight statement types (fact, opinion, prediction…)</li><li>Fact vs claim vs generalisation</li><li>Pointing to the signal word</li><li>Bias and vested interest</li></ul>
+            <div class="branches"><a href="#nav">Overview</a><a href="#nav">The Eight Terms</a><a href="#nav">Sort &amp; Classify</a><a href="#nav">Generalisation Drill</a><a href="#nav">Mixed Arena</a><a href="#nav">Exit Check</a><a href="#nav">Mind map</a><a href="#nav">Claim vs evidence</a><a href="#nav">Find your gap</a></div>
+          </div>
+          <div data-p="q1c" style="--pc:var(--amber);display:none">
+            <h3>Perspectives</h3><p class="meta">Paper 1 · Q1(c) · 6 marks · ~7 min</p>
+            <ul class="tests" style="padding:0"><li>Four levels: global, national, local, personal</li><li>Five elements: issues, values, causes, consequences, actions</li><li>Anchoring every point to the source</li><li>Command word: describe</li></ul>
+            <div class="branches"><a href="#nav">Overview</a><a href="#nav">Framework</a><a href="#nav">Case study</a><a href="#nav">Classify &amp; explain</a><a href="#nav">Exam practice</a><a href="#nav">Your turn</a><a href="#nav">Checklist</a></div>
+          </div>
+          <div data-p="q1d" style="--pc:var(--forest);display:none">
+            <h3>Significance</h3><p class="meta">Paper 1 · Q1(d) · 8 marks · ~10 min</p>
+            <ul class="tests" style="padding:0"><li>Five tests: crowd, hurt, fair, domino, stuck</li><li>Backing a choice with source detail</li><li>Comparing against an alternative (Level 4)</li><li>Four disguises of the same question</li></ul>
+            <div class="branches"><a href="#nav">The Weighing Room</a><a href="#nav">Tests</a><a href="#nav">Worked answer</a><a href="#nav">Practice</a></div>
+          </div>
+          <div class="mega-foot"><a href="#nav">Question 1 revision sheets →</a><span>Also in Paper 1: <a href="#nav">Question 2 · Research</a></span></div>
+        </div>
+      </div>
+
+      <!-- Research mega menu -->
+      <div class="mega open" id="mega-q2">
+        <div class="mega-list">
+          <a class="mega-item" data-pane="hub"><span class="qp" style="background:var(--q2-storm)">Q2</span><span><b>Research hub</b><small>Map of skills · where they pay again</small></span></a>
+          <a class="mega-item" data-pane="tk"><span class="qp" style="background:var(--q2-storm)">Kit</span><span><b>The Toolkit</b><small>Methods, sources, reliability, glossary</small></span></a>
+          <a class="mega-item on" data-pane="ea"><span class="qp" style="background:var(--q2-night)">2(a)</span><span><b>Strong or Shaky?</b><small>Evaluate research · 8 marks</small></span></a>
+          <a class="mega-item" data-pane="eb"><span class="qp" style="background:var(--q2-sage)">2(b)</span><span><b>The Test Bench</b><small>Design research · 8 marks</small></span></a>
+          <a class="mega-item" data-pane="pb"><span class="qp" style="background:var(--q2-sea)">33</span><span><b>Practice bank</b><small>33 Source 3s with answer schemes</small></span></a>
+          <a class="mega-item" data-pane="gm"><span class="qp" style="background:var(--q2-olive)">New</span><span><b>Practice games</b><small>Quick drills, fresh questions each round</small></span></a>
+          <a class="mega-item" data-pane="rv"><span class="qp" style="background:var(--ink-3)">A4</span><span><b>Revision sheet</b><small>One printable page set</small></span></a>
+        </div>
+        <div class="mega-pane">
+          <div data-p="hub" style="display:none"><h3>Research hub</h3><p class="meta">Paper 1 · Q2 · 16 marks</p>
+            <ul class="tests" style="padding:0"><li>How 2(a) and 2(b) link to Q3</li><li>Links to the Individual Report (Table E)</li><li>Links to the Team Project (Table A)</li><li>Your path through Question 2</li></ul>
+            <div class="branches"><a href="#nav">Skills map</a><a href="#nav">How each skill links</a><a href="#nav">Your path</a></div></div>
+          <div data-p="tk" style="display:none"><h3>The Toolkit</h3><p class="meta">Used in 2(a), 2(b), Q3, Report, Project</p>
+            <ul class="tests" style="padding:0"><li>Eight research methods and the data they give</li><li>Five sources of information</li><li>Reliability checklist (Q3)</li><li>Primary / secondary, quantitative / qualitative</li></ul>
+            <div class="branches"><a href="#nav">Methods</a><a href="#nav">Sources</a><a href="#nav">Reliability (Q3)</a><a href="#nav">Research-design check</a><a href="#nav">Testing a claim</a><a href="#nav">Glossary</a><a href="#nav">Quiz</a></div></div>
+          <div data-p="ea"><h3>Strong or Shaky?</h3><p class="meta">Paper 1 · Q2(a) · 8 marks · Table C · ~10 min</p>
+            <ul class="tests" style="padding:0"><li>Spotting strengths and weaknesses in Source 3</li><li>The three-step chain: what → effect → aim</li><li>Judging only what the source did</li><li>Covering both sides for Level 4</li></ul>
+            <div class="branches"><a href="#nav">Overview</a><a href="#nav">The move</a><a href="#nav">Traps</a><a href="#nav">Worked examples</a><a href="#nav">Practice</a><a href="#nav">Checklist</a><a href="#nav">Print worksheet</a></div></div>
+          <div data-p="eb" style="display:none"><h3>The Test Bench</h3><p class="meta">Paper 1 · Q2(b) · 8 marks · Table D · ~10 min</p>
+            <ul class="tests" style="padding:0"><li>Splitting a claim into parts</li><li>Who · How · What · Why for each method</li><li>Naming the evidence type</li><li>A compare line (triangulation)</li></ul>
+            <div class="branches"><a href="#nav">Overview</a><a href="#nav">Split the claim</a><a href="#nav">The matrix</a><a href="#nav">Traps</a><a href="#nav">Worked examples</a><a href="#nav">Practice</a><a href="#nav">Checklist</a><a href="#nav">Print worksheet</a></div></div>
+          <div data-p="pb" style="display:none"><h3>Practice bank</h3><p class="meta">11 reworded past papers · 22 mirror papers</p>
+            <ul class="tests" style="padding:0"><li>Full 2(a) + 2(b) on a fresh Source 3</li><li>Answer scheme after you write</li><li>Print any paper as a mock</li><li>Filter by topic or session</li></ul>
+            <div class="branches"><a href="#nav">All papers</a><a href="#nav">Reworded past papers</a><a href="#nav">Mirror papers</a></div></div>
+          <div data-p="gm" style="display:none"><h3>Practice games</h3><p class="meta">5–10 questions a round · scores go to My learning</p>
+            <ul class="tests" style="padding:0"><li>2(a): Chain order, Missing link, Fix it, Spot it</li><li>2(b): Claim splitter, Method match, What’s untested?</li><li>Questions drawn from all 33 papers</li><li>Weakest skill served first</li></ul>
+            <div class="branches"><a href="#games">Game hub</a><a href="#games">Missing link</a><a href="#games">Claim splitter</a></div></div>
+          <div data-p="rv" style="display:none"><h3>Revision sheet</h3><p class="meta">Two A4 pages · print from the sheet</p>
+            <ul class="tests" style="padding:0"><li>2(a) chain and where to look</li><li>2(b) matrix with a worked row</li><li>Methods, sources, reliability</li><li>Traps for both parts</li></ul>
+            <div class="branches"><a href="#nav">Open sheet</a><a href="#nav">Print</a></div></div>
+          <div class="mega-foot"><a href="#nav">Research hub →</a><span>Also in Paper 1: <a href="#nav">Question 1</a></span></div>
+        </div>
+      </div>
+    </div>
+    <div class="stage"><div class="stage-ghost"><p class="label" style="color:var(--q2-storm)">Question 2(a) · Evaluate research</p><h1>Strong or Shaky?</h1></div></div>
+  </div>
+  <p class="note"><b>Behaviour:</b> dropdowns open on click or tap everywhere, and also on hover with a mouse. Esc or clicking outside closes them. The current section's label is darker ("Research · Q2" here). Revision sheets, My learning and Teachers stay as plain links.</p>
+</section>
+
+<!-- ═════════════ B ═════════════ -->
+<section class="board" id="mobile">
+  <div class="board-h"><span class="tag">B</span><h2>Phone menu (solid panel) and larger phone text</h2>
+    <p><span class="fb">#3 #4</span>The menu panel now has a solid background and search at the top. Question 1 and Research fold out in place. Left phone: the menu. Right phone: phone text sizes before and after (laptop sizes don't change). <b>Try it:</b> tap the group headings.</p></div>
+  <div class="phones">
+    <div class="phone"><div class="phone-in">
+      <div class="status"><span>9:41</span><span>●●● ▮</span></div>
+      <div class="m-hdr"><div class="mark" style="width:34px;height:34px">W</div><span class="lang">中文</span></div>
+      <div style="padding:22px 16px;opacity:.35"><h1 style="font-size:38px;color:var(--q2-sea)">Strong or Shaky?</h1></div>
+      <div class="m-menu"><div class="m-panel">
+        <div class="top"><span class="label" style="color:var(--ink-3)">Menu</span><span style="font-size:18px">✕</span></div>
+        <div class="m-search"><svg width="15" height="15" viewBox="0 0 16 16"><circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.6" fill="none"/><path d="M11 11l3.5 3.5" stroke="currentColor" stroke-width="1.6"/></svg>Search notes…</div>
+        <div class="m-scroll">
+          <a class="m-plain" href="#mobile">Home</a>
+          <div class="acc"><button type="button">Question 1 <svg class="chev" width="12" height="12" viewBox="0 0 10 10" style="transition:transform .2s"><path d="M2 3.5l3 3 3-3" stroke="currentColor" stroke-width="1.6" fill="none"/></svg></button>
+            <div class="acc-body">
+              <a class="m-link"><span class="qp" style="background:var(--violet)">1(a)</span><span><b>First Read</b><small>Find information · 1 mark</small></span></a>
+              <a class="m-link"><span class="qp" style="background:var(--cobalt)">1(b)</span><span><b>Statements</b><small>Name the type · 3 marks</small></span></a>
+              <a class="m-link"><span class="qp" style="background:var(--amber)">1(c)</span><span><b>Perspectives</b><small>Describe a perspective · 6 marks</small></span></a>
+              <a class="m-link"><span class="qp" style="background:var(--forest)">1(d)</span><span><b>Significance</b><small>Most significant · 8 marks</small></span></a>
+            </div></div>
+          <div class="acc open"><button type="button">Research · Q2 <svg class="chev" width="12" height="12" viewBox="0 0 10 10" style="transition:transform .2s"><path d="M2 3.5l3 3 3-3" stroke="currentColor" stroke-width="1.6" fill="none"/></svg></button>
+            <div class="acc-body">
+              <a class="m-link"><span class="qp" style="background:var(--q2-storm)">Q2</span><span><b>Research hub</b></span></a>
+              <a class="m-link"><span class="qp" style="background:var(--q2-storm)">Kit</span><span><b>The Toolkit</b></span></a>
+              <a class="m-link on"><span class="qp" style="background:var(--q2-night)">2(a)</span><span><b>Strong or Shaky?</b><small>Evaluate research · 8 marks</small></span></a>
+              <a class="m-link"><span class="qp" style="background:var(--q2-sage)">2(b)</span><span><b>The Test Bench</b><small>Design research · 8 marks</small></span></a>
+              <a class="m-link"><span class="qp" style="background:var(--q2-sea)">33</span><span><b>Practice bank</b></span></a>
+              <a class="m-link"><span class="qp" style="background:var(--q2-olive)">New</span><span><b>Practice games</b></span></a>
+            </div></div>
+          <a class="m-plain" href="#mobile">Revision sheets</a>
+          <a class="m-plain" href="#mobile">My learning</a>
+          <a class="m-plain" href="#mobile">Teachers</a>
+        </div>
+      </div></div>
+    </div></div>
+
+    <div class="phone"><div class="phone-in">
+      <div class="status"><span>9:41</span><span>●●● ▮</span></div>
+      <div class="m-hdr"><div class="mark" style="width:34px;height:34px">W</div><span class="lang">中文</span></div>
+      <div class="cmp">
+        <div><p class="h">Before · 13.5px</p><p style="font-size:13.5px">You are judging the <b>method</b>, not the topic: who was asked, how, where, how it was recorded.</p></div>
+        <div><p class="h">After · 15px</p><p style="font-size:15px">You are judging the <b>method</b>, not the topic: who was asked, how, where, how it was recorded.</p></div>
+        <div><p class="h">Before · 10.5px</p><p class="label" style="font-size:10.5px;color:var(--q2-storm)">Table C · 8 marks</p></div>
+        <div><p class="h">After · 11.5px</p><p class="label" style="font-size:11.5px;color:var(--q2-storm)">Table C · 8 marks</p></div>
+        <div><p class="h">Before · 12.5px</p><p style="font-size:12.5px;color:var(--ink-3)">“This means the evidence may be…”</p></div>
+        <div><p class="h">After · 14px</p><p style="font-size:14px;color:var(--ink-3)">“This means the evidence may be…”</p></div>
+      </div>
+      <p style="padding:0 16px;font-size:13px;color:var(--ink-2)">Every small size steps up once on phones (under 640px wide). Headings stay the same. This change is already built. Check it on your own phone in the live preview.</p>
+    </div></div>
+  </div>
+</section>
+
+<!-- ═════════════ C ═════════════ -->
+<section class="board" id="wayfinding">
+  <div class="board-h"><span class="tag">C</span><h2>Q2 section bar, previous/next, and footer site map</h2>
+    <p><span class="fb">#1 #9</span>A dark strip under the header on every Research page. It sticks while you scroll, so any Q2 part is one tap away. Each page ends with previous/next cards. The footer on every page becomes a full site map.</p></div>
+  <div class="frame">
+    <div class="frame-bar"><i></i><i></i><i></i><span>…/research/design</span></div>
+    <div class="secbar">
+      <span class="lbl">Question 2</span>
+      <a href="#wayfinding">Hub</a><a href="#wayfinding">Toolkit</a><a href="#wayfinding">2(a) Strong or Shaky?</a><a class="on" href="#wayfinding">2(b) The Test Bench</a><a href="#wayfinding">Practice bank</a><a href="#wayfinding">Games</a><a href="#wayfinding">Revise</a>
+      <span class="sp"></span><a href="#wayfinding" style="color:var(--q2-ivory)">Print ⎙</a>
+    </div>
+    <div style="padding:26px 28px 8px;opacity:.35"><h1 style="font-size:44px;color:var(--q2-sea)">The Test Bench</h1><p style="margin-top:6px">…page content…</p></div>
+    <div class="pn"><a href="#wayfinding"><small>← Previous</small><b>Strong or Shaky? · 2(a)</b></a><a href="#wayfinding"><small>Next →</small><b>Practice bank</b></a></div>
+    <div class="sitemap">
+      <div class="sitemap-grid">
+        <div><h4>Question 1</h4><a>1(a) First Read</a><a>1(b) Statements</a><a class="sub">Mind map</a><a class="sub">Claim vs evidence</a><a class="sub">Find your gap</a><a>1(c) Perspectives</a><a>1(d) Significance</a></div>
+        <div><h4>Question 2 · Research</h4><a>Research hub</a><a>The Toolkit</a><a>2(a) Strong or Shaky?</a><a>2(b) The Test Bench</a><a>Practice bank</a><a>Practice games</a></div>
+        <div><h4>Revision sheets</h4><a>Statement Types</a><a>Perspectives</a><a>Significance</a><a>Research</a></div>
+        <div><h4>Your work</h4><a>My learning</a><a>Export results</a></div>
+        <div><h4>Teachers</h4><a>Class tracker</a><a>Leaderboard</a><a>Dashboards</a></div>
+      </div>
+      <p style="margin-top:18px;font-size:12px;color:var(--ink-3)">Wesley Methodist School International, Ipoh · IGCSE Global Perspectives 0457</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════ D ═════════════ -->
+<section class="board" id="search">
+  <div class="board-h"><span class="tag">D</span><h2>Search</h2>
+    <p><span class="fb">#7</span>Opens from the header pill, the phone menu, or the <b>/</b> key. Results are grouped: pages and sections, glossary terms, methods, practice papers. Everything runs in the browser, and nothing is sent anywhere. <b>Try it:</b> type "bias", "sample", "triang" or "perspective".</p></div>
+  <div class="frame"><div class="srch-stage">
+    <div class="srch">
+      <div class="srch-in"><svg width="18" height="18" viewBox="0 0 16 16"><circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.6" fill="none"/><path d="M11 11l3.5 3.5" stroke="currentColor" stroke-width="1.6"/></svg><input id="sq" value="sample" aria-label="Search" autocomplete="off" /><span class="chip">Esc</span></div>
+      <div class="srch-chips" id="schips"><span class="chip on" data-f="all">All</span><span class="chip" data-f="Q1">Question 1</span><span class="chip" data-f="Q2">Question 2</span><span class="chip" data-f="Glossary">Glossary</span><span class="chip" data-f="Practice">Practice papers</span></div>
+      <div class="srch-res" id="sres"></div>
+      <div class="srch-foot"><span>↑↓ move</span><span>↵ open</span><span>Esc close</span></div>
+    </div>
+  </div></div>
+  <p class="note"><b>What's indexed:</b> in stage 1, every page, tab and heading, plus the glossary, methods, sources, traps and all 33 practice papers. In stage 2, the full text of the Question 1 notes.</p>
+</section>
+
+<!-- ═════════════ E ═════════════ -->
+<section class="board" id="cues">
+  <div class="board-h"><span class="tag">E</span><h2>Toolkit → Testing a claim: six cue cards</h2>
+    <p><span class="fb">#6</span>A bold title, a short description and a small illustration. Each card also gets a one-line example tied to a real claim ("Vehicle crime is going up across the country"). Plus a "Test yourself" flip, so each card checks understanding as well as telling. <b>Try it:</b> press "Test yourself".</p></div>
+  <div class="frame"><div class="pg">
+    <p class="label" style="color:var(--q2-storm)">Toolkit · Testing a claim (2b)</p>
+    <h2 class="t">What makes a strong “Why”</h2>
+    <p class="lede">Use these six checks to justify each method in your 2(b) matrix. Justify; don’t critique.</p>
+    <div class="cues">
+      <article class="cue"><div class="ill"><svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="#134B70" stroke-width="1.8" stroke-linejoin="round"><path d="M6 15 20 7l14 8H6z" fill="#fff"/><path d="M9 15v14M15 15v14M25 15v14M31 15v14"/><path d="M5 33h30M7 29h26"/></svg></div>
+        <p class="num">01</p><h3>Reputable organisation</h3>
+        <p class="ask">Is the information from an organisation with research expertise and a reputation to protect?</p>
+        <p class="eg"><b>For the vehicle-crime claim</b>National police statistics office, not a car-alarm seller’s blog.</p>
+        <div class="row"><span>Links to: Reliability · Q3</span><button class="flip" type="button">Test yourself</button></div>
+        <p class="back"><b>Which is stronger?</b> An insurer’s published claims data, or one garage owner? <em>The insurer: national records, and data it has to account for.</em></p></article>
+
+      <article class="cue"><div class="ill"><svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="#134B70" stroke-width="1.8" stroke-linejoin="round"><path d="M9 5h16l6 6v24H9z" fill="#fff"/><path d="M25 5v6h6M13 17h14M13 22h14M13 27h8"/><circle cx="29" cy="30" r="5" fill="#E7F1FA"/><path d="M27 30h4M29 28v4"/></svg></div>
+        <p class="num">02</p><h3>Traceable data</h3>
+        <p class="ask">Does the source say where its numbers come from, so someone else could check them?</p>
+        <p class="eg"><b>For the vehicle-crime claim</b>A report that names its survey, dates and sample size.</p>
+        <div class="row"><span>Links to: Accuracy of facts</span><button class="flip" type="button">Test yourself</button></div>
+        <p class="back"><b>True or false?</b> “A statistic with no source is fine if it looks official.” <em>False: if it can’t be checked, it can’t be trusted.</em></p></article>
+
+      <article class="cue"><div class="ill"><svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="#134B70" stroke-width="1.8" stroke-linejoin="round"><circle cx="18" cy="13" r="6" fill="#fff"/><path d="M6 34c1-7 6-11 12-11s11 4 12 11"/><circle cx="30" cy="24" r="5" fill="#E2E2B6"/><path d="m28 24 1.5 1.5L32 23"/></svg></div>
+        <p class="num">03</p><h3>Expertise or experience</h3>
+        <p class="ask">Does the person or group know the topic from training, or from living through it?</p>
+        <p class="eg"><b>For the vehicle-crime claim</b>A traffic police officer, not a manager who joined last month.</p>
+        <div class="row"><span>Links to: Who column</span><button class="flip" type="button">Test yourself</button></div>
+        <p class="back"><b>Name one expert</b> you could interview for this claim, and why. <em>E.g. a police crime analyst, who sees theft reports every week.</em></p></article>
+
+      <article class="cue"><div class="ill"><svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="#134B70" stroke-width="1.8" stroke-linejoin="round"><path d="M8 10c6-4 10 3 16-1s8 2 8 2v19c-4-2-6 3-12 1s-8-3-12 0z" fill="#fff"/><path d="M4 8v26M36 8v26" stroke-dasharray="2 3"/><circle cx="16" cy="18" r="1.6" fill="#134B70"/><circle cx="24" cy="23" r="1.6" fill="#134B70"/><circle cx="20" cy="28" r="1.6" fill="#134B70"/></svg></div>
+        <p class="num">04</p><h3>Covers the whole claim</h3>
+        <p class="ask">Does the evidence reach as far as the claim does: national? “many”? over time?</p>
+        <p class="eg"><b>For the vehicle-crime claim</b>“Across the country” needs national figures, not one firm.</p>
+        <div class="row"><span>Links to: Split the claim</span><button class="flip" type="button">Test yourself</button></div>
+        <p class="back"><b>Which word sets the scope?</b> “Many schools recycle waste food.” <em>“Many”: you need a count across lots of schools.</em></p></article>
+
+      <article class="cue"><div class="ill"><svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="#134B70" stroke-width="1.8" stroke-linejoin="round"><path d="M6 34h28"/><rect x="9" y="22" width="6" height="12" fill="#fff"/><rect x="17" y="17" width="6" height="17" fill="#E7F1FA"/><rect x="25" y="10" width="6" height="24" fill="#6EACDA"/><path d="m8 16 10-6 6 3 9-7" stroke="#8C8C45"/></svg></div>
+        <p class="num">05</p><h3>Comparable numbers</h3>
+        <p class="ask">Can the figures be compared fairly between groups or years (same measure, same definition)?</p>
+        <p class="eg"><b>For the vehicle-crime claim</b>Thefts per year, 2015–2025, counted the same way each year.</p>
+        <div class="row"><span>Links to: “going up”</span><button class="flip" type="button">Test yourself</button></div>
+        <p class="back"><b>What’s missing?</b> “Thefts in 2025: 4,000.” <em>A comparison. You need earlier years to show “going up”.</em></p></article>
+
+      <article class="cue"><div class="ill"><svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="#134B70" stroke-width="1.8" stroke-linejoin="round"><path d="M20 7 34 31H6z" fill="#fff"/><circle cx="20" cy="7" r="4" fill="#6EACDA"/><circle cx="34" cy="31" r="4" fill="#E2E2B6"/><circle cx="6" cy="31" r="4" fill="#508C9B"/><path d="m17 21 2.5 2.5L24 19" stroke="#021526"/></svg></div>
+        <p class="num">06</p><h3>Triangulation</h3>
+        <p class="ask">Will you compare two or more methods, and say what it means if they agree?</p>
+        <p class="eg"><b>For the vehicle-crime claim</b>Police figures + insurance claims + a driver survey all rising → claim supported.</p>
+        <div class="row"><span>Links to: compare line</span><button class="flip" type="button">Test yourself</button></div>
+        <p class="back"><b>Finish the line:</b> “If both methods show a rise…” <em>“…the claim is more likely to be true, because two independent sources agree.”</em></p></article>
+    </div>
+  </div></div>
+</section>
+
+<!-- ═════════════ F ═════════════ -->
+<section class="board" id="print">
+  <div class="board-h"><span class="tag">F</span><h2>Printable worksheet (2a shown; 2b follows the same pattern)</h2>
+    <p><span class="fb">#8</span>A "Print worksheet" button on 2(a) and 2(b) prints a purpose-made paper worksheet, not the web page. You choose the Source 3 (the page's own, or any of the 33 papers) and whether to add the answer scheme on its own page. Students write on it by hand.</p></div>
+  <div class="frame">
+    <div class="print-menu"><button class="printbtn" type="button">⎙ Print worksheet</button>
+      <label>Source 3: <select style="font:inherit;font-size:13px"><option>Vehicle crime, one building firm (reworded J26/12)</option><option>Food waste, one café (mirror)</option><option>…any of 33</option></select></label>
+      <label><input type="checkbox" checked /> Student copy</label>
+      <label><input type="checkbox" /> Add answer scheme (teacher copy)</label>
+      <span style="font-size:12px;color:var(--ink-3);margin-left:auto">2 × A4 · black and white</span></div>
+    <div class="a4row">
+      <div class="a4">
+        <div class="wh"><div><p class="mono">IGCSE GP 0457 · Paper 1 · Q2(a)</p><h3>Strong or Shaky?</h3></div><p class="mono">8 marks · ~10 min</p></div>
+        <div class="fields"><span>Name</span><span>Class</span><span>Date</span></div>
+        <div class="src"><p style="font-weight:700">Source 3: A student’s project</p>
+          <p>As part of a law course, a student set out to research how much vehicle crime there is. They arranged an interview at one local building company.</p>
+          <p>The student signed a confidentiality agreement before asking any questions, and got the manager’s permission to record the meeting. The manager, Mr Grant, had joined the company only a month earlier. He was willing to be interviewed on his coffee break, in the firm’s crowded, noisy café.</p>
+          <p>The student asked whether anything had been taken from the company vans. Mr Grant said one van had been broken into the week before and some tools had gone…</p>
+          <p>Because of this one recent theft, the student decided that vehicle crime is probably rising across the whole country.</p></div>
+        <p class="q">Explain the strengths and weaknesses of the research outlined in Source 3. [8]</p>
+        <div class="find"><div><b>STEP 0 · UNDERLINE, THEN LIST STRENGTHS</b></div><div><b>STEP 0 · UNDERLINE, THEN LIST WEAKNESSES</b></div></div>
+        <div class="chain"><div class="chain-h"><span>POINT 1 · STRENGTH / WEAKNESS (circle)</span><span>WHAT → EFFECT → AIM</span></div>
+          <div class="chain-b"><div><i>1 · What they did</i><div class="lines"></div></div><div><i>2 · Effect on the evidence</i><div class="lines"></div></div><div><i>3 · Link to the aim</i><div class="lines"></div></div></div></div>
+        <div class="chain"><div class="chain-h"><span>POINT 2 · STRENGTH / WEAKNESS (circle)</span><span>WHAT → EFFECT → AIM</span></div>
+          <div class="chain-b"><div><i>1 · What they did</i><div class="lines"></div></div><div><i>2 · Effect on the evidence</i><div class="lines"></div></div><div><i>3 · Link to the aim</i><div class="lines"></div></div></div></div>
+        <div class="pfoot"><span>WMSI · GP0457 · Q2(a) worksheet</span><span>Page 1 of 2</span></div>
+      </div>
+      <div class="a4">
+        <div class="chain" style="margin-top:0"><div class="chain-h"><span>POINT 3 · STRENGTH / WEAKNESS</span><span>WHAT → EFFECT → AIM</span></div>
+          <div class="chain-b"><div><i>1 · What they did</i><div class="lines"></div></div><div><i>2 · Effect on the evidence</i><div class="lines"></div></div><div><i>3 · Link to the aim</i><div class="lines"></div></div></div></div>
+        <div class="chain"><div class="chain-h"><span>POINT 4 · STRENGTH / WEAKNESS</span><span>WHAT → EFFECT → AIM</span></div>
+          <div class="chain-b"><div><i>1 · What they did</i><div class="lines"></div></div><div><i>2 · Effect on the evidence</i><div class="lines"></div></div><div><i>3 · Link to the aim</i><div class="lines"></div></div></div></div>
+        <div class="chain"><div class="chain-h"><span>POINT 5 · STRENGTH / WEAKNESS</span><span>WHAT → EFFECT → AIM</span></div>
+          <div class="chain-b"><div><i>1 · What they did</i><div class="lines"></div></div><div><i>2 · Effect on the evidence</i><div class="lines"></div></div><div><i>3 · Link to the aim</i><div class="lines"></div></div></div></div>
+        <p class="q" style="font-size:9.5px">Now write it up as a paragraph (use your chains):</p>
+        <div class="lines" style="height:130px;margin-top:4px"></div>
+        <div class="ticks"><span>Both strengths and weaknesses</span><span>About five explained points</span><span>Every point says the effect on the evidence</span><span>Every point links back to the aim</span><span>Only judged what the source did</span><span>Quoted or named the feature</span></div>
+        <div class="pfoot"><span>Self-mark: Level __ / 4 · Teacher: ____</span><span>Page 2 of 2</span></div>
+      </div>
+    </div>
+  </div>
+  <p class="note"><b>2(b) version:</b> the claim, a "split the claim" box with three blanks, then four Who / How / What / Why rows with ruled lines, a compare line and the checklist. <b>Revision sheets</b> already print cleanly (built): 2 pages for Research.</p>
+</section>
+
+<!-- ═════════════ G ═════════════ -->
+<section class="board" id="games">
+  <div class="board-h"><span class="tag">G</span><h2>Practice games (Q2 first, then Q1)</h2>
+    <p><span class="fb">#5</span>Seven short games. Each drills <b>one step</b> of the answer, so every step gets its own practice. Questions are drawn at random from the practice bank (386 strengths and weaknesses, 33 claims), so each round is different. Every round's score goes to My learning, which feeds your tracker. <b>Try it:</b> both games below are playable.</p></div>
+  <div class="frame"><div class="pg">
+    <p class="label" style="color:var(--q2-storm)">Research · Practice games</p>
+    <h2 class="t">Train one move at a time</h2>
+    <p class="lede">About 3 minutes a round. Start with the one marked <b>“Your weakest”</b>: it's picked from your last scores.</p>
+    <div class="gh">
+      <button class="gcard" type="button"><div class="top"><span class="pt a">2(a)</span><span class="stars">★★☆</span></div><div class="gtile"><svg width="120" height="26" viewBox="0 0 120 26" fill="none" stroke="#134B70" stroke-width="1.6"><rect x="1" y="4" width="32" height="18" rx="4" fill="#fff"/><rect x="44" y="4" width="32" height="18" rx="4" fill="#fff"/><rect x="87" y="4" width="32" height="18" rx="4" fill="#fff"/><path d="M34 13h9M77 13h9"/><text x="17" y="17" font-size="10" text-anchor="middle" fill="#134B70" stroke="none" font-family="monospace">3</text><text x="60" y="17" font-size="10" text-anchor="middle" fill="#134B70" stroke="none" font-family="monospace">1</text><text x="103" y="17" font-size="10" text-anchor="middle" fill="#134B70" stroke="none" font-family="monospace">2</text></svg></div><h4>Chain order</h4><p>Three shuffled steps: drag them into what → effect → aim.</p><div class="meta"><span>Structure</span><span>best 8/10</span></div></button>
+      <button class="gcard" type="button" style="border-color:var(--q2-storm);box-shadow:0 0 0 1px var(--q2-storm)"><div class="top"><span class="pt a">2(a)</span><span style="font-family:var(--mono);font-size:10px;background:var(--q2-ivory);color:var(--q2-sea);padding:1px 6px;border-radius:3px">Your weakest</span></div><div class="gtile"><svg width="120" height="26" viewBox="0 0 120 26" fill="none" stroke="#134B70" stroke-width="1.6"><rect x="1" y="4" width="32" height="18" rx="4" fill="#fff"/><rect x="44" y="4" width="32" height="18" rx="4" stroke-dasharray="3 3" fill="#E7F1FA"/><rect x="87" y="4" width="32" height="18" rx="4" fill="#fff"/><path d="M34 13h9M77 13h9"/><text x="60" y="17" font-size="11" text-anchor="middle" fill="#134B70" stroke="none">?</text></svg></div><h4>Missing link</h4><p>Given the feature and the aim, pick the right “effect on the evidence”.</p><div class="meta"><span>Effect step</span><span>best 5/10</span></div></button>
+      <button class="gcard" type="button"><div class="top"><span class="pt a">2(a)</span><span class="stars">★☆☆</span></div><div class="gtile"><svg width="120" height="26" viewBox="0 0 120 26" fill="none" stroke-width="1.6"><rect x="1" y="4" width="50" height="18" rx="4" fill="#F7E4DE" stroke="#B33520"/><path d="M56 13h10m-4-4 4 4-4 4" stroke="#134B70"/><rect x="70" y="4" width="50" height="18" rx="4" fill="#E3F2E7" stroke="#3E8A58"/></svg></div><h4>Fix it</h4><p>A Level 2 answer: choose the edit that lifts it to Level 4.</p><div class="meta"><span>Development</span><span>not tried</span></div></button>
+      <button class="gcard" type="button"><div class="top"><span class="pt a">2(a)</span><span class="stars">★★★</span></div><div class="gtile"><svg width="120" height="26" viewBox="0 0 120 26" fill="none" stroke="#134B70" stroke-width="1.6"><circle cx="13" cy="13" r="10" fill="#fff"/><path d="M13 7v6l4 3"/><rect x="30" y="8" width="26" height="10" rx="2" fill="#E7F1FA"/><rect x="60" y="8" width="18" height="10" rx="2" fill="#F7E4DE" stroke="#B33520"/><rect x="82" y="8" width="36" height="10" rx="2" fill="#E7F1FA"/></svg></div><h4>Spot it · 60s</h4><p>Tap every strength and weakness in a Source 3 before time runs out.</p><div class="meta"><span>Finding</span><span>best 9/9</span></div></button>
+      <button class="gcard" type="button"><div class="top"><span class="pt b">2(b)</span><span class="stars">★★☆</span></div><div class="gtile"><svg width="120" height="26" viewBox="0 0 120 26" fill="none" stroke-width="1.6"><rect x="1" y="6" width="36" height="14" rx="3" fill="#D8E6F4" stroke="#134B70"/><rect x="42" y="6" width="30" height="14" rx="3" fill="#DCEBEE" stroke="#508C9B"/><rect x="77" y="6" width="42" height="14" rx="3" fill="#ECECD2" stroke="#8C8C45"/></svg></div><h4>Claim splitter</h4><p>Tag the words that are the thing measured, the change and the scope.</p><div class="meta"><span>Split</span><span>best 4/6</span></div></button>
+      <button class="gcard" type="button"><div class="top"><span class="pt b">2(b)</span><span class="stars">☆☆☆</span></div><div class="gtile"><svg width="120" height="26" viewBox="0 0 120 26" fill="none" stroke="#35697A" stroke-width="1.6"><rect x="1" y="4" width="44" height="18" rx="4" fill="#fff"/><rect x="75" y="4" width="44" height="18" rx="4" fill="#fff"/><path d="M46 9c14 0 14 8 28 8M46 17c14 0 14-8 28-8"/></svg></div><h4>Method match</h4><p>Pair each part of a claim with the method and “Who” that can test it.</p><div class="meta"><span>How + Who</span><span>not tried</span></div></button>
+      <button class="gcard" type="button"><div class="top"><span class="pt b">2(b)</span><span class="stars">☆☆☆</span></div><div class="gtile"><svg width="120" height="26" viewBox="0 0 120 26" fill="none" stroke-width="1.6"><rect x="1" y="4" width="36" height="18" rx="3" fill="#E3F2E7" stroke="#3E8A58"/><rect x="42" y="4" width="36" height="18" rx="3" fill="#E3F2E7" stroke="#3E8A58"/><rect x="83" y="4" width="36" height="18" rx="3" fill="#fff" stroke="#B33520" stroke-dasharray="3 3"/><text x="101" y="17" font-size="11" text-anchor="middle" fill="#B33520">?</text></svg></div><h4>What’s untested?</h4><p>A student’s 2(b) plan: which part of the claim does it never test?</p><div class="meta"><span>Coverage</span><span>not tried</span></div></button>
+      <button class="gcard" type="button" style="background:var(--q2-sea);color:#fff;border-color:var(--q2-sea)"><div class="top"><span class="pt" style="background:var(--q2-ivory);color:var(--q2-sea)">Mix</span></div><div class="gtile" style="background:rgba(255,255,255,.08)"><span style="font-family:var(--mono);font-size:12px;color:var(--q2-ivory)">10 · 10 · 10</span></div><h4 style="color:#fff">Daily mixed round</h4><p style="color:#cfd9e3">Ten questions across all seven games, your weakest skills first.</p><div class="meta" style="color:#cfd9e3"><span>Everything</span><span>streak 3 days</span></div></button>
+    </div>
+
+    <div class="play">
+      <!-- Missing link -->
+      <div class="game" id="gML">
+        <div class="game-top"><span class="ttl">Missing link</span><span class="pips" id="mlPips"></span><span class="sp"></span><span class="streak" id="mlStreak">streak 0</span></div>
+        <div class="game-body">
+          <p class="label" style="color:var(--ink-3)">From Source 3 · <span id="mlSrc"></span></p>
+          <p class="src-q" id="mlQuote"></p>
+          <div class="links3">
+            <div class="lnk"><span class="n">1 · WHAT THEY DID</span><span id="mlWhat"></span></div>
+            <div class="lnk gap" id="mlGap"><span class="n">2 · EFFECT ON THE EVIDENCE</span><span id="mlGapT">Which link goes here?</span></div>
+            <div class="lnk"><span class="n">3 · LINK TO THE AIM</span><span id="mlAim"></span></div>
+          </div>
+          <div class="opts" id="mlOpts"></div>
+          <p class="fbk" id="mlFb" aria-live="polite"></p>
+          <button class="gbtn" id="mlNext" type="button" disabled>Next →</button>
+        </div>
+      </div>
+      <!-- Claim splitter -->
+      <div class="game" id="gCS">
+        <div class="game-top b"><span class="ttl">Claim splitter</span><span class="pips" id="csPips"></span><span class="sp"></span><span class="streak" id="csStreak">streak 0</span></div>
+        <div class="game-body">
+          <p class="label" style="color:var(--ink-3)">Pick a tag, then tap the words</p>
+          <div class="tagbar" id="csTags"></div>
+          <p class="claimline" id="csClaim"></p>
+          <div class="need" id="csNeed"></div>
+          <p class="fbk" id="csFb" aria-live="polite"></p>
+          <button class="gbtn" id="csCheck" type="button">Check</button> <button class="gbtn" id="csNext" type="button" style="display:none">Next claim →</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="result">
+      <div style="display:flex;gap:16px;align-items:center">
+        <svg class="ring" viewBox="0 0 120 120"><circle cx="60" cy="60" r="50" stroke="#EEEEEE" stroke-width="12" fill="none"/><circle cx="60" cy="60" r="50" stroke="#134B70" stroke-width="12" fill="none" stroke-dasharray="251 314" stroke-linecap="round" transform="rotate(-90 60 60)"/><text x="60" y="58" text-anchor="middle" font-family="DM Serif Display" font-size="30" fill="#021526">8/10</text><text x="60" y="78" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#6E7684">+2 ON LAST TIME</text></svg>
+        <div><p class="label" style="color:var(--q2-storm)">End of round</p><p style="font-family:var(--display);font-size:22px;color:var(--q2-sea);line-height:1.2">Missing link · round done</p><p style="font-size:12.5px;color:var(--ink-3);margin-top:4px">Saved to My learning ✓</p></div>
+      </div>
+      <div class="skillbars">
+        <p style="font-weight:700;font-size:13.5px">What you got wrong, by idea</p>
+        <div>Representative sample <span style="float:right;font-family:var(--mono)">3/3</span><div class="bar"><i style="width:100%"></i></div></div>
+        <div>Honest answers (setting, pressure) <span style="float:right;font-family:var(--mono)">2/3</span><div class="bar"><i style="width:66%"></i></div></div>
+        <div>Accurate records <span style="float:right;font-family:var(--mono)">2/2</span><div class="bar"><i style="width:100%"></i></div></div>
+        <div>Over-generalising <span style="float:right;font-family:var(--mono)">1/2</span><div class="bar"><i style="width:50%;background:var(--ember)"></i></div></div>
+        <p style="font-size:12.5px;color:var(--ink-2)">Next: <b>Fix it</b> (Over-generalising) · or <a href="#games" style="color:var(--q2-storm)">replay with new questions</a></p>
+      </div>
+    </div>
+  </div></div>
+</section>
+
+<!-- ═════════════ H ═════════════ -->
+<section class="board" id="leader">
+  <div class="board-h"><span class="tag">H</span><h2>Teacher tracker → Leaderboard (teacher only)</h2>
+    <p><span class="fb">PDPA</span>Built only from the results you import into the tracker (student exports, Word or result codes). It lives on your computer, and students never see other students' names on the site. When you project it to the class, "Initials only" hides full names. The right-hand grid shows which idea the class misses most, which is the check on understanding you asked for.</p></div>
+  <div class="frame"><div class="tk">
+    <div class="tk-top">
+      <h3>Leaderboard</h3>
+      <div class="seg" id="lbClass"><button class="on" type="button">10 Sapphire</button><button type="button">10 Storm</button><button type="button">All</button></div>
+      <div class="seg"><button type="button">This week</button><button class="on" type="button">This term</button></div>
+      <div class="seg"><button class="on" type="button">Q2</button><button type="button">Q1</button><button type="button">Both</button></div>
+      <button class="toggle" id="projT" type="button"><span class="sw"></span>Initials only (projector)</button>
+    </div>
+    <div class="tk-grid">
+      <div class="lb"><table>
+        <thead><tr><th>#</th><th>Student</th><th style="text-align:right">Points</th><th style="text-align:right">Rounds</th><th style="text-align:right">Accuracy</th><th style="text-align:right">Most improved</th></tr></thead>
+        <tbody id="lbBody"></tbody>
+      </table>
+      <p style="font-size:11.5px;color:var(--ink-3);padding:8px 10px">Points = correct answers × difficulty, capped per day so grinding one game doesn't win. Imported 30 Sep · 24 students.</p></div>
+      <div class="heat">
+        <h4>Where the class slips (accuracy by idea)</h4>
+        <div class="hrow hh"><span></span><span>Chain</span><span>Missing</span><span>Fix</span><span>Split</span><span>Match</span></div>
+        <div id="heatRows"></div>
+        <p class="miss"><b>Re-teach next:</b> “Over-generalising” (41%) and “Scope words” (48%). Suggested game for homework: <b>What’s untested?</b></p>
+      </div>
+    </div>
+    <p class="proj-note">Names are made up for the mockup.</p>
+  </div></div>
+</section>
+
+<!-- ═════════════ I ═════════════ -->
+<section class="board" id="notes">
+  <div class="board-h"><span class="tag">I</span><h2>My notes and highlights (new, for approval)</h2>
+    <p><span class="fb">new</span>Any student can highlight text on a page and pin a note to it. Everything is saved in their own browser (no login, nothing sent anywhere). Tabs with notes show a count, so they can see where they wrote something. Every note also appears in <b>My learning → My notes</b>, and printouts include them. <b>Try it:</b> select any words in the paragraphs below, then choose a colour or "Add note". Click a highlight to edit or remove it.</p></div>
+
+  <div class="frame">
+    <div class="frame-bar"><i></i><i></i><i></i><span>…/research/evaluate#overview</span></div>
+    <div class="nh-wrap">
+      <div class="nh-page" id="nhPage">
+        <div class="nh-tabs"><span class="on">Overview <b class="nh-dot" id="nhCount">2</b></span><span>The move</span><span>Traps <b class="nh-dot">1</b></span><span>Worked examples</span><span>Practice</span><span>Checklist</span></div>
+        <h3 style="font-size:26px;color:var(--q2-sea)">What Q2(a) really asks</h3>
+        <div class="nh-body" id="nhBody">
+          <p>You are judging the <b>method</b>, not the topic: who was asked, how, where, how it was recorded, and whether the conclusion fits. Every point is a three-step chain.</p>
+          <p>First, name what the researcher did. Quote it or name it from Source 3. Then explain the <mark class="hl hl-y has-note" data-id="n1">effect on the evidence: does it make the data more or less accurate, honest, complete or representative?</mark> Finally, link back to what the research was trying to find out.</p>
+          <p>Some candidates focused only on strengths or only on weaknesses. <mark class="hl hl-p" data-id="n2">Always cover both. Level 4 names both strengths and weaknesses.</mark></p>
+        </div>
+        <div class="selbar" id="selbar">
+          <button type="button" data-c="y"><i class="hl-y"></i>Important</button>
+          <button type="button" data-c="b"><i class="hl-b"></i>Revise</button>
+          <button type="button" data-c="p"><i class="hl-p"></i>Unsure</button>
+          <button type="button" data-c="note">✎ Add note</button>
+        </div>
+        <div class="nh-pop" id="nhPop">
+          <p class="q" id="nhPopQ"></p>
+          <textarea id="nhPopT" placeholder="Write your note…"></textarea>
+          <div class="acts"><button type="button" id="nhDel" style="color:var(--ember)">Remove</button><button type="button" id="nhSave">Save</button></div>
+        </div>
+      </div>
+      <aside class="nh-side">
+        <h4>Notes on this page <span class="nh-dot" id="nhSideCount">2</span></h4>
+        <div class="nh-list" id="nhList"></div>
+        <p style="margin-top:14px;font-size:12px;color:var(--ink-3)">On phones this list opens from a “My notes (3)” button at the bottom of the screen. The existing free-writing notes panel stays too, shown here as “Page notes”.</p>
+      </aside>
+    </div>
+  </div>
+
+  <div class="phones" style="margin-top:22px">
+    <div class="frame" style="flex:1;min-width:320px">
+      <div class="frame-bar"><i></i><i></i><i></i><span>…/my-learning#notes</span></div>
+      <div class="mynotes">
+        <nav class="mn-nav">
+          <p class="label" style="color:var(--ink-3);margin-bottom:6px">My notes</p>
+          <a class="on" href="#notes">All pages <span class="nh-dot">7</span></a>
+          <a href="#notes">Strong or Shaky? · 2(a) <span class="nh-dot">3</span></a>
+          <a href="#notes">The Test Bench · 2(b) <span class="nh-dot">2</span></a>
+          <a href="#notes">Toolkit <span class="nh-dot">1</span></a>
+          <a href="#notes">Statements · 1(b) <span class="nh-dot">1</span></a>
+          <p class="label" style="color:var(--ink-3);margin:14px 0 6px">Show</p>
+          <a href="#notes">Notes and highlights</a><a href="#notes">Only “Unsure”</a>
+        </nav>
+        <div class="mn-main">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap"><h3 style="font-size:24px;color:var(--q2-sea)">Everything you marked</h3><button class="printbtn" type="button">⎙ Print my notes</button></div>
+          <div class="mn-grp"><h5>Strong or Shaky? · Overview</h5>
+            <div class="mn-card"><div><span class="hl-y" style="padding:0 2px">effect on the evidence: does it make the data more or less accurate…</span><p style="margin-top:3px">✎ This is step 2 — I always skip it!</p></div><a href="#notes">Go to it →</a></div>
+            <div class="mn-card"><div><span class="hl-p" style="padding:0 2px">Always cover both. Level 4 names both strengths and weaknesses.</span></div><a href="#notes">Go to it →</a></div></div>
+          <div class="mn-grp"><h5>Strong or Shaky? · Traps</h5>
+            <div class="mn-card"><div><span class="hl-b" style="padding:0 2px">Judging methods the source never used</span><p style="margin-top:3px">✎ Only judge what Source 3 actually says.</p></div><a href="#notes">Go to it →</a></div></div>
+          <div class="mn-grp"><h5>The Test Bench · Page notes</h5>
+            <div class="mn-card"><div><p>Split the claim FIRST. Scope words: many, most, across, increasing.</p></div><a href="#notes">Go to it →</a></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="a4" style="width:360px;padding:20px 22px;font-size:8.6px">
+      <div class="wh"><div><p class="mono">IGCSE GP 0457 · Q2(a) · printed with my notes</p><h3 style="font-size:16px">Strong or Shaky?</h3></div></div>
+      <p style="margin-top:8px;font-weight:700;font-size:10px">What Q2(a) really asks</p>
+      <p style="margin-top:4px">You are judging the method, not the topic… Then explain the <span class="phl">effect on the evidence: does it make the data more or less accurate, honest, complete or representative?</span><sup>1</sup> Finally, link back to the aim.</p>
+      <p style="margin-top:4px"><span class="phl">Always cover both. Level 4 names both strengths and weaknesses.</span></p>
+      <div class="pr-note"><b>MY NOTES ON THIS PAGE</b><ol><li>This is step 2 — I always skip it!</li></ol><p style="margin-top:4px"><b>PAGE NOTES</b></p><p>Aim for 3 + 2 points. Quote the source every time.</p></div>
+      <p style="margin-top:8px;font-size:8px;color:#555">Highlights print as grey shading (or colour on a colour printer). Notes print as numbered footnotes at the end of each section. The same applies to worksheets and revision sheets.</p>
+    </div>
+  </div>
+  <p class="note"><b>Where notes can go:</b> every notes page in Question 2 now, and Question 1 once it's remodelled. Worksheets and revision sheets can be highlighted too. <b>Limits:</b> notes stay on the device and browser they were written in. So "Export results" on My learning will also carry notes, letting students move them to another device.</p>
+</section>
+
+<script>
+/* A · desktop menus */
+(function(){
+  const nav=document.getElementById('deskNav');
+  const menus={q1:document.getElementById('mega-q1'),q2:document.getElementById('mega-q2')};
+  const btns=[...nav.querySelectorAll('button[data-menu]')];
+  const hoverable=matchMedia('(hover:hover)').matches;
+  function open(k){btns.forEach(b=>{const on=b.dataset.menu===k;b.setAttribute('aria-expanded',on);menus[b.dataset.menu].classList.toggle('open',on);});}
+  btns.forEach(b=>{
+    b.addEventListener('click',()=>open(b.getAttribute('aria-expanded')==='true'?null:b.dataset.menu));
+    if(hoverable) b.addEventListener('mouseenter',()=>open(b.dataset.menu));
+  });
+  Object.values(menus).forEach(m=>{
+    const items=[...m.querySelectorAll('.mega-item')], panes=[...m.querySelectorAll('[data-p]')];
+    items.forEach(it=>{const show=()=>{items.forEach(x=>x.classList.toggle('on',x===it));panes.forEach(p=>p.style.display=p.dataset.p===it.dataset.pane?'':'none');};
+      it.addEventListener('mouseenter',show);it.addEventListener('click',show);});
+  });
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')open(null)});
+})();
+
+/* B · accordion */
+document.querySelectorAll('.acc>button').forEach(b=>b.addEventListener('click',()=>b.parentElement.classList.toggle('open')));
+
+/* D · search */
+(function(){
+  const IDX=[
+    {g:'Pages & sections',f:'Q2',qp:'Kit',c:'var(--q2-storm)',t:'Toolkit → Glossary: Sample',d:'The people or cases you collect data from.'},
+    {g:'Pages & sections',f:'Q2',qp:'2(a)',c:'var(--q2-night)',t:'Strong or Shaky? → Where to look: Who was asked, and how many?',d:'A small or one-person sample is not representative.'},
+    {g:'Pages & sections',f:'Q2',qp:'2(b)',c:'var(--q2-sage)',t:'The Test Bench → Split the claim',d:'“Mostly” means more than half: you need a large sample to count reasons.'},
+    {g:'Pages & sections',f:'Q1',qp:'1(b)',c:'var(--cobalt)',t:'Statements → Generalisation',d:'Something true of a small sample presented as true for everyone.'},
+    {g:'Pages & sections',f:'Q1',qp:'1(b)',c:'var(--cobalt)',t:'Statements → Bias vs vested interest',d:'A one-sided slant vs a personal stake in the outcome.'},
+    {g:'Pages & sections',f:'Q1',qp:'1(c)',c:'var(--amber)',t:'Perspectives → Four levels of perspective',d:'Global · National · Local · Personal: who is speaking?'},
+    {g:'Pages & sections',f:'Q1',qp:'1(d)',c:'var(--forest)',t:'Significance → The Crowd Test',d:'Does this hit a few people, or loads of people?'},
+    {g:'Pages & sections',f:'Q2',qp:'Kit',c:'var(--q2-storm)',t:'Toolkit → Reliability: Sources of bias / vested interest',d:'Would they gain from people believing this?'},
+    {g:'Pages & sections',f:'Q2',qp:'Kit',c:'var(--q2-storm)',t:'Toolkit → Methods: Mixed methods (triangulation)',d:'If different methods agree, the conclusion is more reliable.'},
+    {g:'Glossary',f:'Glossary',qp:'Term',c:'var(--q2-olive)',t:'Representative',d:'A sample that is like the wider group you want to know about.'},
+    {g:'Glossary',f:'Glossary',qp:'Term',c:'var(--q2-olive)',t:'Triangulation',d:'Checking a finding with two or more methods or sources.'},
+    {g:'Glossary',f:'Glossary',qp:'Term',c:'var(--q2-olive)',t:'Bias',d:'A one-sided view that leaves out or distorts information.'},
+    {g:'Glossary',f:'Glossary',qp:'Term',c:'var(--q2-olive)',t:'Perspective',d:'A viewpoint on an issue, based on reasoning and evidence.'},
+    {g:'Practice papers',f:'Practice',qp:'J26',c:'var(--q2-sea)',t:'Vehicle crime, one building firm',d:'Reworded June 2026 · 0457/12 · weakness: sample of one company'},
+    {g:'Practice papers',f:'Practice',qp:'Mir',c:'var(--q2-sea)',t:'Food waste, one café',d:'Mirror of June 2026 /12 · small sample, owner has vested interest'},
+    {g:'Practice papers',f:'Practice',qp:'J25',c:'var(--q2-sea)',t:'Cultural festivals in travel magazines',d:'Mirror of June 2025 /11 · claim scope: “regularly”'},
+  ];
+  const q=document.getElementById('sq'),res=document.getElementById('sres'),chips=document.getElementById('schips');let f='all';
+  const esc=s=>s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+  function hl(s,t){if(!t)return esc(s);const i=s.toLowerCase().indexOf(t);return i<0?esc(s):esc(s.slice(0,i))+'<mark>'+esc(s.slice(i,i+t.length))+'</mark>'+esc(s.slice(i+t.length));}
+  function run(){const t=q.value.trim().toLowerCase();const hits=IDX.filter(x=>(f==='all'||x.f===f)&&(!t||(x.t+' '+x.d).toLowerCase().includes(t)));
+    const groups={};hits.forEach(h=>(groups[h.g]=groups[h.g]||[]).push(h));
+    res.innerHTML=Object.keys(groups).length?Object.entries(groups).map(([g,hs])=>'<p class="srch-grp">'+g+' · '+hs.length+'</p>'+hs.map((h,i)=>'<a class="hit'+(i===0&&g===Object.keys(groups)[0]?' on':'')+'" href="#search"><span class="qp" style="background:'+h.c+'">'+h.qp+'</span><span><b>'+hl(h.t,t)+'</b><small>'+hl(h.d,t)+'</small></span></a>').join('')).join(''):'<p style="padding:18px;color:var(--ink-3);font-size:13.5px">No matches. Try a shorter word, e.g. “bias”.</p>';}
+  q.addEventListener('input',run);
+  chips.addEventListener('click',e=>{const c=e.target.closest('.chip');if(!c)return;f=c.dataset.f;chips.querySelectorAll('.chip').forEach(x=>x.classList.toggle('on',x===c));run();});
+  run();
+})();
+
+/* E · cue flip */
+document.querySelectorAll('.cue .flip').forEach(b=>b.addEventListener('click',()=>{const c=b.closest('.cue');c.classList.toggle('flipped');b.textContent=c.classList.contains('flipped')?'Hide answer':'Test yourself';}));
+
+/* G · Missing link */
+(function(){
+  const R=[
+    {src:'Vehicle crime (J26/12)',quote:'…an interview at <mark>one local building company</mark>.',what:'All the data comes from one local building company.',aim:'The aim is how much vehicle crime there is, so a national conclusion is not supported.',right:'A sample of one is not representative; one firm cannot show a wider pattern.',wrong:['One company is a biased company, so it lies about crime.','The interview was recorded, so the answers are accurate.']},
+    {src:'Vehicle crime (J26/12)',quote:'…interviewed on his coffee break, in the firm’s <mark>crowded, noisy café</mark>.',what:'The interview was in a crowded, noisy café.',aim:'Guarded or misheard answers weaken any conclusion about the amount of vehicle crime.',right:'Answers may be misheard, and other people listening may make him less open.',wrong:['Cafés are informal, so the manager is not an expert.','A café is a public place, so the research is unethical and cannot be used.']},
+    {src:'Vehicle crime (J26/12)',quote:'The student <mark>signed a confidentiality agreement</mark> before asking any questions.',what:'The student signed a confidentiality agreement.',aim:'More honest data about crime at the firm makes the findings more trustworthy.',right:'The manager may speak more openly, so answers are more honest and complete; it is also ethical.',wrong:['It makes the sample larger and more representative.','It means the student can quote the manager’s name in the report.']},
+    {src:'Vehicle crime (J26/12)',quote:'The manager, Mr Grant, <mark>had joined the company only a month earlier</mark>.',what:'The manager had only been at the firm for a month.',aim:'He cannot say whether vehicle crime is rising, which is what the student concluded.',right:'He may not know the firm’s history of crime, so his answers may be incomplete.',wrong:['New staff are always dishonest, so the evidence is false.','A new manager has a vested interest in making crime look low.']},
+    {src:'Vehicle crime (J26/12)',quote:'<mark>Because of this one recent theft</mark>, the student decided that vehicle crime is probably rising…',what:'A national trend is concluded from one theft.',aim:'So the claim that vehicle crime is rising nationally is unsupported.',right:'This over-generalises; one case says nothing about change over time or across the country.',wrong:['Recent evidence is always more reliable than old evidence.','The theft was of tools, not a whole vehicle, so it does not count.']},
+  ];
+  let i=0,streak=0,res=[];
+  const $=id=>document.getElementById(id);
+  function pips(){ $('mlPips').innerHTML=R.map((_,k)=>'<i class="'+(res[k]===true?'ok':res[k]===false?'bad':k===i?'cur':'')+'"></i>').join(''); }
+  function load(){const r=R[i];$('mlSrc').textContent=r.src;$('mlQuote').innerHTML=r.quote;$('mlWhat').textContent=r.what;$('mlAim').textContent=r.aim;
+    $('mlGap').classList.remove('filled');$('mlGapT').textContent='Which link goes here?';$('mlFb').textContent='';$('mlNext').disabled=true;
+    const o=[r.right,...r.wrong].map(t=>({t,ok:t===r.right})).sort(()=>Math.random()-.5);
+    $('mlOpts').innerHTML='';o.forEach(x=>{const b=document.createElement('button');b.className='opt';b.type='button';b.textContent=x.t;
+      b.onclick=()=>{[...$('mlOpts').children].forEach((c,k)=>{c.disabled=true;if(o[k].ok)c.classList.add('right');});if(!x.ok)b.classList.add('wrong');
+        res[i]=x.ok;streak=x.ok?streak+1:0;$('mlStreak').textContent='streak '+streak;$('mlGap').classList.add('filled');$('mlGapT').textContent=r.right;
+        $('mlFb').innerHTML=x.ok?'<b>Yes.</b> It says what happens to the <em>evidence</em>, which sets up the link to the aim.':'<b>Not quite.</b> The middle link must say what the feature does to the evidence (accurate? honest? representative?). Don’t jump to a new idea.';
+        $('mlNext').disabled=false;pips();};$('mlOpts').appendChild(b);});pips();}
+  $('mlNext').onclick=()=>{i=(i+1)%R.length;if(i===0)res=[];load();};load();
+})();
+
+/* G · Claim splitter */
+(function(){
+  const C=[
+    {text:'Vehicle crime is going up across the country.',parts:{1:'Vehicle crime',2:'going up',3:'across the country'},labels:{1:'What is measured',2:'Change',3:'Scope'},need:{1:'A count of thefts and break-ins.',2:'Figures from several years, so a trend can be seen.',3:'National coverage, not one firm or town.'}},
+    {text:'Cultural festivals are regularly featured in international travel magazines.',parts:{1:'Cultural festivals',2:'regularly',3:'international travel magazines'},labels:{1:'What is measured',2:'How often',3:'Group'},need:{1:'A list of festivals over a set period.',2:'A count over several issues or years.',3:'International titles, not local leaflets.'}},
+    {text:'Many schools recycle waste food.',parts:{1:'waste food',2:'recycle',3:'Many schools'},labels:{1:'What',2:'Action',3:'Scope'},need:{1:'What counts as food waste.',2:'Evidence of real recycling (observation).',3:'A count across lots of schools.'}},
+  ];
+  let ci=0,tag=1,streak=0,res=[],tagged={};
+  const $=id=>document.getElementById(id);
+  function pips(){ $('csPips').innerHTML=C.map((_,k)=>'<i class="'+(res[k]===true?'ok':res[k]===false?'bad':k===ci?'cur':'')+'"></i>').join(''); }
+  function load(){const c=C[ci];tagged={};
+    $('csTags').innerHTML=[1,2,3].map(t=>'<button type="button" data-t="'+t+'" class="'+(t===tag?'sel':'')+'">'+t+' · '+c.labels[t]+'</button>').join('')+'<button type="button" data-t="0">Clear</button>';
+    $('csClaim').innerHTML='“'+c.text.split(' ').map((w,k)=>'<span class="w" data-k="'+k+'">'+w+'</span>').join(' ')+'”';
+    $('csNeed').innerHTML='';$('csFb').textContent='';$('csCheck').style.display='';$('csNext').style.display='none';pips();}
+  $('csTags').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;tag=+b.dataset.t;[...$('csTags').children].forEach(x=>x.classList.toggle('sel',x===b&&tag>0));});
+  $('csClaim').addEventListener('click',e=>{const w=e.target.closest('.w');if(!w)return;const k=w.dataset.k;w.className='w';if(tag&&tagged[k]!==tag){tagged[k]=tag;w.classList.add('t'+tag);}else delete tagged[k];});
+  $('csCheck').onclick=()=>{const c=C[ci],words=c.text.replace(/[.“”]/g,'').split(' ');let ok=0;const rows=[];
+    [1,2,3].forEach(t=>{const got=words.filter((_,k)=>tagged[k]===t).join(' ').toLowerCase();const want=c.parts[t].toLowerCase();const hit=got===want;if(hit)ok++;
+      rows.push('<div style="background:'+(hit?'#E3F2E7':'var(--ember-soft)')+'"><b>'+t+' · '+c.labels[t]+':</b> “'+c.parts[t]+'” → '+c.need[t]+'</div>');});
+    $('csNeed').innerHTML=rows.join('');const all=ok===3;res[ci]=all;streak=all?streak+1:0;$('csStreak').textContent='streak '+streak;
+    $('csFb').innerHTML=all?'<b>All three parts found.</b> Each one tells you something your research must include.':'<b>'+ok+'/3 parts.</b> Compare with the answers above. Each part needs its own evidence.';
+    $('csCheck').style.display='none';$('csNext').style.display='';pips();};
+  $('csNext').onclick=()=>{ci=(ci+1)%C.length;if(ci===0)res=[];tag=1;load();};load();
+})();
+
+/* H · leaderboard */
+(function(){
+  const S=[['Aisyah Rahman',412,23,86,'+18%'],['Daniel Lim Wei Jie',398,21,84,''],['Priya Nair',371,19,88,''],['Haziq Iskandar',344,22,77,'+24%'],['Chloe Tan',330,17,81,''],['Arjun Menon',297,16,74,''],['Nurul Huda',281,18,70,'+15%'],['Marcus Ong',256,14,72,'']];
+  const body=document.getElementById('lbBody'),t=document.getElementById('projT');let ini=false;
+  const initials=n=>n.split(' ').map(p=>p[0]).join('.')+'.';
+  const col=['#B8962E','#8E9AA6','#A0673A'];
+  function draw(){body.innerHTML=S.map((s,i)=>'<tr><td class="rank">'+(i<3?'<span class="medal" style="background:'+col[i]+'">'+(i+1)+'</span>':i+1)+'</td><td>'+(ini?initials(s[0]):s[0])+'</td><td class="r">'+s[1]+'</td><td class="r">'+s[2]+'</td><td class="r">'+s[3]+'%</td><td class="r" style="color:#3E8A58">'+s[4]+'</td></tr>').join('');}
+  t.onclick=()=>{ini=!ini;t.classList.toggle('on',ini);draw();};draw();
+  const H=[['Clear aim',[92,88,90,0,0]],['Sample size',[85,80,78,0,0]],['Honest answers',[74,62,66,0,0]],['Over-generalising',[58,41,45,0,0]],['Scope words',[0,0,0,48,55]],['Change / trend',[0,0,0,71,66]],['Who is specific',[0,0,0,62,58]]];
+  const shade=v=>v===0?'#F4F2EA':v>=85?'#CFE6D6':v>=70?'#E7F1FA':v>=55?'#F4F4E2':'#F7E4DE';
+  document.getElementById('heatRows').innerHTML=H.map(([n,v])=>'<div class="hrow"><span>'+n+'</span>'+v.map(x=>'<span class="c" style="background:'+shade(x)+'">'+(x?x+'%':'–')+'</span>').join('')+'</div>').join('');
+})();
+
+/* I · notes + highlights */
+(function(){
+  const body=document.getElementById('nhBody'),page=document.getElementById('nhPage'),bar=document.getElementById('selbar'),pop=document.getElementById('nhPop');
+  const notes={n1:'This is step 2 — I always skip it!',n2:''};let range=null,cur=null,seq=3;
+  const names={y:'Important',b:'Revise',p:'Unsure'};
+  const esc=t=>t.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+  function list(){const ms=[...body.querySelectorAll('mark.hl')];document.getElementById('nhCount').textContent=ms.length;document.getElementById('nhSideCount').textContent=ms.length;
+    body.querySelectorAll('.pin').forEach(p=>p.remove());
+    ms.forEach(m=>{m.classList.toggle('has-note',!!notes[m.dataset.id]);if(notes[m.dataset.id]){const para=m.closest('p');if(!para.querySelector('.pin')){const pin=document.createElement('span');pin.className='pin';pin.textContent='✎';pin.title='Has a note';pin.onclick=()=>openPop(m);para.prepend(pin);}}});
+    document.getElementById('nhList').innerHTML=ms.length?ms.map(m=>{const c=[...m.classList].find(x=>/^hl-/.test(x));const t=m.textContent;return '<div class="nh-item" data-id="'+m.dataset.id+'"><span class="qt '+c+'">'+esc(t.slice(0,70))+(t.length>70?'…':'')+'</span>'+(notes[m.dataset.id]?'<p class="nt">✎ '+esc(notes[m.dataset.id])+'</p>':'')+'<p class="where">'+names[c.slice(3)]+' · Overview</p></div>';}).join(''):'<p class="nh-empty">Nothing yet. Select some text to start.</p>';
+    document.querySelectorAll('#nhList .nh-item').forEach(it=>it.onclick=()=>{const m=body.querySelector('mark[data-id="'+it.dataset.id+'"]');m.scrollIntoView({block:'center',behavior:'smooth'});m.animate([{outline:'2px solid #134B70'},{outline:'2px solid transparent'}],{duration:1200});});}
+  function place(el,rect){const pr=page.getBoundingClientRect();el.style.display=el===bar?'flex':'block';el.style.left=Math.max(8,Math.min(rect.left-pr.left,pr.width-(el.offsetWidth+8)))+'px';el.style.top=(rect.bottom-pr.top+8)+'px';}
+  function openPop(m){cur=m;bar.style.display='none';document.getElementById('nhPopQ').textContent='“'+m.textContent.slice(0,80)+'”';document.getElementById('nhPopT').value=notes[m.dataset.id]||'';place(pop,m.getBoundingClientRect());document.getElementById('nhPopT').focus();}
+  document.addEventListener('mouseup',e=>{if(bar.contains(e.target)||pop.contains(e.target))return;const s=getSelection();if(s.isCollapsed||!body.contains(s.anchorNode)||!body.contains(s.focusNode)){bar.style.display='none';return;}
+    range=s.getRangeAt(0).cloneRange();place(bar,range.getBoundingClientRect());});
+  function wrap(c){if(!range)return null;const m=document.createElement('mark');m.className='hl hl-'+c;m.dataset.id='n'+(seq++);try{range.surroundContents(m);}catch(err){m.appendChild(range.extractContents());range.insertNode(m);}getSelection().removeAllRanges();bar.style.display='none';range=null;return m;}
+  bar.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;if(b.dataset.c==='note'){const m=wrap('y');if(m){list();openPop(m);}}else{wrap(b.dataset.c);list();}});
+  body.addEventListener('click',e=>{const m=e.target.closest('mark.hl');if(m&&getSelection().isCollapsed)openPop(m);});
+  document.getElementById('nhSave').onclick=()=>{notes[cur.dataset.id]=document.getElementById('nhPopT').value.trim();pop.style.display='none';list();};
+  document.getElementById('nhDel').onclick=()=>{cur.replaceWith(document.createTextNode(cur.textContent));delete notes[cur.dataset.id];pop.style.display='none';list();};
+  document.addEventListener('mousedown',e=>{if(pop.style.display==='block'&&!pop.contains(e.target)&&!e.target.closest('mark.hl')&&!e.target.closest('.pin'))pop.style.display='none';});
+  list();
+})();
+</script>
+</body>
+</html>

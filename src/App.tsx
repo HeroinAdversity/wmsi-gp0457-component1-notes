@@ -28,6 +28,7 @@ import { MyLearningPage } from './pages/my-learning/MyLearningPage';
 import { TrackerPage } from './pages/dashboards/tracker/TrackerPage';
 import { ResearchRevisionSheetPage } from './pages/research/ResearchRevisionSheetPage';
 import { Q2Frame } from './pages/research/components/Q2Frame';
+import { GamesPage } from './pages/research/games/GamesPage';
 
 export function App() {
   return (
@@ -74,6 +75,8 @@ export function App() {
           <Route path="research/design" element={<DesignPage />} />
           <Route path="research/practice" element={<PracticePage />} />
           <Route path="research/practice/:id" element={<PracticePage />} />
+          <Route path="research/games" element={<GamesPage />} />
+          <Route path="research/games/:gameId" element={<GamesPage />} />
         </Route>
 
         {/* Site-wide student export */}

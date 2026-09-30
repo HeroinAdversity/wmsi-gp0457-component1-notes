@@ -5,8 +5,8 @@ import { useProgress, type ActivityRecord, type ProgressState } from '../../lib/
 import { encodeResultCode, toPayload, wrapCodeForPdf } from '../../lib/resultCode';
 import { nx, useNotesExport, type Block } from '../../lib/useNotesExport';
 
-const KIND_ORDER: Record<ActivityRecord['kind'], number> = { quiz: 0, 'answer-2a': 1, 'answer-2b': 2, checklist: 3 };
-const KIND_LABEL: Record<ActivityRecord['kind'], string> = { quiz: 'Quiz', 'answer-2a': '2(a) answer', 'answer-2b': '2(b) answer', checklist: 'Checklist' };
+const KIND_ORDER: Record<ActivityRecord['kind'], number> = { quiz: 0, game: 1, 'answer-2a': 2, 'answer-2b': 3, checklist: 4 };
+const KIND_LABEL: Record<ActivityRecord['kind'], string> = { quiz: 'Quiz', game: 'Practice game', 'answer-2a': '2(a) answer', 'answer-2b': '2(b) answer', checklist: 'Checklist' };
 const STATUS_LABEL: Record<ActivityRecord['status'], string> = { done: 'Done', 'in-progress': 'In progress', 'not-started': 'Not started' };
 
 function rowsOf(state: ProgressState): ActivityRecord[] {

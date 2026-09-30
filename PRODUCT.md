@@ -37,7 +37,7 @@ Used in lessons and for self-study. Students export their notes and answers as W
 
 - WMSI GP0457 editorial-academic identity as shipped in `src/styles.css`; each Paper 1 question keeps its own colour territory. Q2 uses the teacher's own palette (Deep Sapphire, Black Sea, Sapphire, Storm Blue, Blue Sage, Coastal Blue, Olive Ivory, Arctic Gray) on Q2 pages only.
 - Examiner advice on Q2 pages is a card-style "examiner's note" (icon, citation, "So:" action line). The teacher rejected coloured side-bar callouts as looking AI-made; do not use them on new work.
-- Teacher-confirmed exception: new sections must "closely mirror" the shipped Q1 site, so the Q1 conventions they inherit — mono uppercase labels above page titles, and the revision-sheet chrome (halftone band, rotated stamp, offset shadows) — are kept deliberately. Changing them is a whole-site decision for the teacher, not a per-page fix.
+- Open decision (awaiting the teacher): the brief asks new sections to "closely mirror" the shipped Q1 site, so Q2 currently inherits Q1's mono uppercase labels above page titles and the revision-sheet chrome (halftone band, rotated stamp, offset shadows). Whether to keep or change them is a whole-site decision for the teacher; until she answers, treat them as provisional, not endorsed.
 
 ## Evidence on Hand
 

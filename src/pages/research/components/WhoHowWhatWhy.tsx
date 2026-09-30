@@ -127,7 +127,7 @@ export function WhoHowWhatWhy({ parts, storageId, activityId, activityTitle, rea
           <div key={i} className="grid border-t border-[color:var(--color-line)] first:border-t-0 md:first:border-t md:grid-cols-[40px_1fr_1fr_1.2fr_1.4fr]">
             <div className="flex items-center justify-between bg-[color:var(--color-q2-night)] px-3 py-2 md:block md:bg-transparent md:px-0 md:py-3 md:text-center">
               <span className="font-display text-[20px] text-[color:var(--color-q2-ivory)] md:text-[22px] md:text-[color:var(--color-q2-sage-ink)]">
-                <span className="md:hidden">Row </span>{i + 1}
+                {ro ? <><span className="md:hidden">Example row</span><span className="hidden md:inline text-[15px]">Eg</span></> : <><span className="md:hidden">Row </span>{i + 1}</>}
               </span>
               {!ro && rows.length > 1 && (
                 <button type="button" onClick={() => setM((p) => ({ ...p, rows: p.rows.filter((__, j) => j !== i) }))}
